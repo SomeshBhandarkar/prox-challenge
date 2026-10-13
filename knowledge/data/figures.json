@@ -1,0 +1,2203 @@
+[
+  {
+    "id": "feed-mechanism",
+    "page": 12,
+    "box": [
+      0.5,
+      0.11,
+      0.94,
+      0.795
+    ],
+    "caption": "Feed roller instructions: unscrew the feed roller knob, remove it, flip or swap the feed roller, screw the knob back (steps A to D)",
+    "answers": [
+      "wire not feeding",
+      "wire slipping",
+      "change the feed roller",
+      "feed roller knob",
+      "wire feed mechanism"
+    ]
+  },
+  {
+    "id": "feed-roller-grooves",
+    "page": 12,
+    "box": [
+      0.54,
+      0.31,
+      0.7,
+      0.6
+    ],
+    "caption": "Feed roller grooves: solid core V-groove (0.025 | 0.030/0.035) and flux-cored knurled groove (0.045 | 0.030/0.035)",
+    "answers": [
+      "which feed roller",
+      "roller groove size",
+      "solid vs flux-cored roller",
+      "0.030 wire",
+      "0.035 wire",
+      "0.045 wire"
+    ]
+  },
+  {
+    "id": "wire-penetration-heat",
+    "page": 35,
+    "box": [
+      0.055,
+      0.035,
+      0.925,
+      0.312
+    ],
+    "caption": "Wire weld diagnosis (MIG and flux-cored), heat control and penetration: inadequate, proper, and burn-through, with how to raise or lower workpiece heat",
+    "answers": [
+      "burn-through",
+      "not enough penetration",
+      "weld too hot",
+      "weld too cold",
+      "thin metal",
+      "thick metal"
+    ]
+  },
+  {
+    "id": "wire-diagnosis-examples",
+    "page": 35,
+    "box": [
+      0.055,
+      0.35,
+      0.925,
+      0.835
+    ],
+    "caption": "Example wire weld diagrams (MIG and flux-cored): good weld, voltage or wire speed too low/high, travel speed too fast/slow, CTWD too long or wrong polarity, with the fix for each",
+    "answers": [
+      "weld looks wrong",
+      "spatter",
+      "travel speed",
+      "wrong polarity",
+      "CTWD too long",
+      "voltage too high",
+      "voltage too low",
+      "what does a good weld look like"
+    ]
+  },
+  {
+    "id": "wire-penetration-causes",
+    "page": 36,
+    "box": [
+      0.07,
+      0.03,
+      0.945,
+      0.47
+    ],
+    "caption": "Wire weld penetration: excess penetration or burn-through vs inadequate penetration, with 7 numbered causes and solutions",
+    "answers": [
+      "burn-through",
+      "weld falls through",
+      "hole in weld",
+      "weld not penetrating",
+      "weld only on the surface",
+      "thick workpiece bevel"
+    ]
+  },
+  {
+    "id": "wire-bend-at-joint",
+    "page": 36,
+    "box": [
+      0.07,
+      0.415,
+      0.495,
+      0.665
+    ],
+    "caption": "Wire weld, bend at joint: workpieces bend or warp, with causes (improper clamping, excessive heat) and solutions",
+    "answers": [
+      "warping",
+      "metal bending",
+      "joint bends",
+      "distortion",
+      "tack welds"
+    ]
+  },
+  {
+    "id": "wire-slag",
+    "page": 36,
+    "box": [
+      0.07,
+      0.675,
+      0.495,
+      0.905
+    ],
+    "caption": "Wire weld, coat of slag over weld: slag is normal on flux-cored welds and is chipped off; gas-shielded MIG welds do not need slag",
+    "answers": [
+      "slag",
+      "crust on weld",
+      "chipping hammer",
+      "wire brush",
+      "flux-cored slag",
+      "do I need to clean the weld"
+    ]
+  },
+  {
+    "id": "wire-not-adhering",
+    "page": 36,
+    "box": [
+      0.52,
+      0.505,
+      0.945,
+      0.905
+    ],
+    "caption": "Wire weld not adhering properly: gaps between weld and previous bead or workpiece, with 5 numbered causes and solutions",
+    "answers": [
+      "weld not sticking",
+      "cold lap",
+      "weld not fusing",
+      "gaps in weld",
+      "weld sits on top"
+    ]
+  },
+  {
+    "id": "wire-porosity",
+    "page": 37,
+    "box": [
+      0.055,
+      0.03,
+      0.48,
+      0.435
+    ],
+    "caption": "Wire weld porosity (small holes in the bead): top view and 6 numbered causes and solutions (polarity, shielding gas, dirty workpiece or wire, travel speed, CTWD)",
+    "answers": [
+      "porosity",
+      "holes in weld",
+      "pinholes",
+      "bubbles in weld",
+      "flux-cored porosity",
+      "bad gas coverage",
+      "weld looks like swiss cheese"
+    ]
+  },
+  {
+    "id": "wire-spatter",
+    "page": 37,
+    "box": [
+      0.51,
+      0.03,
+      0.93,
+      0.42
+    ],
+    "caption": "Wire weld excessive spatter: fine spatter is normal, grainy and large is a problem; 5 numbered causes and solutions",
+    "answers": [
+      "spatter",
+      "too much spatter",
+      "sparks and splatter",
+      "balls of metal around weld",
+      "messy weld"
+    ]
+  },
+  {
+    "id": "wire-crooked-bead",
+    "page": 37,
+    "box": [
+      0.055,
+      0.575,
+      0.48,
+      0.815
+    ],
+    "caption": "Wire weld crooked or wavy bead: top view and 3 numbered causes and solutions",
+    "answers": [
+      "wavy bead",
+      "crooked weld",
+      "weld not straight",
+      "uneven bead",
+      "shaky hands"
+    ]
+  },
+  {
+    "id": "wire-burn-through",
+    "page": 37,
+    "box": [
+      0.51,
+      0.575,
+      0.93,
+      0.845
+    ],
+    "caption": "Wire weld burn-through: base material melts away leaving a hole; top view and 3 numbered causes and solutions",
+    "answers": [
+      "burn-through",
+      "hole in the metal",
+      "melted through",
+      "thin sheet metal",
+      "weld blowing through"
+    ]
+  },
+  {
+    "id": "stick-penetration-heat",
+    "page": 38,
+    "box": [
+      0.07,
+      0.03,
+      0.945,
+      0.31
+    ],
+    "caption": "Stick weld diagnosis, heat control and penetration: inadequate, proper, and burn-through, with how to raise or lower workpiece heat",
+    "answers": [
+      "stick burn-through",
+      "stick not enough penetration",
+      "stick weld too hot",
+      "stick weld too cold",
+      "stick amperage too high"
+    ]
+  },
+  {
+    "id": "stick-diagnosis-examples",
+    "page": 38,
+    "box": [
+      0.07,
+      0.34,
+      0.935,
+      0.82
+    ],
+    "caption": "Example stick weld photos: good weld, current too low/high, weld speed too fast/slow, arc length too short/long, with the fix for each",
+    "answers": [
+      "what does a good stick weld look like",
+      "stick weld looks wrong",
+      "current too high",
+      "current too low",
+      "arc length",
+      "weld speed",
+      "stick weld photos"
+    ]
+  },
+  {
+    "id": "stick-penetration-causes",
+    "page": 39,
+    "box": [
+      0.055,
+      0.03,
+      0.925,
+      0.475
+    ],
+    "caption": "Stick weld penetration: excess penetration or burn-through vs inadequate penetration, with numbered causes and solutions",
+    "answers": [
+      "stick burn-through",
+      "stick weld falls through",
+      "stick weld not penetrating",
+      "bevel thick pieces",
+      "stick weld only on the surface"
+    ]
+  },
+  {
+    "id": "stick-not-adhering",
+    "page": 39,
+    "box": [
+      0.055,
+      0.488,
+      0.925,
+      0.745
+    ],
+    "caption": "Stick weld not adhering properly: gaps between weld and previous bead or workpiece, with 5 numbered causes and solutions",
+    "answers": [
+      "stick weld not sticking",
+      "stick weld not fusing",
+      "gaps in stick weld",
+      "dirty workpiece"
+    ]
+  },
+  {
+    "id": "stick-bend-at-joint",
+    "page": 39,
+    "box": [
+      0.055,
+      0.755,
+      0.925,
+      0.905
+    ],
+    "caption": "Stick weld, bend at joint: workpieces bend or warp, with causes (improper clamping, excessive heat) and solutions",
+    "answers": [
+      "stick warping",
+      "metal bending",
+      "joint bends",
+      "distortion"
+    ]
+  },
+  {
+    "id": "stick-slag",
+    "page": 40,
+    "box": [
+      0.07,
+      0.03,
+      0.94,
+      0.165
+    ],
+    "caption": "Stick weld, coat of slag over weld: slag is necessary, shields the weld, and is chipped off with a chipping hammer and wire brush",
+    "answers": [
+      "stick slag",
+      "crust on stick weld",
+      "chipping hammer",
+      "wire brush",
+      "how to clean a stick weld"
+    ]
+  },
+  {
+    "id": "stick-porosity",
+    "page": 40,
+    "box": [
+      0.07,
+      0.18,
+      0.94,
+      0.325
+    ],
+    "caption": "Stick weld porosity (small holes in the bead): top view and 2 causes and solutions (dirty workpiece or fill material, inconsistent speed)",
+    "answers": [
+      "stick porosity",
+      "holes in stick weld",
+      "pinholes in stick weld",
+      "damp electrode"
+    ]
+  },
+  {
+    "id": "stick-crooked-bead",
+    "page": 40,
+    "box": [
+      0.07,
+      0.345,
+      0.94,
+      0.5
+    ],
+    "caption": "Stick weld crooked or wavy bead: top view and 2 causes and solutions",
+    "answers": [
+      "wavy stick bead",
+      "crooked stick weld",
+      "stick weld not straight",
+      "uneven bead"
+    ]
+  },
+  {
+    "id": "stick-spatter",
+    "page": 40,
+    "box": [
+      0.07,
+      0.518,
+      0.94,
+      0.665
+    ],
+    "caption": "Stick weld excessive spatter: fine spatter is normal, grainy and large is a problem; cause and solution",
+    "answers": [
+      "stick spatter",
+      "too much spatter with stick",
+      "balls of metal around weld"
+    ]
+  },
+  {
+    "id": "stick-burn-through",
+    "page": 40,
+    "box": [
+      0.07,
+      0.68,
+      0.94,
+      0.835
+    ],
+    "caption": "Stick weld burn-through: base material melts away leaving a hole; top view and 3 causes and solutions",
+    "answers": [
+      "stick burn-through",
+      "hole in the metal",
+      "melted through",
+      "thin metal with stick"
+    ]
+  },
+  {
+    "id": "selection-chart",
+    "pdf": "selection-chart.pdf",
+    "source": "Selection chart",
+    "page": 1,
+    "box": [
+      0.0,
+      0.302,
+      1.0,
+      0.668
+    ],
+    "caption": "The Selection Chart (How to choose a welder): skill level, shielding gas, material, thickness range, typical uses and weld cleanliness for flux-cored, MIG, Stick and TIG, plus the MIG-or-flux-cored table and the duty-cycle example",
+    "answers": [
+      "which process should I use",
+      "compare MIG TIG stick flux-cored",
+      "what thickness can each process weld",
+      "do I need shielding gas",
+      "what skill level",
+      "what material can I weld"
+    ]
+  },
+  {
+    "id": "selection-chart-processes",
+    "pdf": "selection-chart.pdf",
+    "source": "Selection chart",
+    "page": 1,
+    "box": [
+      0.0,
+      0.357,
+      0.878,
+      0.668
+    ],
+    "caption": "Selection Chart, the four processes side by side: skill level, gas, materials, thickness range, typical applications and how clean the weld is",
+    "answers": [
+      "which process should I use",
+      "what thickness can each process weld",
+      "do I need gas",
+      "outdoor or windy conditions",
+      "how clean is the weld"
+    ]
+  },
+  {
+    "id": "selection-chart-mig-vs-flux",
+    "pdf": "selection-chart.pdf",
+    "source": "Selection chart",
+    "page": 1,
+    "box": [
+      0.878,
+      0.358,
+      1.0,
+      0.543
+    ],
+    "caption": "Selection Chart side table 'MIG or FLUX CORED?': nine features, each with a check mark under MIG or under Flux-Cored",
+    "answers": [
+      "MIG or flux-cored",
+      "solid vs cored wire",
+      "which is better outdoors",
+      "rusty or dirty metal",
+      "thin sheet metal"
+    ]
+  },
+  {
+    "id": "lcd-front-panel-knobs",
+    "page": 20,
+    "box": [
+      0.09,
+      0.29,
+      0.47,
+      0.515
+    ],
+    "caption": "Front panel: LCD, Home and Back buttons, Left Knob, Main Control Knob and Right Knob",
+    "answers": [
+      "what are the knobs",
+      "left knob right knob main control knob",
+      "home and back buttons",
+      "how do I move through the LCD"
+    ]
+  },
+  {
+    "id": "lcd-wire-diameter-thickness",
+    "page": 20,
+    "box": [
+      0.54,
+      0.29,
+      0.955,
+      0.494
+    ],
+    "caption": "LCD wire setup screen (step b): Left Knob sets the wire Diameter, Right Knob sets the material Thickness",
+    "answers": [
+      "set wire diameter",
+      "set material thickness",
+      "what do I set first on the LCD",
+      "MIG or flux-cored LCD setup"
+    ]
+  },
+  {
+    "id": "lcd-auto-weld-screen",
+    "page": 20,
+    "box": [
+      0.505,
+      0.495,
+      0.955,
+      0.785
+    ],
+    "caption": "LCD Auto Weld screen (step c): Left Knob = wire feed speed (amperage), Right Knob = voltage; labels for process, gas type, Run-In WFS, inductance, spot timer, wire diameter and material thickness; the note says the white mark on the line is the recommended setting",
+    "answers": [
+      "wire speed and voltage",
+      "where do I set wire feed speed",
+      "what is the white mark",
+      "what do the LCD icons mean",
+      "recommended setting"
+    ]
+  },
+  {
+    "id": "lcd-polarity-gas-screen",
+    "page": 20,
+    "box": [
+      0.075,
+      0.634,
+      0.49,
+      0.885
+    ],
+    "caption": "LCD polarity and gas screen (step 4a): plug the cables in as the screen shows, connect the gas, set 20-30 SCFH",
+    "answers": [
+      "cable screen on the LCD",
+      "which socket does the screen show",
+      "C25 or Stainless Tri-Mix screen",
+      "gas flow SCFH"
+    ]
+  },
+  {
+    "id": "lcd-optional-settings",
+    "page": 21,
+    "box": [
+      0.05,
+      0.034,
+      0.86,
+      0.603
+    ],
+    "caption": "Optional Settings screens (step d): Run-In WFS, Inductance, Spot Timer, Recall Setting and Save Setting, with what each one does",
+    "answers": [
+      "optional settings",
+      "inductance",
+      "run-in WFS",
+      "spot timer",
+      "save a setting",
+      "recall a setting"
+    ]
+  },
+  {
+    "id": "spec-table-mig",
+    "page": 7,
+    "box": [
+      0.0681,
+      0.0875,
+      0.9162,
+      0.3262
+    ],
+    "caption": "Specifications table for MIG and flux-cored: power input, current input at output, welding current range, rated duty cycles, maximum OCV, weldable materials, wire capacity, wire speed and spool capacity, for 120V and 240V",
+    "answers": [
+      "MIG specifications",
+      "MIG duty cycle rating",
+      "MIG amperage range",
+      "120V versus 240V MIG current",
+      "wire sizes",
+      "wire speed range",
+      "spool size",
+      "what can MIG weld",
+      "open circuit voltage"
+    ]
+  },
+  {
+    "id": "spec-table-tig",
+    "page": 7,
+    "box": [
+      0.0693,
+      0.355,
+      0.915,
+      0.5091
+    ],
+    "caption": "Specifications table for TIG: power input, current input at output, welding current range, rated duty cycles, maximum OCV and weldable materials, for 120V and 240V",
+    "answers": [
+      "TIG specifications",
+      "TIG duty cycle rating",
+      "TIG amperage range",
+      "120V versus 240V TIG current",
+      "what can TIG weld",
+      "open circuit voltage"
+    ]
+  },
+  {
+    "id": "spec-table-stick",
+    "page": 7,
+    "box": [
+      0.0693,
+      0.5379,
+      0.9162,
+      0.6895
+    ],
+    "caption": "Specifications table for Stick: power input, current input at output, welding current range, rated duty cycles, maximum OCV and weldable materials, for 120V and 240V",
+    "answers": [
+      "Stick specifications",
+      "Stick duty cycle rating",
+      "Stick amperage range",
+      "120V versus 240V Stick current",
+      "what can Stick weld",
+      "open circuit voltage"
+    ]
+  },
+  {
+    "id": "front-panel-controls",
+    "page": 8,
+    "box": [
+      0.0705,
+      0.0857,
+      0.9452,
+      0.8502
+    ],
+    "caption": "Front panel controls, labelled: Home and Back buttons, Control Knob, Left Knob, Right Knob, LCD display, Power Switch, MIG Gun / Spool Gun cable socket, Spool Gun gas outlet, Negative and Positive sockets, Wire Feed Power Cable socket and the storage compartment",
+    "answers": [
+      "front panel",
+      "what are the buttons and knobs",
+      "where is the power switch",
+      "where are the sockets",
+      "negative socket",
+      "positive socket",
+      "where does the MIG gun plug in",
+      "spool gun gas outlet",
+      "home and back buttons",
+      "LCD display"
+    ]
+  },
+  {
+    "id": "interior-controls",
+    "page": 9,
+    "box": [
+      0.0548,
+      0.0379,
+      0.9295,
+      0.4963
+    ],
+    "caption": "Interior controls, labelled: wire spool and spool knob, wire inlet liner, wire feed mechanism, feed tensioner, idler arm, feed roller knob, cold wire feed switch, foot pedal socket and wire feed control socket",
+    "answers": [
+      "inside the welder",
+      "where is the feed tensioner",
+      "where is the idler arm",
+      "wire spool",
+      "spool knob",
+      "cold wire feed switch",
+      "foot pedal socket",
+      "wire feed control socket",
+      "feed roller knob"
+    ]
+  },
+  {
+    "id": "gun-cable-connection",
+    "page": 13,
+    "box": [
+      0.0548,
+      0.0413,
+      0.9235,
+      0.5433
+    ],
+    "caption": "Steps 13 to 15: connecting the MIG gun cable connector and the wire feed control cable at the wire feed mechanism, with the incorrect (connector not fully inserted) and correct pictures",
+    "answers": [
+      "connect the MIG gun",
+      "gun cable connector",
+      "gas leak at the gun connector",
+      "wire feed control cable",
+      "connector not fully inserted"
+    ]
+  },
+  {
+    "id": "polarity-flux-cored-setup",
+    "page": 13,
+    "box": [
+      0.056,
+      0.6011,
+      0.9223,
+      0.9134
+    ],
+    "caption": "Flux-cored (gasless) DCEN polarity setup (step 16): Ground Clamp Cable in the Positive socket and Wire Feed Power Cable in the Negative socket, shown on the welder",
+    "answers": [
+      "flux-cored cable setup",
+      "gasless polarity",
+      "DCEN",
+      "where does the ground clamp go for flux-cored"
+    ]
+  },
+  {
+    "id": "polarity-solid-core-setup",
+    "page": 14,
+    "box": [
+      0.0717,
+      0.0404,
+      0.938,
+      0.3339
+    ],
+    "caption": "Solid core (gas shielded) DCEP polarity setup (step 17a and b): Ground Clamp Cable in the Negative socket and Wire Feed Power Cable in the Positive socket, and the note to use the Settings Chart inside the door for the gas type",
+    "answers": [
+      "MIG cable setup",
+      "solid wire polarity",
+      "DCEP",
+      "where does the ground clamp go for MIG",
+      "settings chart for gas"
+    ]
+  },
+  {
+    "id": "gas-cylinder-regulator-setup",
+    "page": 14,
+    "box": [
+      0.0705,
+      0.3516,
+      0.9452,
+      0.8348
+    ],
+    "caption": "Gas setup (steps 17c to 17f): secure the cylinder, briefly open the valve to blow out dust, fit the regulator (C100 needs the enclosed CGA 580/320 adapter) and attach the gas hose to the welder's gas inlet",
+    "answers": [
+      "connect the gas",
+      "regulator",
+      "gas cylinder",
+      "C100 adapter",
+      "CGA 580/320",
+      "gas hose",
+      "secure the cylinder"
+    ]
+  },
+  {
+    "id": "danger-live-parts-wire-feed",
+    "page": 16,
+    "box": [
+      0.0705,
+      0.0387,
+      0.9452,
+      0.21
+    ],
+    "caption": "DANGER box: parts may be at welding voltage; to prevent electric shock and death keep hands away from the wire feed mechanism, close the door before plugging in unless using Cold Wire Feed, and do not touch the trigger while feeding wire through to the gun",
+    "answers": [
+      "electric shock",
+      "welding voltage",
+      "is the wire feed live",
+      "door open while plugged in",
+      "trigger while feeding wire"
+    ]
+  },
+  {
+    "id": "power-input-socket",
+    "page": 16,
+    "box": [
+      0.0705,
+      0.2242,
+      0.8449,
+      0.4425
+    ],
+    "caption": "Step 24: plug either the 120VAC or the 240VAC power cord into the Power Input socket on the back of the welder (the plug fits only one way); the back panel also carries the rating label",
+    "answers": [
+      "power cord",
+      "power input socket",
+      "where does the power cord plug in",
+      "120V or 240V plug",
+      "back of the welder"
+    ]
+  },
+  {
+    "id": "power-cord-and-switch",
+    "page": 16,
+    "box": [
+      0.0705,
+      0.4781,
+      0.9271,
+      0.6314
+    ],
+    "caption": "Step 25: plug the power cord into a properly grounded, GFCI protected 120VAC (20 amp rated) or 240VAC receptacle that matches the plug, then turn the Power Switch ON (delayed action-type breaker or fuses)",
+    "answers": [
+      "power switch",
+      "what outlet to use",
+      "GFCI outlet",
+      "20 amp receptacle",
+      "delayed action breaker",
+      "turn it on"
+    ]
+  },
+  {
+    "id": "cold-wire-feed-step",
+    "page": 16,
+    "box": [
+      0.0705,
+      0.6669,
+      0.9356,
+      0.9245
+    ],
+    "caption": "Step 26: with the gun pointed away from everything, hold the Cold Wire Feed Switch until the wire feeds through two inches; the wire liner may come out with the wire (push it back in), and what to do if the wire does not feed and the spool is stationary",
+    "answers": [
+      "feed the wire through the gun",
+      "cold wire feed switch",
+      "wire liner came out",
+      "wire does not feed",
+      "2 inches of wire"
+    ]
+  },
+  {
+    "id": "rating-label",
+    "page": 16,
+    "box": [
+      0.7435,
+      0.2815,
+      0.7955,
+      0.3405
+    ],
+    "dpi": 1200,
+    "caption": "The rating label on the welder's back panel: for 240V and 120V it lists MIG, TIG and Stick current ranges with the rated duty cycle points (X = 25%, 60%, 100% on 240V; 40%, 60%, 100% on 120V), amps I2, volts U2 and input current",
+    "answers": [
+      "rating label",
+      "60% duty cycle",
+      "duty cycle at 130A",
+      "rated duty cycle points",
+      "label on the back",
+      "input current at output",
+      "amps at 100% duty cycle"
+    ]
+  },
+  {
+    "id": "wire-tension-test",
+    "page": 17,
+    "box": [
+      0.0548,
+      0.0387,
+      0.9307,
+      0.2553
+    ],
+    "caption": "Step 27: checking the wire drive tension: press the trigger to feed the wire against a piece of wood 2 to 3 inches away; if the wire stops, tighten the Feed Tensioner slightly clockwise, and if it bends the tension is set properly",
+    "answers": [
+      "wire tension",
+      "feed tensioner",
+      "drive tension test",
+      "wire bends or stops",
+      "how tight",
+      "crushing the wire"
+    ]
+  },
+  {
+    "id": "nozzle-contact-tip",
+    "page": 17,
+    "box": [
+      0.0548,
+      0.2575,
+      0.8691,
+      0.4335
+    ],
+    "caption": "Steps 28 to 31: with the welder unplugged, fit a compatible contact tip, replace the nozzle and cut the wire to 1/2 inch stickout; picture of the nozzle, contact tip and MIG gun",
+    "answers": [
+      "contact tip",
+      "nozzle",
+      "stickout",
+      "change the contact tip",
+      "MIG gun parts"
+    ]
+  },
+  {
+    "id": "spool-gun-setup",
+    "page": 17,
+    "box": [
+      0.0548,
+      0.4325,
+      0.9295,
+      0.9211
+    ],
+    "caption": "Optional Spool Gun setup: Ground Clamp Cable in the Negative socket, Wire Feed Power Cable in the Positive socket, spool gun cable connector into the wire feed, wire feed control cable and the gas hose to the Spool Gun Gas Outlet",
+    "answers": [
+      "spool gun",
+      "aluminum welding setup",
+      "spool gun cable",
+      "spool gun gas outlet",
+      "spool gun polarity"
+    ]
+  },
+  {
+    "id": "wire-bead-types",
+    "page": 22,
+    "box": [
+      0.0705,
+      0.0789,
+      0.9235,
+      0.2331
+    ],
+    "caption": "Steps 1 and 2: the stringer bead (a steady straight line) and the weave bead (back and forth across the joint), with a picture of each",
+    "answers": [
+      "stringer bead",
+      "weave bead",
+      "how to move the gun",
+      "wire welding technique",
+      "wider weld"
+    ]
+  },
+  {
+    "id": "mig-gun-angles-fillet-butt",
+    "page": 22,
+    "box": [
+      0.0705,
+      0.2763,
+      0.938,
+      0.4527
+    ],
+    "caption": "Step 3: weld MIG gun angles viewed from the front of the joint: 45 degrees for a fillet (T-shaped) joint and 90 degrees for a butt joint",
+    "answers": [
+      "gun angle",
+      "fillet weld angle",
+      "butt weld angle",
+      "90 degrees or 45 degrees",
+      "T joint"
+    ]
+  },
+  {
+    "id": "push-drag-angle-and-ctwd",
+    "page": 22,
+    "box": [
+      0.0693,
+      0.5251,
+      0.938,
+      0.8997
+    ],
+    "caption": "Steps 4 to 6: push angle for solid wire with shielding gas and drag angle for flux-cored wire without gas (0 to 15 degrees), and CTWD (contact tip to work distance) up to 1/2 inch",
+    "answers": [
+      "push angle",
+      "drag angle",
+      "gun tilt",
+      "CTWD",
+      "contact tip to work distance",
+      "solid wire versus flux-cored technique",
+      "how far to hold the tip"
+    ]
+  },
+  {
+    "id": "tig-stick-safety-notice",
+    "page": 24,
+    "box": [
+      0.0693,
+      0.0798,
+      0.8908,
+      0.1963
+    ],
+    "caption": "TIG/Stick setup notice: read the entire safety information; WARNING turn the Power Switch off and unplug the welder before setup; remove the protective foam and cardboard and put the welder on a level surface that can bear its weight",
+    "answers": [
+      "before setup",
+      "unplug before setup",
+      "where to put the welder",
+      "TIG and Stick safety first",
+      "level surface"
+    ]
+  },
+  {
+    "id": "tig-cable-setup",
+    "page": 24,
+    "box": [
+      0.0705,
+      0.2045,
+      0.9452,
+      0.8749
+    ],
+    "caption": "TIG setup, connect cables (steps 1 to 4): Ground Clamp Cable in the Positive socket, TIG Torch Cable in the Negative socket, Foot Pedal Cable through the front to the Foot Pedal Socket inside the welder, and the Shielding Gas Hose; the foot pedal and TIG torch are sold separately",
+    "answers": [
+      "TIG cable setup",
+      "TIG polarity photo",
+      "foot pedal connection",
+      "where does the TIG torch plug in",
+      "ground clamp for TIG",
+      "TIG gas hose"
+    ]
+  },
+  {
+    "id": "tig-shielding-gas-setup",
+    "page": 25,
+    "box": [
+      0.0548,
+      0.0387,
+      0.9295,
+      0.5758
+    ],
+    "caption": "Connect shielding gas for TIG (steps 1 to 4): secure a 100% Argon cylinder, briefly open the valve to blow out dust, fit the regulator and connect the Shielding Gas Hose on the TIG Torch Cable Connector to the regulator's outlet",
+    "answers": [
+      "TIG gas setup",
+      "argon cylinder",
+      "regulator for TIG",
+      "connect the gas for TIG",
+      "100% argon"
+    ]
+  },
+  {
+    "id": "tig-power-cord-connect",
+    "page": 25,
+    "box": [
+      0.0548,
+      0.6011,
+      0.9295,
+      0.91
+    ],
+    "caption": "Connect power cord (TIG): plug either the 120VAC or 240VAC power cord into the Power Input socket (the plug fits only one way); WARNING do not plug the cord into the wall outlet at this time; picture of the back panel",
+    "answers": [
+      "TIG power cord",
+      "power input socket for TIG",
+      "plug it in last",
+      "back panel"
+    ]
+  },
+  {
+    "id": "tungsten-sharpening",
+    "page": 26,
+    "box": [
+      0.0693,
+      0.0379,
+      0.9452,
+      0.3108
+    ],
+    "caption": "Sharpen the tungsten electrode (steps 1 to 6): dedicate a fine grit grinding wheel to it, grind parallel to its length to a blunt point with a conical portion 2-1/2 times the electrode diameter, and re-insert it so the tip protrudes 1/8 to 1/4 inch beyond the ceramic nozzle",
+    "answers": [
+      "sharpen tungsten",
+      "grind the electrode",
+      "tungsten tip shape",
+      "grinding wheel for tungsten",
+      "how far should the tungsten stick out",
+      "blunt point"
+    ]
+  },
+  {
+    "id": "tig-torch-assembly",
+    "page": 26,
+    "box": [
+      0.0693,
+      0.3276,
+      0.9452,
+      0.6305
+    ],
+    "caption": "Assemble the TIG torch (steps 1 to 8): consult the Settings Chart on top of the welder for the tungsten size, match the collet and collet body, thread on the ceramic nozzle, insert the collet and the tungsten and lock with the back cap (1/8 to 1/4 inch protruding); exploded picture with back cap, collet, collet body and ceramic nozzle",
+    "answers": [
+      "assemble the TIG torch",
+      "collet",
+      "collet body",
+      "ceramic nozzle",
+      "back cap",
+      "tungsten size"
+    ]
+  },
+  {
+    "id": "stick-cable-setup",
+    "page": 27,
+    "box": [
+      0.0548,
+      0.0379,
+      0.9295,
+      0.5476
+    ],
+    "caption": "Stick setup, connect cables (steps 1 and 2): Ground Clamp Cable in the Negative socket and Electrode Holder Cable in the Positive socket",
+    "answers": [
+      "Stick cable setup",
+      "Stick polarity photo",
+      "where does the electrode holder plug in",
+      "ground clamp for Stick",
+      "Stick polarity"
+    ]
+  },
+  {
+    "id": "stick-power-cord-connect",
+    "page": 27,
+    "box": [
+      0.0548,
+      0.5969,
+      0.9295,
+      0.9006
+    ],
+    "caption": "Connect power cord (Stick): plug either the 120VAC or 240VAC power cord into the Power Input socket (the plug fits only one way); WARNING do not plug the cord into the wall outlet at this time",
+    "answers": [
+      "Stick power cord",
+      "power input socket for Stick",
+      "plug it in last"
+    ]
+  },
+  {
+    "id": "tig-stick-protective-gear-warning",
+    "page": 28,
+    "box": [
+      0.0693,
+      0.0755,
+      0.9307,
+      0.5433
+    ],
+    "caption": "Basic TIG/Stick welding: WARNING protective gear (minimum shade number 10 full face shield, ear protection, welding gloves, sleeves and apron, NIOSH-approved respirator, fire resistant clothes), what DC TIG, AC TIG and Stick weld, and practice on scrap, with the hazard pictograms",
+    "answers": [
+      "protective gear",
+      "what to wear to weld",
+      "welding helmet shade",
+      "respirator",
+      "gloves",
+      "DC TIG versus AC TIG",
+      "practice on scrap"
+    ]
+  },
+  {
+    "id": "energized-tip-fire-warning",
+    "page": 28,
+    "box": [
+      0.0741,
+      0.5627,
+      0.9404,
+      0.6912
+    ],
+    "caption": "Basic TIG/Stick welding page: WARNING fire and burns: keep the welding tip clear of grounded objects whenever the unit is plugged in and turned on",
+    "answers": [
+      "fire hazard",
+      "keep the tip clear of grounded objects",
+      "burns",
+      "is the torch live when the power is on"
+    ]
+  },
+  {
+    "id": "duty-cycle-section-tig-stick",
+    "page": 29,
+    "box": [
+      0.0548,
+      0.0379,
+      0.9295,
+      0.4143
+    ],
+    "caption": "Duty cycle (duration of use) for TIG and Stick: what it means (a 40% duty cycle at 125A means 4 minutes welding and 6 minutes rest), the thermal protection, and the TIG and Stick rated duty cycle dials for 240VAC and 120VAC with minutes welding and resting and the 100% continuous amps",
+    "answers": [
+      "TIG duty cycle",
+      "Stick duty cycle",
+      "how long can I weld",
+      "minutes welding and resting",
+      "duty cycle dials",
+      "overheating",
+      "thermal protection"
+    ]
+  },
+  {
+    "id": "weld-setup-clamping",
+    "page": 29,
+    "box": [
+      0.0548,
+      0.4404,
+      0.9295,
+      0.7057
+    ],
+    "caption": "Setting up the weld (steps 1 and 2): practice on scrap of the same thickness, clean to bare metal, clamp the workpieces and chamfer thick ones; the NOTICE to disconnect the vehicle battery before welding on a vehicle",
+    "answers": [
+      "prepare the weld",
+      "clamp the workpieces",
+      "chamfer thick metal",
+      "clean the metal",
+      "welding on a vehicle",
+      "disconnect the battery"
+    ]
+  },
+  {
+    "id": "ground-clamp-to-workpiece",
+    "page": 29,
+    "box": [
+      0.0548,
+      0.7268,
+      0.9235,
+      0.9314
+    ],
+    "caption": "Setting up the weld (step 3): clamp the ground cable to bare metal on the workpiece or on the metal work bench where it is clamped; the ground connection depends on the desired welding polarity",
+    "answers": [
+      "where to clamp the ground",
+      "ground clamp placement",
+      "bare metal for the ground clamp",
+      "work clamp"
+    ]
+  },
+  {
+    "id": "tig-select-process-panel",
+    "page": 30,
+    "box": [
+      0.0705,
+      0.5541,
+      0.4712,
+      0.8955
+    ],
+    "caption": "TIG welding steps 6 to 8: press Home, turn the Main Control Knob until TIG appears on the LCD and press it to select; the front panel shows the Left Knob, Main Control Knob and Right Knob",
+    "answers": [
+      "select TIG on the LCD",
+      "choose the TIG process",
+      "left knob right knob main control knob",
+      "home button"
+    ]
+  },
+  {
+    "id": "tig-lcd-polarity-gas-screen",
+    "page": 30,
+    "box": [
+      0.5118,
+      0.2516,
+      0.8836,
+      0.4792
+    ],
+    "caption": "TIG step 9a LCD screen, polarity and gas settings: plug the cables in according to the screen (torch to Negative, ground clamp to Positive), connect the gas and set SCFH between 10 and 25; the screen shows 100% Argon",
+    "picture_text": [
+      "100% Argon"
+    ],
+    "answers": [
+      "TIG LCD cable screen",
+      "TIG polarity on the LCD",
+      "TIG gas flow",
+      "SCFH for TIG",
+      "100% argon screen"
+    ]
+  },
+  {
+    "id": "tig-lcd-rod-diameter-thickness",
+    "page": 30,
+    "box": [
+      0.5421,
+      0.4977,
+      0.8932,
+      0.6861
+    ],
+    "caption": "TIG step 9b LCD screen: set the rod diameter with the Left Knob and the material thickness with the Right Knob (example screen: 1/16 inch and 24 Ga)",
+    "picture_text": [
+      "1/16\"",
+      "24 Ga"
+    ],
+    "answers": [
+      "TIG rod diameter",
+      "TIG material thickness",
+      "set TIG on the LCD"
+    ]
+  },
+  {
+    "id": "tig-lcd-auto-weld-screen",
+    "page": 30,
+    "box": [
+      0.5034,
+      0.7045,
+      0.9464,
+      0.939
+    ],
+    "caption": "TIG step 9c LCD screen, Auto Weld settings: Left Knob adjusts the output amperage and Right Knob ON energizes the TIG torch; WARNING the welder is energized and open circuit voltage is present; labels for process, gas type, rod diameter and material thickness",
+    "answers": [
+      "TIG amperage",
+      "energize the TIG torch",
+      "open circuit voltage",
+      "right knob on",
+      "TIG auto weld screen"
+    ]
+  },
+  {
+    "id": "tig-optional-settings-screens",
+    "page": 31,
+    "box": [
+      0.0548,
+      0.0387,
+      0.4301,
+      0.5715
+    ],
+    "caption": "TIG optional settings (step d of the settings): Recall Setting and Save Setting (up to 5 configurations) with the two LCD screens, and the note that the initial settings may need adjusting after inspecting the weld",
+    "answers": [
+      "TIG optional settings",
+      "save a TIG setting",
+      "recall a TIG setting",
+      "save setting"
+    ]
+  },
+  {
+    "id": "stick-select-process-panel",
+    "page": 32,
+    "box": [
+      0.0693,
+      0.3259,
+      0.487,
+      0.6724
+    ],
+    "caption": "Stick welding steps 4 to 6: press Home, turn the Main Control Knob until Stick appears on the LCD and press it to select STICK; the front panel shows the Left Knob, Main Control Knob and Right Knob",
+    "answers": [
+      "select Stick on the LCD",
+      "choose the Stick process",
+      "left knob right knob main control knob",
+      "home button"
+    ]
+  },
+  {
+    "id": "stick-lcd-polarity-screen",
+    "page": 32,
+    "box": [
+      0.0705,
+      0.6909,
+      0.441,
+      0.8792
+    ],
+    "caption": "Stick step 7a LCD screen, polarity setting: plug the cables in according to the screen (ground clamp to Negative, electrode holder to Positive); the screen shows No Gas Required",
+    "answers": [
+      "Stick LCD cable screen",
+      "Stick polarity on the LCD",
+      "no gas required screen"
+    ]
+  },
+  {
+    "id": "stick-lcd-electrode-type-screen",
+    "page": 32,
+    "box": [
+      0.5421,
+      0.1652,
+      0.9211,
+      0.3348
+    ],
+    "caption": "Stick step 7b LCD screen: set the electrode type with the Main Control Knob (example screen: 60xx)",
+    "picture_text": [
+      "60xx"
+    ],
+    "answers": [
+      "Stick electrode type",
+      "60xx",
+      "set the electrode on the LCD"
+    ]
+  },
+  {
+    "id": "stick-lcd-diameter-thickness-screen",
+    "page": 32,
+    "box": [
+      0.5421,
+      0.3524,
+      0.9307,
+      0.5416
+    ],
+    "caption": "Stick step 7c LCD screen: Left Knob sets the electrode diameter and Right Knob sets the material thickness (example screen: 3/32 inch and 16 Ga)",
+    "picture_text": [
+      "3/32\"",
+      "16 Ga"
+    ],
+    "answers": [
+      "Stick electrode diameter",
+      "Stick material thickness",
+      "set Stick on the LCD"
+    ]
+  },
+  {
+    "id": "stick-lcd-auto-weld-screen",
+    "page": 32,
+    "box": [
+      0.5106,
+      0.5592,
+      0.9464,
+      0.8228
+    ],
+    "caption": "Stick step 7d LCD screen, Auto Weld settings: Left Knob adjusts the output amperage and Right Knob ON energizes the electrode holder; WARNING the welder is energized and open circuit voltage is present; labels for process, electrode type, hot start, arc force, electrode diameter and material thickness",
+    "answers": [
+      "Stick amperage",
+      "energize the electrode holder",
+      "open circuit voltage",
+      "hot start and arc force",
+      "Stick auto weld screen"
+    ]
+  },
+  {
+    "id": "stick-optional-settings-screens",
+    "page": 33,
+    "box": [
+      0.0548,
+      0.0387,
+      0.4495,
+      0.8801
+    ],
+    "caption": "Stick optional settings (step e of the settings): Hot Start (amperage at the start of the weld), Arc Force (weld penetration and smoothness), Recall Setting and Save Setting (up to 5 configurations) with their four LCD screens",
+    "answers": [
+      "hot start",
+      "arc force",
+      "Stick optional settings",
+      "save a Stick setting",
+      "recall a Stick setting"
+    ]
+  },
+  {
+    "id": "wire-loading-hold-wire-steps",
+    "page": 15,
+    "box": [
+      0.0548,
+      0.0387,
+      0.9295,
+      0.357
+    ],
+    "caption": "IMPORTANT: hold the end of the welding wire and keep tension on it while loading so it does not unravel; steps 18 and 19: cut off bent wire to a clean end and guide at least 12 inches of wire into the Wire Inlet Liner and Feed Guide, with the picture of the hand holding the wire",
+    "answers": [
+      "load the wire",
+      "wire unravels",
+      "hold the wire",
+      "feed the wire into the liner",
+      "wire inlet liner",
+      "feed guide",
+      "new spool"
+    ]
+  },
+  {
+    "id": "idler-arm-and-feed-tensioner-latch",
+    "page": 15,
+    "box": [
+      0.0548,
+      0.4199,
+      0.9211,
+      0.5698
+    ],
+    "caption": "Step 20: rest the wire in the feed roller groove, push the Idler Arm down and swing the Feed Tensioner up to latch across it; the note gives the tension as 3-5 for solid wire and 2-3 for flux-cored wire",
+    "answers": [
+      "idler arm",
+      "feed tensioner",
+      "feed roller groove",
+      "tension setting",
+      "tension for solid wire",
+      "tension for flux-cored",
+      "latch the tensioner"
+    ]
+  },
+  {
+    "id": "remove-nozzle-and-contact-tip",
+    "page": 15,
+    "box": [
+      0.0548,
+      0.6088,
+      0.8606,
+      0.7861
+    ],
+    "caption": "Steps 21 to 23: pull the nozzle off, unscrew the contact tip counterclockwise and remove it, and lay the MIG gun cable out in a straight line; picture of the nozzle, contact tip and MIG gun",
+    "answers": [
+      "remove the nozzle",
+      "remove the contact tip",
+      "straighten the gun cable",
+      "MIG gun parts"
+    ]
+  },
+  {
+    "id": "stainless-wire-important-note",
+    "page": 15,
+    "box": [
+      0.062,
+      0.8114,
+      0.4821,
+      0.9202
+    ],
+    "caption": "IMPORTANT: stainless steel wire is less flexible and harder to feed through the liner and gun, so keep the gun cable straight while feeding stainless steel wire",
+    "answers": [
+      "stainless wire feeding",
+      "stainless steel wire",
+      "keep the gun cable straight",
+      "wire will not feed stainless"
+    ]
+  },
+  {
+    "id": "duty-cycle-section-mig",
+    "page": 19,
+    "box": [
+      0.0548,
+      0.0379,
+      0.9295,
+      0.4279
+    ],
+    "caption": "Duty cycle (duration of use) for MIG and flux-cored: what it means (a 40% duty cycle at 100A needs at least 6 minutes of rest after every 4 minutes of welding), the thermal protection, and the rated duty cycle dials: 120VAC 40% at 100A (4 minutes welding, 6 resting, 100% continuous at 75A) and 240VAC 25% at 200A (2-1/2 minutes welding, 7-1/2 resting, 100% continuous at 115A)",
+    "answers": [
+      "MIG duty cycle",
+      "flux-cored duty cycle",
+      "how long can I weld",
+      "minutes welding and resting",
+      "duty cycle dials",
+      "overheating",
+      "thermal protection",
+      "120V duty cycle",
+      "240V duty cycle"
+    ]
+  },
+  {
+    "id": "overheat-warning-screen",
+    "page": 23,
+    "box": [
+      0.0548,
+      0.0387,
+      0.9307,
+      0.2672
+    ],
+    "caption": "Note: if the welder is used too long a warning screen appears on the LCD and the unit shuts down; picture of the LCD display and the Warning Screen table (duty cycle exceeded, low voltage input, high voltage input) with their remedies; rest the MIG gun on a heat-proof surface and let the welder cool with the power switch on",
+    "answers": [
+      "warning screen",
+      "welder shut down",
+      "duty cycle exceeded",
+      "low voltage input",
+      "high voltage input",
+      "thermal shutdown",
+      "LCD warning"
+    ]
+  },
+  {
+    "id": "follow-duty-cycle-box",
+    "page": 23,
+    "box": [
+      0.0548,
+      0.2678,
+      0.8993,
+      0.4741
+    ],
+    "caption": "Step 7: after welding a test weld on scrap for a few seconds, stop and examine the weld, then follow the duty cycle dials: 120VAC 40% at 100A (4 minutes welding, 6 resting, 100% continuous at 75A) and 240VAC 25% at 200A (2-1/2 minutes welding, 7-1/2 resting, 100% continuous at 115A)",
+    "answers": [
+      "follow the duty cycle",
+      "test weld on scrap",
+      "examine your weld",
+      "duty cycle dials"
+    ]
+  },
+  {
+    "id": "shutdown-and-storage-steps",
+    "page": 23,
+    "box": [
+      0.0548,
+      0.5122,
+      0.9198,
+      0.9339
+    ],
+    "caption": "Steps 8 to 12: when finished, set the MIG gun on a heat-proof non-conductive surface such as a concrete slab and turn the power switch off, let the welder cool and unplug it, remove the ground clamp, respool the wire, and (MIG only) close the gas cylinder valve and disconnect the regulator and gas hose",
+    "answers": [
+      "shut down the welder",
+      "when finished welding",
+      "store the welder",
+      "respool the wire",
+      "close the gas cylinder",
+      "unplug the welder",
+      "concrete slab"
+    ]
+  },
+  {
+    "id": "maintenance-warning-and-inspection",
+    "page": 41,
+    "box": [
+      0.0548,
+      0.0815,
+      0.9271,
+      0.3493
+    ],
+    "caption": "Maintenance: WARNING unplug the welder, rest it on a heat-proof non-conductive surface and let it cool before service; inspect before each use (loose hardware, damaged cords or cables, cracked parts), have a qualified technician blow out interior dust periodically, store clean and dry after every use, and clean the MIG gun contact tip and nozzle before each use",
+    "answers": [
+      "maintenance",
+      "before each use",
+      "inspect the welder",
+      "cleaning the welder",
+      "storage",
+      "compressed air",
+      "qualified technician"
+    ]
+  },
+  {
+    "id": "mig-nozzle-contact-tip-cleaning",
+    "page": 41,
+    "box": [
+      0.0548,
+      0.3575,
+      0.9295,
+      0.6476
+    ],
+    "caption": "MIG gun nozzle and contact tip inspection and cleaning (steps 1 to 9): let the gun cool and unplug the welder, remove and scrub the nozzle and check that it is flat and even, unscrew the contact tip counterclockwise and clean it, check that the hole is an even circle, replace it if worn and reinstall; picture of the nozzle and contact tip",
+    "answers": [
+      "clean the contact tip",
+      "clean the nozzle",
+      "contact tip worn",
+      "replace the contact tip",
+      "nozzle inspection",
+      "tip cleaner"
+    ]
+  },
+  {
+    "id": "lcd-screen-cover-replacement",
+    "page": 41,
+    "box": [
+      0.0548,
+      0.6567,
+      0.9295,
+      0.9399
+    ],
+    "caption": "Replacing the LCD screen cover (steps 1 to 3): pry the frame off the Display (22) with a flathead screwdriver in a side slot, insert the new Screen Cover (17) into the Screen Frame (18) with the gap facing downward, and insert the frame back into the slot with the top end in first",
+    "answers": [
+      "replace the screen cover",
+      "LCD screen cover",
+      "screen frame",
+      "display part number",
+      "pry off the frame"
+    ]
+  },
+  {
+    "id": "troubleshooting-table-mig-flux-cored-p42",
+    "page": 42,
+    "box": [
+      0.0705,
+      0.0379,
+      0.9452,
+      0.9202
+    ],
+    "caption": "Troubleshooting table for MIG and flux-cored welding, first part: wire feed motor runs but wire does not feed properly, wire creates a bird's nest, wire stops during welding, welding arc not stable and weak arc strength, each with possible causes and likely solutions",
+    "answers": [
+      "troubleshooting table",
+      "wire not feeding",
+      "bird's nest",
+      "wire stops",
+      "arc not stable",
+      "weak arc",
+      "extension cord weak arc"
+    ]
+  },
+  {
+    "id": "troubleshooting-table-mig-flux-cored-p43",
+    "page": 43,
+    "box": [
+      0.0548,
+      0.0387,
+      0.9295,
+      0.8578
+    ],
+    "caption": "Troubleshooting table for MIG and flux-cored welding, second part: welder does not function when switched on, LCD display does not light, wire feeds but arc does not ignite and porosity in the weld metal, each with possible causes and likely solutions",
+    "answers": [
+      "troubleshooting table",
+      "welder does not turn on",
+      "LCD does not light",
+      "no arc",
+      "porosity",
+      "tripped thermal protection",
+      "reset button"
+    ]
+  },
+  {
+    "id": "troubleshooting-table-tig-stick-p44",
+    "page": 44,
+    "box": [
+      0.0705,
+      0.0379,
+      0.9452,
+      0.5912
+    ],
+    "caption": "Troubleshooting table for TIG and Stick welding: welder does not function when switched on, LCD display does not light, weak arc strength and welding arc not stable, with possible causes and likely solutions",
+    "answers": [
+      "TIG troubleshooting",
+      "Stick troubleshooting",
+      "welder does not turn on",
+      "LCD does not light",
+      "weak arc",
+      "arc not stable"
+    ]
+  },
+  {
+    "id": "wiring-schematic",
+    "page": 45,
+    "box": [
+      0.0548,
+      0.0379,
+      0.9295,
+      0.9305
+    ],
+    "dpi": 300,
+    "caption": "Wiring schematic of the welder: the main board with IGBT and PFC sections, rectifiers, transformer, output terminals OUT+ and OUT-, MCU board, LCD screen, remote board, wire feeder motor, solenoid valves, fast wire feed switch, fans and the AC input",
+    "answers": [
+      "wiring schematic",
+      "wiring diagram",
+      "circuit diagram",
+      "what is inside the welder",
+      "MCU board",
+      "IGBT",
+      "solenoid valve",
+      "wire feeder motor"
+    ]
+  },
+  {
+    "id": "parts-list-table",
+    "page": 46,
+    "box": [
+      0.0705,
+      0.2644,
+      0.9452,
+      0.7476
+    ],
+    "caption": "Parts list (parts 1 to 61 with description and quantity) for the assembly diagram on the next page",
+    "answers": [
+      "parts list",
+      "part numbers",
+      "what part is number",
+      "replacement part",
+      "screen cover part",
+      "contact tip part",
+      "quantity of a part"
+    ]
+  },
+  {
+    "id": "parts-ordering-notes",
+    "page": 46,
+    "box": [
+      0.0705,
+      0.8507,
+      0.9452,
+      0.9288
+    ],
+    "caption": "Record the product's date code here; note that some parts are listed for illustration only and are not available individually, parts may not be interchangeable, and to specify UPC 193175422590 when ordering parts",
+    "answers": [
+      "order parts",
+      "UPC for ordering",
+      "date code",
+      "are parts sold individually",
+      "replacement parts"
+    ]
+  },
+  {
+    "id": "assembly-diagram",
+    "page": 47,
+    "box": [
+      0.0548,
+      0.0387,
+      0.9295,
+      0.6527
+    ],
+    "dpi": 300,
+    "caption": "Assembly diagram: exploded view of the welder with each part numbered 1 to 61 (match the numbers to the parts list on page 46)",
+    "answers": [
+      "assembly diagram",
+      "exploded view",
+      "parts diagram",
+      "where is part number",
+      "how is it put together"
+    ]
+  },
+  {
+    "id": "manual-cover-page",
+    "page": 1,
+    "box": [
+      0.04,
+      0.035,
+      0.96,
+      0.975
+    ],
+    "caption": "Cover of the owner's manual: Vulcan OmniPro 220 multiprocess welding system, item 57812, with the photo of the welder, the technical support contact, the unpacking note and the WARNING to read the material before use",
+    "answers": [
+      "cover",
+      "what does the welder look like",
+      "product photo",
+      "item number",
+      "unpacking",
+      "technical support contact"
+    ]
+  },
+  {
+    "id": "table-of-contents",
+    "page": 2,
+    "box": [
+      0.0693,
+      0.0379,
+      0.9452,
+      0.1578
+    ],
+    "caption": "Table of contents: Safety 2, Specifications 7, Controls 8, MIG/Flux-Cored Wire Welding 10, TIG/Stick Welding 24, Welding Tips 34, Maintenance 41, Parts List and Diagram 46, Warranty 48",
+    "answers": [
+      "table of contents",
+      "which page is",
+      "where in the manual",
+      "manual sections"
+    ]
+  },
+  {
+    "id": "warning-symbols-and-definitions",
+    "page": 2,
+    "box": [
+      0.0705,
+      0.1584,
+      0.944,
+      0.4211
+    ],
+    "caption": "Warning symbols and definitions: the safety alert symbol, DANGER (will result in death or serious injury), WARNING (could result in death or serious injury), CAUTION (could result in minor or moderate injury) and NOTICE (practices not related to personal injury) as they look in the manual",
+    "answers": [
+      "what does danger mean",
+      "warning versus caution",
+      "safety symbols",
+      "notice label",
+      "safety alert symbol"
+    ]
+  },
+  {
+    "id": "general-safety-rules",
+    "page": 2,
+    "box": [
+      0.0693,
+      0.4336,
+      0.9452,
+      0.8758
+    ],
+    "caption": "Important safety information, General Safety items 1 to 8: read the instructions, keep children away, place the welder on a stable surface, do not overreach, stay alert and sober, avoid unintentional starting, never leave the welder energized and unattended, and use common sense",
+    "answers": [
+      "general safety",
+      "before you use the welder",
+      "never leave it energized",
+      "stable location",
+      "children"
+    ]
+  },
+  {
+    "id": "fume-and-gas-safety",
+    "page": 3,
+    "box": [
+      0.0548,
+      0.0345,
+      0.9307,
+      0.4288
+    ],
+    "caption": "Fume and gas safety (items 1 to 6): welding fumes are toxic, do not use near degreasing or painting, keep your head out of the fumes, use enough ventilation or an approved respirator, and work in a confined area only if well ventilated",
+    "answers": [
+      "fumes",
+      "ventilation",
+      "respirator",
+      "toxic fumes",
+      "confined space",
+      "inhalation hazard"
+    ]
+  },
+  {
+    "id": "arc-ray-safety",
+    "page": 3,
+    "box": [
+      0.0548,
+      0.5208,
+      0.9307,
+      0.7382
+    ],
+    "caption": "Arc ray safety (items 1 to 6): wear ANSI-approved eye protection with at least a number 10 shade lens, leather leggings and fire resistant shoes, clothing free of grease and oil, a head covering, a welding jacket or long sleeves, and ear plugs when welding overhead or in confined spaces",
+    "answers": [
+      "arc rays",
+      "welding helmet shade",
+      "eye protection",
+      "what to wear",
+      "clothing for welding",
+      "burns from the arc"
+    ]
+  },
+  {
+    "id": "electrical-safety",
+    "page": 4,
+    "box": [
+      0.0693,
+      0.0345,
+      0.9452,
+      0.3972
+    ],
+    "caption": "Electrical safety (items 1 to 10): electric shock can kill; turn off and disconnect power, do not touch energized parts, use a grounded GFCI-protected supply, do not use near water, pacemaker warning, do not expose to rain, do not abuse the cord, do not use outdoors, and insulate yourself from the workpiece",
+    "answers": [
+      "electric shock",
+      "outdoor use",
+      "rain",
+      "pacemaker",
+      "GFCI",
+      "grounded outlet",
+      "do not use outdoors"
+    ]
+  },
+  {
+    "id": "fire-safety",
+    "page": 4,
+    "box": [
+      0.0693,
+      0.4686,
+      0.9452,
+      0.9365
+    ],
+    "caption": "Fire safety (items 1 to 9): arc and slag can cause fire; clear flammable objects for 35 feet (10 meters), keep an ABC-type fire extinguisher near, do not weld on combustible coatings, do not put hot slag in containers of combustibles, and examine the area for fire after welding",
+    "answers": [
+      "fire safety",
+      "fire extinguisher",
+      "flammable materials",
+      "hot slag",
+      "welding near combustibles",
+      "35 feet"
+    ]
+  },
+  {
+    "id": "welder-use-and-care",
+    "page": 5,
+    "box": [
+      0.0548,
+      0.0379,
+      0.9295,
+      0.298
+    ],
+    "caption": "Welder use and care (items 1 to 6): do not use the welder if the switch does not work, disconnect the plug before adjustments, prevent unintentional starting, store it away from children, use it as instructed, and do not use it for pipe thawing",
+    "answers": [
+      "welder use and care",
+      "pipe thawing",
+      "switch does not work",
+      "store the welder",
+      "unintentional starting"
+    ]
+  },
+  {
+    "id": "maintenance-safety-rules",
+    "page": 5,
+    "box": [
+      0.0548,
+      0.3618,
+      0.9295,
+      0.5553
+    ],
+    "caption": "Maintenance safety rules (items 1 to 4): maintain the welder, have it serviced with identical replacement parts, keep labels and nameplates readable, and unplug it before maintenance",
+    "answers": [
+      "maintenance safety",
+      "replacement parts",
+      "labels and nameplates",
+      "unplug before maintenance"
+    ]
+  },
+  {
+    "id": "cylinder-safety-and-save-instructions",
+    "page": 5,
+    "box": [
+      0.0548,
+      0.6139,
+      0.9307,
+      0.9125
+    ],
+    "caption": "Gas shielded welding cylinder safety (items 1 to 7): cylinders can explode when damaged; do not weld on a pressurized cylinder, keep the cap on, keep cylinders away from electrical circuits, use the right gas equipment, protect cylinders from heat; SAVE THESE INSTRUCTIONS",
+    "answers": [
+      "cylinder safety",
+      "gas cylinder explode",
+      "protective cap",
+      "moving cylinders",
+      "gas bottle safety"
+    ]
+  },
+  {
+    "id": "grounding-extension-and-replacement-cords",
+    "page": 6,
+    "box": [
+      0.0693,
+      0.0387,
+      0.9452,
+      0.4707
+    ],
+    "caption": "Grounding WARNING (items 1 and 2) to prevent electric shock: check the outlet is properly grounded and never modify the plug; Extension Cords: do not use an extension cord on this welder; Replacement Cords (items 1 to 3): use only a supplied or identical cord, no thinner or longer cord, and do not patch cords together",
+    "answers": [
+      "extension cord",
+      "grounding",
+      "replacement cord",
+      "adapter plug",
+      "power cord rules",
+      "can I use an extension cord"
+    ]
+  },
+  {
+    "id": "symbology-table",
+    "page": 6,
+    "box": [
+      0.0705,
+      0.4738,
+      0.9452,
+      0.9416
+    ],
+    "caption": "Symbology: the symbols and abbreviations on the welder and what they mean (wire feed speed, workpiece ground cable, torch cable, overheat shutdown indicator, cooling fan, housing ground point, VAC, A, OCV, KVA, IPM, AWG) and the hazard icons for electric shock, inhalation, read manual, fire, arc ray and pacemaker",
+    "answers": [
+      "what does this symbol mean",
+      "OCV",
+      "IPM",
+      "AWG",
+      "KVA",
+      "overheat symbol",
+      "hazard icons",
+      "abbreviations"
+    ]
+  },
+  {
+    "id": "wire-setup-power-off-and-door",
+    "page": 10,
+    "box": [
+      0.0693,
+      0.0387,
+      0.9452,
+      0.6151
+    ],
+    "caption": "MIG/flux-cored wire welding setup: WARNING turn the Power Switch off and unplug the welder before setup, remove the protective foam and cardboard; Wire Spool Installation steps 1 and 2: turn the power switch off and unplug, then pull up on the door latch and open the door",
+    "answers": [
+      "start the wire setup",
+      "open the door",
+      "door latch",
+      "before loading wire",
+      "unplug before setup"
+    ]
+  },
+  {
+    "id": "wire-spool-installation-1-2-lb",
+    "page": 10,
+    "box": [
+      0.0693,
+      0.6498,
+      0.9368,
+      0.9237
+    ],
+    "caption": "1-2 pound wire spool installation (steps 3 to 5): remove the wingnut and spacer, place the spool on the spindle against the spool brake pad so it unwinds clockwise, then replace the spacer and wingnut; a spool that spins freely means the wingnut is too loose; picture of the 1-2 lb spool loading",
+    "answers": [
+      "install a small spool",
+      "2 lb spool",
+      "wingnut",
+      "spacer",
+      "spool brake pad",
+      "spool direction"
+    ]
+  },
+  {
+    "id": "wire-spool-installation-10-12-lb",
+    "page": 11,
+    "box": [
+      0.0548,
+      0.0541,
+      0.9211,
+      0.6476
+    ],
+    "caption": "10-12 pound wire spool installation (steps 6 to 10): remove the wingnut and spacer, place the spool adapter and then the spool (pin lined up with the hole) so it unwinds clockwise, replace the spacer and wingnut, and screw the spool knob into the spool adapter; pictures of the 10-12 lb spool loading and the direction the wire must unwind",
+    "answers": [
+      "install a 10 lb spool",
+      "12 lb spool",
+      "spool adapter",
+      "spool knob",
+      "which way does the wire unwind",
+      "clockwise"
+    ]
+  },
+  {
+    "id": "release-feed-tension-step",
+    "page": 11,
+    "box": [
+      0.056,
+      0.7234,
+      0.9198,
+      0.863
+    ],
+    "caption": "Step 11: turn the Feed Tensioner knob counterclockwise to loosen it enough to pull it down and remove tension; the spring-loaded Idler Arm moves up, as shown in the two pictures",
+    "answers": [
+      "release the tension",
+      "loosen the feed tensioner",
+      "idler arm moves up",
+      "remove wire tension"
+    ]
+  },
+  {
+    "id": "basic-wire-welding-gear-and-processes",
+    "page": 18,
+    "box": [
+      0.0693,
+      0.0387,
+      0.9452,
+      0.5459
+    ],
+    "caption": "Basic wire welding: WARNING protective gear (minimum shade number 10 full face shield, ear protection, gloves, sleeves and apron, NIOSH-approved respirator, fire resistant clothes), what flux-cored and MIG welding are used for, the optional Spool Gun for aluminum, and practice on scrap, with the hazard pictograms",
+    "answers": [
+      "wire welding basics",
+      "flux-cored versus MIG",
+      "what is MIG welding",
+      "what to wear for wire welding",
+      "aluminum with a spool gun",
+      "practice on scrap"
+    ]
+  },
+  {
+    "id": "wire-welding-fire-warning",
+    "page": 18,
+    "box": [
+      0.0729,
+      0.596,
+      0.9404,
+      0.7493
+    ],
+    "caption": "Basic wire welding page: WARNING fire and burns: keep the welding tip clear of grounded objects whenever the unit is plugged in and turned on",
+    "answers": [
+      "is the gun live",
+      "fire hazard",
+      "keep the tip clear of grounded objects",
+      "burns"
+    ]
+  },
+  {
+    "id": "strike-test",
+    "page": 34,
+    "box": [
+      0.0693,
+      0.243,
+      0.9452,
+      0.5861
+    ],
+    "caption": "Strike Test (steps 1 to 3): clamp one scrap of a welded test piece in a vise and hit the other with a heavy dead-blow hammer; a good weld bends and is not brittle, a poor weld snaps or cracks; wear ANSI-approved goggles; the test damages the weld it is performed on",
+    "answers": [
+      "strike test",
+      "how do I test my weld",
+      "good weld versus poor weld",
+      "dead-blow hammer",
+      "is my weld strong"
+    ]
+  },
+  {
+    "id": "cleaning-the-weld",
+    "page": 34,
+    "box": [
+      0.0693,
+      0.6105,
+      0.9452,
+      0.8621
+    ],
+    "caption": "Cleaning the weld (steps 1 and 2): WARNING keep wearing safety goggles and protective wear; knock off the slag from flux-cored or stick welds with a chipping hammer, then use a wire brush or an angle grinder to clean or shape the weld; pictures of the chipping hammer and wire brush",
+    "answers": [
+      "clean the weld",
+      "remove slag",
+      "chipping hammer",
+      "wire brush",
+      "angle grinder",
+      "after welding"
+    ]
+  },
+  {
+    "id": "quick-start-wire-welding-steps",
+    "pdf": "quick-start-guide.pdf",
+    "source": "Quick-start guide p.1",
+    "page": 1,
+    "box": [
+      0.03,
+      0.03,
+      0.97,
+      0.97
+    ],
+    "caption": "Quick Start Guide, page 1: wire welding in six steps: connect the cables, install the wire spool and clamp the wire into the feed mechanism, take off the nozzle and tip and feed wire with the cold wire feed switch, tighten the tension knob until the wire bends at 2 to 3 inches, replace the nozzle and tip, then plug in, turn on and set the weld thickness",
+    "answers": [
+      "quick start",
+      "short setup guide",
+      "wire welding in six steps",
+      "first time setup",
+      "fast setup"
+    ]
+  },
+  {
+    "id": "quick-start-all-cable-setups",
+    "pdf": "quick-start-guide.pdf",
+    "source": "Quick-start guide p.2",
+    "page": 2,
+    "box": [
+      0.03,
+      0.03,
+      0.97,
+      0.97
+    ],
+    "caption": "Quick Start Guide, page 2: the cable setup for Stick, MIG, flux-cored and TIG on one page, with numbered cable diagrams for each process",
+    "answers": [
+      "all cable setups",
+      "cable setup for every process",
+      "polarity cheat sheet",
+      "four processes cable table",
+      "which cable goes where"
+    ]
+  },
+  {
+    "id": "quick-start-stick-cable-setup",
+    "pdf": "quick-start-guide.pdf",
+    "source": "Quick-start guide p.2",
+    "page": 2,
+    "box": [
+      0.04,
+      0.1,
+      0.96,
+      0.38
+    ],
+    "caption": "Quick Start Guide, Stick cable setup: 1 connect the ground clamp to the negative terminal, 2 connect the electrode holder to the positive terminal, 3 leave the wire feed power disconnected",
+    "answers": [
+      "quick Stick cable setup",
+      "Stick polarity quick reference",
+      "electrode holder terminal"
+    ]
+  },
+  {
+    "id": "quick-start-mig-and-flux-cable-setup",
+    "pdf": "quick-start-guide.pdf",
+    "source": "Quick-start guide p.2",
+    "page": 2,
+    "box": [
+      0.04,
+      0.383,
+      0.96,
+      0.674
+    ],
+    "caption": "Quick Start Guide, MIG cable setup (ground clamp to negative, wire feed power to positive, MIG gun to the wire feed, wire feed control inside the welder) and the flux cable setup note: follow the MIG setup but connect the ground clamp to positive and the wire feed power to negative",
+    "answers": [
+      "quick MIG cable setup",
+      "quick flux-cored cable setup",
+      "MIG polarity quick reference",
+      "flux-cored polarity quick reference"
+    ]
+  },
+  {
+    "id": "quick-start-tig-cable-setup",
+    "pdf": "quick-start-guide.pdf",
+    "source": "Quick-start guide p.2",
+    "page": 2,
+    "box": [
+      0.04,
+      0.68,
+      0.96,
+      0.955
+    ],
+    "caption": "Quick Start Guide, TIG cable setup: ground clamp to positive, TIG torch to negative, gas line to the gas regulator, foot pedal inside the welder, and leave the wire feed power disconnected",
+    "answers": [
+      "quick TIG cable setup",
+      "TIG polarity quick reference",
+      "wire feed power disconnected for TIG"
+    ]
+  }
+]

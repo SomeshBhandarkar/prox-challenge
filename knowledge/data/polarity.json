@@ -1,0 +1,85 @@
+{
+  "source": "owner-manual.pdf pp13, 14, 17, 24, 25, 27 and quick-start-guide.pdf p2",
+  "status": "Read from the manual text and checked against the quick-start guide; every setup agrees between the two. Re-verify visually with knowledge/factcheck/FACT_CHECK.md section 4.",
+  "sockets": ["negative", "positive"],
+  "setups": {
+    "mig": {
+      "label": "MIG (solid wire with shielding gas)",
+      "polarity_name": "DCEP (Direct Current Electrode Positive)",
+      "cables": [
+        { "cable": "Ground Clamp Cable", "socket": "negative" },
+        { "cable": "Wire Feed Power Cable", "socket": "positive" }
+      ],
+      "other_connections": [
+        "MIG gun cable connector into the socket on the wire feed mechanism (fully inserted, then tighten the knob; do not overtighten)",
+        "Wire Feed Control Cable into the Wire Feed Control Socket inside the machine (one orientation only, tighten the lock ring)"
+      ],
+      "gas": "Shielding gas required: set 20-30 SCFH; see the Settings Chart inside the welder door for the gas type",
+      "sources": ["manual p14 (step 17a)", "manual p13 (steps 13-15)", "manual p20", "quick-start p2 (MIG cable setup)"]
+    },
+    "flux_cored": {
+      "label": "Flux-cored (gasless, self-shielded)",
+      "polarity_name": "DCEN (Direct Current Electrode Negative)",
+      "cables": [
+        { "cable": "Ground Clamp Cable", "socket": "positive" },
+        { "cable": "Wire Feed Power Cable", "socket": "negative" }
+      ],
+      "other_connections": [
+        "MIG gun cable connector into the socket on the wire feed mechanism",
+        "Wire Feed Control Cable into the Wire Feed Control Socket inside the machine"
+      ],
+      "gas": "No shielding gas",
+      "sources": ["manual p13 (step 16)", "quick-start p2 (flux cable setup)"]
+    },
+    "tig": {
+      "label": "TIG (DC)",
+      "polarity_name": "Not labeled DCEN/DCEP in the manual (manual says 'DC TIG'). Torch in the negative socket means electrode negative; that mapping is an inference.",
+      "cables": [
+        { "cable": "Ground Clamp Cable", "socket": "positive" },
+        { "cable": "TIG Torch Cable", "socket": "negative" }
+      ],
+      "other_connections": [
+        "Foot Pedal Cable (foot pedal sold separately) through the front hole into the Foot Pedal Socket inside the machine; tighten the collar clockwise",
+        "Shielding gas hose from the TIG torch cable connector to the regulator outlet",
+        "Leave the Wire Feed Power Cable disconnected (quick-start guide)"
+      ],
+      "gas": "100% argon, set 10-25 SCFH",
+      "sources": ["manual p24 (steps 1-4)", "manual p25", "manual p30", "quick-start p2 (TIG cable setup)"]
+    },
+    "stick": {
+      "label": "Stick",
+      "polarity_name": "Not labeled DCEN/DCEP in the manual. Electrode holder in the positive socket means electrode positive; that mapping is an inference.",
+      "cables": [
+        { "cable": "Ground Clamp Cable", "socket": "negative" },
+        { "cable": "Electrode Holder Cable", "socket": "positive" }
+      ],
+      "other_connections": [
+        "Leave the Wire Feed Power Cable disconnected (quick-start guide)"
+      ],
+      "gas": "No shielding gas",
+      "sources": ["manual p27 (steps 1-2)", "quick-start p2 (stick cable setup)"]
+    },
+    "spool_gun": {
+      "label": "Spool gun (optional, for aluminum MIG)",
+      "polarity_name": "Same as MIG (clamp negative, wire feed power positive); manual does not name it",
+      "cables": [
+        { "cable": "Ground Clamp Cable", "socket": "negative" },
+        { "cable": "Wire Feed Power Cable", "socket": "positive" }
+      ],
+      "other_connections": [
+        "Spool Gun Cable Connector into the socket on the wire feed mechanism (fully inserted or the gas connection leaks)",
+        "Wire Feed Control Cable into the Wire Feed Control Socket inside the machine",
+        "Spool Gun gas hose to the Spool Gun Gas Outlet on the front panel"
+      ],
+      "gas": "Shielding gas required; see paragraph 17 on p14 for gas setup",
+      "sources": ["manual p17 (optional spool gun setup)", "manual p8 (note)"]
+    }
+  },
+  "process_aliases": {
+    "mig": "mig", "gmaw": "mig", "solid": "mig", "solid wire": "mig", "gas mig": "mig",
+    "flux": "flux_cored", "flux-cored": "flux_cored", "flux cored": "flux_cored", "fcaw": "flux_cored", "gasless": "flux_cored",
+    "tig": "tig", "gtaw": "tig",
+    "stick": "stick", "smaw": "stick",
+    "spool gun": "spool_gun", "aluminum": "spool_gun", "aluminium": "spool_gun"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "source": "Owner's manual table of contents (p2) plus the side tab on each page. Printed page numbers equal PDF page numbers (cover = page 1).",
+  "sections": [
+    { "tab": "Cover", "pages": [1, 1], "contents": "Title and product info" },
+    { "tab": "Safety", "pages": [2, 6], "contents": "Warning symbols (p2), fume and arc ray safety (p3), electrical and fire safety (p4), welder use/care and cylinder safety (p5), grounding, extension cords, symbology (p6)" },
+    { "tab": "Specifications", "pages": [7, 7], "contents": "MIG, TIG, Stick specification tables (listed separately in the table of contents)" },
+    { "tab": "Controls", "pages": [8, 9], "contents": "Front panel controls (p8), interior controls (p9)" },
+    { "tab": "Wire (MIG / Flux-Cored)", "pages": [10, 23], "contents": "Setup p10-17: spool install p10-11, feed roller p12, gun connection and flux-cored polarity p13, solid-wire polarity and gas p14, feeding wire p15-17, spool gun p17. Welding p18-23: basics p18, duty cycle and weld setup p19, settings p20-21, technique p22, shutdown p23" },
+    { "tab": "TIG / Stick", "pages": [24, 33], "contents": "Setup p24-27: TIG cables p24, shielding gas p25, tungsten and torch p26, stick setup p27. Basics p28, duty cycle p29, TIG welding p30-31, stick welding p32-33" },
+    { "tab": "Welding Tips", "pages": [34, 40], "contents": "Strike test and cleaning p34, wire weld diagnosis p35-37, stick weld diagnosis p38-40" },
+    { "tab": "Maintenance", "pages": [41, 45], "contents": "Maintenance and LCD cover p41, MIG/flux-cored troubleshooting p42-43, TIG/stick troubleshooting p44, wiring schematic p45" },
+    { "tab": "Parts List and Diagram", "pages": [46, 47], "contents": "Parts list p46, assembly diagram p47" },
+    { "tab": "Warranty", "pages": [48, 48], "contents": "Limited 90 day warranty" }
+  ],
+  "other_documents": {
+    "quick-start-guide.pdf": "2 pages: p1 spool/feed/tension steps, p2 stick, MIG, flux and TIG cable setup",
+    "selection-chart.pdf": "1 page: 'How to choose a welder' process chooser"
+  },
+  "note": "Troubleshooting tables are in Maintenance (p42-44), not Welding Tips. Weld diagnosis photos and examples are in Welding Tips (p35-40)."
+}

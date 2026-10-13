@@ -1,0 +1,166 @@
+{
+  "source": "owner-manual.pdf pp12, 14-23, 24-33. Every 'text' is a near-verbatim quote of the manual with its page; tests/test_settings.py checks every word against the cited page. Nothing here is a number the manual does not state.",
+  "power": [
+    {"text": "Plug either 120 VAC or 240 VAC Power Cord into Power Input Socket.", "page": 16},
+    {"text": "Plug the Power Cord into a properly grounded, GFCI protected 120 VAC (20 amp rated) or 240 VAC receptacle that matches the plug and turn the Power Switch ON. The circuit must be equipped with delayed action-type circuit breaker or fuses.", "page": 16}
+  ],
+  "lcd": {
+    "wire": {
+      "pages": [20, 21],
+      "steps": [
+        {"text": "Press Home Button on Control Panel.", "page": 20},
+        {"text": "Turn Main Control Knob until desired process appears on LCD display screen.", "page": 20},
+        {"text": "Press Main Control Knob to select process.", "page": 20},
+        {"text": "Polarity and Gas Settings: Plug cables in according to screen. Connect gas according to screen. Set SCFH between 20-30.", "page": 20, "gas_part": true},
+        {"text": "Set Wire Diameter and Material Thickness: Turn Left Knob to set wire diameter. Turn Right Knob to set material thickness.", "page": 20},
+        {"text": "Auto Weld Settings: Turn Left Knob to adjust Wire Feed Speed (Amperage). Turn Right Knob to adjust Voltage.", "page": 20}
+      ],
+      "notes": [
+        {"text": "Press Main Control Knob to go to next screen. Press Back Button to return to the previous screen.", "page": 20},
+        {"text": "If the Wire Feed Speed or Voltage settings are adjusted manually, the white mark on the line shows the recommended setting for your wire/electrode diameter and workpiece thickness.", "page": 20},
+        {"text": "The initial settings may need to be adjusted after stopping and carefully inspecting the weld. Proper welding takes experience.", "page": 21}
+      ],
+      "optional_settings_how": [
+        {"text": "Press Main Control Knob to enter Optional Settings.", "page": 21},
+        {"text": "Turn Main Control Knob until desired setting appears on screen.", "page": 21},
+        {"text": "Press Main Control Knob to select desired setting.", "page": 21},
+        {"text": "Turn Main Control Knob to adjust setting.", "page": 21}
+      ],
+      "optional_settings": [
+        {"name": "Run-In WFS", "text": "Adjust wire speed before it contacts workpiece. This setting represents a % of the pre-set wire feed speed (WFS).", "page": 21},
+        {"name": "Inductance", "text": "Adjust length of arc. Increase for more fluid puddle and flatter bead. Decrease for colder puddle.", "page": 21},
+        {"name": "Spot Timer", "text": "Set timer for spot welding.", "page": 21},
+        {"name": "Recall Setting", "text": "Retrieve saved settings.", "page": 21},
+        {"name": "Save Setting", "text": "Program up to 5 different configurations. Turn Main Control Knob to scroll between 5 available slots. Press Main Control Knob to access OVERWRITE MEMORY SETTING screen and turn Main Control Knob to choose YES selection. Press Main Control Knob to save current Welder settings.", "page": 21}
+      ]
+    },
+    "tig": {
+      "pages": [30, 31],
+      "steps": [
+        {"text": "Press Home Button on Control Panel.", "page": 30},
+        {"text": "Turn Main Control Knob until TIG process appears on LCD display screen.", "page": 30},
+        {"text": "Press Main Control Knob to select TIG process.", "page": 30},
+        {"text": "Polarity and Gas Settings: Plug cables in according to screen. Connect gas according to screen. Set SCFH between 10-25.", "page": 30},
+        {"text": "Set Rod Diameter and Material Thickness: Turn Left Knob to set rod diameter. Turn Right Knob to set material thickness.", "page": 30},
+        {"text": "Auto Weld Settings: Turn Left Knob to adjust output amperage. Turn Right Knob to ON to energize TIG Torch.", "page": 30}
+      ],
+      "notes": [
+        {"text": "Press Main Control Knob to go to next screen. Press Back Button to return to the previous screen.", "page": 30},
+        {"text": "TO PREVENT SERIOUS INJURY: Welder is now energized and Open Circuit Voltage is present.", "page": 30, "level": "WARNING"},
+        {"text": "The initial settings may need to be adjusted after stopping and carefully inspecting the weld. Proper welding takes experience.", "page": 31}
+      ],
+      "optional_settings_how": [
+        {"text": "Press Main Control Knob to enter Optional Settings.", "page": 31},
+        {"text": "Turn Main Control Knob until desired setting appears on screen.", "page": 31},
+        {"text": "Press Main Control Knob to select desired setting.", "page": 31},
+        {"text": "Turn Main Control Knob to adjust setting.", "page": 31}
+      ],
+      "optional_settings": [
+        {"name": "Recall Setting", "text": "Retrieve saved settings.", "page": 31},
+        {"name": "Save Setting", "text": "Program up to 5 different configurations.", "page": 31}
+      ]
+    },
+    "stick": {
+      "pages": [32, 33],
+      "steps": [
+        {"text": "Press Home Button on Control Panel.", "page": 32},
+        {"text": "Turn Main Control Knob until Stick process appears on LCD display screen.", "page": 32},
+        {"text": "Press Main Control Knob to select STICK process.", "page": 32},
+        {"text": "Polarity Setting: Plug cables in according to screen.", "page": 32},
+        {"text": "Set Electrode type: Turn Main Control Knob to set electrode type.", "page": 32},
+        {"text": "Set Electrode Diameter and Material Thickness: Turn Left Knob to set electrode diameter. Turn Right Knob to set material thickness.", "page": 32},
+        {"text": "Auto Weld Settings: Turn Left Knob to adjust output amperage. Turn Right Knob to ON to energize Electrode Holder.", "page": 32}
+      ],
+      "notes": [
+        {"text": "Press Main Control Knob to go to next screen. Press Back Button to return to the previous screen.", "page": 32},
+        {"text": "TO PREVENT SERIOUS INJURY: Welder is now energized and Open Circuit Voltage is present.", "page": 32, "level": "WARNING"},
+        {"text": "The initial settings may need to be adjusted after stopping and carefully inspecting the weld. Proper welding takes experience.", "page": 33}
+      ],
+      "optional_settings_how": [
+        {"text": "Press Main Control Knob to enter Optional Settings.", "page": 33},
+        {"text": "Turn Main Control Knob until desired setting appears on screen.", "page": 33},
+        {"text": "Press Main Control Knob to select desired setting.", "page": 33},
+        {"text": "Turn Main Control Knob to adjust setting.", "page": 33}
+      ],
+      "optional_settings": [
+        {"name": "Hot Start", "text": "Adjust amperage at start of weld.", "page": 33},
+        {"name": "Arc Force", "text": "Adjust weld penetration and smoothness.", "page": 33},
+        {"name": "Recall Setting", "text": "Retrieve saved settings.", "page": 33},
+        {"name": "Save Setting", "text": "Program up to 5 different configurations.", "page": 33}
+      ]
+    }
+  },
+  "processes": {
+    "mig": {
+      "label": "MIG (solid wire with shielding gas)",
+      "lcd": "wire",
+      "gas": [
+        {"text": "Determine which type of shielding gas would be appropriate for the welding you will do. Refer to the Settings Chart on the inside of the Welder door.", "page": 14},
+        {"text": "Set SCFH between 20-30.", "page": 20},
+        {"text": "Set Flow Gauge to SCFH value indicated on Settings Chart.", "page": 21}
+      ],
+      "wire_and_feed": [
+        {"text": "Check that the Feed Roller is correct for the type of wire being used (solid core or flux-cored) and that it is turned to properly match the wire size marked on the Wire Spool.", "page": 12},
+        {"text": "Solid Core V-Groove: 0.030/0.035 groove and 0.025 groove.", "page": 12},
+        {"text": "The tension should be 3 - 5 for solid wire and 2 - 3 for flux-cored wire.", "page": 15},
+        {"text": "To check the wire's drive tension, press and hold Trigger to feed the wire against a piece of wood from 2 to 3 inches away.", "page": 17},
+        {"text": "If the wire stops instead of bending, unplug the Welder, slightly tighten the Feed Tensioner clockwise, and try again. If the wire bends from the feed pressure, then the tension is set properly.", "page": 17},
+        {"text": "Replace the Nozzle and cut the wire off at 1/2\" from tip (1/2\" stickout).", "page": 17}
+      ],
+      "technique": [
+        {"text": "The Contact Tip should remain within 1/2\" of the work surface. This distance is called CTWD - Contact Tip to Work Distance.", "page": 22},
+        {"text": "For MIG welding using solid wire and shielding gas, the end of the MIG Gun should be tilted so that wire is angled anywhere in-between straight on and 15° away from the direction you are welding. The amount of tilt is called the push angle.", "page": 22}
+      ]
+    },
+    "flux_cored": {
+      "label": "Flux-cored (gasless, self-shielded)",
+      "lcd": "wire",
+      "gas": [
+        {"text": "Flux-cored wire welding is used to weld mild steel and stainless steel without shielding gas.", "page": 18}
+      ],
+      "wire_and_feed": [
+        {"text": "Check that the Feed Roller is correct for the type of wire being used (solid core or flux-cored) and that it is turned to properly match the wire size marked on the Wire Spool.", "page": 12},
+        {"text": "Flux-Cored Knurled Groove: 0.045 groove and 0.030/0.035 groove.", "page": 12},
+        {"text": "The tension should be 3 - 5 for solid wire and 2 - 3 for flux-cored wire. Too much force on flux-cored wire will crush it and may cause feeding issues.", "page": 15},
+        {"text": "To check the wire's drive tension, press and hold Trigger to feed the wire against a piece of wood from 2 to 3 inches away.", "page": 17},
+        {"text": "If the wire stops instead of bending, unplug the Welder, slightly tighten the Feed Tensioner clockwise, and try again. If the wire bends from the feed pressure, then the tension is set properly.", "page": 17},
+        {"text": "Replace the Nozzle and cut the wire off at 1/2\" from tip (1/2\" stickout).", "page": 17}
+      ],
+      "technique": [
+        {"text": "The Contact Tip should remain within 1/2\" of the work surface. This distance is called CTWD - Contact Tip to Work Distance.", "page": 22},
+        {"text": "When using flux-cored wire without shielding gas, the end of the MIG Gun should be tilted so that wire is angled anywhere in-between straight on and 15° in the direction you are welding. The amount of tilt is called the drag angle.", "page": 22}
+      ]
+    },
+    "tig": {
+      "label": "TIG (DC)",
+      "lcd": "tig",
+      "gas": [
+        {"text": "With assistance, place an 100% Argon cylinder (not included) onto a cabinet or cart near the Welder and secure the cylinder in place with two straps (not included) to prevent tipping.", "page": 25},
+        {"text": "Set SCFH between 10-25.", "page": 30},
+        {"text": "Set Flow Gauge to SCFH value indicated on the Settings Chart on the inside of the Welder door.", "page": 30}
+      ],
+      "electrode": [
+        {"text": "Consult Settings Chart, on top of Welder, to determine proper Tungsten Electrode size to be used with thickness of material to be welded.", "page": 26},
+        {"text": "Electrode should protrude 1/8\" to 1/4\" beyond the Ceramic Nozzle.", "page": 26},
+        {"text": "The conical portion of the ideal tip will be 2-1/2 times as long as the Electrode diameter.", "page": 26}
+      ],
+      "technique": [
+        {"text": "Maintain a constant distance between the Tungsten Electrode and the workpiece: between 1 and 1.5 times the diameter of the Electrode.", "page": 31},
+        {"text": "To initiate welding arc, push Foot Pedal and touch Electrode to work piece and lift. If not using Foot Pedal, touch Electrode to work piece and lift.", "page": 31},
+        {"text": "Close valve on TIG Torch and turn Right Knob to OFF to turn off power to TIG Torch.", "page": 31}
+      ]
+    },
+    "stick": {
+      "label": "Stick",
+      "lcd": "stick",
+      "gas": [
+        {"text": "Stick Welding is used to weld mild steel and stainless steel using a Stick Electrode without shielding gas.", "page": 28}
+      ],
+      "technique": [
+        {"text": "Lift the Electrode off workpiece the same distance as the diameter of the bare metal end.", "page": 33},
+        {"text": "Tilt Electrode back 10 to 20 degrees.", "page": 33},
+        {"text": "Tap the surface with the Electrode. Stroke the surface with the Electrode. Strike the surface like a match with the Electrode.", "page": 33}
+      ]
+    }
+  }
+}

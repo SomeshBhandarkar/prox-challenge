@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<title>OmniPro 220 Assistant</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23c2410c'/%3E%3Ctext x='16' y='22' font-size='13' font-weight='700' text-anchor='middle' fill='white' font-family='sans-serif'%3E220%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="/static/style.css">
+<script src="/static/app.js" defer></script>
+</head>
+<body>
+<div class="app">
+  <header class="top">
+    <div class="brand">
+      <span class="badge-220" aria-hidden="true">220</span>
+      <div>
+        <h1>OmniPro 220 assistant</h1>
+        <p>Vulcan OmniPro 220 welder. Answers come from the owner's manual.</p>
+      </div>
+    </div>
+    <button id="new-chat" class="ghost" type="button">New chat</button>
+  </header>
+
+  <main id="log" class="log" role="log" aria-live="polite" aria-label="Conversation" tabindex="0">
+    <div id="thread">
+    <section id="welcome" class="welcome">
+      <h2>Just got the welder? Ask away.</h2>
+      <p>Cables and polarity, settings, duty cycle, troubleshooting. I show the manual's own pictures and draw what is easier to see than to read.</p>
+      <div id="starters" class="starters">
+        <button type="button" data-q="What's the duty cycle for MIG at 200A on 240V?">Duty cycle: MIG at 200A on 240V</button>
+        <button type="button" data-q="Which socket does the ground clamp go in for TIG?">TIG: which socket for the ground clamp?</button>
+        <button type="button" data-q="I'm getting porosity in my flux-cored welds. What do I check?">Porosity in flux-cored welds</button>
+        <button type="button" data-q="How do I set up the welder for 1/8 inch steel?">Set up for 1/8 inch steel</button>
+        <button type="button" data-q="Show me the controls on the front panel.">Front panel controls</button>
+        <button type="button" data-q="Draw me a cheat sheet of which cable goes in which socket for all four processes.">Cable cheat sheet, all four processes</button>
+      </div>
+    </section>
+    <noscript><p class="note">This page needs JavaScript to run the chat.</p></noscript>
+    </div>
+  </main>
+
+  <div class="dock">
+    <div id="status" class="status" role="status" hidden>
+      <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span id="status-text"></span>
+    </div>
+    <form id="composer" class="composer" autocomplete="off">
+      <label for="input" class="sr-only">Your question</label>
+      <textarea id="input" rows="1" maxlength="2000" placeholder="Ask about your welder..." enterkeyhint="send"></textarea>
+      <button id="send" type="submit">Send</button>
+    </form>
+    <p class="foot">Read the manual's safety pages before you weld. If this page and the manual ever disagree, trust the manual. <span id="count"></span></p>
+  </div>
+</div>
+
+<dialog id="viewer" class="viewer" aria-label="Manual picture">
+  <div class="viewer-bar">
+    <strong id="viewer-title"></strong>
+    <span class="grow"></span>
+    <button id="viewer-prev" type="button" aria-label="Previous page">&#8249;</button>
+    <button id="viewer-next" type="button" aria-label="Next page">&#8250;</button>
+    <button id="viewer-close" type="button" aria-label="Close">&#10005;</button>
+  </div>
+  <div class="viewer-body"><img id="viewer-img" alt=""></div>
+</dialog>
+</body>
+</html>

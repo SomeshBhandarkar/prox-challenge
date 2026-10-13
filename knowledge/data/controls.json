@@ -1,0 +1,160 @@
+{
+  "source": "owner-manual.pdf, Controls section, pages 8-9: 'Front Panel Controls' (p8) and 'Interior Controls' (p9)",
+  "status": "transcribed from screenshots. x/y are approximate positions as a fraction (0-1) of the diagram image, to be refined on the real PDF crop. The front-panel screenshot is cut off at a 'Note: When using an optional Spool Gun (sold separately)...' line that still needs to be read from the PDF.",
+  "front_panel": {
+    "image": ".reference/manual-front-panel-controls.png",
+    "layout": "Top: LCD display flanked by Home button (left) and Back button (right). Below the LCD: Left knob, Control knob (center, largest), Right knob; the left knob is marked with an A symbol (amps) and the right knob with a V symbol (volts). Below that: the VULCAN storage compartment door. Lower half: left compartment holds the MIG Gun/Spool Gun cable socket and the Power switch; the bottom row of sockets runs left to right: Spool Gun gas outlet, Negative (-) socket, Wire feed power cable, Positive (+) socket.",
+    "parts": [
+      {
+        "id": "home_button",
+        "name": "Home Button",
+        "x": 0.33,
+        "y": 0.36
+      },
+      {
+        "id": "back_button",
+        "name": "Back Button",
+        "x": 0.67,
+        "y": 0.36
+      },
+      {
+        "id": "lcd_display",
+        "name": "LCD Display",
+        "x": 0.51,
+        "y": 0.35
+      },
+      {
+        "id": "left_knob",
+        "name": "Left Knob",
+        "x": 0.36,
+        "y": 0.46,
+        "marking": "A (amps)"
+      },
+      {
+        "id": "control_knob",
+        "name": "Control Knob",
+        "x": 0.51,
+        "y": 0.46
+      },
+      {
+        "id": "right_knob",
+        "name": "Right Knob",
+        "x": 0.65,
+        "y": 0.46,
+        "marking": "V (volts)"
+      },
+      {
+        "id": "storage_compartment",
+        "name": "Storage Compartment",
+        "x": 0.58,
+        "y": 0.55
+      },
+      {
+        "id": "power_switch",
+        "name": "Power Switch",
+        "x": 0.45,
+        "y": 0.65
+      },
+      {
+        "id": "mig_spool_gun_cable_socket",
+        "name": "MIG Gun / Spool Gun Cable Socket",
+        "x": 0.29,
+        "y": 0.65
+      },
+      {
+        "id": "spool_gun_gas_outlet",
+        "name": "Spool Gun Gas Outlet",
+        "x": 0.31,
+        "y": 0.78
+      },
+      {
+        "id": "negative_socket",
+        "name": "Negative Socket (-)",
+        "x": 0.5,
+        "y": 0.79
+      },
+      {
+        "id": "wire_feed_power_cable",
+        "name": "Wire Feed Power Cable",
+        "x": 0.59,
+        "y": 0.81
+      },
+      {
+        "id": "positive_socket",
+        "name": "Positive Socket (+)",
+        "x": 0.69,
+        "y": 0.79
+      }
+    ],
+    "page": 8
+  },
+  "interior": {
+    "image": ".reference/manual-interior-controls.png",
+    "layout": "Wire compartment (side view). Left: Wire Spool on a Spool Knob. Wire runs through the Wire Inlet Liner to the Wire Feed Mechanism on the right (Feed Tensioner on top, Idler Arm, Feed Roller Knob). Cold Wire Feed Switch sits above the mechanism. Bottom: Foot Pedal Socket and Wire Feed Control Socket.",
+    "parts": [
+      {
+        "id": "cold_wire_feed_switch",
+        "name": "Cold Wire Feed Switch",
+        "x": 0.59,
+        "y": 0.37
+      },
+      {
+        "id": "feed_tensioner",
+        "name": "Feed Tensioner",
+        "x": 0.64,
+        "y": 0.44
+      },
+      {
+        "id": "wire_feed_mechanism",
+        "name": "Wire Feed Mechanism",
+        "x": 0.59,
+        "y": 0.51
+      },
+      {
+        "id": "idler_arm",
+        "name": "Idler Arm",
+        "x": 0.66,
+        "y": 0.5
+      },
+      {
+        "id": "feed_roller_knob",
+        "name": "Feed Roller Knob",
+        "x": 0.73,
+        "y": 0.6
+      },
+      {
+        "id": "wire_spool",
+        "name": "Wire Spool",
+        "x": 0.36,
+        "y": 0.52
+      },
+      {
+        "id": "spool_knob",
+        "name": "Spool Knob",
+        "x": 0.36,
+        "y": 0.55
+      },
+      {
+        "id": "wire_inlet_liner",
+        "name": "Wire Inlet Liner",
+        "x": 0.52,
+        "y": 0.51
+      },
+      {
+        "id": "foot_pedal_socket",
+        "name": "Foot Pedal Socket",
+        "x": 0.62,
+        "y": 0.72
+      },
+      {
+        "id": "wire_feed_control_socket",
+        "name": "Wire Feed Control Socket",
+        "x": 0.69,
+        "y": 0.72
+      }
+    ],
+    "page": 9
+  },
+  "polarity_relevance": "The + and - sockets and the wire feed power cable on the front panel are where the polarity diagram draws the torch, ground clamp, and wire-feed cable. Which cable goes in which socket per process still has to be read from the MIG/Flux-Cored (p10+) and TIG/Stick (p24+) sections.",
+  "page_assignment_note": "User confirmed both diagrams are on p8 and p9. Front panel = p8 and interior = p9 is inferred from the order; confirm when the PDF is rendered."
+}

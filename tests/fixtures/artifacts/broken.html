@@ -1,0 +1,9 @@
+<h1>Broken artifact</h1>
+<p>This one throws on purpose.</p>
+<script>
+console.error('about to fail');
+undefinedFunction();
+</script>
+<script>
+Promise.reject(new Error('async failure'));
+</script>

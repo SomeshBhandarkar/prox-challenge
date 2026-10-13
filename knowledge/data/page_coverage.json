@@ -1,0 +1,7 @@
+{
+ "note": "Every page of the owner's manual (1-48) must be accounted for: it has at least one figure in figures.json, or it is listed here as text_only (with the reason), or it is pending in a numbered patch. tests/test_coverage.py enforces this, so no page can be forgotten. After patch 5 'pending' must be empty (it is). Every page of the other PDFs (selection chart, quick-start guide) must have a figure.",
+ "text_only": {
+  "48": "Limited 90-day warranty: plain legal text with no diagram or photo (only the Vulcan logo and the address); answers quote the manual text on p48."
+ },
+ "pending": {}
+}

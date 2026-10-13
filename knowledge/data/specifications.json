@@ -1,0 +1,314 @@
+{
+  "source": "owner-manual.pdf, Specifications (manual p7)",
+  "status": "transcribed from a screenshot of the page; re-verify against the PDF before relying on it",
+  "common": {
+    "input_frequency": "60Hz",
+    "max_ocv": "86VDC"
+  },
+  "processes": {
+    "MIG": {
+      "input_voltages": [
+        "120VAC",
+        "240VAC"
+      ],
+      "current_input_at_output": {
+        "120VAC": "20.8A at 100A",
+        "240VAC": "25.5A at 200A"
+      },
+      "welding_current_range_A": {
+        "120VAC": [
+          30,
+          140
+        ],
+        "240VAC": [
+          30,
+          220
+        ]
+      },
+      "rated_duty_cycles": {
+        "120VAC": [
+          {
+            "duty_percent": 40,
+            "amps": 100
+          },
+          {
+            "duty_percent": 100,
+            "amps": 75
+          }
+        ],
+        "240VAC": [
+          {
+            "duty_percent": 25,
+            "amps": 200
+          },
+          {
+            "duty_percent": 100,
+            "amps": 115
+          }
+        ]
+      },
+      "weldable_materials": [
+        "Mild Steel",
+        "Stainless Steel",
+        "Aluminum (with optional Spool Gun)"
+      ],
+      "welding_wire_capacity": {
+        "solid_core_in": [
+          0.025,
+          0.03,
+          0.035
+        ],
+        "flux_cored_in": [
+          0.03,
+          0.035,
+          0.045
+        ]
+      },
+      "wire_speed_ipm": [
+        50,
+        500
+      ],
+      "wire_spool_capacity": "Up to 12 lb spool"
+    },
+    "TIG": {
+      "input_voltages": [
+        "120VAC",
+        "240VAC"
+      ],
+      "current_input_at_output": {
+        "120VAC": "20.6A at 125A",
+        "240VAC": "15.6A at 175A"
+      },
+      "welding_current_range_A": {
+        "120VAC": [
+          10,
+          125
+        ],
+        "240VAC": [
+          10,
+          175
+        ]
+      },
+      "rated_duty_cycles": {
+        "120VAC": [
+          {
+            "duty_percent": 40,
+            "amps": 125
+          },
+          {
+            "duty_percent": 100,
+            "amps": 90
+          }
+        ],
+        "240VAC": [
+          {
+            "duty_percent": 30,
+            "amps": 175
+          },
+          {
+            "duty_percent": 100,
+            "amps": 105
+          }
+        ]
+      },
+      "weldable_materials": [
+        "Mild Steel",
+        "Stainless Steel",
+        "Chrome Moly"
+      ]
+    },
+    "Stick": {
+      "input_voltages": [
+        "120VAC",
+        "240VAC"
+      ],
+      "current_input_at_output": {
+        "120VAC": "19.5A at 80A",
+        "240VAC": "23.7A at 175A"
+      },
+      "welding_current_range_A": {
+        "120VAC": [
+          10,
+          80
+        ],
+        "240VAC": [
+          10,
+          175
+        ]
+      },
+      "rated_duty_cycles": {
+        "120VAC": [
+          {
+            "duty_percent": 40,
+            "amps": 80
+          },
+          {
+            "duty_percent": 100,
+            "amps": 60
+          }
+        ],
+        "240VAC": [
+          {
+            "duty_percent": 25,
+            "amps": 175
+          },
+          {
+            "duty_percent": 100,
+            "amps": 100
+          }
+        ]
+      },
+      "weldable_materials": [
+        "Mild Steel",
+        "Stainless Steel"
+      ]
+    }
+  },
+  "notes": [
+    "The Specifications page lists only rated duty-cycle points per process and input voltage; the manual may have a fuller matrix elsewhere (check the MIG/Flux-Cored and TIG/Stick sections).",
+    "Flux-Cored uses the MIG row (the table is headed MIG, with a flux-cored wire capacity line).",
+    "200A is outside the MIG range on 120V (30-140A): a trap question."
+  ],
+  "rating_label": {
+    "source": "Rating label printed on the welder, visible in the setup illustrations (manual p14, p16, p25, p27). Verified visually against a 1200 DPI crop (knowledge/factcheck/rating-label-p14-14.png) on 2026-10-08.",
+    "standard": "Conforms to ANSI/IEC Std. 60974-1, IP21S, U0 = 86V, UPC 193175422590",
+    "240VAC": {
+      "MIG": {
+        "range": "30A/15.5V to 220A/25V",
+        "duty": [
+          {
+            "percent": 25,
+            "amps": 200,
+            "volts": 24
+          },
+          {
+            "percent": 60,
+            "amps": 130,
+            "volts": 20.5
+          },
+          {
+            "percent": 100,
+            "amps": 115,
+            "volts": 19.75
+          }
+        ],
+        "I1max_A": 25.5,
+        "I1eff_A": 12.8
+      },
+      "Stick": {
+        "range": "10A/20.4V to 175A/27V",
+        "duty": [
+          {
+            "percent": 25,
+            "amps": 175,
+            "volts": 27
+          },
+          {
+            "percent": 60,
+            "amps": 115,
+            "volts": 24.6
+          },
+          {
+            "percent": 100,
+            "amps": 100,
+            "volts": 24
+          }
+        ],
+        "I1max_A": 23.7,
+        "I1eff_A": 11.9
+      },
+      "TIG": {
+        "range": "10A/10.4V to 175A/17V",
+        "duty": [
+          {
+            "percent": 30,
+            "amps": 175,
+            "volts": 17
+          },
+          {
+            "percent": 60,
+            "amps": 125,
+            "volts": 15
+          },
+          {
+            "percent": 100,
+            "amps": 105,
+            "volts": 14.2
+          }
+        ],
+        "I1max_A": 15.6,
+        "I1eff_A": 8.5
+      }
+    },
+    "120VAC": {
+      "MIG": {
+        "range": "30A/15.5V to 140A/21V",
+        "duty": [
+          {
+            "percent": 40,
+            "amps": 100,
+            "volts": 19
+          },
+          {
+            "percent": 60,
+            "amps": 85,
+            "volts": 18.25
+          },
+          {
+            "percent": 100,
+            "amps": 75,
+            "volts": 17.75
+          }
+        ],
+        "I1max_A": 20.8,
+        "I1eff_A": 13.1
+      },
+      "Stick": {
+        "range": "10A/20.4V to 80A/23.2V",
+        "duty": [
+          {
+            "percent": 40,
+            "amps": 80,
+            "volts": 23.2
+          },
+          {
+            "percent": 60,
+            "amps": 70,
+            "volts": 22.8
+          },
+          {
+            "percent": 100,
+            "amps": 60,
+            "volts": 22.4
+          }
+        ],
+        "I1max_A": 19.5,
+        "I1eff_A": 12.3
+      },
+      "TIG": {
+        "range": "10A/10.4V to 125A/15V",
+        "duty": [
+          {
+            "percent": 40,
+            "amps": 125,
+            "volts": 15
+          },
+          {
+            "percent": 60,
+            "amps": 105,
+            "volts": 14.2
+          },
+          {
+            "percent": 100,
+            "amps": 90,
+            "volts": 13.6
+          }
+        ],
+        "I1max_A": 20.6,
+        "I1eff_A": 13
+      }
+    },
+    "note": "The 60% points exist only on the label, not on the Specifications page. Each label block lists, in order: MIG (torch icon), Stick (electrode holder icon), TIG (torch + rod icon). I1max/I1eff are listed per process in that same order.",
+    "verified_visually": true
+  }
+}

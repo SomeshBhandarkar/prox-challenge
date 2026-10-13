@@ -1,0 +1,37 @@
+<h1>Hostile probe</h1>
+<p id="out">running...</p>
+<script>
+const results = {}, violations = [];
+document.addEventListener('securitypolicyviolation', function (e) { violations.push(e.violatedDirective); });
+const set = function (name, v) { results[name] = v; };
+function attempt(name, fn) {
+  try { const r = fn(); set(name, r === undefined ? 'ran-no-effect' : String(r)); }
+  catch (e) { set(name, 'blocked: ' + e.name); }
+}
+attempt('parent.document', function () { return parent.document.title; });
+attempt('top.document', function () { return top.document.title; });
+attempt('localStorage', function () { return localStorage.getItem('k'); });
+attempt('sessionStorage', function () { return sessionStorage.getItem('k'); });
+attempt('document.cookie', function () { return document.cookie; });
+attempt('indexedDB', function () { return indexedDB.open('x') && 'opened'; });
+attempt('window.open', function () { return window.open('https://example.com/') === null ? 'blocked (null)' : 'ALLOWED'; });
+attempt('top.location', function () { top.location.href = 'https://example.com/'; return 'assigned'; });
+attempt('eval', function () { return eval('1+1'); });
+attempt('new Function', function () { return new Function('return 1')(); });
+attempt('alert', function () { return alert('hi'); });
+fetch('https://example.com/').then(function () { set('fetch', 'ALLOWED'); }, function () { set('fetch', 'blocked'); });
+const x = new XMLHttpRequest();
+x.onload = function () { set('xhr', 'ALLOWED'); }; x.onerror = function () { set('xhr', 'blocked'); };
+try { x.open('GET', 'https://example.com/'); x.send(); } catch (e) { set('xhr', 'blocked: ' + e.name); }
+try { const ws = new WebSocket('wss://example.com/'); ws.onopen = function () { set('websocket', 'ALLOWED'); }; ws.onerror = function () { set('websocket', 'blocked'); }; }
+catch (e) { set('websocket', 'blocked: ' + e.name); }
+const img = new Image();
+img.onload = function () { set('image', 'ALLOWED'); }; img.onerror = function () { set('image', 'blocked'); };
+img.src = 'https://example.com/x.png';
+const f = document.createElement('form'); f.action = 'https://example.com/'; f.method = 'post'; document.body.append(f);
+try { f.submit(); set('form', 'submit-called'); } catch (e) { set('form', 'blocked: ' + e.name); }
+setTimeout(function () {
+  document.getElementById('out').textContent = JSON.stringify(results);
+  parent.postMessage({source: 'artifact', kind: 'probe', results: results, violations: violations}, '*');
+}, 2500);
+</script>

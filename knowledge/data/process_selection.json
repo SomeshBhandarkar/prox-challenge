@@ -1,0 +1,122 @@
+{
+  "source": "files/selection-chart.pdf: one image-only page titled 'HOW TO CHOOSE A WELDER' (no text layer). Transcribed by eye from a 200 DPI render on 2026-10-11. Compare with knowledge/factcheck/SELECTION_CHART_CHECK.md.",
+  "title": "HOW TO CHOOSE A WELDER",
+  "important": "IDENTIFY YOUR INPUT VOLTAGE: DO YOU HAVE 120 VOLT OR 240 VOLT?",
+  "rows": [
+    "What is your skill level?",
+    "Will you need shielding gas?",
+    "What type of material will you be welding?",
+    "What is your material thickness?",
+    "Typical applications",
+    "How clean do you need your weld?",
+    "Use this welding process"
+  ],
+  "processes": {
+    "flux_cored": {
+      "label": "Flux-Cored / FCAW",
+      "skill_level": "low",
+      "shielding_gas": "No-gas required",
+      "gas_required": false,
+      "materials": ["Steel", "Stainless steel"],
+      "material_tags": ["steel", "stainless"],
+      "thickness": {"min_gauge": 18, "max_inches": "5/16", "as_printed": "18 Gauge to 5/16\""},
+      "applications": ["Galvanized steel", "General fabrication", "Pipe and tubing", "Maintenance & repair"],
+      "weld_cleanliness": "More spatter",
+      "use_this_process_because": [
+        "Ideal for outdoor or windy conditions",
+        "Forgiving on rusty or dirty steels",
+        "Good out of position welding capabilities",
+        "High deposition rates achievable"
+      ]
+    },
+    "mig": {
+      "label": "MIG / GMAW",
+      "skill_level": "low",
+      "shielding_gas": "Gas required",
+      "gas_note": "Indoor welding recommended",
+      "gas_required": true,
+      "materials": ["Steel", "Stainless steel", "Aluminum (Spool gun required)"],
+      "material_tags": ["steel", "stainless", "aluminum"],
+      "material_notes": {"aluminum": "Spool gun required"},
+      "thickness": {"min_gauge": 22, "max_inches": "3/8", "as_printed": "22 Gauge to 3/8\""},
+      "applications": ["Sheet metal", "Automotive body", "Tubing", "Structural steel"],
+      "weld_cleanliness": "Clean / minimal spatter",
+      "use_this_process_because": [
+        "Fast production (high welding speeds)",
+        "Easiest to learn",
+        "Clean welds with no slag",
+        "Better control on thin materials"
+      ]
+    },
+    "stick": {
+      "label": "Stick / SMAW",
+      "skill_level": "moderate",
+      "shielding_gas": "No-gas required",
+      "gas_required": false,
+      "materials": ["Steel", "Stainless steel", "Castings"],
+      "material_tags": ["steel", "stainless", "castings"],
+      "thickness": {"min_gauge": 10, "max_inches": "1/2", "as_printed": "10 Gauge to 1/2\""},
+      "applications": ["Pipe and tubing", "Structural steel", "Pressure vessels", "Maintenance & repair"],
+      "weld_cleanliness": "More spatter",
+      "use_this_process_because": [
+        "Ideal for outdoor or windy conditions",
+        "Forgiving on rusty or dirty steels",
+        "Deep penetration",
+        "Good choice for thicker materials"
+      ]
+    },
+    "tig": {
+      "label": "TIG / GTAW",
+      "skill_level": "high",
+      "shielding_gas": "Gas required",
+      "gas_note": "Indoor welding recommended",
+      "gas_required": true,
+      "materials": [
+        "Steel, stainless steel, chrome moly (DC TIG required)",
+        "Aluminum, magnesium alloys (AC TIG required)"
+      ],
+      "material_tags": ["steel", "stainless", "chrome_moly", "aluminum", "magnesium"],
+      "material_notes": {
+        "steel": "DC TIG required",
+        "stainless": "DC TIG required",
+        "chrome_moly": "DC TIG required",
+        "aluminum": "AC TIG required",
+        "magnesium": "AC TIG required"
+      },
+      "thickness": {"min_gauge": 24, "max_inches": "3/16", "as_printed": "24 Gauge to 3/16\""},
+      "applications": ["Stainless steel exhausts", "Bicycle frames", "Thin wall pipe & tubing", "Metal art"],
+      "weld_cleanliness": "Extremely clean",
+      "use_this_process_because": [
+        "Highest quality welds",
+        "Extremely aesthetic weld appearance",
+        "Can be used on a variety of materials",
+        "Precise control"
+      ]
+    }
+  },
+  "mig_or_flux_cored_table": {
+    "title": "MIG or FLUX CORED?",
+    "rows": [
+      {"feature": "Uses cored wire", "mig": false, "flux_cored": true},
+      {"feature": "Uses solid wire", "mig": true, "flux_cored": false},
+      {"feature": "Uses shielding gas", "mig": true, "flux_cored": false},
+      {"feature": "Clean welds, minimal spatters", "mig": true, "flux_cored": false},
+      {"feature": "Welds over mill scale and rust", "mig": false, "flux_cored": true},
+      {"feature": "Requires minimal surface prep", "mig": false, "flux_cored": true},
+      {"feature": "Can be used outdoor in windy conditions", "mig": false, "flux_cored": true},
+      {"feature": "Deep weld penetration / handles material gaps well", "mig": false, "flux_cored": true},
+      {"feature": "Thin materials like sheet metal", "mig": true, "flux_cored": false}
+    ]
+  },
+  "duty_cycle_box": {
+    "definition": "The Duty Cycle is the number of minutes, within a 10 minute period, a welding process can produce the specified welding current without overheating.",
+    "example": "165A @ 30% Duty Cycle: 3 Minutes Welding, 7 Minutes Resting"
+  },
+  "gauge_reference": {
+    "note": "NOT from the manual or the chart. Standard steel sheet gauge thicknesses in inches, used only to compare a gauge with a fraction of an inch.",
+    "inches": {
+      "7": 0.1793, "8": 0.1644, "10": 0.1345, "11": 0.1196, "12": 0.1046, "14": 0.0747,
+      "16": 0.0598, "18": 0.0478, "20": 0.0359, "22": 0.0299, "24": 0.0239, "26": 0.0179
+    }
+  }
+}

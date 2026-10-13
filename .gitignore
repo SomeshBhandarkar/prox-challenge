@@ -1,0 +1,27 @@
+# secrets: never commit
+.env
+.env.*
+!.env.example
+
+# dependencies and build output
+node_modules/
+dist/
+*.tsbuildinfo
+
+# OS and editor files
+.DS_Store
+.vscode/
+.idea/
+
+# local working notes (not part of the submission)
+CLAUDE.md
+.reference/
+knowledge/raw/
+
+# Python
+.venv/
+__pycache__/
+.pytest_cache/
+
+# generated widget previews
+previews/

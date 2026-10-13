@@ -1,0 +1,363 @@
+[
+ {
+  "id": "Q30",
+  "category": "troubleshooting",
+  "tier": 1,
+  "expected_visual": "troubleshooting flowchart + weld diagnosis photo + polarity diagram",
+  "expected_answer": "Check in this order: (1) Polarity: flux-cored must be DCEN, ground clamp in Positive (+) and wire feed power cable in Negative (-). (2) Dirty workpiece or wire: clean to bare metal and make sure wire is free of rust, oil and residue. (3) CTWD too long: keep it within 1/2 inch. (4) Inconsistent travel speed: keep it steady. Gas checks (flow, nozzle, gas type, empty cylinder) apply to gas-shielded MIG only, not self-shielded flux-cored. Compare to the porosity diagrams on p35/p37.",
+  "turns": [
+   {
+    "question": "I'm getting porosity in my flux-cored welds. What should I check?",
+    "answer": "Porosity means small holes in the bead. For gasless flux-cored welding, check these first (manual p.43):\n\n1. **Polarity.** Flux-cored should be DCEN (direct current, electrode negative). Plug the **ground clamp cable into the + (positive) socket** and the **wire feed power cable into the − (negative) socket**. See the diagram below and manual p.13, step 16. Shut off and unplug the welder before you change cables.\n2. **Dirty workpiece.** Clean the metal down to bare metal (p.43).\n3. **Contact tip to work distance (CTWD).** Keep the tip within 1/2\" of the work (p.22). A longer CTWD causes porosity (p.37).\n\nAlso check that the wire is clean and free of rust and residue (p.43), and keep your travel speed steady (p.37).\n\nThe shielding-gas causes on the flowchart don't apply to you, since flux-cored uses no gas. The picture of porosity on p.37 is below, and the flowchart has the rest of the checks.",
+    "tools": [
+     {
+      "tool": "show_troubleshooting_flowchart",
+      "input": {
+       "problem_id": "mig-porosity"
+      }
+     },
+     {
+      "tool": "show_figure",
+      "input": {
+       "figure_id": "wire-porosity"
+      }
+     },
+     {
+      "tool": "polarity",
+      "input": {
+       "process": "flux_cored"
+      }
+     },
+     {
+      "tool": "show_polarity_diagram",
+      "input": {
+       "process": "flux_cored"
+      }
+     }
+    ],
+    "shown": [
+     {
+      "kind": "widget",
+      "tool": "show_troubleshooting_flowchart",
+      "title": "Troubleshooting guide"
+     },
+     {
+      "kind": "figure",
+      "tool": "show_figure",
+      "id": "wire-porosity",
+      "source": "Manual p.37"
+     },
+     {
+      "kind": "widget",
+      "tool": "show_polarity_diagram",
+      "title": "Polarity: Flux-cored (gasless, self-shielded)"
+     }
+    ],
+    "cost": 0.009049449999999999,
+    "stop": "success"
+   }
+  ],
+  "checks": {
+   "missing": [
+    "gas items are MIG only"
+   ],
+   "forbidden": [],
+   "asked_question": false,
+   "should_clarify": false
+  },
+  "error": null,
+  "cost": 0.009,
+  "seconds": 9.4
+ },
+ {
+  "id": "Q49",
+  "category": "selection_chart",
+  "tier": 1,
+  "expected_visual": "selection chart excerpt",
+  "expected_answer": "Per the selection chart: flux-cored 18 gauge to 5/16 inch; MIG 22 gauge to 3/8 inch; stick 10 gauge to 1/2 inch; TIG 24 gauge to 3/16 inch. For 24 gauge MIG: the chart's MIG range starts at 22 gauge, but the manual's LCD example screen (MIG Stainless Steel, .025 wire) shows a 24Ga thickness selection, so the machine lets you pick it. Practice on scrap; mention the discrepancy.",
+  "turns": [
+   {
+    "question": "What's the thickest steel each process can handle, and can I MIG weld 24 gauge sheet?",
+    "answer": "**Thickest steel per process** (from the Selection Chart, see the picture below):\n\n- **Stick:** 1/2\" (10 gauge to 1/2\")\n- **MIG:** 3/8\" (22 gauge to 3/8\")\n- **Flux-cored:** 5/16\" (18 gauge to 5/16\")\n- **TIG:** 3/16\" (24 gauge to 3/16\")\n\n**Can you MIG 24 gauge sheet?** The chart says MIG starts at 22 gauge. A higher gauge number means thinner steel (general knowledge), so 24 gauge is just below the chart's MIG range.\n\nThe manual disagrees with itself here. The LCD example on p.20 shows MIG with .025\" wire at 24Ga. Trust the chart's 22 gauge minimum and plan around it. If you really want to try 24 gauge, test on scrap first (general advice). TIG's chart range does include 24 gauge, but TIG is a harder process to learn.\n\nThe chart doesn't say which input voltage these ranges need. The manual doesn't confirm that 3/8\" MIG or 1/2\" Stick is achievable on 120V.",
+    "tools": [
+     {
+      "tool": "show_figure",
+      "input": {
+       "figure_id": "selection-chart-processes"
+      }
+     }
+    ],
+    "shown": [
+     {
+      "kind": "figure",
+      "tool": "show_figure",
+      "id": "selection-chart-processes",
+      "source": "Selection chart"
+     }
+    ],
+    "cost": 0.002049365,
+    "stop": "success"
+   }
+  ],
+  "checks": {
+   "missing": [
+    "flux-cored 18ga-5/16",
+    "MIG 22ga-3/8",
+    "stick 10ga-1/2",
+    "TIG 24ga-3/16",
+    "notes 24Ga on LCD vs 22ga chart"
+   ],
+   "forbidden": [],
+   "asked_question": true,
+   "should_clarify": false
+  },
+  "error": null,
+  "cost": 0.002,
+  "seconds": 7.7
+ },
+ {
+  "id": "Q56",
+  "category": "multi_hop_scenario",
+  "tier": 2,
+  "expected_visual": "duty-cycle bar for 120V plus selection-chart excerpt",
+  "expected_answer": "The selection chart lists MIG from 22 gauge up to 3/8 inch, but on 120V the MIG current range is only 30-140A (240V goes to 220A), with 40% duty at 100A and 100% at 75A. The manual gives no amps-per-thickness chart, so it cannot confirm 3/8 inch plate is achievable on 120V; the LCD recommends settings once you enter wire diameter and thickness, and the Settings Chart is inside the door. 240V is the safer choice for thick plate. Per the manual, bevel thick workpieces, allow a slight gap, and weld in several passes. Solid wire needs shielding gas at 20-30 SCFH, DCEP polarity (clamp negative, wire feed power positive). Practice on scrap of the same thickness.",
+  "turns": [
+   {
+    "question": "I'm on a standard 120V circuit and I want to MIG weld 3/8 inch mild steel plate with 0.035 solid wire. Is that realistic with this machine, and what are my limits?",
+    "answer": "**Short answer:** The selection chart lists MIG for up to 3/8\" steel, so 3/8\" is allowed on paper. But the manual doesn't confirm that this job is achievable on 120V, so treat it as a test, not a sure thing.\n\n**Your 120V MIG limits (manual p.7):**\n- Welding current range: 30 to 140 A\n- 100% duty cycle (continuous welding) at 75 A\n- 40% duty cycle at 100 A: weld 4 minutes, rest 6 minutes in every 10 (manual p.19)\n- 60% duty cycle at 85 A (rating label, p.14)\n\nI put the 40% calculator on your screen so you can try other amps.\n\n**Things to know:**\n1. **Wire:** For 0.035 solid wire, the feed roller needs the 0.030/0.035 V-groove (manual p.12).\n2. **Gas:** Solid wire needs shielding gas. Set the flow to 20-30 SCFH (manual p.20). The gas type comes from the Settings Chart inside the door (p.14).\n3. **Power:** Use a grounded, GFCI-protected 120V receptacle rated 20 amps, on a delayed-action breaker or fuses (p.20). Don't use an extension cord (p.16).\n4. **Thick plate:** The manual says to bevel thick pieces and weld in several passes (p.36). Plan on that.\n5. **Setup:** Enter 0.035\" as the wire diameter and 3/8\" as the thickness on the LCD. The white mark shows the recommended setting (p.20). The Settings Chart inside the door has the numbers. Then test on scrap of the same thickness and adjust (p.21).\n\n**General advice (not from the manual):** 240V gives a much bigger current range (up to 220 A MIG, p.7). If 3/8\" is a regular job, 240V will give you more room. Also, 3/8\" is the top of this machine's MIG range, so expect to test a few passes first.",
+    "tools": [
+     {
+      "tool": "duty_cycle",
+      "input": {
+       "process": "mig",
+       "voltage": 120,
+       "amps": 100
+      }
+     },
+     {
+      "tool": "duty_cycle",
+      "input": {
+       "process": "mig",
+       "voltage": 120,
+       "amps": 75
+      }
+     },
+     {
+      "tool": "show_duty_cycle_calculator",
+      "input": {
+       "process": "mig",
+       "voltage": 120,
+       "amps": 100
+      }
+     }
+    ],
+    "shown": [
+     {
+      "kind": "widget",
+      "tool": "show_duty_cycle_calculator",
+      "title": "Duty cycle calculator"
+     }
+    ],
+    "cost": 0.00318741,
+    "stop": "success"
+   }
+  ],
+  "checks": {
+   "missing": [
+    "120V range 30-140A, 240V up to 220A",
+    "bevel and multiple passes",
+    "gas 20-30 SCFH and DCEP"
+   ],
+   "forbidden": [],
+   "asked_question": false,
+   "should_clarify": false
+  },
+  "error": null,
+  "cost": 0.0032,
+  "seconds": 12.2
+ },
+ {
+  "id": "Q70",
+  "category": "multi_turn",
+  "tier": 2,
+  "expected_visual": "TIG polarity diagram",
+  "expected_answer": "TIG setup: power off and unplug. Ground Clamp Cable into Positive (+), TIG Torch Cable into Negative (-), foot pedal cable to the Foot Pedal Socket inside, argon hose to the regulator (100% argon, 10-25 SCFH), leave the wire feed power cable disconnected; metal bench grounded.",
+  "turns": [
+   {
+    "question": "Set me up for TIG welding.",
+    "answer": "I've put a TIG setup sheet on screen. First I need four details so I can fill in the settings:\n\n1. **Material:** mild steel, stainless steel, or chrome moly? (TIG on this machine is listed for those three. The manual doesn't clearly cover aluminum for TIG.)\n2. **Material thickness**\n3. **Tungsten electrode (rod) diameter**, if you know it\n4. **Input power:** 120V or 240V?\n\n**Cables (manual p.24, diagram above):**\n1. Plug the **ground clamp cable** into the **positive (+)** socket. Twist clockwise to lock.\n2. Plug the **TIG torch cable** into the **negative (–)** socket. Twist clockwise to lock.\n3. Connect the shielding gas hose to the regulator. Use 100% argon at 10-25 SCFH (manual p.24, p.30).\n\nOnce you tell me the four details, I'll walk you through the LCD knobs. I won't quote a wire speed or voltage. The LCD sets those, and the white mark shows the recommended setting (manual p.20).",
+    "tools": [
+     {
+      "tool": "show_setup_guide",
+      "input": {
+       "process": "tig"
+      }
+     },
+     {
+      "tool": "polarity",
+      "input": {
+       "process": "tig"
+      }
+     },
+     {
+      "tool": "show_polarity_diagram",
+      "input": {
+       "process": "tig"
+      }
+     }
+    ],
+    "shown": [
+     {
+      "kind": "widget",
+      "tool": "show_setup_guide",
+      "title": "Setup sheet: TIG"
+     },
+     {
+      "kind": "widget",
+      "tool": "show_polarity_diagram",
+      "title": "Polarity: TIG (DC)"
+     }
+    ],
+    "cost": 0.002710605,
+    "stop": "success"
+   },
+   {
+    "question": "Great, now I want to switch to stick welding. What exactly do I change?",
+    "answer": "Here's what changes from TIG to stick. The biggest change is the cables: the ground clamp moves to the negative socket and the holder goes to the positive socket. Check the diagram above.\n\n**Cable swap (manual p.27):**\n1. Turn the power switch OFF and unplug the welder.\n2. Move the **ground clamp cable** to the **negative (–)** socket. Twist clockwise to lock.\n3. Move the **electrode holder cable** to the **positive (+)** socket. Twist clockwise to lock.\n4. Shut off and disconnect the **gas hose**. Stick uses **no shielding gas**.\n\n**On the LCD (manual p.32):**\n1. Power on, press Home, and turn the Main Control Knob to **Stick**. Press it to select.\n2. Set the electrode type with the Main Control Knob.\n3. Set the electrode diameter (Left Knob) and material thickness (Right Knob).\n4. The white mark shows the recommended setting. The LCD sets the amperage for you.\n\nThe manual doesn't say which electrode type or diameter to pick for your job. Tell me your material and thickness, and I can check them against the selection chart.",
+    "tools": [
+     {
+      "tool": "polarity",
+      "input": {
+       "process": "stick"
+      }
+     },
+     {
+      "tool": "show_polarity_diagram",
+      "input": {
+       "process": "stick"
+      }
+     }
+    ],
+    "shown": [
+     {
+      "kind": "widget",
+      "tool": "show_polarity_diagram",
+      "title": "Polarity: Stick"
+     }
+    ],
+    "cost": 0.004453945,
+    "stop": "success"
+   },
+   {
+    "question": "And how long can I weld at 150A?",
+    "answer": "Stick welding at 150A depends on your power supply. Are you on **120V** or **240V**?\n\n- **On 120V:** the manual's stick range tops out at 80A (manual p.7). 150A isn't available.\n- **On 240V:** I can look up the exact duty cycle for 150A.",
+    "tools": [],
+    "shown": [],
+    "cost": 0.005372185,
+    "stop": "success"
+   }
+  ],
+  "checks": {
+   "missing": [
+    "foot pedal socket",
+    "unplug first",
+    "turn 2: remove TIG torch",
+    "turn 2: no gas or foot pedal",
+    "turn 3: 240V between 60% and 25%",
+    "turn 3: plan with 25%",
+    "turn 3: asks or covers both voltages"
+   ],
+   "forbidden": [],
+   "asked_question": true,
+   "should_clarify": false
+  },
+  "error": null,
+  "cost": 0.0125,
+  "seconds": 15.5
+ },
+ {
+  "id": "Q71",
+  "category": "multi_turn",
+  "tier": 2,
+  "expected_visual": "duty-cycle bar for 120V",
+  "expected_answer": "On 120V MIG the range is 30-140A, so 130A is possible, but it is above the highest rated point (40% at 100A), so the manual gives no duty cycle at 130A; expect less than 40% and keep welds short. (Rated points on 120V: 100% at 75A, 60% at 85A, 40% at 100A.)",
+  "turns": [
+   {
+    "question": "I'm on 120V. How long can I MIG weld at 130A?",
+    "answer": "**The manual doesn't give a duty cycle for 130A on 120V.** Its highest 120V MIG rating is 40% at 100A, so 130A is above the rated points (manual p.7, p.14). Expect less than 40%, so keep welds very short and rest often.\n\nThe rated points you can plan around on 120V (manual p.7 and p.14):\n\n- **40% at 100A:** weld 4 minutes, rest 6 minutes, in each 10-minute period.\n- **60% at 85A:** the manual lists this on the rating label (p.14), but not on the Specifications page.\n- **100% at 75A:** continuous welding.\n\nI've opened the duty cycle calculator so you can try other amps. (manual p.19)\n\nIf you can, drop to 100A or lower for longer runs. The welder shuts itself off when it overheats and restarts after it cools, but that's a sign you pushed it too hard (manual p.19).",
+    "tools": [
+     {
+      "tool": "duty_cycle",
+      "input": {
+       "process": "mig",
+       "voltage": 120,
+       "amps": 130
+      }
+     },
+     {
+      "tool": "show_duty_cycle_calculator",
+      "input": {
+       "process": "mig",
+       "voltage": 120,
+       "amps": 130
+      }
+     }
+    ],
+    "shown": [
+     {
+      "kind": "widget",
+      "tool": "show_duty_cycle_calculator",
+      "title": "Duty cycle calculator"
+     }
+    ],
+    "cost": 0.0018485150000000002,
+    "stop": "success"
+   },
+   {
+    "question": "Sorry, I'm actually on 240V. Redo that.",
+    "answer": "**On 240V, 130A is rated at 60%.** That means 6 minutes of welding, then 4 minutes of rest, in every 10-minute period (manual p.14).\n\n1. Weld for up to 6 minutes.\n2. Rest for 4 minutes with the power switch on so the fan can cool the welder (manual p.19).\n3. Repeat.\n\nThe manual's Specifications page (p.7) lists 100% at 115A and 25% at 200A. The 60% at 130A figure comes from the rating label on p.14, so it's a bit less prominent. I've opened the duty cycle calculator so you can try other amps.\n\nIf the welder overheats, it shuts down by itself, shows a warning on the LCD, and restarts after it cools (manual p.19).",
+    "tools": [
+     {
+      "tool": "duty_cycle",
+      "input": {
+       "process": "mig",
+       "voltage": 240,
+       "amps": 130
+      }
+     },
+     {
+      "tool": "show_duty_cycle_calculator",
+      "input": {
+       "process": "mig",
+       "voltage": 240,
+       "amps": 130
+      }
+     }
+    ],
+    "shown": [
+     {
+      "kind": "widget",
+      "tool": "show_duty_cycle_calculator",
+      "title": "Duty cycle calculator"
+     }
+    ],
+    "cost": 0.00353284,
+    "stop": "success"
+   }
+  ],
+  "checks": {
+   "missing": [
+    "130A is within 30-140A",
+    "manual gives no figure at 130A"
+   ],
+   "forbidden": [
+    "turn 2: 25%"
+   ],
+   "asked_question": false,
+   "should_clarify": false
+  },
+  "error": null,
+  "cost": 0.0054,
+  "seconds": 10.0
+ }
+]

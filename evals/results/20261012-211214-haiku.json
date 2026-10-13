@@ -1,0 +1,192 @@
+[
+ {
+  "id": "Q15",
+  "category": "polarity_cables",
+  "tier": 1,
+  "expected_visual": "spool-gun setup figure p17 + front panel highlight",
+  "expected_answer": "Plug the Ground Clamp Cable into Negative (-) and the Wire Feed Power Cable into Positive (+); twist to lock. Loosen the knob on the wire feed mechanism, push the Spool Gun Cable Connector fully in (or the gas connection leaks) and tighten (do not overtighten). Connect the Wire Feed Control Cable to the Wire Feed Control Socket (one orientation, tighten the lock ring). Connect the Spool Gun gas hose to the Spool Gun Gas Outlet on the front, and set up shielding gas per paragraph 17 on p14. Refer to the Spool Gun manual for operation.",
+  "turns": [
+   {
+    "question": "How do I connect the optional spool gun for aluminum?",
+    "answer": "Here's how to hook up the spool gun (sold separately). The manual's steps are on page 17, and I've put the picture below.\n\n**Cables and sockets**\n1. Plug the **Ground Clamp Cable** into the **Negative (–)** socket. Twist it clockwise all the way to lock.\n2. Plug the **Wire Feed Power Cable** into the **Positive (+)** socket. Twist it clockwise all the way to lock.\n\n**Spool gun to the machine**\n3. Loosen the knob on the wire feed mechanism. Push the **Spool Gun Cable Connector** through the hole on the front and into the socket on the wire feed.\n4. Make sure it is fully inserted, then tighten the knob. If it isn't fully in, the gas connection leaks. Don't overtighten (manual p.17).\n5. Plug the **Wire Feed Control Cable** through the hole on the front into the Wire Feed Control Socket inside the machine. It only fits one way. Tighten the lock ring.\n6. Connect the **gas hose** to the **Spool Gun Gas Outlet** on the front panel (p.17).\n\n**Gas**\n7. Shielding gas is required. The manual sends you to the gas setup on page 14 (p.17, step 5).\n\nThe manual doesn't name this polarity. It is the same as regular MIG: clamp to negative, wire feed power to positive. Also, the manual gives no settings for aluminum on the spool gun. Check the spool gun's own manual for those (p.17, step 6).",
+    "tools": [
+     {
+      "tool": "polarity",
+      "input": {
+       "process": "spool_gun"
+      }
+     },
+     {
+      "tool": "show_polarity_diagram",
+      "input": {
+       "process": "spool_gun"
+      }
+     },
+     {
+      "tool": "show_figure",
+      "input": {
+       "figure_id": "spool-gun-setup"
+      }
+     }
+    ],
+    "shown": [
+     {
+      "kind": "widget",
+      "tool": "show_polarity_diagram",
+      "title": "Polarity: Spool gun (optional, for aluminum MIG)"
+     },
+     {
+      "kind": "figure",
+      "tool": "show_figure",
+      "id": "spool-gun-setup",
+      "source": "Manual p.17"
+     }
+    ],
+    "cost": 0.010906055,
+    "stop": "success"
+   }
+  ],
+  "checks": {
+   "missing": [],
+   "forbidden": [],
+   "asked_question": false,
+   "should_clarify": false
+  },
+  "error": null,
+  "cost": 0.0109,
+  "seconds": 7.0
+ },
+ {
+  "id": "Q67",
+  "category": "image_reasoning",
+  "tier": 2,
+  "expected_visual": "duty-cycle bar + label crop",
+  "expected_answer": "Continuous (100%) stick welding: 60A on 120V (22.4V on the label) and 100A on 240V (24V on the label).",
+  "turns": [
+   {
+    "question": "What's the highest current I can stick weld continuously on 120V versus 240V, and what output voltage is that on the label?",
+    "answer": "**Continuous (100% duty cycle) stick welding, the manual's numbers:**\n\n- **120V:** 60A (manual p.7, and the duty cycle check agrees)\n- **240V:** 100A (manual p.7)\n\n\"Continuous\" means 100% duty cycle: you can weld all 10 minutes with no rest. A duty cycle is the share of a 10-minute period the welder can run at a given current without overheating.\n\n**Output voltage on the label (back panel, p.14 and p.16):**\n\n- **120V at 100% (60A):** 22.4V\n- **240V at 100% (100A):** 24V\n\nThe label's numbers run in a jumbled order, so I matched each voltage to its current column. Check the label on your machine before you rely on these.\n\nI've also shown the duty cycle calculator (set to 120V, 60A) so you can try other amps. For higher current, the 60% and 40% points are on the label and the manual, but they are not continuous.",
+    "tools": [
+     {
+      "tool": "duty_cycle",
+      "input": {
+       "process": "stick",
+       "voltage": 120,
+       "amps": 60
+      }
+     },
+     {
+      "tool": "duty_cycle",
+      "input": {
+       "process": "stick",
+       "voltage": 240,
+       "amps": 100
+      }
+     },
+     {
+      "tool": "show_figure",
+      "input": {
+       "figure_id": "rating-label"
+      }
+     },
+     {
+      "tool": "show_duty_cycle_calculator",
+      "input": {
+       "process": "stick",
+       "voltage": 120,
+       "amps": 60
+      }
+     }
+    ],
+    "shown": [
+     {
+      "kind": "figure",
+      "tool": "show_figure",
+      "id": "rating-label",
+      "source": "Manual p.16"
+     },
+     {
+      "kind": "widget",
+      "tool": "show_duty_cycle_calculator",
+      "title": "Duty cycle calculator"
+     }
+    ],
+    "cost": 0.0038619500000000003,
+    "stop": "success"
+   }
+  ],
+  "checks": {
+   "missing": [],
+   "forbidden": [],
+   "asked_question": false,
+   "should_clarify": false
+  },
+  "error": null,
+  "cost": 0.0039,
+  "seconds": 12.4
+ },
+ {
+  "id": "Q84",
+  "category": "visual_generation",
+  "tier": 2,
+  "expected_visual": "4-panel polarity diagram",
+  "expected_answer": "A diagram or table covering the four processes: MIG (clamp -, wire feed power +, DCEP), Flux-cored (clamp +, wire feed power -, DCEN), TIG (clamp +, torch -, foot pedal inside, wire feed power disconnected), Stick (clamp -, electrode holder +, wire feed power disconnected). Each with its page citation.",
+  "turns": [
+   {
+    "question": "Draw me a cheat sheet showing which cable goes in which socket for all four processes.",
+    "answer": "Here's the cheat sheet. The manual's own Quick Start page (p.2) has the same four setups with pictures, so I've shown that instead of drawing a second one.\n\n| Process | Ground Clamp Cable goes in | Other cable goes in |\n|---|---|---|\n| **MIG** (solid wire + gas) | Negative (−) (p.14) | Wire Feed Power Cable: Positive (+) (p.14) |\n| **Flux-cored** (gasless) | Positive (+) (p.13) | Wire Feed Power Cable: Negative (−) (p.13) |\n| **TIG** | Positive (+) (p.24) | TIG Torch Cable: Negative (−) (p.24) |\n| **Stick** | Negative (−) (p.27) | Electrode Holder Cable: Positive (+) (p.27) |\n\nWatch out: MIG and flux-cored are swapped. Check the process before you plug anything in.\n\nThe manual labels MIG and flux-cored as DCEP and DCEN, but it doesn't use those labels for TIG or Stick. Those two are my inference from the socket each cable uses.\n\nFor TIG and Stick, leave the Wire Feed Power Cable unplugged (quick start p.2). Plug in the power cord last (p.25, p.27).",
+    "tools": [
+     {
+      "tool": "polarity",
+      "input": {
+       "process": "mig"
+      }
+     },
+     {
+      "tool": "polarity",
+      "input": {
+       "process": "flux_cored"
+      }
+     },
+     {
+      "tool": "polarity",
+      "input": {
+       "process": "tig"
+      }
+     },
+     {
+      "tool": "polarity",
+      "input": {
+       "process": "stick"
+      }
+     },
+     {
+      "tool": "show_figure",
+      "input": {
+       "figure_id": "quick-start-all-cable-setups"
+      }
+     }
+    ],
+    "shown": [
+     {
+      "kind": "figure",
+      "tool": "show_figure",
+      "id": "quick-start-all-cable-setups",
+      "source": "Quick-start guide p.2"
+     }
+    ],
+    "cost": 0.0035924,
+    "stop": "success"
+   }
+  ],
+  "checks": {
+   "missing": [],
+   "forbidden": [],
+   "asked_question": false,
+   "should_clarify": false
+  },
+  "error": null,
+  "cost": 0.0036,
+  "seconds": 9.4
+ }
+]
