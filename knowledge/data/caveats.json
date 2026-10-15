@@ -4,73 +4,182 @@
     {
       "id": "wire-speed-voltage-table",
       "text": "A numeric wire feed speed or voltage for a given wire size and material thickness. The LCD recommends them once you enter the diameter and thickness (p20), and a Settings Chart on the inside of the Welder door has settings (p14, p30), but that chart is not reproduced in the manual.",
-      "pages": [14, 20, 30]
+      "pages": [
+        14,
+        20,
+        30
+      ]
     },
     {
       "id": "pulse-mode",
       "text": "A pulse mode. The Optional Settings the manual lists are Run-In WFS, Inductance, Spot Timer, Recall Setting and Save Setting for wire welding (p21), Recall Setting and Save Setting for TIG (p31), and Hot Start, Arc Force, Recall Setting and Save Setting for Stick (p33).",
-      "pages": [21, 31, 33],
-      "search_terms": ["pulse"]
+      "pages": [
+        21,
+        31,
+        33
+      ],
+      "search_terms": [
+        "pulse"
+      ]
     },
     {
       "id": "breaker-size-240v",
       "text": "A breaker or receptacle amp rating for 240V. The manual gives '20 amp rated' only with the 120 VAC receptacle, and says the circuit must have a delayed action-type circuit breaker or fuses (p16, p20, p30, p32). The Specifications list the input current: 25.5A at 200A output on 240V (p7).",
-      "pages": [7, 16, 20, 30, 32]
+      "pages": [
+        7,
+        16,
+        20,
+        30,
+        32
+      ]
     },
     {
       "id": "machine-weight",
       "text": "The weight of the machine. The only mention of weight is that the work surface must bear it (p24).",
-      "pages": [24],
-      "search_terms": ["weighs", "lbs", "pounds"]
+      "pages": [
+        24
+      ],
+      "search_terms": [
+        "weighs",
+        "lbs",
+        "pounds"
+      ]
     },
     {
       "id": "generator-use",
       "text": "Whether the welder can run from an engine-driven generator.",
       "pages": [],
-      "search_terms": ["generator"]
+      "search_terms": [
+        "generator"
+      ]
     },
     {
       "id": "gas-mix-names",
       "text": "What 'C25' and 'Stainless Tri-Mix' mean. They appear only on the LCD example screens (p20). The manual mentions C100 only to say to use the enclosed CGA 580/320 adapter (p14). Any explanation of the gas mixes is general welding knowledge, not from the manual.",
-      "pages": [14, 20],
-      "search_terms": ["C25", "Tri-Mix"]
+      "pages": [
+        14,
+        20
+      ],
+      "search_terms": [
+        "C25",
+        "Tri-Mix"
+      ]
     }
   ],
   "known_inconsistencies": [
     {
       "id": "outdoor-use",
       "text": "Page 4 says 'Do not use outdoors' (item 8) and 'Do not expose welders to rain or wet conditions' (item 6). The selection chart calls flux-cored and stick 'Ideal for outdoor or windy conditions', and says MIG and TIG gas welding is best indoors.",
-      "pages": [4],
-      "sources": ["manual p4", "selection chart"],
+      "pages": [
+        4
+      ],
+      "sources": [
+        "manual p4",
+        "selection chart"
+      ],
       "guidance": "Follow the safety page for this machine: it should not be used outdoors or exposed to rain or wet conditions. The chart is describing the process (flux-cored and stick work in wind because they do not rely on a gas shield), not clearing this machine for outdoor use."
     },
     {
       "id": "tig-aluminum",
       "text": "The Specifications table lists TIG weldable materials as Mild Steel, Stainless Steel and Chrome Moly (p7), but p28 says AC TIG is used to weld aluminum, and the selection chart lists aluminum and magnesium alloys as 'AC TIG required'.",
-      "pages": [7, 28],
-      "sources": ["manual p7", "manual p28", "selection chart"],
+      "pages": [
+        7,
+        28
+      ],
+      "sources": [
+        "manual p7",
+        "manual p28",
+        "selection chart"
+      ],
       "guidance": "Say that the manual disagrees with itself. The Specifications table does not list aluminum for TIG, while p28 and the chart describe AC TIG for aluminum. The manual never says how to select AC on this machine, so check with Harbor Freight support (1-800-444-3353) before relying on it."
     },
     {
       "id": "mig-thin-limit",
       "text": "The selection chart's MIG thickness range starts at 22 gauge, but the LCD example screen on p20 shows MIG with .025\" wire at 24Ga.",
-      "pages": [20],
-      "sources": ["manual p20", "selection chart"],
+      "pages": [
+        20
+      ],
+      "sources": [
+        "manual p20",
+        "selection chart"
+      ],
       "guidance": "Plan on 22 gauge as the chart's stated minimum for MIG. The 24Ga on the LCD is an example screen, not a stated limit; if the person wants 24 gauge, tell them the two disagree and to test on scrap."
     },
     {
       "id": "settings-chart-location",
       "text": "The Settings Chart is on the inside of the Welder door (p14, p30), but p26 says 'on top of Welder'.",
-      "pages": [14, 26, 30],
-      "sources": ["manual p14", "manual p26", "manual p30"],
+      "pages": [
+        14,
+        26,
+        30
+      ],
+      "sources": [
+        "manual p14",
+        "manual p26",
+        "manual p30"
+      ],
       "guidance": "Tell the person to look inside the door first (two pages say so) and also check the top of the welder."
     },
     {
       "id": "stick-materials",
       "text": "The Specifications table lists Stick materials as Mild Steel and Stainless Steel (p7), while the selection chart also lists Castings.",
-      "pages": [7],
-      "sources": ["manual p7", "selection chart"],
+      "pages": [
+        7
+      ],
+      "sources": [
+        "manual p7",
+        "selection chart"
+      ],
       "guidance": "Mention that the chart adds castings but the Specifications table does not."
+    }
+  ],
+  "schematic_facts": [
+    {
+      "id": "fans",
+      "text": "The wiring schematic has two cooling fans, labelled FAN and FAN2. The parts list (p46) agrees: two Fan entries, parts 44 and 53.",
+      "pages": [
+        45,
+        46
+      ],
+      "terms": {
+        "45": [
+          "FAN",
+          "FAN2"
+        ],
+        "46": [
+          "Fan"
+        ]
+      }
+    },
+    {
+      "id": "solenoid-valves",
+      "text": "The schematic has two solenoid valves, each labelled SOLENOID. The parts list (p46) shows Solenoid Valve, part 35, quantity 2.",
+      "pages": [
+        45,
+        46
+      ],
+      "terms": {
+        "45": [
+          "SOLENOID"
+        ],
+        "46": [
+          "Solenoid Valve"
+        ]
+      }
+    },
+    {
+      "id": "lcd-connector",
+      "text": "The LCD SCREEN's four-pin connector plugs into the MCU BOARD at the connector labelled CN5 (checked by eye on the 300 DPI picture).",
+      "pages": [
+        45
+      ],
+      "terms": {
+        "45": [
+          "LCD SCREEN",
+          "MCU BOARD",
+          "CN5"
+        ]
+      }
     }
   ]
 }

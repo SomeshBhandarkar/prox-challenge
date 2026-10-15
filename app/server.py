@@ -123,9 +123,11 @@ def events_for(message, embeds: Embeds, seen: set | None = None) -> list[tuple[s
         if message.error:
             out.append(("error", {"message": HINTS.get(message.error, f"The assistant reported a problem ({message.error})."),
                                   "code": str(message.error)}))
+        explained = message.error in HINTS  # the SDK also writes the error as a sentence ("Invalid API key..."): our explanation replaces it
         for block in message.content:
             if isinstance(block, TextBlock) and block.text.strip():
-                out.append(("text", {"text": block.text.strip()}))
+                if not explained:
+                    out.append(("text", {"text": block.text.strip()}))
             elif isinstance(block, ToolUseBlock) and isinstance(block.name, str) and block.name.startswith(PREFIX):
                 shown = render_show(block.name, block.input)
                 if shown is not None and shown.get("silent"):
@@ -442,7 +444,7 @@ def find_free_port(host: str, start: int, tries: int = 20) -> int:
 
 def parse_args(argv: list[str]) -> argparse.Namespace:
     p = argparse.ArgumentParser(prog="app.server", description="Run the Vulcan OmniPro 220 assistant website.")
-    p.add_argument("--model", default=None, help="haiku, sonnet or opus (default: MODEL in .env, then opus)")
+    p.add_argument("--model", default=None, help="haiku, sonnet or opus (default: MODEL in .env, then sonnet)")
     p.add_argument("--host", default=os.environ.get("APP_HOST", "").strip() or "127.0.0.1")
     p.add_argument("--port", type=int, default=None, help="default: APP_PORT in .env, then 8000 (the next free port is used if busy)")
     p.add_argument("--no-open", action="store_true", help="do not open the browser")

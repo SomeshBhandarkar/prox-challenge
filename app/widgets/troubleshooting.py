@@ -7,7 +7,7 @@ CSS = """
 fieldset{border:0;padding:0;margin:0 0 12px} legend{font-weight:600;margin-bottom:4px;padding:0}
 .seg{display:flex;gap:8px;flex-wrap:wrap}
 button{font:inherit;padding:8px 14px;border:2px solid var(--line);border-radius:10px;background:var(--card);color:var(--fg);cursor:pointer}
-.seg button[aria-pressed=true]{border-color:var(--accent);background:var(--accent);color:#fff;font-weight:600}
+.seg button[aria-pressed=true]{border-color:var(--accent);background:var(--accent);color:var(--on-accent);font-weight:600}
 .important{border:2px solid var(--warn);border-radius:10px;padding:8px 12px;margin:12px 0}
 .important b{color:var(--warn);margin-right:6px}
 .flow{list-style:none;padding:0;margin:16px 0} .node{border:2px solid var(--line);border-radius:12px;padding:10px 14px;margin:0 0 24px;position:relative;background:var(--card)}

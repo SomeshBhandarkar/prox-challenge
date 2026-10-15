@@ -135,3 +135,9 @@ def test_rules_from_the_full_haiku_run():
     # (the page text interleaves columns, so the push sentence is checked in two pieces)
     assert "straight on and 15° away" in flat22 and "from the direction you are welding" in flat22
     assert "straight on and 15° in the direction you are welding" in flat22
+
+
+def test_the_prompt_says_where_pictures_appear_so_the_words_match_the_screen():
+    """Found by real Sonnet runs: the answer said 'see the diagram below' while the page showed it above (and sometimes said 'above')."""
+    flat = " ".join(build_system_prompt().split())
+    assert "appear BELOW your answer text" in flat and 'never "above"' in flat and "do not add a second message that only describes what you showed" in flat

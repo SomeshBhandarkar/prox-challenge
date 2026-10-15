@@ -103,3 +103,32 @@ def test_every_inconsistency_has_text_guidance_pages_and_sources():
         assert all(1 <= pg <= 48 for pg in c["pages"]), c["id"]
     assert {c["id"] for c in CAVEATS["known_inconsistencies"]} == {
         "outdoor-use", "tig-aluminum", "mig-thin-limit", "settings-chart-location", "stick-materials"}
+
+
+# ---------- the wiring schematic facts (found by the full Haiku run: the model read a connector as CN8; the LCD plugs into CN5) ----------
+def _manual_pages():
+    import re
+    from app.knowledge import ROOT
+    text = (ROOT / "knowledge" / "manual.txt").read_text(encoding="utf-8")
+    parts = re.split(r"=====PAGE (\d+)=====", text)
+    return {int(parts[i]): parts[i + 1] for i in range(1, len(parts), 2)}
+
+
+def test_every_schematic_fact_uses_words_that_are_on_the_pages_it_cites():
+    pages = _manual_pages()
+    for f in CAVEATS["schematic_facts"]:
+        assert f["terms"] and set(int(p) for p in f["terms"]) <= set(f["pages"]), f["id"]
+        for page, terms in f["terms"].items():
+            for term in terms:
+                assert term.lower() in pages[int(page)].lower(), f"{f['id']}: '{term}' is not on page {page}"
+
+
+def test_the_schematic_facts_reach_the_prompt_and_tell_the_model_not_to_guess_other_connectors():
+    from app.prompt import build_system_prompt
+    from app.tools.caveats import schematic_for_prompt
+    prompt = build_system_prompt()
+    assert len(schematic_for_prompt().splitlines()) == len(CAVEATS["schematic_facts"]) == 3
+    for f in CAVEATS["schematic_facts"]:
+        assert f["text"] in prompt, f["id"]
+    assert "cannot be read reliably from a page image" in prompt and "state ONLY these checked facts" in prompt
+    assert "CN5" in schematic_for_prompt() and "CN8" not in schematic_for_prompt()

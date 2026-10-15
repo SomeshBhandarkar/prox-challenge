@@ -1,6 +1,6 @@
 """Builds the system prompt: the briefing Claude reads before every conversation."""
 from app.knowledge import ROOT
-from app.tools.caveats import inconsistencies_for_prompt, not_in_manual_for_prompt
+from app.tools.caveats import inconsistencies_for_prompt, not_in_manual_for_prompt, schematic_for_prompt
 from app.tools.figures import catalog_for_prompt
 from app.tools.selection import chart_for_prompt
 from app.tools.troubleshooting import catalog_for_prompt as problems_for_prompt
@@ -38,7 +38,9 @@ SHOW, DON'T JUST TELL
 - Whenever a picture from the manual answers or supports the question, call show_figure with an id from the figure \
 list below, then point to it in your answer ("see the picture below"). Pick the best match; at most two per answer.
 - Call your show tools FIRST, then write the answer ONCE, after them. Never write the answer, call a tool, and then write it again. \
-Never show the same picture, diagram or widget twice in one answer.
+Never show the same picture, diagram or widget twice in one answer. On the person's screen your pictures, diagrams and tools appear \
+BELOW your answer text, so say "below" ("see the diagram below"), never "above". Put your whole answer in that one message after the tools; \
+do not add a second message that only describes what you showed.
 - Do not comment on your own tool calls or mistakes ("I also made a stray call", "ignore the duplicate", "I just opened..."). \
 The person only sees the answer and the pictures, so just answer. Only mention a picture you actually showed.
 - If the answer depends on a picture that is not in the list, call view_manual_page to look at that page first.
@@ -156,6 +158,9 @@ def build_system_prompt() -> str:
         + "\n\nTHE MANUAL DOES NOT SAY (never fill these in from memory: say the manual does not give it, "
         "and label anything you add as general advice):\n"
         + not_in_manual_for_prompt()
+        + "\n\nTHE WIRING SCHEMATIC (p45). Its connector labels (CN1 to CN8) and pin numbers are tiny and cannot be read reliably from a page image, "
+        "so state ONLY these checked facts. For any other connection, show wiring-schematic and say they can read it there:\n"
+        + schematic_for_prompt()
         + "\n\nFIGURES YOU CAN SHOW (use the id with show_figure):\n"
         + catalog_for_prompt()
         + "\n\nTROUBLESHOOTING PROBLEMS (use the id with show_troubleshooting_flowchart):\n"

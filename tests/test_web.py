@@ -87,7 +87,9 @@ def test_the_stylesheet_has_dark_mode_reduced_motion_and_every_variable_it_uses_
 def test_the_page_is_ready_for_phones_and_keyboards():
     assert 'name="viewport"' in HTML and "width=device-width" in HTML and 'lang="en"' in HTML
     assert 'role="log"' in HTML and 'aria-live' in HTML and "<label" in HTML and "sr-only" in CSS
-    assert "100dvh" in CSS and "max-width: 520px" in CSS
+    assert "100dvh" in CSS  # the page fills a phone screen even with the browser bar showing
+    phone_breakpoints = [int(n) for n in re.findall(r"@media \(max-width:\s*(\d+)px\)", CSS)]
+    assert any(400 <= n <= 800 for n in phone_breakpoints), f"no phone breakpoint in the stylesheet: {phone_breakpoints}"
     assert "focus-visible" in CSS
 
 
@@ -135,3 +137,29 @@ def test_the_callout_pattern_recognises_the_manuals_warning_forms_and_leaves_nor
     script = f"const L = {regex}; console.log(JSON.stringify({json.dumps(list(cases))}.map((c) => L.test(c))))"
     out = subprocess.run(["node", "-e", script], capture_output=True, text=True, check=True).stdout
     assert json.loads(out) == list(cases.values())
+
+
+def test_the_page_really_talks_to_the_server_and_contains_no_mock_up_leftovers():
+    """The v0 design came as a mock-up with canned replies and demo buttons; the page must call the real chat and show only what the server sends."""
+    assert "fetch('/api/chat'" in JS and "fetch('/api/reset'" in JS and "readEvents(resp.body" in JS
+    for leftover in ("Preview states", "demo-controls", "Manual pages 1", "MIG at 200A on 240V: 25% duty cycle"):
+        assert leftover not in HTML and leftover not in JS and leftover not in CSS, leftover
+    assert "Start: 18V" not in JS and "C25 mix" not in JS  # the mock's invented settings must never come back
+
+
+def test_the_startup_screen_is_short_skippable_and_shown_once_per_visit():
+    words = re.search(r"const INTRO = \[(.*?)\];", JS, re.S).group(1).count("'") // 2
+    waits = [int(n) for n in re.findall(r"await wait\((\d+)\)", JS)]
+    total = waits[0] * words + sum(waits[1:])  # one wait per word, then the pause before and after the "getting ready" line
+    assert 0 < total <= 3500, f"the startup screen would take {total} ms: reviewers should not wait for it"
+    assert "sessionStorage" in JS and "omnipro-seen" in JS and "prefers-reduced-motion" in JS  # once per visit, and none for people who ask for less motion
+    assert "addEventListener('keydown', skip" in JS and "startup.addEventListener('click', skip)" in JS  # any key or a tap skips it
+    assert 'id="startup"' in HTML and 'id="app-shell" hidden' in HTML  # the app is hidden until the startup screen is done (or skipped)
+
+
+def test_the_answer_text_is_placed_before_its_pictures_and_the_view_goes_to_the_start_of_the_answer():
+    """The prompt tells the model its pictures appear BELOW its text, so the page must really put them there (and not bury the text under a tall card)."""
+    assert "state.prose.append(d)" in JS and "state.visuals.append(figureCard(d))" in JS and "state.visuals.append(frameCard(d))" in JS
+    assert JS.index("state.prose = el('div', 'answer-text')") < JS.index("state.visuals = el('div', 'answer-visuals')")
+    assert "state.msg.scrollIntoView({ block: 'start' })" in JS and "state.stick = false" in JS
+    assert "state.body.append(figureCard" not in JS and "state.body.append(frameCard" not in JS

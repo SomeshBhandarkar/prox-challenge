@@ -12,7 +12,7 @@ from app.prompt import build_system_prompt
 load_dotenv(ROOT / ".env")  # a key already in the shell wins over the file
 
 MODELS = {"haiku": "claude-haiku-5-5", "sonnet": "claude-sonnet-5-5", "opus": "claude-opus-5-5"}
-DEFAULT_MODEL = "opus"  # reviewers get the best answers; develop with --model haiku (about 20x cheaper)
+DEFAULT_MODEL = "sonnet"  # measured on 6 real conversations (4-8 cents an answer); haiku is about 20x cheaper, opus is stronger but was never run here
 MAX_TURNS = 8
 DEFAULT_BUDGET_USD = 0.50
 KEY_PLACEHOLDER = "your-api-key-here"  # what .env.example ships with

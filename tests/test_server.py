@@ -216,7 +216,7 @@ def test_one_explanation_per_answer_even_when_the_sdk_sends_two():
         await sessions.close_all()
         return got
 
-    assert asyncio.run(go()) == ["error", "text", "done"]
+    assert asyncio.run(go()) == ["error", "done"]  # the SDK sent two errors and a sentence; the person gets one explanation
 
 
 # ---------- turning SDK messages into events ----------
@@ -525,3 +525,13 @@ def test_events_for_remembers_what_it_showed_only_when_given_a_seen_set():
     seen: set = set()
     assert [n for n, _ in S.events_for(AssistantMessage(content=[use], model="m"), embeds, seen)].count("show") == 1
     assert [n for n, _ in S.events_for(AssistantMessage(content=[use], model="m"), embeds, seen)].count("show") == 0  # a later message of the same answer
+
+
+def test_a_known_error_is_explained_once_not_twice():
+    """Found by running the real server with a wrong key: the SDK sent "Invalid API key..." as text as well as the error."""
+    embeds = S.Embeds()
+    for code in S.HINTS:
+        msg = AssistantMessage(content=[TextBlock("Invalid API key \u00b7 Fix external API key")], model="m", error=code)
+        assert [n for n, _ in S.events_for(msg, embeds)] == ["error"], code
+    odd = AssistantMessage(content=[TextBlock("Something unusual happened")], model="m", error="server_error")
+    assert [n for n, _ in S.events_for(odd, embeds)] == ["error", "text"]  # unknown errors keep the SDK's own words as extra detail

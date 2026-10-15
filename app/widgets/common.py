@@ -3,8 +3,8 @@ import json
 from html import escape
 
 BASE_CSS = """
-:root{--bg:#fff;--fg:#1b1b1b;--muted:#5b5b5b;--card:#fff;--panel:#eceff3;--line:#c9ced6;--ok:#1a7f37;--warn:#a85b00;--bad:#c62828;--accent:#1f6fd6}
-@media (prefers-color-scheme:dark){:root{--bg:#16181c;--fg:#f0f1f3;--muted:#a8adb7;--card:#20232a;--panel:#23262d;--line:#3a3f49;--ok:#4cc26a;--warn:#f0a030;--bad:#ff7a7a;--accent:#6aa7ff}}
+:root{--bg:#fffdf9;--fg:#282624;--muted:#6a645d;--card:#fff;--panel:#f0ede7;--line:#ded9d0;--ok:#1a7f37;--warn:#a85b00;--bad:#c62828;--accent:#c2410c;--on-accent:#fff}
+@media (prefers-color-scheme:dark){:root{--bg:#242220;--fg:#f5f1eb;--muted:#ada49b;--card:#2c2a27;--panel:#302d29;--line:#454039;--ok:#4cc26a;--warn:#f0a030;--bad:#ff7a7a;--accent:#ff8a4c;--on-accent:#1b0f06}}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.5 system-ui,sans-serif}
 main{max-width:680px;margin:0 auto;padding:16px}

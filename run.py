@@ -5,7 +5,7 @@
     python3 run.py            (the first run installs; later runs start straight away)
 
 This starts the website and opens it in your browser (the next free port is used if 8000 is busy). Extra arguments are passed along:
-    python3 run.py --model sonnet    (haiku, sonnet or opus; the default is opus)
+    python3 run.py --model sonnet    (haiku, sonnet or opus; the default is sonnet)
     python3 run.py --no-open         (do not open the browser)
     python3 run.py --terminal "How do I set up TIG?" --model haiku     (the terminal chat instead of the website)
     python3 run.py --setup-only      (install and check, then stop: no key, no cost)

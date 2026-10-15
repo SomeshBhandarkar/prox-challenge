@@ -11,7 +11,7 @@ CSS = """
 fieldset{border:0;padding:0;margin:0 0 12px} legend{font-weight:600;margin-bottom:4px;padding:0}
 .seg{display:flex;gap:8px;flex-wrap:wrap}
 .seg button{font:inherit;padding:8px 14px;border:2px solid var(--line);border-radius:10px;background:var(--card);color:var(--fg);cursor:pointer}
-.seg button[aria-pressed=true]{border-color:var(--accent);background:var(--accent);color:#fff;font-weight:600}
+.seg button[aria-pressed=true]{border-color:var(--accent);background:var(--accent);color:var(--on-accent);font-weight:600}
 .amps{display:flex;gap:12px;align-items:center} .amps input[type=range]{flex:1;accent-color:var(--accent)}
 .amps input[type=number]{width:84px;font:inherit;padding:6px;border:2px solid var(--line);border-radius:8px;background:var(--card);color:var(--fg)}
 .result{border:2px solid var(--line);border-radius:14px;padding:14px;margin:14px 0;background:var(--card)}

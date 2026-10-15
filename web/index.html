@@ -4,65 +4,98 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="color-scheme" content="light dark">
-<title>OmniPro 220 Assistant</title>
+<meta name="description" content="OmniPro 220 assistant: your manual, without the guesswork.">
+<title>OmniPro 220 assistant</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23c2410c'/%3E%3Ctext x='16' y='22' font-size='13' font-weight='700' text-anchor='middle' fill='white' font-family='sans-serif'%3E220%3C/text%3E%3C/svg%3E">
 <link rel="stylesheet" href="/static/style.css">
 <script src="/static/app.js" defer></script>
 </head>
 <body>
-<div class="app">
-  <header class="top">
-    <div class="brand">
-      <span class="badge-220" aria-hidden="true">220</span>
-      <div>
-        <h1>OmniPro 220 assistant</h1>
-        <p>Vulcan OmniPro 220 welder. Answers come from the owner's manual.</p>
-      </div>
-    </div>
-    <button id="new-chat" class="ghost" type="button">New chat</button>
-  </header>
+<svg class="icon-sprite" hidden width="0" height="0" aria-hidden="true" focusable="false">
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M5 12h14M12 5v14"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></symbol>
+  <symbol id="i-send" viewBox="0 0 24 24"><path d="m4 4 16 8-16 8 3-8-3-8Zm3 8h13"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 20 6v5c0 5-3.4 8.5-8 10-4.6-1.5-8-5-8-10V6l8-3Zm0 5v5m0 3h.01"/></symbol>
+  <symbol id="i-wrench" viewBox="0 0 24 24"><path d="M14.7 6.3a4 4 0 0 0 5 5l-4.1 4.1-3-3-4.8 4.8a2.1 2.1 0 1 1-3-3l4.8-4.8-3-3 4.1-4.1a4 4 0 0 0 5 5Z"/></symbol>
+  <symbol id="i-file" viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8zM14 3v5h5M9 13h6M9 17h6"/></symbol>
+  <symbol id="i-expand" viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+  <symbol id="i-left" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></symbol>
+  <symbol id="i-right" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol>
+</svg>
 
-  <main id="log" class="log" role="log" aria-live="polite" aria-label="Conversation" tabindex="0">
-    <div id="thread">
-    <section id="welcome" class="welcome">
-      <h2>Just got the welder? Ask away.</h2>
-      <p>Cables and polarity, settings, duty cycle, troubleshooting. I show the manual's own pictures and draw what is easier to see than to read.</p>
-      <div id="starters" class="starters">
-        <button type="button" data-q="What's the duty cycle for MIG at 200A on 240V?">Duty cycle: MIG at 200A on 240V</button>
-        <button type="button" data-q="Which socket does the ground clamp go in for TIG?">TIG: which socket for the ground clamp?</button>
-        <button type="button" data-q="I'm getting porosity in my flux-cored welds. What do I check?">Porosity in flux-cored welds</button>
-        <button type="button" data-q="How do I set up the welder for 1/8 inch steel?">Set up for 1/8 inch steel</button>
-        <button type="button" data-q="Show me the controls on the front panel.">Front panel controls</button>
-        <button type="button" data-q="Draw me a cheat sheet of which cable goes in which socket for all four processes.">Cable cheat sheet, all four processes</button>
-      </div>
-    </section>
-    <noscript><p class="note">This page needs JavaScript to run the chat.</p></noscript>
-    </div>
-  </main>
-
-  <div class="dock">
-    <div id="status" class="status" role="status" hidden>
-      <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
-      <span id="status-text"></span>
-    </div>
-    <form id="composer" class="composer" autocomplete="off">
-      <label for="input" class="sr-only">Your question</label>
-      <textarea id="input" rows="1" maxlength="2000" placeholder="Ask about your welder..." enterkeyhint="send"></textarea>
-      <button id="send" type="submit">Send</button>
-    </form>
-    <p class="foot">Read the manual's safety pages before you weld. If this page and the manual ever disagree, trust the manual. <span id="count"></span></p>
+<div class="startup-screen" id="startup" aria-label="Starting OmniPro assistant">
+  <div class="startup-content">
+    <div class="startup-mark" aria-hidden="true">220</div>
+    <p class="startup-kicker">OMNIPRO ASSISTANT</p>
+    <h1 class="startup-phrase" id="intro-phrase" aria-live="polite"></h1>
+    <p class="startup-loading" id="startup-loading" aria-hidden="true">Getting your manual ready<span class="loading-dots"><i>.</i><i>.</i><i>.</i></span></p>
+    <p class="startup-hint">Tap or press any key to skip</p>
+    <noscript><p class="startup-loading visible">This page needs JavaScript to run the chat.</p></noscript>
   </div>
 </div>
 
-<dialog id="viewer" class="viewer" aria-label="Manual picture">
-  <div class="viewer-bar">
-    <strong id="viewer-title"></strong>
-    <span class="grow"></span>
-    <button id="viewer-prev" type="button" aria-label="Previous page">&#8249;</button>
-    <button id="viewer-next" type="button" aria-label="Next page">&#8250;</button>
-    <button id="viewer-close" type="button" aria-label="Close">&#10005;</button>
+<main class="app-shell" id="app-shell" hidden>
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-mark" aria-hidden="true">220</div>
+      <div>
+        <h1>OmniPro 220 <span>assistant</span></h1>
+        <p>Your manual, without the guesswork.</p>
+      </div>
+    </div>
+    <button class="new-chat" id="new-chat" type="button"><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg><span>New chat</span></button>
+  </header>
+
+  <div class="content-wrap">
+    <div class="status-strip" id="status" role="status"><span class="status-dot" id="status-dot"></span><span id="status-text">Ready when you are.</span></div>
+
+    <section id="log" class="thread" role="log" aria-live="polite" aria-label="Conversation" tabindex="0">
+      <div id="thread">
+        <section id="welcome" class="welcome">
+          <div class="welcome-icon" aria-hidden="true"><svg class="icon"><use href="#i-wrench"/></svg></div>
+          <h2>Let&rsquo;s get your weld right.</h2>
+          <p>Ask about setup, settings, or a problem. I&rsquo;ll use the OmniPro 220 owner&rsquo;s manual and show the page, picture, or diagram that helps.</p>
+          <div id="starters" class="starter-grid">
+            <button type="button" data-q="What's the duty cycle for MIG at 200A on 240V?"><span>What&rsquo;s the duty cycle for MIG at 200A on 240V?</span><svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+            <button type="button" data-q="Which socket does the ground clamp go in for TIG?"><span>Which socket does the ground clamp go in for TIG?</span><svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+            <button type="button" data-q="I'm getting porosity in my flux-cored welds. What do I check?"><span>I&rsquo;m getting porosity in my flux-cored welds. What do I check?</span><svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+            <button type="button" data-q="How do I set up the welder for 1/8 inch steel?"><span>How do I set up the welder for 1/8 inch steel?</span><svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+            <button type="button" data-q="Show me the controls on the front panel."><span>Show me the controls on the front panel.</span><svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+            <button type="button" data-q="Draw me a cheat sheet of which cable goes in which socket for all four processes."><span>Draw me a cheat sheet of which cable goes in which socket for all four processes.</span><svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <div class="composer-wrap">
+      <form id="composer" class="composer" autocomplete="off">
+        <label for="input" class="sr-only">Your question</label>
+        <textarea id="input" rows="1" maxlength="2000" placeholder="Ask about your OmniPro 220..." enterkeyhint="send"></textarea>
+        <div class="composer-actions">
+          <span class="count" id="count">Enter to send &middot; Shift + Enter for a new line</span>
+          <button class="send" id="send" type="submit" aria-label="Send message"><svg class="icon" aria-hidden="true"><use href="#i-send"/></svg></button>
+        </div>
+      </form>
+      <p class="safety"><svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg><span>Read the manual&rsquo;s safety pages before you weld. If this page and the manual ever disagree, trust the manual.</span></p>
+    </div>
+  </div>
+</main>
+
+<dialog id="viewer" class="viewer" aria-labelledby="viewer-title">
+  <div class="viewer-head">
+    <div>
+      <span class="eyebrow" id="viewer-eyebrow">OWNER&rsquo;S MANUAL</span>
+      <h2 id="viewer-title"></h2>
+    </div>
+    <button class="icon-button" id="viewer-close" type="button" aria-label="Close"><svg class="icon" aria-hidden="true"><use href="#i-x"/></svg></button>
   </div>
   <div class="viewer-body"><img id="viewer-img" alt=""></div>
+  <div class="viewer-nav" id="viewer-nav">
+    <button id="viewer-prev" type="button"><svg class="icon" aria-hidden="true"><use href="#i-left"/></svg>Previous</button>
+    <span id="viewer-count">Page 1 of 48</span>
+    <button id="viewer-next" type="button">Next<svg class="icon" aria-hidden="true"><use href="#i-right"/></svg></button>
+  </div>
 </dialog>
 </body>
 </html>

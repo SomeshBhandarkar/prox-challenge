@@ -1,92 +1,218 @@
-# Prox Engineering Challenge
+# OmniPro 220 assistant
 
-<img src="product.webp" alt="Vulcan OmniPro 220" width="400" /> <img src="product-inside.webp" alt="Vulcan OmniPro 220 — inside panel" width="400" />
+A multimodal support agent for the **Vulcan OmniPro 220** multiprocess welder, built on the **Claude Agent SDK**.
+Ask it anything about the machine. It answers from the 48-page owner's manual, **shows the manual's own pictures**,
+**draws** the diagrams that are easier to see than to read, and opens **interactive tools** (duty-cycle calculator,
+troubleshooting flowchart, setup sheet) inside the chat.
 
-## The Product
+> **Video walkthrough:** <VIDEO_LINK>
 
-The [Vulcan OmniPro 220](https://www.harborfreight.com/omnipro-220-industrial-multiprocess-welder-with-120240v-input-57812.html) is a multiprocess welding system sold by Harbor Freight. It supports four welding processes (MIG, Flux-Cored, TIG, and Stick), runs on both 120V and 240V input, and has an LCD-based synergic control system.
+| Ask a question | It shows the picture and the tool |
+|---|---|
+| ![Welcome screen](docs/screens/01-welcome-dark.png) | ![A real answer from Sonnet 5.5](docs/screens/03-real-sonnet-answer.png) |
 
-Its owner's manual is 48 pages of dense technical content. Duty cycle matrices across multiple voltages and amperages, polarity setup procedures that differ per welding process, wire feed mechanisms with specific tensioner calibrations, wiring schematics, troubleshooting matrices, weld diagnosis diagrams, and a full parts list.
+![A polarity answer](docs/screens/02-answer-with-diagram.png)
 
-This is exactly the kind of product Prox exists for. Nobody knows how to use this machine straight out of the box but has time to read 48 page manual, but a complicated machine needs expert-level support.
+*Right: a real answer from Claude Sonnet 5.5 (since then the page puts the answer text first and the pictures after it). Bottom: the polarity answer as shown by the offline demo agent, which exists so the page can be tried with no key.*
 
-Additional video: https://www.youtube.com/watch?v=kxGDoGcnhBw
+---
 
-## Your Job
-
-Build a multimodal reasoning agent for the Vulcan OmniPro 220 using the Claude Agent SDK. The agent must be able to answer deep technical questions about this product accurately, helpfully, and not just in text.
-
-The manuals are in the `files/` directory.
-
-**There is no limit to how far you can go.** You can integrate voice. You can build a full interactive experience. Sky is the limit. The more ambitious and polished, the better.
-
-## What We're Testing
-
-### 1. Deep Technical Accuracy
-
-Your agent needs to answer questions like these correctly:
-
-- "What's the duty cycle for MIG welding at 200A on 240V?"
-- "I'm getting porosity in my flux-cored welds. What should I check?"
-- "What polarity setup do I need for TIG welding? Which socket does the ground clamp go in?"
-
-We will test with questions that require cross-referencing multiple manual sections, understanding visual content (diagrams, schematics, charts), and handling ambiguous questions that need clarification from the user.
-
-### 2. Multimodal Responses
-
-This is the most important part. Your agent must not be text-only.
-
-- If someone asks about polarity setup, the agent should draw or show a diagram of which cable goes in which socket, not just describe it.
-- If the answer relates to a specific image in the manual (the wire feed mechanism, the front panel controls, the weld diagnosis examples), the agent should surface that image.
-- If a question is complex enough, the agent should generate interactive content: a duty cycle calculator, a troubleshooting flowchart, a settings configurator that takes process + material + thickness and outputs recommended wire speed and voltage.
-
-When something is too cognitively hard to explain in words, the agent should draw it. Real-time diagrams, interactive schematics, visual walkthroughs generated through code.
-
-For your agent to handle these responses well you need to reverse engineer Claude artifacts. Here are two places where you can start:
-- https://claude.ai/artifacts (see how Claude renders interactive artifacts in chat)
-- https://www.reidbarber.com/blog/reverse-engineering-claude-artifacts
-
-### 3. Tone and Helpfulness
-
-Imagine your user just bought this welder and is standing in their garage trying to set it up. They're not an idiot, but they're not a professional welder either.
-
-### 4. Knowledge Extraction Quality
-
-The manual has a mix of text, tables, labeled diagrams, schematics, and decision matrices. Some critical information exists only in images (the welding process selection chart, the weld diagnosis photos, the wiring schematic). We want to see that your agent understands and presents the visual content, not just the text.
-
-## Tech Requirements
-
-- Use the [Anthropic Claude Agent SDK](https://docs.anthropic.com) as the foundation for your agent.
-- The project must run locally with a single API key provided via `.env`.
-- You are responsible for your own API costs during development.
-
-## How to Present Your Work
-
-**This matters.** Your submission is not just the code — it's how you present it.
-
-- **Build a frontend.** The best way for us to evaluate your agent is if it has a clean, simple UI we can run immediately. This is realistically the only way to properly demo an agent like this.
-- **Hosting is a plus.** If you host it somewhere we can access without cloning, that's a strong signal. Not required, but it removes friction and shows initiative.
-- **Write a clear README.** Explain how your agent works, what design decisions you made, how knowledge is extracted and represented, and how to run it. Your documentation will be evaluated — we want to see how you think and communicate, not just how you code.
-- **Video walkthrough is a huge plus.** Record yourself demoing the agent and explaining your approach. Walk through the hard questions, show how it handles multimodal responses, explain your architecture. This gives us a much richer picture of your work than code alone.
-
-We should be running your agent within 2 minutes of cloning your repo:
+## Run it (about 2 minutes)
 
 ```bash
-git clone <your-fork>
-cd <your-fork>
-cp .env.example .env   # we plug in our own Anthropic API key
-# your install command (npm install, uv install, etc.)
-# your run command (npm run dev, python app.py, etc.)
+git clone https://github.com/SomeshBhandarkar/prox-challenge
+cd prox-challenge
+cp .env.example .env          # then paste your ANTHROPIC_API_KEY into .env
+python3 run.py                # first run creates a private .venv and installs (about 10 s); opens http://localhost:8000
 ```
 
-If it takes longer than that to set up, that's a problem.
+Python 3.10 or newer. Nothing is installed outside the project folder, and there is no `npm` step: the page is plain HTML, CSS and JavaScript.
 
-## What to Submit
+| Want to... | Do this |
+|---|---|
+| Choose the model | The default is **Sonnet 5.5**. `python3 run.py --model haiku` is the cheapest; `--model opus` is available. Or set `MODEL=` in `.env`. |
+| Not open a browser tab | `python3 run.py --no-open` |
+| Cap spending per conversation | `SESSION_BUDGET_USD=0.50` in `.env` (default `1.00`) |
+| Use another port | `APP_PORT=8123` in `.env` (if 8000 is busy, the next free port is used automatically) |
+| Try the page with **no key and no cost** | `.venv/bin/python -m scripts.dev_server`, open http://localhost:8100 and type `everything`, `callout`, `broken`, `slow`... (canned replies that only exercise the page) |
+| Run the tests (no API calls) | `.venv/bin/pip install -r requirements-dev.txt && .venv/bin/python -m pytest tests -q` |
+| Chat in the terminal instead | `python3 run.py --terminal "How do I set up TIG?" --model haiku` |
 
-1. Fork this repo.
-2. Build your solution.
-3. Submit your fork URL through the form at [useprox.com/join/challenge](https://useprox.com/join/challenge).
+**If something goes wrong**, the app says what to do: a missing, empty or placeholder key, a typo in the model name, a bad port or budget setting, or Python older than 3.10 each give a one-line fix. A wrong key shows *"The API key was refused. Check ANTHROPIC_API_KEY in .env, then restart."* in the page. A harmless line saying *"claude.ai connectors are disabled because ANTHROPIC_API_KEY is set"* appears in the terminal; it is the SDK noting that your key takes priority over a Claude login.
 
-## What Happens Next
+The first install downloads about 100 MB (about 290 MB on disk), mostly because the Claude Agent SDK bundles its own engine. On a fast connection that is a few seconds; on slow Wi-Fi it can take a minute or two.
 
-We review submissions on a rolling basis and respond to every single one within a few days. Good luck.
+**Cost.** Every answer re-reads the whole manual from the prompt cache, so the first question in a session writes the cache and later ones are cheap. Measured: Haiku 5.5 about 0.3 cent per question (full 85-question exam for $0.25). Sonnet 5.5 about 4-8 cents per answer after a one-time 22-cent first call. I did not measure Opus (see *Limits*).
+
+---
+
+## What the assessment asks for, and where it is
+
+| They test | What I built | Evidence |
+|---|---|---|
+| **Deep technical accuracy** (duty cycle, porosity, polarity; cross-references; ambiguity) | Numbers come only from tools backed by verified data, each with a manual page cite. Ambiguous questions get one clarifying question. Where the manual contradicts itself, the agent says so. | An 85-question exam with traps, hold-outs and multi-turn questions; every answer in the full run was read against the manual (below). |
+| **Multimodal responses** (the most important part) | Exact picture crops, a drawn polarity diagram, an interactive duty-cycle calculator, a troubleshooting flowchart, a setup sheet, and free-form drawings the model writes itself, run in a locked-down sandbox. | Screenshots above; a real Sonnet answer drew a correct bar chart from the manual's numbers. |
+| **Tone** (new owner in the garage) | Plain words, short sentences, jargon explained once, safety labels (DANGER / WARNING / CAUTION / NOTICE) styled like the manual. | Read across the whole exam run. |
+| **Knowledge extraction** (tables, diagrams, schematics, image-only pages) | Text kept page-tagged; tables turned into verified data; every page that has a picture has an exact crop (118 figures); the image-only selection chart is transcribed and checked. | `knowledge/`, and the tests that guard it. |
+| **Frontend, README, video** | A plain-HTML chat page, this document, and a walkthrough video. | |
+| **Runs within 2 minutes** | `python3 run.py` does the install. | Timed from a fresh clone: 6 s with a warm cache. |
+
+---
+
+## How it works
+
+```mermaid
+flowchart LR
+  B["Browser<br/>plain HTML / CSS / JS"] -- "POST /api/chat" --> S["FastAPI server<br/>server-sent events"]
+  S -- "one worker per conversation" --> A["Claude Agent SDK client"]
+  A <--> T["9 tools<br/>(in-process MCP server)"]
+  T --> K[("verified data<br/>118 figures<br/>manual text")]
+  S -- "text / status / show events" --> B
+  S -- "/embed/token (sandboxed)" --> F["widgets and drawings<br/>in locked iframes"]
+```
+
+**One agent, nine tools.** Not a swarm of agents: the assignment asks for *a* reasoning agent, and one agent with good tools is easier to reason about and to test.
+
+| Tool | Kind | What it does |
+|---|---|---|
+| `duty_cycle` | lookup | Exact duty cycle from verified data; never from memory. Handles in-between amps, out-of-range amps and 120V vs 240V. |
+| `polarity` | lookup | Which cable goes in which socket, per process. |
+| `view_manual_page` | eyes | Lets Claude *look* at a full manual page image (for tables or drawings it has no data for). |
+| `show_figure` | show | Displays an exact cropped picture from the manual, chosen by id from a catalog of 118. |
+| `show_polarity_diagram` | show | Draws the socket diagram (SVG) from the verified polarity data. |
+| `show_duty_cycle_calculator` | show | Interactive calculator, precomputed from the same lookup, so the widget and the agent can never disagree. |
+| `show_troubleshooting_flowchart` | show | Step-by-step flowchart from the manual's troubleshooting tables (also returns the exact steps to Claude). |
+| `show_setup_guide` | show | A setup sheet for a job: chart fit, polarity, gas, feed roller and tension, LCD steps with *your* entries, limits. |
+| `create_artifact` | draw | Claude writes small HTML or SVG and the page runs it in a sandbox. |
+
+### The "show contract"
+Show tools are *pure functions of their inputs*. The server watches the SDK's message stream for a show-tool call, runs the same builder with the same input, and sends the result to the page. The tool result that goes back to Claude is only a short sentence, so **HTML never costs model tokens**, and what is on screen can never differ from what the model "saw" (`app/show.py`).
+
+### The whole manual is in the prompt
+No vector database, no retrieval. The 48-page manual (about 43k tokens, page-tagged) plus the figure catalog and a few rules go into the system prompt, which the SDK caches. For a document this size that is simpler and more accurate than chunk retrieval: the model can cross-reference pages freely, and a retrieval miss cannot cost an answer. Extraction is done once and committed to the repo, so nothing heavy runs at startup.
+
+### Streaming and conversations
+`POST /api/chat` streams events to the page: `session`, `status` ("Reading a page of the manual..."), `text`, `show`, `error`, `done`. Each conversation is one background task that owns its SDK client (the SDK must open and close a client from the same task, and every web request runs in a different one), so requests only pass questions through a queue. One question at a time per conversation, idle conversations expire after 30 minutes, at most 10 at once.
+
+---
+
+## Knowledge extraction and representation
+
+The manual mixes text, tables, labelled diagrams, schematics and image-only pages. Each kind is handled differently.
+
+| In the manual | Represented as | How it is kept honest |
+|---|---|---|
+| Running text | `knowledge/manual.txt`, tagged `=====PAGE n=====` | Cited as "(manual p.14)" in every answer. |
+| Tables (specs, duty cycles, troubleshooting) | Verified JSON in `knowledge/data/` | Tests check **every word** of the data against the cited page's text, and that no wire-speed or voltage number sneaks in. |
+| Pictures and diagrams | **118 exact crops** (`knowledge/figures/`) with a catalog of id, page, box, caption and "useful for" tags | Tests check each crop matches its recorded box, is not a whole page or a sliver, and that every number in a caption is on the cited page. |
+| Image-only pages (selection chart) | Transcribed to data and shown as the original image | A check card compares the transcription with the image. |
+| Schematic, parts diagram | Shown as 300 DPI crops; Claude can open the page image with `view_manual_page`; a few facts checked by eye are in the prompt | A real run counted the fans and valves correctly but misread a tiny connector label (CN8 instead of CN5). I now state the checked facts and tell the agent not to guess other connector labels. |
+| The tiny rating label | Cut at 1200 DPI so it is legible | The 60% duty-cycle points exist only here, and they are in the data. |
+| Quick-start guide, selection chart | Their own PDFs, also cropped, with their own source labels | |
+
+A **page-coverage test** requires every manual page to have a figure or a recorded reason it does not (only the warranty page, p.48). A **drift test** fails if the prompt, the tools and the figure catalog disagree.
+
+**The manual contradicts itself in a few places** (for example "do not use outdoors" on the safety page vs. the chart calling flux-cored "ideal for outdoor or windy conditions", or two different places for the Settings Chart). These are recorded in `caveats.json`, put into the prompt, and the agent mentions one *only when the question is about that topic*, saying which to trust and why.
+
+---
+
+## The multimodal part
+
+1. **Exact pictures.** The user sees the real figure from the manual (with a caption, a source label and "Open full page"), never a vague description. Examples: the wire-feed mechanism, the front panel, weld diagnosis photos, the wiring schematic, the parts list.
+2. **Drawn and interactive tools.** A polarity diagram per process; a duty-cycle calculator; a troubleshooting flowchart; a setup sheet with a tab per process.
+3. **Free-form drawing, modelled on Claude artifacts.** I reverse-engineered the artifact pattern:
+
+   | Claude artifacts | Here |
+   |---|---|
+   | A typed block: identifier, type, title, code | `create_artifact(identifier, type, title, code)`, type `html` or `svg` |
+   | Runs in a sandboxed iframe on another origin | `<iframe sandbox="allow-scripts">` with **no** `allow-same-origin`, served from `/embed/<token>` with its own `Content-Security-Policy: sandbox ...` header |
+   | Reports back with `postMessage` | Errors, console output and height reported to the page |
+   | Update by reusing the identifier | The page replaces the earlier drawing with the same identifier |
+   | Fix on error | The page sends the error back to the agent **once** for a repair |
+   | (libraries) | None, on purpose: no network, no CDN, no `eval`. Verified manual data is injected as `window.MANUAL` so drawings read real numbers. |
+
+   Safety is layered: size and tag checks on the server, a CSP meta tag first in the document, the iframe sandbox, and the page never inserts model output as HTML (everything is escaped; the only HTML-writing code path is the escaping renderer, and a test enforces that there is exactly one).
+
+### Why there is no "recommended wire speed and voltage" table
+The assessment imagines a configurator that outputs wire speed and voltage. **The manual does not contain those numbers.** This machine is *synergic*: you enter wire diameter and material thickness on the LCD and it sets them itself, and the Settings Chart inside the welder door is not in any provided file. Printing a number there would be inventing it, and a wrong setting can ruin a weld or hurt someone. So the setup sheet gives everything the manual *does* state (chart fit, wire-size and thickness checks, polarity, gas and flow, feed roller and tension, the exact LCD steps with your entries filled in, limits for 120V and 240V) and says plainly that the LCD sets the two numbers. A hallucination trap in the exam checks exactly this.
+
+---
+
+## Design decisions I would defend in an interview
+
+- **Numbers come only from verified data or the manual.** Tools never crash: odd inputs (NaN, huge strings, lists) return a structured error. A bare "22" is not guessed to be a gauge or inches.
+- **Show tools call, then the answer is written once.** Real runs showed models writing an answer, calling a picture tool, then writing it again; the prompt and the server both prevent that, and the page puts text first and pictures after it.
+- **The page is plain HTML/CSS/JS.** A reviewer needs only Python. The design was drafted in v0 and rebuilt without a framework or any outside file, so the page can run under a strict `Content-Security-Policy` (no inline script, no external resources).
+- **The SDK is locked down.** No built-in tools (no files, shell or web), only our nine, ignoring any Claude settings on the reviewer's machine, with a spending cap per conversation.
+- **Tests that can fail.** For every new check I broke the code on purpose and confirmed a test failed. One test that "passed" by coincidence was rewritten when I noticed it.
+
+---
+
+## How I tested it
+
+**795 offline tests** (no API calls): data against pages, figure geometry and coverage, widgets (odd inputs, an 18,000-point duty-cycle sweep), the artifact sandbox, the server (conversations, limits, attacks), and the page's own rules.
+
+**An 85-question exam** (`evals/questions.json`): 55 basic and 30 hard questions in 22 categories, with 10 held-out questions I did not tune on, two multi-turn questions, hallucination traps (pulse mode, C25 gas), a prompt-injection attempt and three "make me a tool" questions. A runner (`scripts/run_exam.py`) records every answer, tool call and picture shown, and flags problems automatically (missing facts, repeated text, talk about its own mistakes, pointing at a picture that was not shown). The flags are only hints: **I read every answer myself.**
+
+| Run | Model | Questions | Cost | Outcome |
+|---|---|---|---|---|
+| Light sample | Haiku 5.5 | 22 | $0.05 | Fixed 4 prompt issues |
+| New-figure check | Haiku 5.5 | 11 | $0.03 | Pictures chosen well; fixed 3 more |
+| **Full exam** | Haiku 5.5 | **85** | **$0.25** | All answers read; accurate and sourced; real fixes (below) |
+| Re-check of the fixes | Haiku 5.5 | 17 | $0.05 | All fixed |
+| **Stress test through the real website** | **Sonnet 5.5** | 6 conversations | about $0.6 | All correct (below) |
+
+**What the real runs caught** (and fixed, each with a test):
+- A caption I wrote said the power switch energizes the torch; the manual says the right knob does. The agent repeated my caption as a manual quote. Fixed, and a test now checks that captions only say "energized" if their page does.
+- The model once drew a placeholder card and apologised for it in the answer. The server now refuses placeholder drawings and the page never shows them.
+- Answers that wrote themselves twice, or commented on their own tool calls, or told people to swap cables without saying to unplug first.
+- The agent describing the calculator wrongly, and offering a "nearby" setting as a stand-in for a pulse mode the manual does not have.
+- A wrong API key was explained twice in the page (the SDK's own sentence and ours).
+- On the wiring schematic the model counted the two fans and two solenoid valves correctly but misread a connector label (it said CN8; the LCD plugs into **CN5**). The automatic checks passed it and I only caught it later by looking at the drawing. The fix is a few verified schematic facts in the prompt (each checked against the page text by a test) plus a rule not to guess other labels. It is a good example of why I read every answer.
+
+**Stress test on Sonnet 5.5, through the real page,** on questions whose answers I knew in advance:
+
+| Question | Known answer | Result |
+|---|---|---|
+| Duty cycle at 200A on 240V MIG | 25%: 2.5 min on, 7.5 min off | Correct; also the 100% point at 115A and the 60% label point at 130A |
+| Flux-core 5/16" on 240V with 0.045 wire: capability, polarity, roller, tension, angle, 150A | Top of range; DCEN, clamp on Positive; knurled 0.045 groove; tension 2-3; drag angle; 150A is not a rated point, plan on 25% | All correct; said its calculator's 44% estimate is *not* from the manual |
+| 3/8" plate on 120V | Limits 30-140A, 40% at 100A; the manual cannot confirm the job works on 120V | Correct and made no promise |
+| 130A on 120V, then "actually I'm on 240V" | Not rated, expect under 40%; then 60%: 6 min on, 4 off | Correct, and the second turn kept the context |
+| C25 and C100 gas | The manual does not define them; settings chart in the door; C100 needs the CGA 580/320 adapter | Correct; general knowledge labelled as such |
+| A bar chart of the 100% duty-cycle current on 240V | MIG 115A, TIG 105A, Stick 100A | The model wrote a correct, proportional chart in the sandbox |
+
+**Browser and edge-case testing** in real Chrome (run headless, no window): the page on desktop and a 390 px phone in light and dark; double-sending; dropping the connection mid-answer; offline; a conversation the server has forgotten; New chat mid-answer; keyboard use; reduced motion; typed HTML staying plain text. Against the running server: 14 path-traversal tricks, oversized and malformed bodies, cross-site requests, 14 simultaneous conversations, and a wrong API key through the real SDK (which costs nothing and showed the error path works).
+
+---
+
+## Limits (stated plainly)
+
+- **Models.** Everything was measured on **Haiku 5.5** and **Sonnet 5.5**, and Sonnet 5.5 is the default. **Opus 5.5** is available with `--model opus` but I did not run it (my API credits were limited), so I cannot vouch for its behaviour or cost.
+- **No wire speed or voltage numbers**, by design (see above).
+- **The Sonnet stress test is six conversations, not 85.** The full exam ran on Haiku. Small print in drawings (such as schematic connector labels) is the weakest spot of reading from images.
+- **No hosting.** It runs locally; the server binds to `localhost` and warns if you expose it. It does not check the `Host` header, so it should not be put on a public address without a proxy.
+- **Clarifying questions** come back as a numbered list in text; they are not clickable buttons yet.
+- **Extras I did not build:** voice, a guided wizard, a clickable front panel and weld-photo upload.
+- **Cost reporting.** The SDK's cost figure looks like a running total per conversation; I do not show it in the page.
+
+## Adapting this to another product
+Swap `files/` and `knowledge/manual.txt`, rebuild the verified data in `knowledge/data/`, cut a new figure catalog with `scripts/make_figures.py` (needs `poppler`; only for authoring), and the prompt, tools, page and tests carry over. The data-versus-page checks and the page-coverage test are what keep a new manual honest.
+
+## Repository map
+```
+run.py                  one-command launcher (creates .venv, installs, starts the site)
+app/                    server, agent options, prompt builder, tools, widgets, artifact sandbox
+  server.py             FastAPI + server-sent events, sessions, sandboxed embeds
+  show.py               the show contract: tool call -> figure / widget / drawing
+  agent_tools.py        the nine tools            prompt.py   the system prompt
+  artifacts.py          sandboxed free-form drawings
+  tools/  widgets/      lookups and the four built-in widgets
+web/                    the chat page (index.html, static/app.js, static/style.css)
+knowledge/              manual text, 118 figures, 48 page images, verified data, fact-check cards
+scripts/                exam runner, figure cutter, demo server, terminal chat
+evals/                  the 85 questions and the saved results of every real run
+tests/                  795 offline tests
+docs/screens/           screenshots used above
+```
+
+*The original challenge brief is in the git history (`git show 778dded:README.md`).*

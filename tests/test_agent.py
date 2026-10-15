@@ -34,8 +34,9 @@ def test_every_tool_the_agent_can_use_is_ours():
 
 
 # ---------- choosing the model ----------
-def test_the_default_is_opus():
-    assert DEFAULT_MODEL == "opus" and make_options().model == "claude-opus-5-5"
+def test_the_default_is_sonnet_the_model_the_real_website_stress_test_was_run_on(monkeypatch):
+    monkeypatch.delenv("MODEL", raising=False)
+    assert DEFAULT_MODEL == "sonnet" and make_options().model == "claude-sonnet-5-5"
 
 
 @pytest.mark.parametrize("given, expected", [("haiku", "claude-haiku-5-5"), ("Sonnet", "claude-sonnet-5-5"), (" OPUS ", "claude-opus-5-5"),
@@ -58,7 +59,7 @@ def test_the_argument_beats_the_env_setting_and_the_env_beats_the_default(monkey
 @pytest.mark.parametrize("blank", ["", "   ", "\n"])
 def test_a_blank_model_falls_back_to_the_default(monkeypatch, blank):
     monkeypatch.setenv("MODEL", blank)
-    assert resolve_model() == "claude-opus-5-5" and resolve_model(blank) == "claude-opus-5-5"
+    assert resolve_model() == "claude-sonnet-5-5" and resolve_model(blank) == "claude-sonnet-5-5"
 
 
 @pytest.mark.parametrize("bad", ["hiaku", "gpt-4", "opuss", "claude", "model", "x" * 5000, 5, [], True])
@@ -67,7 +68,7 @@ def test_a_typo_is_rejected_with_a_helpful_message_not_sent_to_the_api(bad):
         with pytest.raises(ValueError, match="haiku, sonnet, opus"):
             resolve_model(bad)
     else:
-        assert resolve_model(bad) == "claude-opus-5-5"  # a non-string argument counts as "not given"
+        assert resolve_model(bad) == "claude-sonnet-5-5"  # a non-string argument counts as "not given"
 
 
 def test_a_typo_in_the_env_setting_is_rejected_too(monkeypatch):
