@@ -7,13 +7,19 @@ troubleshooting flowchart, setup sheet) inside the chat.
 
 > **Video walkthrough:** <VIDEO_LINK>
 
-| | |
-|---|---|
-| **Welcome screen (dark mode)**<br>![Welcome screen](docs/screens/01-welcome-dark.png) | **A real Claude Sonnet 5.5 answer:** the calculator, the manual's own page 19, and a cited answer<br>![A real answer from Sonnet 5.5](docs/screens/03-real-sonnet-answer.png) |
-| **Polarity diagram** (from the offline demo agent)<br>![A polarity answer](docs/screens/02-answer-with-diagram.png) | **A drawing Claude wrote itself** (real Sonnet 5.5), from the manual's numbers<br>![A bar chart Claude drew](docs/screens/04-real-sonnet-drawing.png) |
-| **"p.16" is a button:** it opens that page of the manual<br>![The manual page viewer](docs/screens/05-manual-page-viewer.png) | **Phone width** (offline demo agent)<br>![The page on a phone](docs/screens/06-phone.png) |
+<p align="center">
+  <img src="docs/screens/01-welcome-dark.png" width="49%" alt="The welcome screen in dark mode">
+  <img src="docs/screens/03-real-sonnet-answer.png" width="49%" alt="A real Claude Sonnet 5.5 answer with the duty-cycle calculator, the manual's page 19 and cited text">
+</p>
+<p align="center">
+  <img src="docs/screens/02-answer-with-diagram.png" width="49%" alt="A polarity answer with the socket diagram">
+  <img src="docs/screens/04-real-sonnet-drawing.png" width="49%" alt="A bar chart that Claude Sonnet 5.5 drew itself from the manual's numbers">
+</p>
+<p align="center">
+  <img src="docs/screens/05-manual-page-viewer.png" width="49%" alt="Clicking a page citation such as p.16 opens that page of the manual">
+</p>
 
-*The real-answer screenshot was taken before one change: the page now puts the answer text first and the pictures after it.*
+*Top: the welcome screen, and a real answer. Middle: a polarity diagram, and a drawing Claude wrote itself. Bottom: clicking a page citation opens that manual page. The real-answer screenshot predates one change: the page now puts the answer text first and the pictures after it.*
 
 **Contents:** [Run it](#run-it-about-2-minutes) · [Try these](#try-these-first) · [What the assessment asks for](#what-the-assessment-asks-for-and-where-it-is) · [How the agent works](#how-the-agent-works) · [Knowledge extraction](#knowledge-extraction-and-representation) · [The multimodal part](#the-multimodal-part) · [Design decisions](#design-decisions-and-trade-offs) · [Testing](#how-i-tested-it) · [Limits](#limits-stated-plainly) · [Repo map](#repository-map)
 
