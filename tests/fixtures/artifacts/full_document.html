@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Full document</title>
+<style>.x{color:var(--accent)}</style>
+</head>
+<body onload="parent.postMessage({source:'artifact',kind:'probe',what:'body onload ran'},'*')">
+<h1 class="x">A full HTML document</h1>
+<p>Claude sometimes sends a whole page instead of a fragment. It should still work.</p>
+</body>
+</html>

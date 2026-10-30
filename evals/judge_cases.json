@@ -1,0 +1,135 @@
+{
+  "note": "Labelled sentences for evaluating the model-based fact-checker (app/judge.py). 'unsupported' sentences were each found in a real Sonnet answer or written to tempt it; 'supported' sentences restate the manual. Run on a real model with: .venv/bin/python -m scripts.judge_eval",
+  "unsupported": [
+    {
+      "sentence": "Buy a small spool first and test it on scrap.",
+      "why": "Q55: advice, no source"
+    },
+    {
+      "sentence": "If you want the steel, get scrap sheet or tube instead.",
+      "why": "Q40: advice"
+    },
+    {
+      "sentence": "MIG needs shielding gas, and wind can blow that gas away.",
+      "why": "Q38: explanation from general knowledge"
+    },
+    {
+      "sentence": "This is a slow-trip type that doesn't nuisance-trip on the brief current surge when you strike an arc.",
+      "why": "Q07: outside explanation"
+    },
+    {
+      "sentence": "A spool gun is a MIG gun that holds its own small spool of wire.",
+      "why": "Q51: outside definition"
+    },
+    {
+      "sentence": "The welder will still strike an arc on the wrong polarity.",
+      "why": "Q61: outside claim"
+    },
+    {
+      "sentence": "Expect less than 25%, and keep welds very short.",
+      "why": "Q69: advice and a guess"
+    },
+    {
+      "sentence": "So 240V draws only about 5 A more, but it delivers twice the welding current.",
+      "why": "Q59: derived comparison the manual does not make"
+    },
+    {
+      "sentence": "Move the job somewhere dry and covered, like your garage.",
+      "why": "Q38: advice beyond the safety page"
+    },
+    {
+      "sentence": "Leave this job to a professional who purges tanks.",
+      "why": "Q40: advice"
+    },
+    {
+      "sentence": "Side view: a wide, flattened mound.",
+      "why": "Q33: description of a picture not in the sources"
+    },
+    {
+      "sentence": "A higher gauge number means thinner steel, so 24 gauge is thinner than the chart's minimum.",
+      "why": "Q49: outside gauge knowledge"
+    },
+    {
+      "sentence": "Duty cycle is determined by the transformer's heat dissipation.",
+      "why": "invented explanation"
+    },
+    {
+      "sentence": "For best results use 0.035 wire on thin sheet metal at about 18 volts.",
+      "why": "invented settings"
+    },
+    {
+      "sentence": "Most hobby welders keep a fire blanket nearby.",
+      "why": "outside advice"
+    }
+  ],
+  "supported": [
+    {
+      "sentence": "Leave the Power Switch ON so the fan can cool it (manual p.23).",
+      "source": "p23"
+    },
+    {
+      "sentence": "The 60% point at 130A comes from the rating label (manual p.14).",
+      "source": "p14 label"
+    },
+    {
+      "sentence": "Do not use an extension cord on this welder (manual p.6).",
+      "source": "p6"
+    },
+    {
+      "sentence": "Set the Feed Tensioner to 3-5 for solid wire or 2-3 for flux-cored wire (manual p.15).",
+      "source": "p15"
+    },
+    {
+      "sentence": "Plug the Ground Clamp Cable into the Positive (+) socket and the TIG Torch Cable into the Negative (-) socket (manual p.24).",
+      "source": "p24"
+    },
+    {
+      "sentence": "The manual doesn't give a wire speed or voltage number for this job.",
+      "source": "absence"
+    },
+    {
+      "sentence": "The LCD screen's four-pin connector plugs into the MCU board at CN5 (manual p.45).",
+      "source": "schematic fact"
+    },
+    {
+      "sentence": "Keep the Contact Tip within 1/2 inch of the work surface (manual p.22).",
+      "source": "p22"
+    },
+    {
+      "sentence": "A 40% duty cycle at 100A on 120V means 4 minutes of welding and 6 minutes of rest in every 10 (manual p.19).",
+      "source": "p19"
+    },
+    {
+      "sentence": "Wear a minimum shade number 10 full face shield or welding mask (manual p.18).",
+      "source": "p18"
+    },
+    {
+      "sentence": "Flux-cored uses the MIG rows of the duty cycle table.",
+      "source": "p7/p19"
+    },
+    {
+      "sentence": "Do not weld on a pressurized or closed cylinder (manual p.5).",
+      "source": "p5"
+    },
+    {
+      "sentence": "Which process are you using: MIG, flux-cored, TIG or Stick?",
+      "source": "question"
+    },
+    {
+      "sentence": "The manual says the Settings Chart is inside the welder door (manual p.14) but on top of the welder on p.26.",
+      "source": "contradiction"
+    },
+    {
+      "sentence": "Practice a few sample welds on scrap before welding your first project (manual p.18).",
+      "source": "p18"
+    },
+    {
+      "sentence": "TIG welding is rated HIGH skill level on the selection chart.",
+      "source": "chart"
+    },
+    {
+      "sentence": "Wind doesn't ruin flux-cored welds, but the machine still shouldn't be outside.",
+      "why": "Relabelled after the real fact-checker runs: the selection chart says flux-cored is ideal for windy conditions and p.4 says do not use outdoors, so this restates the manual (my first label was wrong)."
+    }
+  ]
+}

@@ -1,0 +1,349 @@
+[
+ {
+  "id": "Q30",
+  "category": "troubleshooting",
+  "tier": 1,
+  "expected_visual": "troubleshooting flowchart + weld diagnosis photo + polarity diagram",
+  "expected_answer": "Check in this order: (1) Polarity: flux-cored must be DCEN, ground clamp in Positive (+) and wire feed power cable in Negative (-). (2) Dirty workpiece or wire: clean to bare metal and make sure wire is free of rust, oil and residue. (3) CTWD too long: keep it within 1/2 inch. (4) Inconsistent travel speed: keep it steady. Gas checks (flow, nozzle, gas type, empty cylinder) apply to gas-shielded MIG only, not self-shielded flux-cored. Compare to the porosity diagrams on p35/p37.",
+  "turns": [
+   {
+    "question": "I'm getting porosity in my flux-cored welds. What should I check?",
+    "answer": "For porosity (small cavities or holes in the bead), the manual lists these checks that apply to flux-cored welding.\n\n**From the porosity table (manual p.43):**\n1. **Dirty workpiece.** Clean the workpiece down to bare metal.\n2. **Gun used too far from the workpiece.** Check CTWD (contact tip to work distance) for the proper procedure. The manual says the contact tip should stay within 1/2\" of the work surface (manual p.22).\n3. **Incorrect polarity.** Flux-cored should be DCEN (manual p.43). That means the Ground Clamp Cable goes in the Positive (+) socket and the Wire Feed Power Cable goes in the Negative (–) socket (manual p.13). See the diagram below. Turn the Power Switch off and unplug the Welder before setup (manual p.10).\n4. **Dirty welding wire.** Make sure the wire is clean and free of rust and residues.\n\n**Also listed on the weld diagnosis page (manual p.37):**\n- **Inconsistent travel speed.** Maintain a steady travel speed.\n- **CTWD too long.** Reduce the CTWD.\n\nShut off the Welder, disconnect it from power and discharge the MIG gun to ground before adjusting, cleaning or repairing the unit (manual p.42).\n\nThe flowchart below shows the full list of checks.",
+    "texts": [
+     "For porosity (small cavities or holes in the bead), the manual lists these checks that apply to flux-cored welding.\n\n**From the porosity table (manual p.43):**\n1. **Dirty workpiece.** Clean the workpiece down to bare metal.\n2. **Gun used too far from the workpiece.** Check CTWD (contact tip to work distance) for the proper procedure. The manual says the contact tip should stay within 1/2\" of the work surface (manual p.22).\n3. **Incorrect polarity.** Flux-cored should be DCEN (manual p.43). That means the Ground Clamp Cable goes in the Positive (+) socket and the Wire Feed Power Cable goes in the Negative (–) socket (manual p.13). See the diagram below. Turn the Power Switch off and unplug the Welder before setup (manual p.10).\n4. **Dirty welding wire.** Make sure the wire is clean and free of rust and residues.\n\n**Also listed on the weld diagnosis page (manual p.37):**\n- **Inconsistent travel speed.** Maintain a steady travel speed.\n- **CTWD too long.** Reduce the CTWD.\n\nShut off the Welder, disconnect it from power and discharge the MIG gun to ground before adjusting, cleaning or repairing the unit (manual p.42).\n\nThe flowchart below shows the full list of checks."
+    ],
+    "tools": [
+     {
+      "tool": "show_troubleshooting_flowchart",
+      "input": {
+       "problem_id": "mig-porosity"
+      }
+     },
+     {
+      "tool": "polarity",
+      "input": {
+       "process": "flux_cored"
+      }
+     },
+     {
+      "tool": "show_polarity_diagram",
+      "input": {
+       "process": "flux_cored"
+      }
+     }
+    ],
+    "shown": [
+     {
+      "kind": "widget",
+      "tool": "show_troubleshooting_flowchart",
+      "title": "Troubleshooting guide"
+     },
+     {
+      "kind": "widget",
+      "tool": "show_polarity_diagram",
+      "title": "Polarity: Flux-cored (gasless, self-shielded)"
+     }
+    ],
+    "cost": 0.2475275,
+    "stop": "success",
+    "pipeline": {
+     "first_findings": [
+      {
+       "kind": "checker",
+       "sentence": "Here are the manual's checks for porosity (small holes in the bead) with flux-cored wire, in the manual's order (manual p.43).",
+       "detail": "Claims the list follows the manual's order, but the listed causes do not match the order on p.37 or p.43."
+      },
+      {
+       "kind": "checker",
+       "sentence": "Before you check anything: Turn the Power Switch off and unplug the Welder before setup.",
+       "detail": "The power-off/unplug warning is for wire setup (p.10). Applying it as the first step before any porosity check is an extension the manual does not make."
+      },
+      {
+       "kind": "checker",
+       "sentence": "This applies to any cable change.",
+       "detail": "The manual does not say the power-off warning applies to any cable change."
+      },
+      {
+       "kind": "checker",
+       "sentence": "The manual also says to shut off the welder, disconnect it from power and discharge the MIG gun to ground before adjusting or cleaning (manual p.43).",
+       "detail": "The shut-off, disconnect and discharge instruction is on p.42, not p.43."
+      },
+      {
+       "kind": "checker",
+       "sentence": "The manual's other porosity causes on p.43 and p.37 are the shielding-gas ones, and it marks them \"(MIG only)\" (manual p.37).",
+       "detail": "Wrong: p.43 lists more than shielding-gas causes (dirty workpiece, gun distance, polarity, dirty wire), and p.43 does not mark gas causes as MIG only."
+      },
+      {
+       "kind": "checker",
+       "sentence": "Gasless flux-cored welding doesn't use gas, so skip those.",
+       "detail": "Advice to skip the gas causes is not in the manual, and p.43 does not mark its gas causes as MIG only."
+      }
+     ],
+     "rewritten": true,
+     "phantom_nudge": false,
+     "removed": [
+      "The manual's shielding-gas causes (empty gas bottle, too much or too little gas, wrong gas) are marked \"(MIG only)\" on p.37."
+     ],
+     "fallback": false,
+     "judge_used": true
+    },
+    "guard": {
+     "findings": []
+    },
+    "enforced": "For porosity (small cavities or holes in the bead), the manual lists these checks that apply to flux-cored welding.\n\n**From the porosity table (manual p.43):**\n1. **Dirty workpiece.** Clean the workpiece down to bare metal.\n2. **Gun used too far from the workpiece.** Check CTWD (contact tip to work distance) for the proper procedure. The manual says the contact tip should stay within 1/2\" of the work surface (manual p.22).\n3. **Incorrect polarity.** Flux-cored should be DCEN (manual p.43). That means the Ground Clamp Cable goes in the Positive (+) socket and the Wire Feed Power Cable goes in the Negative (–) socket (manual p.13). See the diagram below. Turn the Power Switch off and unplug the Welder before setup (manual p.10).\n4. **Dirty welding wire.** Make sure the wire is clean and free of rust and residues.\n\n**Also listed on the weld diagnosis page (manual p.37):**\n- **Inconsistent travel speed.** Maintain a steady travel speed.\n- **CTWD too long.** Reduce the CTWD.\n\nShut off the Welder, disconnect it from power and discharge the MIG gun to ground before adjusting, cleaning or repairing the unit (manual p.42).\n\nThe flowchart below shows the full list of checks.",
+    "fallback": false,
+    "checker": []
+   }
+  ],
+  "checks": {
+   "missing": [
+    "CTWD 1/2 inch or less",
+    "gas items are MIG only"
+   ],
+   "forbidden": [],
+   "asked_question": false,
+   "should_clarify": false
+  },
+  "error": null,
+  "conditions": {
+   "C01": [
+    "pass",
+    "no outside-knowledge wording"
+   ],
+   "C02": [
+    "pass",
+    "every number with a unit is in the manual"
+   ],
+   "C03": [
+    "pass",
+    "every sentence is on the manual's topics"
+   ],
+   "C04": [
+    "pass",
+    "facts come with a page"
+   ],
+   "C05": [
+    "pass",
+    "every sentence is supported by the manual"
+   ],
+   "C06": [
+    "na",
+    "the manual covers this question"
+   ],
+   "C07": [
+    "na",
+    "the manual covers this question"
+   ],
+   "C08": [
+    "na",
+    "no cable change is described"
+   ],
+   "C09": [
+    "pass",
+    "written once"
+   ],
+   "C10": [
+    "pass",
+    "only points at pictures it showed"
+   ],
+   "C11": [
+    "pass",
+    "no commentary on its own work"
+   ],
+   "C12": [
+    "pass",
+    "every picture is a crop of the manual or a widget built from verified data"
+   ],
+   "C13": [
+    "na",
+    "no drawing"
+   ],
+   "C14": [
+    "pass",
+    "only the nine welder tools"
+   ],
+   "C15": [
+    "na",
+    "the question is not ambiguous"
+   ],
+   "C16": [
+    "pass",
+    "no mention of files"
+   ],
+   "C17": [
+    "pass",
+    "no instructions leaked"
+   ]
+  },
+  "cost": 0.2475,
+  "seconds": 45.9,
+  "pipeline": true
+ },
+ {
+  "id": "Q83",
+  "category": "visual_generation",
+  "tier": 2,
+  "expected_visual": "troubleshooting flowchart (Mermaid or widget)",
+  "expected_answer": "A flowchart (rendered visually) with the checks in order: polarity (DCEN: ground clamp Positive, wire feed power cable Negative) -> workpiece clean to bare metal -> wire clean, no rust/oil -> CTWD 1/2 inch or less -> steady travel speed. Gas checks are MIG-only and should not be steps for self-shielded flux-cored. Each node cites its page (p37, p43).",
+  "turns": [
+   {
+    "question": "Make me a flowchart for tracking down porosity in my flux-cored welds.",
+    "answer": "The flowchart for porosity (small cavities or holes in the bead, manual p.37) is below, with the flux-cored polarity diagram under it.\n\n**Safety:** Be CERTAIN to shut off the welder, disconnect it from power, and discharge the MIG gun to ground before adjusting, cleaning, or repairing the unit (manual p.42).\n\n**Checks the manual lists for porosity (manual p.43):**\n1. **Dirty workpiece.** Clean the workpiece down to bare metal.\n2. **Gun used too far from the workpiece.** Check CTWD (contact tip to work distance) for the proper procedure. The contact tip should stay within 1/2\" of the work surface (manual p.22).\n3. **Polarity incorrect for the application.** It must be DCEN for flux-cored.\n   - Turn the Power Switch off and unplug the welder before setup (manual p.10).\n   - Ground Clamp Cable goes in the **Positive (+)** socket.\n   - Wire Feed Power Cable goes in the **Negative (–)** socket (manual p.13).\n4. **Dirty welding wire.** Make certain the wire is clean and free of rust and residues.\n\nThe manual also lists these porosity causes:\n- Inconsistent travel speed: maintain steady travel speed (manual p.37).",
+    "texts": [
+     "The flowchart for porosity (small cavities or holes in the bead, manual p.37) is below, with the flux-cored polarity diagram under it.\n\n**Safety:** Be CERTAIN to shut off the welder, disconnect it from power, and discharge the MIG gun to ground before adjusting, cleaning, or repairing the unit (manual p.42).\n\n**Checks the manual lists for porosity (manual p.43):**\n1. **Dirty workpiece.** Clean the workpiece down to bare metal.\n2. **Gun used too far from the workpiece.** Check CTWD (contact tip to work distance) for the proper procedure. The contact tip should stay within 1/2\" of the work surface (manual p.22).\n3. **Polarity incorrect for the application.** It must be DCEN for flux-cored.\n   - Turn the Power Switch off and unplug the welder before setup (manual p.10).\n   - Ground Clamp Cable goes in the **Positive (+)** socket.\n   - Wire Feed Power Cable goes in the **Negative (–)** socket (manual p.13).\n4. **Dirty welding wire.** Make certain the wire is clean and free of rust and residues.\n\nThe manual also lists these porosity causes:\n- Inconsistent travel speed: maintain steady travel speed (manual p.37)."
+    ],
+    "tools": [
+     {
+      "tool": "show_troubleshooting_flowchart",
+      "input": {
+       "problem_id": "mig-porosity"
+      }
+     },
+     {
+      "tool": "polarity",
+      "input": {
+       "process": "flux_cored"
+      }
+     },
+     {
+      "tool": "show_polarity_diagram",
+      "input": {
+       "process": "flux_cored"
+      }
+     }
+    ],
+    "shown": [
+     {
+      "kind": "widget",
+      "tool": "show_troubleshooting_flowchart",
+      "title": "Troubleshooting guide"
+     },
+     {
+      "kind": "widget",
+      "tool": "show_polarity_diagram",
+      "title": "Polarity: Flux-cored (gasless, self-shielded)"
+     }
+    ],
+    "cost": 0.066845,
+    "stop": "success",
+    "pipeline": {
+     "first_findings": [
+      {
+       "kind": "checker",
+       "sentence": "Work through them in the manual's order (manual p.43).",
+       "detail": "The manual does not say to work through the porosity checks in order."
+      },
+      {
+       "kind": "checker",
+       "sentence": "Turn the Power Switch off and unplug the welder before you move any cable (manual p.10).",
+       "detail": "Page 10 says to turn off and unplug before setup, not before moving any cable."
+      },
+      {
+       "kind": "checker",
+       "sentence": "They don't apply to gasless flux-cored wire, so I left them out.",
+       "detail": "The manual does not say the shielding-gas causes don't apply to gasless flux-cored wire."
+      }
+     ],
+     "rewritten": true,
+     "phantom_nudge": false,
+     "removed": [
+      "Two shielding-gas causes, which the manual marks \"(MIG only)\" (manual p.37): empty gas bottle, and not enough or too much gas (manual p.43)."
+     ],
+     "fallback": false,
+     "judge_used": true
+    },
+    "guard": {
+     "findings": []
+    },
+    "enforced": "The flowchart for porosity (small cavities or holes in the bead, manual p.37) is below, with the flux-cored polarity diagram under it.\n\n**Safety:** Be CERTAIN to shut off the welder, disconnect it from power, and discharge the MIG gun to ground before adjusting, cleaning, or repairing the unit (manual p.42).\n\n**Checks the manual lists for porosity (manual p.43):**\n1. **Dirty workpiece.** Clean the workpiece down to bare metal.\n2. **Gun used too far from the workpiece.** Check CTWD (contact tip to work distance) for the proper procedure. The contact tip should stay within 1/2\" of the work surface (manual p.22).\n3. **Polarity incorrect for the application.** It must be DCEN for flux-cored.\n   - Turn the Power Switch off and unplug the welder before setup (manual p.10).\n   - Ground Clamp Cable goes in the **Positive (+)** socket.\n   - Wire Feed Power Cable goes in the **Negative (–)** socket (manual p.13).\n4. **Dirty welding wire.** Make certain the wire is clean and free of rust and residues.\n\nThe manual also lists these porosity causes:\n- Inconsistent travel speed: maintain steady travel speed (manual p.37).",
+    "fallback": false,
+    "checker": []
+   }
+  ],
+  "checks": {
+   "missing": [
+    "flowchart is produced",
+    "polarity first with DCEN",
+    "CTWD 1/2 inch",
+    "no gas step for flux-cored"
+   ],
+   "forbidden": [],
+   "asked_question": false,
+   "should_clarify": false
+  },
+  "error": null,
+  "conditions": {
+   "C01": [
+    "pass",
+    "no outside-knowledge wording"
+   ],
+   "C02": [
+    "pass",
+    "every number with a unit is in the manual"
+   ],
+   "C03": [
+    "pass",
+    "every sentence is on the manual's topics"
+   ],
+   "C04": [
+    "pass",
+    "facts come with a page"
+   ],
+   "C05": [
+    "pass",
+    "every sentence is supported by the manual"
+   ],
+   "C06": [
+    "na",
+    "the manual covers this question"
+   ],
+   "C07": [
+    "na",
+    "the manual covers this question"
+   ],
+   "C08": [
+    "na",
+    "no cable change is described"
+   ],
+   "C09": [
+    "pass",
+    "written once"
+   ],
+   "C10": [
+    "pass",
+    "only points at pictures it showed"
+   ],
+   "C11": [
+    "pass",
+    "no commentary on its own work"
+   ],
+   "C12": [
+    "pass",
+    "every picture is a crop of the manual or a widget built from verified data"
+   ],
+   "C13": [
+    "na",
+    "no drawing"
+   ],
+   "C14": [
+    "pass",
+    "only the nine welder tools"
+   ],
+   "C15": [
+    "na",
+    "the question is not ambiguous"
+   ],
+   "C16": [
+    "pass",
+    "no mention of files"
+   ],
+   "C17": [
+    "pass",
+    "no instructions leaked"
+   ]
+  },
+  "cost": 0.0668,
+  "seconds": 32.2,
+  "pipeline": true
+ }
+]

@@ -1,0 +1,1530 @@
+[
+ {
+  "id": "Q75",
+  "category": "safety_reasoning",
+  "tier": 2,
+  "expected_visual": "LCD screen + safety callout (WARNING)",
+  "expected_answer": "Not from the power switch alone. For TIG and stick you turn the Right Knob to ON to energize the torch or electrode holder; at that point the welder is energized and open-circuit voltage (86VDC) is present. Rest the torch or holder on a non-conductive, non-flammable surface away from grounded objects until you're ready, never weld without the ground clamp, and turn the Right Knob to OFF when finished.",
+  "turns": [
+   {
+    "question": "In TIG or stick, is there voltage at the electrode as soon as I flip the power switch?",
+    "answer": "There is no specific information in the manual for this kind of problem. It never says whether the electrode has voltage at the moment you flip the Power Switch. It does say the following:\n\n- **TIG:** Turning the Right Knob to ON energizes the TIG Torch. The WARNING then reads \"Welder is now energized and Open Circuit Voltage is present\" (manual p.30).\n- **Stick:** Turning the Right Knob to ON energizes the Electrode Holder. The same WARNING appears (manual p.32).\n- **General warning:** \"Keep welding tip clear of grounded objects whenever unit is plugged in and turned on\" (manual p.28).\n- **Before the Power Switch:** Set the TIG Torch (manual p.30, step 4) or the Electrode Holder (manual p.32, step 2) down on a nonconductive, nonflammable surface away from any grounded objects, then turn the Power Switch ON.\n- **Open Circuit Voltage:** The maximum is 86 VDC (manual p.7).\n\nThe manual's support number is 1-800-444-3353.",
+    "texts": [
+     "There is no specific information in the manual for this kind of problem. It never says whether the electrode has voltage at the moment you flip the Power Switch. It does say the following:\n\n- **TIG:** Turning the Right Knob to ON energizes the TIG Torch. The WARNING then reads \"Welder is now energized and Open Circuit Voltage is present\" (manual p.30).\n- **Stick:** Turning the Right Knob to ON energizes the Electrode Holder. The same WARNING appears (manual p.32).\n- **General warning:** \"Keep welding tip clear of grounded objects whenever unit is plugged in and turned on\" (manual p.28).\n- **Before the Power Switch:** Set the TIG Torch (manual p.30, step 4) or the Electrode Holder (manual p.32, step 2) down on a nonconductive, nonflammable surface away from any grounded objects, then turn the Power Switch ON.\n- **Open Circuit Voltage:** The maximum is 86 VDC (manual p.7).\n\nThe manual's support number is 1-800-444-3353."
+    ],
+    "tools": [
+     {
+      "tool": "show_figure",
+      "input": {
+       "figure_id": "tig-lcd-auto-weld-screen"
+      }
+     },
+     {
+      "tool": "show_figure",
+      "input": {
+       "figure_id": "stick-lcd-auto-weld-screen"
+      }
+     }
+    ],
+    "shown": [
+     {
+      "kind": "figure",
+      "id": "tig-lcd-auto-weld-screen",
+      "source": "Manual p.30"
+     },
+     {
+      "kind": "figure",
+      "id": "stick-lcd-auto-weld-screen",
+      "source": "Manual p.32"
+     }
+    ],
+    "cost": 0.06892619999999999,
+    "stop": "success",
+    "pipeline": {
+     "first_findings": [
+      {
+       "kind": "checker",
+       "sentence": "Setting the tool down: After you turn the Power Switch ON, the manual tells you to have the TIG Torch or Electrode Holder resting on a nonconductive, nonflammable surface away from any grounded objects (manual p.30, p.32).",
+       "detail": "Wrong sequence. The manual says to set the TIG Torch or Electrode Holder down before turning the Power Switch ON (p.30 step 4, p.32 step 2), not after."
+      }
+     ],
+     "rewritten": true,
+     "phantom_nudge": false,
+     "removed": [
+      "See the pictures below for the TIG and Stick screens with the warning."
+     ],
+     "fallback": true,
+     "judge_used": true
+    },
+    "guard": {
+     "findings": []
+    },
+    "enforced": "There is no specific information in the manual for this kind of problem. It never says whether the electrode has voltage at the moment you flip the Power Switch. It does say the following:\n\n- **TIG:** Turning the Right Knob to ON energizes the TIG Torch. The WARNING then reads \"Welder is now energized and Open Circuit Voltage is present\" (manual p.30).\n- **Stick:** Turning the Right Knob to ON energizes the Electrode Holder. The same WARNING appears (manual p.32).\n- **General warning:** \"Keep welding tip clear of grounded objects whenever unit is plugged in and turned on\" (manual p.28).\n- **Before the Power Switch:** Set the TIG Torch (manual p.30, step 4) or the Electrode Holder (manual p.32, step 2) down on a nonconductive, nonflammable surface away from any grounded objects, then turn the Power Switch ON.\n- **Open Circuit Voltage:** The maximum is 86 VDC (manual p.7).\n\nThe manual's support number is 1-800-444-3353.",
+    "fallback": true,
+    "checker": []
+   }
+  ],
+  "checks": {
+   "missing": [
+    "rest on non-conductive surface"
+   ],
+   "forbidden": [],
+   "asked_question": false,
+   "should_clarify": false
+  },
+  "error": null,
+  "conditions": {
+   "C01": [
+    "pass",
+    "no outside-knowledge wording"
+   ],
+   "C02": [
+    "pass",
+    "every number with a unit is in the manual"
+   ],
+   "C03": [
+    "pass",
+    "every sentence is on the manual's topics"
+   ],
+   "C04": [
+    "pass",
+    "facts come with a page"
+   ],
+   "C05": [
+    "pass",
+    "every sentence is supported by the manual"
+   ],
+   "C06": [
+    "na",
+    "the manual covers this question"
+   ],
+   "C07": [
+    "na",
+    "the manual covers this question"
+   ],
+   "C08": [
+    "na",
+    "no cable change is described"
+   ],
+   "C09": [
+    "pass",
+    "written once"
+   ],
+   "C10": [
+    "pass",
+    "only points at pictures it showed"
+   ],
+   "C11": [
+    "pass",
+    "no commentary on its own work"
+   ],
+   "C12": [
+    "pass",
+    "every picture is a crop of the manual or a widget built from verified data"
+   ],
+   "C13": [
+    "na",
+    "no drawing"
+   ],
+   "C14": [
+    "pass",
+    "only the nine welder tools"
+   ],
+   "C15": [
+    "na",
+    "the question is not ambiguous"
+   ],
+   "C16": [
+    "pass",
+    "no mention of files"
+   ],
+   "C17": [
+    "pass",
+    "no instructions leaked"
+   ]
+  },
+  "cost": 0.0689,
+  "seconds": 31.4,
+  "pipeline": true
+ },
+ {
+  "id": "Q76",
+  "category": "safety_reasoning",
+  "tier": 2,
+  "expected_visual": "safety callout",
+  "expected_answer": "No. Turn the Power Switch off and unplug the welder, rest the gun on a heat-proof non-conductive surface, and let it cool before servicing. The quick-start guide also says to unplug before replacing the nozzle and tip.",
+  "turns": [
+   {
+    "question": "Can I leave it plugged in with the power switch on while I swap the contact tip?",
+    "answer": "No. Turn the Power Switch off and unplug the Welder before you change the contact tip.\n\nThe manual says this in two places:\n- **Maintenance (manual p.41):** make sure the entire MIG gun is completely cool and the Power Cord is unplugged from the outlet before you start. Then pull the nozzle off and unscrew the contact tip counterclockwise.\n- **Wire setup (manual p.17, steps 28–31):** turn OFF the Power Switch and unplug the Power Cord. Then slide a compatible contact tip over the wire and thread it clockwise into the gun. Tighten it, put the nozzle back, and cut the wire to 1/2\" stickout.\n\n**WARNING (manual p.18):** keep the welding tip clear of grounded objects whenever the unit is plugged in and turned on. This is to prevent serious injury, fire and burns.\n\nThe picture below shows the nozzle and contact tip steps from p.41.",
+    "texts": [
+     "No. Turn the Power Switch off and unplug the Welder before you change the contact tip.\n\nThe manual says this in two places:\n- **Maintenance (manual p.41):** make sure the entire MIG gun is completely cool and the Power Cord is unplugged from the outlet before you start. Then pull the nozzle off and unscrew the contact tip counterclockwise.\n- **Wire setup (manual p.17, steps 28–31):** turn OFF the Power Switch and unplug the Power Cord. Then slide a compatible contact tip over the wire and thread it clockwise into the gun. Tighten it, put the nozzle back, and cut the wire to 1/2\" stickout.\n\n**WARNING (manual p.18):** keep the welding tip clear of grounded objects whenever the unit is plugged in and turned on. This is to prevent serious injury, fire and burns.\n\nThe picture below shows the nozzle and contact tip steps from p.41."
+    ],
+    "tools": [
+     {
+      "tool": "show_figure",
+      "input": {
+       "figure_id": "mig-nozzle-contact-tip-cleaning"
+      }
+     }
+    ],
+    "shown": [
+     {
+      "kind": "figure",
+      "id": "mig-nozzle-contact-tip-cleaning",
+      "source": "Manual p.41"
+     }
+    ],
+    "cost": 0.0411059,
+    "stop": "success",
+    "pipeline": {
+     "first_findings": [],
+     "rewritten": false,
+     "phantom_nudge": false,
+     "removed": [],
+     "fallback": false,
+     "judge_used": true
+    },
+    "guard": {
+     "findings": []
+    },
+    "enforced": "No. Turn the Power Switch off and unplug the Welder before you change the contact tip.\n\nThe manual says this in two places:\n- **Maintenance (manual p.41):** make sure the entire MIG gun is completely cool and the Power Cord is unplugged from the outlet before you start. Then pull the nozzle off and unscrew the contact tip counterclockwise.\n- **Wire setup (manual p.17, steps 28–31):** turn OFF the Power Switch and unplug the Power Cord. Then slide a compatible contact tip over the wire and thread it clockwise into the gun. Tighten it, put the nozzle back, and cut the wire to 1/2\" stickout.\n\n**WARNING (manual p.18):** keep the welding tip clear of grounded objects whenever the unit is plugged in and turned on. This is to prevent serious injury, fire and burns.\n\nThe picture below shows the nozzle and contact tip steps from p.41.",
+    "fallback": false,
+    "checker": []
+   }
+  ],
+  "checks": {
+   "missing": [
+    "quick-start says unplug to replace nozzle and tip"
+   ],
+   "forbidden": [],
+   "asked_question": false,
+   "should_clarify": false
+  },
+  "error": null,
+  "conditions": {
+   "C01": [
+    "pass",
+    "no outside-knowledge wording"
+   ],
+   "C02": [
+    "pass",
+    "every number with a unit is in the manual"
+   ],
+   "C03": [
+    "pass",
+    "every sentence is on the manual's topics"
+   ],
+   "C04": [
+    "pass",
+    "facts come with a page"
+   ],
+   "C05": [
+    "pass",
+    "every sentence is supported by the manual"
+   ],
+   "C06": [
+    "na",
+    "the manual covers this question"
+   ],
+   "C07": [
+    "na",
+    "the manual covers this question"
+   ],
+   "C08": [
+    "na",
+    "no cable change is described"
+   ],
+   "C09": [
+    "pass",
+    "written once"
+   ],
+   "C10": [
+    "pass",
+    "only points at pictures it showed"
+   ],
+   "C11": [
+    "pass",
+    "no commentary on its own work"
+   ],
+   "C12": [
+    "pass",
+    "every picture is a crop of the manual or a widget built from verified data"
+   ],
+   "C13": [
+    "na",
+    "no drawing"
+   ],
+   "C14": [
+    "pass",
+    "only the nine welder tools"
+   ],
+   "C15": [
+    "na",
+    "the question is not ambiguous"
+   ],
+   "C16": [
+    "pass",
+    "no mention of files"
+   ],
+   "C17": [
+    "pass",
+    "no instructions leaked"
+   ]
+  },
+  "cost": 0.0411,
+  "seconds": 20.0,
+  "pipeline": true
+ },
+ {
+  "id": "Q77",
+  "category": "safety_reasoning",
+  "tier": 2,
+  "expected_visual": "parts list excerpt",
+  "expected_answer": "Don't use the welder with a damaged cord or plug; have it repaired by a service facility. Use only one of the supplied cords or an identical replacement, don't install a thinner or longer cord, and don't patch cords. The 240 VAC Power Cord is part 61 (the 120 VAC cord is part 55); choose the cord that matches your receptacle, and if the plug doesn't fit the outlet have an electrician install the right outlet instead of using an adapter.",
+  "turns": [
+   {
+    "question": "My 240V power cord got nicked. Can I tape it or use the 120V cord instead? What part is it?",
+    "answer": "**Don't use the welder with the nicked cord.** The manual says: \"Do not use the welder if the power cord or plug is damaged. If damaged, have it repaired by a service facility before use.\" (manual p.6)\n\n**Taping:** There is no specific information in the manual for this kind of problem. The manual gives no taping method. It does say not to patch cords together, because patches may let moisture get into the insulation and cause electric shock (manual p.6).\n\n**Using the 120V cord instead:** The manual says to plug either the 120 VAC or the 240 VAC power cord into the Power Input socket (manual p.16). It does not say whether you can use the 120V cord while the other cord is damaged. It also says to use only one of the supplied power cords or an identical replacement cord (manual p.6).\n\n**Which part is it?** The 240 VAC Power Cord is part 61, quantity 1. The 120 VAC Power Cord is part 55 (manual p.46). See the parts list below.\n\n**Replacing it:**\n- Use only a supplied or identical cord. Don't install a thinner or longer one (manual p.6).\n- When ordering parts, specify UPC 193175422590. Some parts are shown for illustration only and aren't available individually (manual p.46).\n- The manual says all repairs and part replacements should be done by certified, licensed technicians, not by the buyer (manual p.46).\n- Support number: 1-800-444-3353.",
+    "texts": [
+     "**Don't use the welder with the nicked cord.** The manual says: \"Do not use the welder if the power cord or plug is damaged. If damaged, have it repaired by a service facility before use.\" (manual p.6)\n\n**Taping:** There is no specific information in the manual for this kind of problem. The manual gives no taping method. It does say not to patch cords together, because patches may let moisture get into the insulation and cause electric shock (manual p.6).\n\n**Using the 120V cord instead:** The manual says to plug either the 120 VAC or the 240 VAC power cord into the Power Input socket (manual p.16). It does not say whether you can use the 120V cord while the other cord is damaged. It also says to use only one of the supplied power cords or an identical replacement cord (manual p.6).\n\n**Which part is it?** The 240 VAC Power Cord is part 61, quantity 1. The 120 VAC Power Cord is part 55 (manual p.46). See the parts list below.\n\n**Replacing it:**\n- Use only a supplied or identical cord. Don't install a thinner or longer one (manual p.6).\n- When ordering parts, specify UPC 193175422590. Some parts are shown for illustration only and aren't available individually (manual p.46).\n- The manual says all repairs and part replacements should be done by certified, licensed technicians, not by the buyer (manual p.46).\n- Support number: 1-800-444-3353."
+    ],
+    "tools": [
+     {
+      "tool": "show_figure",
+      "input": {
+       "figure_id": "grounding-extension-and-replacement-cords"
+      }
+     },
+     {
+      "tool": "show_figure",
+      "input": {
+       "figure_id": "parts-list-table"
+      }
+     }
+    ],
+    "shown": [
+     {
+      "kind": "figure",
+      "id": "grounding-extension-and-replacement-cords",
+      "source": "Manual p.6"
+     },
+     {
+      "kind": "figure",
+      "id": "parts-list-table",
+      "source": "Manual p.46"
+     }
+    ],
+    "cost": 0.07147970000000001,
+    "stop": "success",
+    "pipeline": {
+     "first_findings": [
+      {
+       "kind": "checker",
+       "sentence": "If you switch cords, the machine's limits change.",
+       "detail": "The manual never says the machine's limits change when the cord is switched. It only lists separate 120V and 240V ratings."
+      },
+      {
+       "kind": "checker",
+       "sentence": "Turn the Power Switch off and unplug the Welder before you handle any cables (manual p.10).",
+       "detail": "Page 10 says to turn off and unplug before setup. It does not say to do so before handling any cables."
+      }
+     ],
+     "rewritten": true,
+     "phantom_nudge": false,
+     "removed": [],
+     "fallback": false,
+     "judge_used": true
+    },
+    "guard": {
+     "findings": []
+    },
+    "enforced": "**Don't use the welder with the nicked cord.** The manual says: \"Do not use the welder if the power cord or plug is damaged. If damaged, have it repaired by a service facility before use.\" (manual p.6)\n\n**Taping:** There is no specific information in the manual for this kind of problem. The manual gives no taping method. It does say not to patch cords together, because patches may let moisture get into the insulation and cause electric shock (manual p.6).\n\n**Using the 120V cord instead:** The manual says to plug either the 120 VAC or the 240 VAC power cord into the Power Input socket (manual p.16). It does not say whether you can use the 120V cord while the other cord is damaged. It also says to use only one of the supplied power cords or an identical replacement cord (manual p.6).\n\n**Which part is it?** The 240 VAC Power Cord is part 61, quantity 1. The 120 VAC Power Cord is part 55 (manual p.46). See the parts list below.\n\n**Replacing it:**\n- Use only a supplied or identical cord. Don't install a thinner or longer one (manual p.6).\n- When ordering parts, specify UPC 193175422590. Some parts are shown for illustration only and aren't available individually (manual p.46).\n- The manual says all repairs and part replacements should be done by certified, licensed technicians, not by the buyer (manual p.46).\n- Support number: 1-800-444-3353.",
+    "fallback": false,
+    "checker": []
+   }
+  ],
+  "checks": {
+   "missing": [
+    "no adapter plugs"
+   ],
+   "forbidden": [],
+   "asked_question": true,
+   "should_clarify": false
+  },
+  "error": null,
+  "conditions": {
+   "C01": [
+    "pass",
+    "no outside-knowledge wording"
+   ],
+   "C02": [
+    "pass",
+    "every number with a unit is in the manual"
+   ],
+   "C03": [
+    "pass",
+    "every sentence is on the manual's topics"
+   ],
+   "C04": [
+    "pass",
+    "facts come with a page"
+   ],
+   "C05": [
+    "pass",
+    "every sentence is supported by the manual"
+   ],
+   "C06": [
+    "na",
+    "the manual covers this question"
+   ],
+   "C07": [
+    "na",
+    "the manual covers this question"
+   ],
+   "C08": [
+    "na",
+    "no cable change is described"
+   ],
+   "C09": [
+    "pass",
+    "written once"
+   ],
+   "C10": [
+    "pass",
+    "only points at pictures it showed"
+   ],
+   "C11": [
+    "pass",
+    "no commentary on its own work"
+   ],
+   "C12": [
+    "pass",
+    "every picture is a crop of the manual or a widget built from verified data"
+   ],
+   "C13": [
+    "na",
+    "no drawing"
+   ],
+   "C14": [
+    "pass",
+    "only the nine welder tools"
+   ],
+   "C15": [
+    "na",
+    "the question is not ambiguous"
+   ],
+   "C16": [
+    "pass",
+    "no mention of files"
+   ],
+   "C17": [
+    "pass",
+    "no instructions leaked"
+   ]
+  },
+  "cost": 0.0715,
+  "seconds": 42.5,
+  "pipeline": true
+ },
+ {
+  "id": "Q78",
+  "category": "deep_detail",
+  "tier": 2,
+  "expected_visual": "tungsten figure p26",
+  "expected_answer": "Use a fine-grit grinding wheel dedicated to tungsten, grind parallel to the length of the electrode, and make the conical tip about 2-1/2 times as long as the electrode diameter. Remove and re-insert the electrode from the front of the torch (pulling from the rear damages the collet). The tip should protrude 1/8 to 1/4 inch beyond the ceramic nozzle, and in use keep the electrode 1 to 1.5 times its diameter from the workpiece. Wear a respirator and ANSI goggles when grinding.",
+  "turns": [
+   {
+    "question": "How should I grind my tungsten, and how far should it stick out of the ceramic nozzle?",
+    "answer": "The tip should stick out 1/8\" to 1/4\" beyond the ceramic nozzle (manual p.26). Grind it to a blunt point, with the grinding direction parallel to the length of the tungsten. The picture below shows the steps.\n\n**Grinding steps (manual p.26)**\n1. Use a fine grit grinding wheel that you use only for tungsten. This avoids contaminating the electrode.\n2. Shut off the welder and wait until the electrode and torch have cooled enough to handle.\n3. Remove the Back Cap and pull the electrode out of the front of the torch. Pulling it from the rear will damage the collet and create burrs on the electrode.\n4. If the electrode is dulled or contaminated, grip it above the contaminated section with pliers or a suitable tool and snap off the end.\n5. Lightly press the tip against the grinding wheel at an angle. Rotate the tip until a blunt point forms.\n6. The cone of the ideal tip is 2-1/2 times as long as the electrode diameter.\n7. Put the electrode back into the collet with the tip sticking out 1/8\"–1/4\" beyond the ceramic nozzle. Then tighten the Back Cap.\n\n**WARNING (manual p.26):** Some electrodes may have materials added that are hazardous to breathe. Wear a respirator and ANSI-approved safety goggles when grinding.",
+    "texts": [
+     "The tip should stick out 1/8\" to 1/4\" beyond the ceramic nozzle (manual p.26). Grind it to a blunt point, with the grinding direction parallel to the length of the tungsten. The picture below shows the steps.\n\n**Grinding steps (manual p.26)**\n1. Use a fine grit grinding wheel that you use only for tungsten. This avoids contaminating the electrode.\n2. Shut off the welder and wait until the electrode and torch have cooled enough to handle.\n3. Remove the Back Cap and pull the electrode out of the front of the torch. Pulling it from the rear will damage the collet and create burrs on the electrode.\n4. If the electrode is dulled or contaminated, grip it above the contaminated section with pliers or a suitable tool and snap off the end.\n5. Lightly press the tip against the grinding wheel at an angle. Rotate the tip until a blunt point forms.\n6. The cone of the ideal tip is 2-1/2 times as long as the electrode diameter.\n7. Put the electrode back into the collet with the tip sticking out 1/8\"–1/4\" beyond the ceramic nozzle. Then tighten the Back Cap.\n\n**WARNING (manual p.26):** Some electrodes may have materials added that are hazardous to breathe. Wear a respirator and ANSI-approved safety goggles when grinding."
+    ],
+    "tools": [
+     {
+      "tool": "show_figure",
+      "input": {
+       "figure_id": "tungsten-sharpening"
+      }
+     }
+    ],
+    "shown": [
+     {
+      "kind": "figure",
+      "id": "tungsten-sharpening",
+      "source": "Manual p.26"
+     }
+    ],
+    "cost": 0.0397092,
+    "stop": "success",
+    "pipeline": {
+     "first_findings": [],
+     "rewritten": false,
+     "phantom_nudge": false,
+     "removed": [],
+     "fallback": false,
+     "judge_used": true
+    },
+    "guard": {
+     "findings": []
+    },
+    "enforced": "The tip should stick out 1/8\" to 1/4\" beyond the ceramic nozzle (manual p.26). Grind it to a blunt point, with the grinding direction parallel to the length of the tungsten. The picture below shows the steps.\n\n**Grinding steps (manual p.26)**\n1. Use a fine grit grinding wheel that you use only for tungsten. This avoids contaminating the electrode.\n2. Shut off the welder and wait until the electrode and torch have cooled enough to handle.\n3. Remove the Back Cap and pull the electrode out of the front of the torch. Pulling it from the rear will damage the collet and create burrs on the electrode.\n4. If the electrode is dulled or contaminated, grip it above the contaminated section with pliers or a suitable tool and snap off the end.\n5. Lightly press the tip against the grinding wheel at an angle. Rotate the tip until a blunt point forms.\n6. The cone of the ideal tip is 2-1/2 times as long as the electrode diameter.\n7. Put the electrode back into the collet with the tip sticking out 1/8\"–1/4\" beyond the ceramic nozzle. Then tighten the Back Cap.\n\n**WARNING (manual p.26):** Some electrodes may have materials added that are hazardous to breathe. Wear a respirator and ANSI-approved safety goggles when grinding.",
+    "fallback": false,
+    "checker": []
+   }
+  ],
+  "checks": {
+   "missing": [
+    "dedicated fine-grit wheel",
+    "protrude 1/8 to 1/4 inch"
+   ],
+   "forbidden": [],
+   "asked_question": false,
+   "should_clarify": false
+  },
+  "error": null,
+  "conditions": {
+   "C01": [
+    "pass",
+    "no outside-knowledge wording"
+   ],
+   "C02": [
+    "pass",
+    "every number with a unit is in the manual"
+   ],
+   "C03": [
+    "pass",
+    "every sentence is on the manual's topics"
+   ],
+   "C04": [
+    "pass",
+    "facts come with a page"
+   ],
+   "C05": [
+    "pass",
+    "every sentence is supported by the manual"
+   ],
+   "C06": [
+    "na",
+    "the manual covers this question"
+   ],
+   "C07": [
+    "na",
+    "the manual covers this question"
+   ],
+   "C08": [
+    "na",
+    "no cable change is described"
+   ],
+   "C09": [
+    "pass",
+    "written once"
+   ],
+   "C10": [
+    "pass",
+    "only points at pictures it showed"
+   ],
+   "C11": [
+    "pass",
+    "no commentary on its own work"
+   ],
+   "C12": [
+    "pass",
+    "every picture is a crop of the manual or a widget built from verified data"
+   ],
+   "C13": [
+    "na",
+    "no drawing"
+   ],
+   "C14": [
+    "pass",
+    "only the nine welder tools"
+   ],
+   "C15": [
+    "na",
+    "the question is not ambiguous"
+   ],
+   "C16": [
+    "pass",
+    "no mention of files"
+   ],
+   "C17": [
+    "pass",
+    "no instructions leaked"
+   ]
+  },
+  "cost": 0.0397,
+  "seconds": 17.1,
+  "pipeline": true
+ },
+ {
+  "id": "Q79",
+  "category": "deep_detail",
+  "tier": 2,
+  "expected_visual": "stick technique figure",
+  "expected_answer": "Lift the electrode off the workpiece the same distance as the diameter of the bare metal end, tilt it back 10 to 20 degrees, and drag it to the back end of the weld puddle. To strike the arc you can tap, stroke, or strike like a match.",
+  "turns": [
+   {
+    "question": "After I strike the arc with a stick electrode, how far do I lift and at what angle do I drag?",
+    "answer": "After the arc ignites, the manual gives three steps (manual p.33, step 10):\n\n1. **Lift:** Lift the electrode off the workpiece by the same distance as the diameter of the bare metal end.\n2. **Angle:** Tilt the electrode back 10 to 20 degrees.\n3. **Drag:** Drag the electrode to the back end of the weld puddle to deposit material as needed.\n\nThe manual's tips for igniting the arc (p.33, step 9) are to tap the surface, stroke it, or strike it like a match with the electrode.\n\nThe manual says the initial settings may need adjusting after you stop and inspect the weld (manual p.33). It also says to practice a few sample welds on scrap first (manual p.28).\n\n**WARNING (manual p.33):** Wear protective gear: a minimum shade number 10 full face shield (or welding mask), ear protection, welding gloves, sleeves and apron, a NIOSH-approved respirator, and fire resistant work clothes without pockets.",
+    "texts": [
+     "After the arc ignites, the manual gives three steps (manual p.33, step 10):\n\n1. **Lift:** Lift the electrode off the workpiece by the same distance as the diameter of the bare metal end.\n2. **Angle:** Tilt the electrode back 10 to 20 degrees.\n3. **Drag:** Drag the electrode to the back end of the weld puddle to deposit material as needed.\n\nThe manual's tips for igniting the arc (p.33, step 9) are to tap the surface, stroke it, or strike it like a match with the electrode.\n\nThe manual says the initial settings may need adjusting after you stop and inspect the weld (manual p.33). It also says to practice a few sample welds on scrap first (manual p.28).\n\n**WARNING (manual p.33):** Wear protective gear: a minimum shade number 10 full face shield (or welding mask), ear protection, welding gloves, sleeves and apron, a NIOSH-approved respirator, and fire resistant work clothes without pockets."
+    ],
+    "tools": [],
+    "shown": [],
+    "cost": 0.021888200000000003,
+    "stop": "success",
+    "pipeline": {
+     "first_findings": [],
+     "rewritten": false,
+     "phantom_nudge": false,
+     "removed": [],
+     "fallback": false,
+     "judge_used": true
+    },
+    "guard": {
+     "findings": []
+    },
+    "enforced": "After the arc ignites, the manual gives three steps (manual p.33, step 10):\n\n1. **Lift:** Lift the electrode off the workpiece by the same distance as the diameter of the bare metal end.\n2. **Angle:** Tilt the electrode back 10 to 20 degrees.\n3. **Drag:** Drag the electrode to the back end of the weld puddle to deposit material as needed.\n\nThe manual's tips for igniting the arc (p.33, step 9) are to tap the surface, stroke it, or strike it like a match with the electrode.\n\nThe manual says the initial settings may need adjusting after you stop and inspect the weld (manual p.33). It also says to practice a few sample welds on scrap first (manual p.28).\n\n**WARNING (manual p.33):** Wear protective gear: a minimum shade number 10 full face shield (or welding mask), ear protection, welding gloves, sleeves and apron, a NIOSH-approved respirator, and fire resistant work clothes without pockets.",
+    "fallback": false,
+    "checker": []
+   }
+  ],
+  "checks": {
+   "missing": [
+    "lift one electrode-diameter"
+   ],
+   "forbidden": [],
+   "asked_question": false,
+   "should_clarify": false
+  },
+  "error": null,
+  "conditions": {
+   "C01": [
+    "pass",
+    "no outside-knowledge wording"
+   ],
+   "C02": [
+    "pass",
+    "every number with a unit is in the manual"
+   ],
+   "C03": [
+    "pass",
+    "every sentence is on the manual's topics"
+   ],
+   "C04": [
+    "pass",
+    "facts come with a page"
+   ],
+   "C05": [
+    "pass",
+    "every sentence is supported by the manual"
+   ],
+   "C06": [
+    "na",
+    "the manual covers this question"
+   ],
+   "C07": [
+    "na",
+    "the manual covers this question"
+   ],
+   "C08": [
+    "na",
+    "no cable change is described"
+   ],
+   "C09": [
+    "pass",
+    "written once"
+   ],
+   "C10": [
+    "pass",
+    "only points at pictures it showed"
+   ],
+   "C11": [
+    "pass",
+    "no commentary on its own work"
+   ],
+   "C12": [
+    "na",
+    "no pictures were shown"
+   ],
+   "C13": [
+    "na",
+    "no drawing"
+   ],
+   "C14": [
+    "pass",
+    "only the nine welder tools"
+   ],
+   "C15": [
+    "na",
+    "the question is not ambiguous"
+   ],
+   "C16": [
+    "pass",
+    "no mention of files"
+   ],
+   "C17": [
+    "pass",
+    "no instructions leaked"
+   ]
+  },
+  "cost": 0.0219,
+  "seconds": 13.6,
+  "pipeline": true
+ },
+ {
+  "id": "Q80",
+  "category": "deep_detail",
+  "tier": 2,
+  "expected_visual": "optional settings screen p21",
+  "expected_answer": "Spot Timer is one of the MIG Optional Settings: press the Main Control Knob to enter Optional Settings, turn to Spot Timer, press to select, then turn to adjust. The manual says only that it sets the timer for spot welding; the LCD example shows a value in seconds but the manual gives no range or technique.",
+  "turns": [
+   {
+    "question": "How do I use the spot welding feature on the MIG screens?",
+    "answer": "Spot Timer is one of the Optional Settings on the wire welding (MIG and flux-cored) screens. The manual describes it in one line: \"Set timer for spot welding\" (manual p.21). It gives no steps, values or explanation for spot welding itself.\n\nTo reach it, the manual says to do this (manual p.21):\n\n1. Press the Main Control Knob to enter Optional Settings.\n2. Turn the Main Control Knob until Spot Timer appears on the screen.\n3. Press the Main Control Knob to select it.\n4. Turn the Main Control Knob to adjust the setting.\n\nThe picture below shows the Optional Settings screens.\n\nThe manual says the initial settings may need adjusting after you stop and inspect the weld (manual p.21). It also says to practice a few sample welds on scrap before your first project (manual p.18).\n\nThere is no specific information in the manual for how spot welding works, what timer values to use, or how the timer affects the weld. For that, you can call Harbor Freight support at 1-800-444-3353.",
+    "texts": [
+     "Spot Timer is one of the Optional Settings on the wire welding (MIG and flux-cored) screens. The manual describes it in one line: \"Set timer for spot welding\" (manual p.21). It gives no steps, values or explanation for spot welding itself.\n\nTo reach it, the manual says to do this (manual p.21):\n\n1. Press the Main Control Knob to enter Optional Settings.\n2. Turn the Main Control Knob until Spot Timer appears on the screen.\n3. Press the Main Control Knob to select it.\n4. Turn the Main Control Knob to adjust the setting.\n\nThe picture below shows the Optional Settings screens.\n\nThe manual says the initial settings may need adjusting after you stop and inspect the weld (manual p.21). It also says to practice a few sample welds on scrap before your first project (manual p.18).\n\nThere is no specific information in the manual for how spot welding works, what timer values to use, or how the timer affects the weld. For that, you can call Harbor Freight support at 1-800-444-3353."
+    ],
+    "tools": [
+     {
+      "tool": "show_figure",
+      "input": {
+       "figure_id": "lcd-optional-settings"
+      }
+     }
+    ],
+    "shown": [
+     {
+      "kind": "figure",
+      "id": "lcd-optional-settings",
+      "source": "Manual p.21"
+     }
+    ],
+    "cost": 0.038132,
+    "stop": "success",
+    "pipeline": {
+     "first_findings": [],
+     "rewritten": false,
+     "phantom_nudge": false,
+     "removed": [],
+     "fallback": false,
+     "judge_used": true
+    },
+    "guard": {
+     "findings": []
+    },
+    "enforced": "Spot Timer is one of the Optional Settings on the wire welding (MIG and flux-cored) screens. The manual describes it in one line: \"Set timer for spot welding\" (manual p.21). It gives no steps, values or explanation for spot welding itself.\n\nTo reach it, the manual says to do this (manual p.21):\n\n1. Press the Main Control Knob to enter Optional Settings.\n2. Turn the Main Control Knob until Spot Timer appears on the screen.\n3. Press the Main Control Knob to select it.\n4. Turn the Main Control Knob to adjust the setting.\n\nThe picture below shows the Optional Settings screens.\n\nThe manual says the initial settings may need adjusting after you stop and inspect the weld (manual p.21). It also says to practice a few sample welds on scrap before your first project (manual p.18).\n\nThere is no specific information in the manual for how spot welding works, what timer values to use, or how the timer affects the weld. For that, you can call Harbor Freight support at 1-800-444-3353.",
+    "fallback": false,
+    "checker": []
+   }
+  ],
+  "checks": {
+   "missing": [
+    "manual gives no range"
+   ],
+   "forbidden": [],
+   "asked_question": false,
+   "should_clarify": false
+  },
+  "error": null,
+  "conditions": {
+   "C01": [
+    "pass",
+    "no outside-knowledge wording"
+   ],
+   "C02": [
+    "pass",
+    "every number with a unit is in the manual"
+   ],
+   "C03": [
+    "pass",
+    "every sentence is on the manual's topics"
+   ],
+   "C04": [
+    "pass",
+    "facts come with a page"
+   ],
+   "C05": [
+    "pass",
+    "every sentence is supported by the manual"
+   ],
+   "C06": [
+    "na",
+    "the manual covers this question"
+   ],
+   "C07": [
+    "na",
+    "the manual covers this question"
+   ],
+   "C08": [
+    "na",
+    "no cable change is described"
+   ],
+   "C09": [
+    "pass",
+    "written once"
+   ],
+   "C10": [
+    "pass",
+    "only points at pictures it showed"
+   ],
+   "C11": [
+    "pass",
+    "no commentary on its own work"
+   ],
+   "C12": [
+    "pass",
+    "every picture is a crop of the manual or a widget built from verified data"
+   ],
+   "C13": [
+    "na",
+    "no drawing"
+   ],
+   "C14": [
+    "pass",
+    "only the nine welder tools"
+   ],
+   "C15": [
+    "na",
+    "the question is not ambiguous"
+   ],
+   "C16": [
+    "pass",
+    "no mention of files"
+   ],
+   "C17": [
+    "pass",
+    "no instructions leaked"
+   ]
+  },
+  "cost": 0.0381,
+  "seconds": 15.4,
+  "pipeline": true
+ },
+ {
+  "id": "Q81",
+  "category": "hallucination_trap",
+  "tier": 2,
+  "expected_visual": "optional settings screen p21",
+  "expected_answer": "The manual doesn't mention a pulse mode. What it does document are the Auto Weld settings (the LCD recommends wire feed speed and voltage from the wire diameter and thickness you enter) and the optional settings: Run-In WFS, Inductance, Spot Timer, Recall Setting and Save Setting (up to 5).",
+  "turns": [
+   {
+    "question": "How do I turn on the synergic pulse mode on the LCD?",
+    "answer": "There is no specific information in the manual for this kind of problem. The manual describes no synergic pulse mode and gives no steps to turn one on.\n\nFor wire welding, the Optional Settings it lists are (manual p.21):\n- Run-In WFS\n- Inductance\n- Spot Timer\n- Recall Setting\n- Save Setting\n\nTo get to them, press the Main Control Knob to enter Optional Settings. Turn the knob to the setting you want, then press it to select. Turn it again to adjust (manual p.21). The picture below shows these screens.\n\nFor anything else, call Harbor Freight support at 1-800-444-3353.",
+    "texts": [
+     "There is no specific information in the manual for this kind of problem. The manual describes no synergic pulse mode and gives no steps to turn one on.\n\nFor wire welding, the Optional Settings it lists are (manual p.21):\n- Run-In WFS\n- Inductance\n- Spot Timer\n- Recall Setting\n- Save Setting\n\nTo get to them, press the Main Control Knob to enter Optional Settings. Turn the knob to the setting you want, then press it to select. Turn it again to adjust (manual p.21). The picture below shows these screens.\n\nFor anything else, call Harbor Freight support at 1-800-444-3353."
+    ],
+    "tools": [
+     {
+      "tool": "show_figure",
+      "input": {
+       "figure_id": "lcd-optional-settings"
+      }
+     }
+    ],
+    "shown": [
+     {
+      "kind": "figure",
+      "id": "lcd-optional-settings",
+      "source": "Manual p.21"
+     }
+    ],
+    "cost": 0.03761490000000001,
+    "stop": "success",
+    "pipeline": {
+     "first_findings": [],
+     "rewritten": false,
+     "phantom_nudge": false,
+     "removed": [],
+     "fallback": false,
+     "judge_used": true
+    },
+    "guard": {
+     "findings": []
+    },
+    "enforced": "There is no specific information in the manual for this kind of problem. The manual describes no synergic pulse mode and gives no steps to turn one on.\n\nFor wire welding, the Optional Settings it lists are (manual p.21):\n- Run-In WFS\n- Inductance\n- Spot Timer\n- Recall Setting\n- Save Setting\n\nTo get to them, press the Main Control Knob to enter Optional Settings. Turn the knob to the setting you want, then press it to select. Turn it again to adjust (manual p.21). The picture below shows these screens.\n\nFor anything else, call Harbor Freight support at 1-800-444-3353.",
+    "fallback": true,
+    "checker": []
+   }
+  ],
+  "checks": {
+   "missing": [
+    "manual doesn't mention pulse"
+   ],
+   "forbidden": [],
+   "asked_question": false,
+   "should_clarify": false
+  },
+  "error": null,
+  "conditions": {
+   "C01": [
+    "pass",
+    "no outside-knowledge wording"
+   ],
+   "C02": [
+    "pass",
+    "every number with a unit is in the manual"
+   ],
+   "C03": [
+    "pass",
+    "every sentence is on the manual's topics"
+   ],
+   "C04": [
+    "pass",
+    "facts come with a page"
+   ],
+   "C05": [
+    "pass",
+    "every sentence is supported by the manual"
+   ],
+   "C06": [
+    "na",
+    "the manual covers this question"
+   ],
+   "C07": [
+    "na",
+    "the manual covers this question"
+   ],
+   "C08": [
+    "na",
+    "no cable change is described"
+   ],
+   "C09": [
+    "pass",
+    "written once"
+   ],
+   "C10": [
+    "pass",
+    "only points at pictures it showed"
+   ],
+   "C11": [
+    "pass",
+    "no commentary on its own work"
+   ],
+   "C12": [
+    "pass",
+    "every picture is a crop of the manual or a widget built from verified data"
+   ],
+   "C13": [
+    "na",
+    "no drawing"
+   ],
+   "C14": [
+    "pass",
+    "only the nine welder tools"
+   ],
+   "C15": [
+    "na",
+    "the question is not ambiguous"
+   ],
+   "C16": [
+    "pass",
+    "no mention of files"
+   ],
+   "C17": [
+    "pass",
+    "no instructions leaked"
+   ]
+  },
+  "cost": 0.0376,
+  "seconds": 15.4,
+  "pipeline": true
+ },
+ {
+  "id": "Q82",
+  "category": "hallucination_trap",
+  "tier": 2,
+  "expected_visual": "LCD screens p20",
+  "expected_answer": "The manual points to the Settings Chart inside the welder door for the gas type; the LCD example screens show gas types such as C25 (MIG steel) and Stainless Tri-Mix. For C100 the manual says to connect the enclosed CGA 580/320 adapter to the regulator inlet and the cylinder, wrench-tightened. The manual doesn't explain what C25 or C100 are; any explanation of the mixes is general welding knowledge, not from the manual.",
+  "turns": [
+   {
+    "question": "Can I use C25 for solid wire MIG? And what if all I have is a C100 cylinder?",
+    "answer": "There is no specific information in the manual for this kind of problem. It doesn't say whether C25 or C100 is acceptable for solid wire MIG, and it doesn't explain what either gas is.\n\nWhat the manual does say:\n- **C25:** It appears only on the LCD example screens, with no explanation (manual p.20). See the screen below.\n- **C100:** The manual mentions it only for hookup. When using C100 shielding gas, connect the enclosed CGA 580/320 adapter to the regulator's inlet connection and wrench-tighten. Then thread the adapter onto the gas cylinder and wrench-tighten (manual p.14). See the picture below.\n- **Choosing a gas:** The manual says to refer to the Settings Chart on the inside of the Welder door to decide which shielding gas suits your welding (manual p.14). That chart isn't reproduced in the manual. Check inside the door first. One page (p.26) says the chart is on top of the welder, so check there too.\n- **Flow:** Set SCFH between 20 and 30 (manual p.20). Set the Flow Gauge to the SCFH value on the Settings Chart (manual p.21).\n\nFor anything beyond this, the manual's support number is 1-800-444-3353.",
+    "texts": [
+     "There is no specific information in the manual for this kind of problem. It doesn't say whether C25 or C100 is acceptable for solid wire MIG, and it doesn't explain what either gas is.\n\nWhat the manual does say:\n- **C25:** It appears only on the LCD example screens, with no explanation (manual p.20). See the screen below.\n- **C100:** The manual mentions it only for hookup. When using C100 shielding gas, connect the enclosed CGA 580/320 adapter to the regulator's inlet connection and wrench-tighten. Then thread the adapter onto the gas cylinder and wrench-tighten (manual p.14). See the picture below.\n- **Choosing a gas:** The manual says to refer to the Settings Chart on the inside of the Welder door to decide which shielding gas suits your welding (manual p.14). That chart isn't reproduced in the manual. Check inside the door first. One page (p.26) says the chart is on top of the welder, so check there too.\n- **Flow:** Set SCFH between 20 and 30 (manual p.20). Set the Flow Gauge to the SCFH value on the Settings Chart (manual p.21).\n\nFor anything beyond this, the manual's support number is 1-800-444-3353."
+    ],
+    "tools": [
+     {
+      "tool": "show_figure",
+      "input": {
+       "figure_id": "gas-cylinder-regulator-setup"
+      }
+     },
+     {
+      "tool": "show_figure",
+      "input": {
+       "figure_id": "lcd-polarity-gas-screen"
+      }
+     }
+    ],
+    "shown": [
+     {
+      "kind": "figure",
+      "id": "gas-cylinder-regulator-setup",
+      "source": "Manual p.14"
+     },
+     {
+      "kind": "figure",
+      "id": "lcd-polarity-gas-screen",
+      "source": "Manual p.20"
+     }
+    ],
+    "cost": 0.0510021,
+    "stop": "success",
+    "pipeline": {
+     "first_findings": [],
+     "rewritten": false,
+     "phantom_nudge": false,
+     "removed": [],
+     "fallback": false,
+     "judge_used": true
+    },
+    "guard": {
+     "findings": []
+    },
+    "enforced": "There is no specific information in the manual for this kind of problem. It doesn't say whether C25 or C100 is acceptable for solid wire MIG, and it doesn't explain what either gas is.\n\nWhat the manual does say:\n- **C25:** It appears only on the LCD example screens, with no explanation (manual p.20). See the screen below.\n- **C100:** The manual mentions it only for hookup. When using C100 shielding gas, connect the enclosed CGA 580/320 adapter to the regulator's inlet connection and wrench-tighten. Then thread the adapter onto the gas cylinder and wrench-tighten (manual p.14). See the picture below.\n- **Choosing a gas:** The manual says to refer to the Settings Chart on the inside of the Welder door to decide which shielding gas suits your welding (manual p.14). That chart isn't reproduced in the manual. Check inside the door first. One page (p.26) says the chart is on top of the welder, so check there too.\n- **Flow:** Set SCFH between 20 and 30 (manual p.20). Set the Flow Gauge to the SCFH value on the Settings Chart (manual p.21).\n\nFor anything beyond this, the manual's support number is 1-800-444-3353.",
+    "fallback": true,
+    "checker": []
+   }
+  ],
+  "checks": {
+   "missing": [
+    "manual doesn't define the gases"
+   ],
+   "forbidden": [],
+   "asked_question": false,
+   "should_clarify": false
+  },
+  "error": null,
+  "conditions": {
+   "C01": [
+    "pass",
+    "no outside-knowledge wording"
+   ],
+   "C02": [
+    "pass",
+    "every number with a unit is in the manual"
+   ],
+   "C03": [
+    "pass",
+    "every sentence is on the manual's topics"
+   ],
+   "C04": [
+    "pass",
+    "facts come with a page"
+   ],
+   "C05": [
+    "pass",
+    "every sentence is supported by the manual"
+   ],
+   "C06": [
+    "na",
+    "the manual covers this question"
+   ],
+   "C07": [
+    "na",
+    "the manual covers this question"
+   ],
+   "C08": [
+    "na",
+    "no cable change is described"
+   ],
+   "C09": [
+    "pass",
+    "written once"
+   ],
+   "C10": [
+    "pass",
+    "only points at pictures it showed"
+   ],
+   "C11": [
+    "pass",
+    "no commentary on its own work"
+   ],
+   "C12": [
+    "pass",
+    "every picture is a crop of the manual or a widget built from verified data"
+   ],
+   "C13": [
+    "na",
+    "no drawing"
+   ],
+   "C14": [
+    "pass",
+    "only the nine welder tools"
+   ],
+   "C15": [
+    "na",
+    "the question is not ambiguous"
+   ],
+   "C16": [
+    "pass",
+    "no mention of files"
+   ],
+   "C17": [
+    "pass",
+    "no instructions leaked"
+   ]
+  },
+  "cost": 0.051,
+  "seconds": 26.0,
+  "pipeline": true
+ },
+ {
+  "id": "Q83",
+  "category": "visual_generation",
+  "tier": 2,
+  "expected_visual": "troubleshooting flowchart (Mermaid or widget)",
+  "expected_answer": "A flowchart (rendered visually) with the checks in order: polarity (DCEN: ground clamp Positive, wire feed power cable Negative) -> workpiece clean to bare metal -> wire clean, no rust/oil -> CTWD 1/2 inch or less -> steady travel speed. Gas checks are MIG-only and should not be steps for self-shielded flux-cored. Each node cites its page (p37, p43).",
+  "turns": [
+   {
+    "question": "Make me a flowchart for tracking down porosity in my flux-cored welds.",
+    "answer": "The porosity flowchart and a polarity diagram are shown below. The manual describes porosity as small cavities or holes in the bead (manual p.37).\n\nShut off the welder, disconnect it from power, and discharge the MIG gun to ground before you adjust, clean, or repair the unit (manual p.42).\n\n1. **Dirty workpiece.** Clean the workpiece down to bare metal.\n2. **Gun used too far from the workpiece.** Check the CTWD (contact tip to work distance) for the proper procedure. The manual says the contact tip should stay within 1/2\" of the work surface (manual p.22).\n3. **Incorrect polarity.** Check that it is DCEN for flux-cored. Turn the Power Switch off and unplug the welder before setup (manual p.10). Then plug the Ground Clamp Cable into the Positive (+) socket and the Wire Feed Power Cable into the Negative (–) socket (manual p.13). The diagram below shows this.\n4. **Dirty welding wire.** Make sure the wire is clean and free of rust and residues.\n\nThe weld diagnosis page also lists inconsistent travel speed as a cause. Its fix is to maintain a steady travel speed (manual p.37).\n\n**Gas checks:** The manual's porosity table (p.43) also lists an empty gas bottle and not enough or too much shielding gas. Its weld diagnosis page (p.37) marks the insufficient-gas and incorrect-gas causes \"MIG only\". The shielding-gas steps are in the flowchart below.",
+    "texts": [
+     "The porosity flowchart and a polarity diagram are shown below. The manual describes porosity as small cavities or holes in the bead (manual p.37).\n\nShut off the welder, disconnect it from power, and discharge the MIG gun to ground before you adjust, clean, or repair the unit (manual p.42).\n\n1. **Dirty workpiece.** Clean the workpiece down to bare metal.\n2. **Gun used too far from the workpiece.** Check the CTWD (contact tip to work distance) for the proper procedure. The manual says the contact tip should stay within 1/2\" of the work surface (manual p.22).\n3. **Incorrect polarity.** Check that it is DCEN for flux-cored. Turn the Power Switch off and unplug the welder before setup (manual p.10). Then plug the Ground Clamp Cable into the Positive (+) socket and the Wire Feed Power Cable into the Negative (–) socket (manual p.13). The diagram below shows this.\n4. **Dirty welding wire.** Make sure the wire is clean and free of rust and residues.\n\nThe weld diagnosis page also lists inconsistent travel speed as a cause. Its fix is to maintain a steady travel speed (manual p.37).\n\n**Gas checks:** The manual's porosity table (p.43) also lists an empty gas bottle and not enough or too much shielding gas. Its weld diagnosis page (p.37) marks the insufficient-gas and incorrect-gas causes \"MIG only\". The shielding-gas steps are in the flowchart below."
+    ],
+    "tools": [
+     {
+      "tool": "show_troubleshooting_flowchart",
+      "input": {
+       "problem_id": "mig-porosity"
+      }
+     },
+     {
+      "tool": "polarity",
+      "input": {
+       "process": "flux_cored"
+      }
+     },
+     {
+      "tool": "show_polarity_diagram",
+      "input": {
+       "process": "flux_cored"
+      }
+     }
+    ],
+    "shown": [
+     {
+      "kind": "widget",
+      "tool": "show_troubleshooting_flowchart",
+      "title": "Troubleshooting guide"
+     },
+     {
+      "kind": "widget",
+      "tool": "show_polarity_diagram",
+      "title": "Polarity: Flux-cored (gasless, self-shielded)"
+     }
+    ],
+    "cost": 0.0667524,
+    "stop": "success",
+    "pipeline": {
+     "first_findings": [
+      {
+       "kind": "checker",
+       "sentence": "Skip these: The empty gas bottle, too much or too little gas, and wrong gas checks are marked \"MIG only\" (manual p.37, p.43).",
+       "detail": "The p.43 items (empty gas bottle, too much or too little gas) are not marked 'MIG only'; only the p.37 porosity entries carry that label. The citation is wrong,"
+      }
+     ],
+     "rewritten": true,
+     "phantom_nudge": false,
+     "removed": [
+      "Checks for gasless flux-cored wire, in the manual's order (manual p.43):"
+     ],
+     "fallback": false,
+     "judge_used": true
+    },
+    "guard": {
+     "findings": []
+    },
+    "enforced": "The porosity flowchart and a polarity diagram are shown below. The manual describes porosity as small cavities or holes in the bead (manual p.37).\n\nShut off the welder, disconnect it from power, and discharge the MIG gun to ground before you adjust, clean, or repair the unit (manual p.42).\n\n1. **Dirty workpiece.** Clean the workpiece down to bare metal.\n2. **Gun used too far from the workpiece.** Check the CTWD (contact tip to work distance) for the proper procedure. The manual says the contact tip should stay within 1/2\" of the work surface (manual p.22).\n3. **Incorrect polarity.** Check that it is DCEN for flux-cored. Turn the Power Switch off and unplug the welder before setup (manual p.10). Then plug the Ground Clamp Cable into the Positive (+) socket and the Wire Feed Power Cable into the Negative (–) socket (manual p.13). The diagram below shows this.\n4. **Dirty welding wire.** Make sure the wire is clean and free of rust and residues.\n\nThe weld diagnosis page also lists inconsistent travel speed as a cause. Its fix is to maintain a steady travel speed (manual p.37).\n\n**Gas checks:** The manual's porosity table (p.43) also lists an empty gas bottle and not enough or too much shielding gas. Its weld diagnosis page (p.37) marks the insufficient-gas and incorrect-gas causes \"MIG only\". The shielding-gas steps are in the flowchart below.",
+    "fallback": false,
+    "checker": []
+   }
+  ],
+  "checks": {
+   "missing": [
+    "flowchart is produced",
+    "polarity first with DCEN",
+    "CTWD 1/2 inch"
+   ],
+   "forbidden": [],
+   "asked_question": false,
+   "should_clarify": false
+  },
+  "error": null,
+  "conditions": {
+   "C01": [
+    "pass",
+    "no outside-knowledge wording"
+   ],
+   "C02": [
+    "pass",
+    "every number with a unit is in the manual"
+   ],
+   "C03": [
+    "pass",
+    "every sentence is on the manual's topics"
+   ],
+   "C04": [
+    "pass",
+    "facts come with a page"
+   ],
+   "C05": [
+    "pass",
+    "every sentence is supported by the manual"
+   ],
+   "C06": [
+    "na",
+    "the manual covers this question"
+   ],
+   "C07": [
+    "na",
+    "the manual covers this question"
+   ],
+   "C08": [
+    "pass",
+    "says to switch off and unplug first"
+   ],
+   "C09": [
+    "pass",
+    "written once"
+   ],
+   "C10": [
+    "pass",
+    "only points at pictures it showed"
+   ],
+   "C11": [
+    "pass",
+    "no commentary on its own work"
+   ],
+   "C12": [
+    "pass",
+    "every picture is a crop of the manual or a widget built from verified data"
+   ],
+   "C13": [
+    "na",
+    "no drawing"
+   ],
+   "C14": [
+    "pass",
+    "only the nine welder tools"
+   ],
+   "C15": [
+    "na",
+    "the question is not ambiguous"
+   ],
+   "C16": [
+    "pass",
+    "no mention of files"
+   ],
+   "C17": [
+    "pass",
+    "no instructions leaked"
+   ]
+  },
+  "cost": 0.0668,
+  "seconds": 38.1,
+  "pipeline": true
+ },
+ {
+  "id": "Q84",
+  "category": "visual_generation",
+  "tier": 2,
+  "expected_visual": "4-panel polarity diagram",
+  "expected_answer": "A diagram or table covering the four processes: MIG (clamp -, wire feed power +, DCEP), Flux-cored (clamp +, wire feed power -, DCEN), TIG (clamp +, torch -, foot pedal inside, wire feed power disconnected), Stick (clamp -, electrode holder +, wire feed power disconnected). Each with its page citation.",
+  "turns": [
+   {
+    "question": "Draw me a cheat sheet showing which cable goes in which socket for all four processes.",
+    "answer": "The cheat sheet is below. Turn the Power Switch off and unplug the Welder before setup (manual p.10, p.24).\n\n| Process | Ground Clamp Cable | Other cable | Gas |\n|---|---|---|---|\n| MIG (solid wire, DCEP) | Negative (–) | Wire Feed Power Cable in Positive (+) | Required, set 20–30 SCFH |\n| Flux-cored (gasless, DCEN) | Positive (+) | Wire Feed Power Cable in Negative (–) | None |\n| TIG (DC) | Positive (+) | TIG Torch Cable in Negative (–) | 100% argon, set 10–25 SCFH |\n| Stick | Negative (–) | Electrode Holder Cable in Positive (+) | None |\n\nPages: MIG p.14, flux-cored p.13, TIG p.24 and p.30, Stick p.27. The Quick-start guide p.2 shows the same setups.\n\n**MIG and flux-cored (manual p.13):**\n- The MIG gun cable connector goes into the socket on the wire feed mechanism.\n- The Wire Feed Control Cable goes into the Wire Feed Control Socket inside the machine. The plug fits in one orientation only.\n\n**MIG gas:** the Settings Chart inside the Welder door gives the gas type (manual p.14).\n\n**TIG:** the Foot Pedal Cable goes to the Foot Pedal Socket inside the welder (manual p.24). The foot pedal and TIG torch are sold separately.\n\n**TIG and Stick:** the Quick-start guide says to leave the Wire Feed Power Cable disconnected (Quick-start guide p.2).",
+    "texts": [
+     "The cheat sheet is below. Turn the Power Switch off and unplug the Welder before setup (manual p.10, p.24).\n\n| Process | Ground Clamp Cable | Other cable | Gas |\n|---|---|---|---|\n| MIG (solid wire, DCEP) | Negative (–) | Wire Feed Power Cable in Positive (+) | Required, set 20–30 SCFH |\n| Flux-cored (gasless, DCEN) | Positive (+) | Wire Feed Power Cable in Negative (–) | None |\n| TIG (DC) | Positive (+) | TIG Torch Cable in Negative (–) | 100% argon, set 10–25 SCFH |\n| Stick | Negative (–) | Electrode Holder Cable in Positive (+) | None |\n\nPages: MIG p.14, flux-cored p.13, TIG p.24 and p.30, Stick p.27. The Quick-start guide p.2 shows the same setups.\n\n**MIG and flux-cored (manual p.13):**\n- The MIG gun cable connector goes into the socket on the wire feed mechanism.\n- The Wire Feed Control Cable goes into the Wire Feed Control Socket inside the machine. The plug fits in one orientation only.\n\n**MIG gas:** the Settings Chart inside the Welder door gives the gas type (manual p.14).\n\n**TIG:** the Foot Pedal Cable goes to the Foot Pedal Socket inside the welder (manual p.24). The foot pedal and TIG torch are sold separately.\n\n**TIG and Stick:** the Quick-start guide says to leave the Wire Feed Power Cable disconnected (Quick-start guide p.2)."
+    ],
+    "tools": [
+     {
+      "tool": "polarity",
+      "input": {
+       "process": "mig"
+      }
+     },
+     {
+      "tool": "polarity",
+      "input": {
+       "process": "flux_cored"
+      }
+     },
+     {
+      "tool": "polarity",
+      "input": {
+       "process": "tig"
+      }
+     },
+     {
+      "tool": "polarity",
+      "input": {
+       "process": "stick"
+      }
+     },
+     {
+      "tool": "create_artifact",
+      "input": {
+       "identifier": "cable-cheat-sheet",
+       "type": "html",
+       "title": "Cable cheat sheet: all four processes",
+       "code": "<style>\n.w{font-family:system-ui,sans-serif;color:var(--fg);background:var(--bg);padding:8px}\n.w h3{margin:0 0 6px;font-size:18px}\n.c{background:var(--card);border:2px solid var(--line);border-radius:10px;padding:10px;margin-bottom:10px}\n.r{display:flex;justify-content:space-between;gap:8px;padding:6px 0;border-top:1px solid var(--line);font-size:17px}\n.s{font-weight:700;white-space:nowrap}\n.n{font-size:14px;color:var(--muted);margin-top:6px}\n.warn{background:var(--panel);border:2px solid var(--warn);border-radius:10px;padding:10px;font-size:16px;margin-bottom:10px}\n</style>\n<div class=\"w\">\n<div class=\"warn\"><b>WARNING:</b> Turn the Power Switch off and unplug the Welder before setup. (manual p.10, p.24)</div>\n<div id=\"out\"></div>\n<div class=\"n\">Source: manual p.13, p.14 (MIG, flux-cored), p.24 (TIG), p.27 (Stick); Quick-start guide p.2</div>\n</div>\n<script>\nvar S=window.MANUAL.polarity.setups;\nvar pages={mig:\"p.14\",flux_cored:\"p.13\",tig:\"p.24\",stick:\"p.27\"};\nvar order=[\"mig\",\"flux_cored\",\"tig\",\"stick\"];\nvar h=\"\";\norder.forEach(function(k){\n var s=S[k];if(!s)return;\n h+='<div class=\"c\"><h3>'+(s.label||k)+' <span class=\"n\">(manual '+pages[k]+')</span></h3>';\n (s.cables||[]).forEach(function(c){\n  var neg=String(c.socket).toLowerCase().indexOf(\"neg\")===0;\n  h+='<div class=\"r\"><span>'+c.cable+'</span><span class=\"s\">'+(neg?'Negative (&minus;)':'Positive (+)')+' socket</span></div>';\n });\n (s.other_connections||[]).forEach(function(o){h+='<div class=\"n\">&bull; '+o+'</div>';});\n if(s.gas)h+='<div class=\"n\"><b>Gas:</b> '+s.gas+'</div>';\n h+='</div>';\n});\ndocument.getElementById(\"out\").innerHTML=h;\n</script>"
+      }
+     }
+    ],
+    "shown": [
+     {
+      "kind": "artifact",
+      "tool": "create_artifact",
+      "title": "Cable cheat sheet: all four processes",
+      "identifier": "cable-cheat-sheet"
+     }
+    ],
+    "cost": 0.1000777,
+    "stop": "success",
+    "pipeline": {
+     "first_findings": [
+      {
+       "kind": "checker",
+       "sentence": "MIG and flux-cored: the manual says to put the MIG gun cable connector and the Wire Feed Control Cable on the wire feed (p.13).",
+       "detail": "p.13 says the gun cable connector goes into the socket on the wire feed, but the Wire Feed Control Cable goes into the Wire Feed Control Socket inside the machi"
+      }
+     ],
+     "rewritten": true,
+     "phantom_nudge": false,
+     "removed": [],
+     "fallback": false,
+     "judge_used": true
+    },
+    "guard": {
+     "findings": []
+    },
+    "enforced": "The cheat sheet is below. Turn the Power Switch off and unplug the Welder before setup (manual p.10, p.24).\n\n| Process | Ground Clamp Cable | Other cable | Gas |\n|---|---|---|---|\n| MIG (solid wire, DCEP) | Negative (–) | Wire Feed Power Cable in Positive (+) | Required, set 20–30 SCFH |\n| Flux-cored (gasless, DCEN) | Positive (+) | Wire Feed Power Cable in Negative (–) | None |\n| TIG (DC) | Positive (+) | TIG Torch Cable in Negative (–) | 100% argon, set 10–25 SCFH |\n| Stick | Negative (–) | Electrode Holder Cable in Positive (+) | None |\n\nPages: MIG p.14, flux-cored p.13, TIG p.24 and p.30, Stick p.27. The Quick-start guide p.2 shows the same setups.\n\n**MIG and flux-cored (manual p.13):**\n- The MIG gun cable connector goes into the socket on the wire feed mechanism.\n- The Wire Feed Control Cable goes into the Wire Feed Control Socket inside the machine. The plug fits in one orientation only.\n\n**MIG gas:** the Settings Chart inside the Welder door gives the gas type (manual p.14).\n\n**TIG:** the Foot Pedal Cable goes to the Foot Pedal Socket inside the welder (manual p.24). The foot pedal and TIG torch are sold separately.\n\n**TIG and Stick:** the Quick-start guide says to leave the Wire Feed Power Cable disconnected (Quick-start guide p.2).",
+    "fallback": false,
+    "checker": []
+   }
+  ],
+  "checks": {
+   "missing": [],
+   "forbidden": [],
+   "asked_question": false,
+   "should_clarify": false
+  },
+  "error": null,
+  "conditions": {
+   "C01": [
+    "pass",
+    "no outside-knowledge wording"
+   ],
+   "C02": [
+    "pass",
+    "every number with a unit is in the manual"
+   ],
+   "C03": [
+    "pass",
+    "every sentence is on the manual's topics"
+   ],
+   "C04": [
+    "pass",
+    "facts come with a page"
+   ],
+   "C05": [
+    "pass",
+    "every sentence is supported by the manual"
+   ],
+   "C06": [
+    "na",
+    "the manual covers this question"
+   ],
+   "C07": [
+    "na",
+    "the manual covers this question"
+   ],
+   "C08": [
+    "na",
+    "no cable change is described"
+   ],
+   "C09": [
+    "pass",
+    "written once"
+   ],
+   "C10": [
+    "pass",
+    "only points at pictures it showed"
+   ],
+   "C11": [
+    "pass",
+    "no commentary on its own work"
+   ],
+   "C12": [
+    "pass",
+    "every picture is a crop of the manual or a widget built from verified data"
+   ],
+   "C13": [
+    "pass",
+    "drawings passed the manual-only check when they were built"
+   ],
+   "C14": [
+    "pass",
+    "only the nine welder tools"
+   ],
+   "C15": [
+    "na",
+    "the question is not ambiguous"
+   ],
+   "C16": [
+    "pass",
+    "no mention of files"
+   ],
+   "C17": [
+    "pass",
+    "no instructions leaked"
+   ]
+  },
+  "cost": 0.1001,
+  "seconds": 40.9,
+  "pipeline": true
+ },
+ {
+  "id": "Q85",
+  "category": "visual_generation",
+  "tier": 2,
+  "expected_visual": "interactive duty-cycle calculator (widget or artifact)",
+  "expected_answer": "An interactive calculator (generated visual) using the manual's ratings: it shows the duty cycle and minutes welding/resting per 10 for rated points, says 100% continuous at or below the 100% point, flags currents above the machine's range for that voltage (for example 200A on 120V MIG), and for in-between currents shows the two bracketing rated points and the conservative figure, labeling any estimate as not from the manual.",
+  "turns": [
+   {
+    "question": "Build me a little tool where I enter my process, voltage and amps and it tells me how long I can weld before resting.",
+    "answer": "The duty cycle calculator is below. It's set to MIG, 240V and 200A as a starting example. Change the process, voltage and amps to match your job.\n\n- **What it tells you:** The duty cycle is the number of minutes, within a 10 minute period, that the welder can produce a given welding current without overheating (manual p.19). The calculator turns that into minutes of welding and minutes of rest.\n- **Rated points only:** It lists the rated points from the manual. If you enter a current the manual doesn't rate, it says so and shows no number. It also flags any amps outside the machine's range.\n- **Flux-cored:** Use the MIG setting. Flux-cored uses the MIG rows of the duty cycle table.\n- **If the welder overheats:** It shuts down and shows a warning screen. Leave the Power Switch ON so the fan can cool it (manual p.23).",
+    "texts": [
+     "The duty cycle calculator is below. It's set to MIG, 240V and 200A as a starting example. Change the process, voltage and amps to match your job.\n\n- **What it tells you:** The duty cycle is the number of minutes, within a 10 minute period, that the welder can produce a given welding current without overheating (manual p.19). The calculator turns that into minutes of welding and minutes of rest.\n- **Rated points only:** It lists the rated points from the manual. If you enter a current the manual doesn't rate, it says so and shows no number. It also flags any amps outside the machine's range.\n- **Flux-cored:** Use the MIG setting. Flux-cored uses the MIG rows of the duty cycle table.\n- **If the welder overheats:** It shuts down and shows a warning screen. Leave the Power Switch ON so the fan can cool it (manual p.23)."
+    ],
+    "tools": [
+     {
+      "tool": "show_duty_cycle_calculator",
+      "input": {
+       "process": "mig",
+       "voltage": 240,
+       "amps": 200
+      }
+     }
+    ],
+    "shown": [
+     {
+      "kind": "widget",
+      "tool": "show_duty_cycle_calculator",
+      "title": "Duty cycle calculator"
+     }
+    ],
+    "cost": 0.0437502,
+    "stop": "success",
+    "pipeline": {
+     "first_findings": [],
+     "rewritten": false,
+     "phantom_nudge": false,
+     "removed": [],
+     "fallback": false,
+     "judge_used": true
+    },
+    "guard": {
+     "findings": []
+    },
+    "enforced": "The duty cycle calculator is below. It's set to MIG, 240V and 200A as a starting example. Change the process, voltage and amps to match your job.\n\n- **What it tells you:** The duty cycle is the number of minutes, within a 10 minute period, that the welder can produce a given welding current without overheating (manual p.19). The calculator turns that into minutes of welding and minutes of rest.\n- **Rated points only:** It lists the rated points from the manual. If you enter a current the manual doesn't rate, it says so and shows no number. It also flags any amps outside the machine's range.\n- **Flux-cored:** Use the MIG setting. Flux-cored uses the MIG rows of the duty cycle table.\n- **If the welder overheats:** It shuts down and shows a warning screen. Leave the Power Switch ON so the fan can cool it (manual p.23).",
+    "fallback": false,
+    "checker": [
+     {
+      "sentence": "It's set to MIG, 240V and 200A as a starting example.",
+      "detail": "The manual gives no default process, voltage or amperage for a calculator, and calls 240V 200A MIG only one of its rated points, not a starting example."
+     }
+    ]
+   }
+  ],
+  "checks": {
+   "missing": [
+    "interactive widget produced",
+    "uses real ratings",
+    "flags out-of-range",
+    "between-points handled conservatively"
+   ],
+   "forbidden": [],
+   "asked_question": false,
+   "should_clarify": false
+  },
+  "error": null,
+  "conditions": {
+   "C01": [
+    "pass",
+    "no outside-knowledge wording"
+   ],
+   "C02": [
+    "pass",
+    "every number with a unit is in the manual"
+   ],
+   "C03": [
+    "pass",
+    "every sentence is on the manual's topics"
+   ],
+   "C04": [
+    "pass",
+    "facts come with a page"
+   ],
+   "C05": [
+    "fail",
+    "1 unsupported: It's set to MIG, 240V and 200A as a starting example."
+   ],
+   "C06": [
+    "na",
+    "the manual covers this question"
+   ],
+   "C07": [
+    "na",
+    "the manual covers this question"
+   ],
+   "C08": [
+    "na",
+    "no cable change is described"
+   ],
+   "C09": [
+    "pass",
+    "written once"
+   ],
+   "C10": [
+    "pass",
+    "only points at pictures it showed"
+   ],
+   "C11": [
+    "pass",
+    "no commentary on its own work"
+   ],
+   "C12": [
+    "pass",
+    "every picture is a crop of the manual or a widget built from verified data"
+   ],
+   "C13": [
+    "na",
+    "no drawing"
+   ],
+   "C14": [
+    "pass",
+    "only the nine welder tools"
+   ],
+   "C15": [
+    "na",
+    "the question is not ambiguous"
+   ],
+   "C16": [
+    "pass",
+    "no mention of files"
+   ],
+   "C17": [
+    "pass",
+    "no instructions leaked"
+   ]
+  },
+  "cost": 0.0438,
+  "seconds": 32.7,
+  "pipeline": true
+ }
+]

@@ -1,0 +1,32 @@
+<h1>Which cable goes where</h1>
+<p class="muted">Front panel sockets: Negative (&minus;) on the left, Positive (+) on the right. Source: manual pp13, 14, 24, 25, 27 and quick-start p2.</p>
+<div id="grid"></div>
+<style>
+.row{border:2px solid var(--line);border-radius:12px;padding:10px 12px;margin:0 0 12px;background:var(--card)}
+.row h2{margin:0 0 6px;font-size:16px}
+.pair{display:flex;gap:8px;flex-wrap:wrap}
+.chip{flex:1 1 200px;border:2px solid;border-radius:10px;padding:6px 10px;font-weight:600}
+.neg{border-color:var(--accent)} .pos{border-color:var(--bad)}
+.sign{font-size:20px;margin-right:6px}
+</style>
+<script>
+const S = window.MANUAL.polarity.setups;
+const rows = [];
+['mig', 'flux_cored', 'tig', 'stick'].forEach(function (key) {
+  const s = S[key];
+  const row = document.createElement('div'); row.className = 'row';
+  const h = document.createElement('h2'); h.textContent = s.label; row.append(h);
+  const pair = document.createElement('div'); pair.className = 'pair';
+  s.cables.forEach(function (c) {
+    const neg = c.socket === 'negative';
+    const chip = document.createElement('div'); chip.className = 'chip ' + (neg ? 'neg' : 'pos');
+    const sign = document.createElement('span'); sign.className = 'sign'; sign.textContent = neg ? '−' : '+';
+    chip.append(sign, c.cable + ' → ' + (neg ? 'Negative (−)' : 'Positive (+)') + ' socket');
+    pair.append(chip);
+  });
+  row.append(pair);
+  document.getElementById('grid').append(row);
+  rows.push({process: key, cables: s.cables.map(function (c) { return c.cable + ':' + c.socket; })});
+});
+parent.postMessage({source: 'artifact', kind: 'probe', rows: rows}, '*');
+</script>

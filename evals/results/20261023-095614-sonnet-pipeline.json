@@ -1,0 +1,4714 @@
+[
+ {
+  "id": "G01",
+  "category": "outside_scope",
+  "tier": 3,
+  "expected_visual": "none",
+  "expected_answer": "The manual has nothing on this, so the only correct answer is: There is no specific information in the manual for this kind of problem (optionally the manual's support number 1-800-444-3353). Nothing else may be added.",
+  "turns": [
+   {
+    "question": "What's the best brand of welding helmet to buy?",
+    "answer": "There is no specific information in the manual for this kind of problem. It doesn't recommend any helmet brand.\n\nHere is what the manual says about eye and face protection (see the picture below):\n\n- Wear ANSI-approved welding eye protection with at least a number 10 shade lens (manual p.3).\n- For wire welding, wear a minimum shade number 10 full face shield (or welding mask) (manual p.18).\n- The same minimum applies for TIG and Stick (manual pp.28, 31, 33).\n- The manual says light from the arc can cause permanent damage to the eyes and skin (manual p.18).\n\nFor anything beyond that, call the manual's support line at 1-800-444-3353.",
+    "texts": [
+     "There is no specific information in the manual for this kind of problem. It doesn't recommend any helmet brand.\n\nHere is what the manual says about eye and face protection (see the picture below):\n\n- Wear ANSI-approved welding eye protection with at least a number 10 shade lens (manual p.3).\n- For wire welding, wear a minimum shade number 10 full face shield (or welding mask) (manual p.18).\n- The same minimum applies for TIG and Stick (manual pp.28, 31, 33).\n- The manual says light from the arc can cause permanent damage to the eyes and skin (manual p.18).\n\nFor anything beyond that, call the manual's support line at 1-800-444-3353."
+    ],
+    "tools": [
+     {
+      "tool": "show_figure",
+      "input": {
+       "figure_id": "arc-ray-safety"
+      }
+     }
+    ],
+    "shown": [
+     {
+      "kind": "figure",
+      "id": "arc-ray-safety",
+      "source": "Manual p.3"
+     }
+    ],
+    "cost": 0.2165135,
+    "stop": "success",
+    "pipeline": {
+     "first_findings": [],
+     "rewritten": false,
+     "phantom_nudge": false,
+     "removed": [],
+     "fallback": false,
+     "judge_used": true
+    },
+    "guard": {
+     "findings": []
+    },
+    "enforced": "There is no specific information in the manual for this kind of problem. It doesn't recommend any helmet brand.\n\nHere is what the manual says about eye and face protection (see the picture below):\n\n- Wear ANSI-approved welding eye protection with at least a number 10 shade lens (manual p.3).\n- For wire welding, wear a minimum shade number 10 full face shield (or welding mask) (manual p.18).\n- The same minimum applies for TIG and Stick (manual pp.28, 31, 33).\n- The manual says light from the arc can cause permanent damage to the eyes and skin (manual p.18).\n\nFor anything beyond that, call the manual's support line at 1-800-444-3353.",
+    "fallback": true,
+    "checker": [
+     {
+      "sentence": "Here is what the manual says about eye and face protection (see the picture below):",
+      "detail": "Points to a picture of eye protection, but the sources list no such picture."
+     },
+     {
+      "sentence": "For anything beyond that, call the manual's support line at 1-800-444-3353.",
+      "detail": "The manual gives 1-800-444-3353 only for technical questions; 'for anything beyond that' widens its scope."
+     }
+    ]
+   }
+  ],
+  "checks": {
+   "missing": [],
+   "forbidden": [],
+   "asked_question": false,
+   "should_clarify": false
+  },
+  "error": null,
+  "conditions": {
+   "C01": [
+    "pass",
+    "no outside-knowledge wording"
+   ],
+   "C02": [
+    "pass",
+    "every number with a unit is in the manual"
+   ],
+   "C03": [
+    "pass",
+    "every sentence is on the manual's topics"
+   ],
+   "C04": [
+    "pass",
+    "facts come with a page"
+   ],
+   "C05": [
+    "fail",
+    "2 unsupported: Here is what the manual says about eye and face protection (see the picture belo | For anything beyond that, call the manual's support line at 1-800-444-3353."
+   ],
+   "C06": [
+    "pass",
+    "said there is no specific information in the manual"
+   ],
+   "C07": [
+    "pass",
+    "added nothing beyond the manual"
+   ],
+   "C08": [
+    "na",
+    "no cable change is described"
+   ],
+   "C09": [
+    "pass",
+    "written once"
+   ],
+   "C10": [
+    "pass",
+    "only points at pictures it showed"
+   ],
+   "C11": [
+    "pass",
+    "no commentary on its own work"
+   ],
+   "C12": [
+    "pass",
+    "every picture is a crop of the manual or a widget built from verified data"
+   ],
+   "C13": [
+    "na",
+    "no drawing"
+   ],
+   "C14": [
+    "pass",
+    "only the nine welder tools"
+   ],
+   "C15": [
+    "na",
+    "the question is not ambiguous"
+   ],
+   "C16": [
+    "pass",
+    "no mention of files"
+   ],
+   "C17": [
+    "pass",
+    "no instructions leaked"
+   ]
+  },
+  "cost": 0.2165,
+  "seconds": 19.6,
+  "pipeline": true
+ },
+ {
+  "id": "G02",
+  "category": "outside_scope",
+  "tier": 3,
+  "expected_visual": "none",
+  "expected_answer": "The manual has nothing on this, so the only correct answer is: There is no specific information in the manual for this kind of problem (optionally the manual's support number 1-800-444-3353). Nothing else may be added.",
+  "turns": [
+   {
+    "question": "How much does it cost to run this welder per hour?",
+    "answer": "There is no specific information in the manual for this kind of problem.\n\nThe manual gives no electricity cost and no price per hour. It does list the input current at rated output in the Specifications (manual p.7):\n\n- **MIG:** 20.8 A at 100 A output on 120V, and 25.5 A at 200 A output on 240V.\n- **TIG:** 20.6 A at 125 A on 120V, and 15.6 A at 175 A on 240V.\n- **Stick:** 19.5 A at 80 A on 120V, and 23.7 A at 175 A on 240V.\n\nFor anything else, the manual's support number is 1-800-444-3353.",
+    "texts": [
+     "There is no specific information in the manual for this kind of problem.\n\nThe manual gives no electricity cost and no price per hour. It does list the input current at rated output in the Specifications (manual p.7):\n\n- **MIG:** 20.8 A at 100 A output on 120V, and 25.5 A at 200 A output on 240V.\n- **TIG:** 20.6 A at 125 A on 120V, and 15.6 A at 175 A on 240V.\n- **Stick:** 19.5 A at 80 A on 120V, and 23.7 A at 175 A on 240V.\n\nFor anything else, the manual's support number is 1-800-444-3353."
+    ],
+    "tools": [
+     {
+      "tool": "show_figure",
+      "input": {
+       "figure_id": "spec-table-mig"
+      }
+     }
+    ],
+    "shown": [
+     {
+      "kind": "figure",
+      "id": "spec-table-mig",
+      "source": "Manual p.7"
+     }
+    ],
+    "cost": 0.0591121,
+    "stop": "success",
+    "pipeline": {
+     "first_findings": [
+      {
+       "kind": "checker",
+       "sentence": "The specification table is shown below.",
+       "detail": "Says a specification table is shown below, but the answer contains no table, and the sources describe p.7 as a text table, not a picture."
+      },
+      {
+       "kind": "checker",
+       "sentence": "Check the input current numbers against the picture (manual p.7).",
+       "detail": "Calls the p.7 specification table 'the picture'. The sources do not describe it as a picture."
+      }
+     ],
+     "rewritten": true,
+     "phantom_nudge": false,
+     "removed": [],
+     "fallback": true,
+     "judge_used": true
+    },
+    "guard": {
+     "findings": []
+    },
+    "enforced": "There is no specific information in the manual for this kind of problem.\n\nThe manual gives no electricity cost and no price per hour. It does list the input current at rated output in the Specifications (manual p.7):\n\n- **MIG:** 20.8 A at 100 A output on 120V, and 25.5 A at 200 A output on 240V.\n- **TIG:** 20.6 A at 125 A on 120V, and 15.6 A at 175 A on 240V.\n- **Stick:** 19.5 A at 80 A on 120V, and 23.7 A at 175 A on 240V.\n\nFor anything else, the manual's support number is 1-800-444-3353.",
+    "fallback": true,
+    "checker": []
+   }
+  ],
+  "checks": {
+   "missing": [],
+   "forbidden": [],
+   "asked_question": false,
+   "should_clarify": false
+  },
+  "error": null,
+  "conditions": {
+   "C01": [
+    "pass",
+    "no outside-knowledge wording"
+   ],
+   "C02": [
+    "pass",
+    "every number with a unit is in the manual"
+   ],
+   "C03": [
+    "pass",
+    "every sentence is on the manual's topics"
+   ],
+   "C04": [
+    "pass",
+    "facts come with a page"
+   ],
+   "C05": [
+    "pass",
+    "every sentence is supported by the manual"
+   ],
+   "C06": [
+    "pass",
+    "said there is no specific information in the manual"
+   ],
+   "C07": [
+    "pass",
+    "added nothing beyond the manual"
+   ],
+   "C08": [
+    "na",
+    "no cable change is described"
+   ],
+   "C09": [
+    "pass",
+    "written once"
+   ],
+   "C10": [
+    "pass",
+    "only points at pictures it showed"
+   ],
+   "C11": [
+    "pass",
+    "no commentary on its own work"
+   ],
+   "C12": [
+    "pass",
+    "every picture is a crop of the manual or a widget built from verified data"
+   ],
+   "C13": [
+    "na",
+    "no drawing"
+   ],
+   "C14": [
+    "pass",
+    "only the nine welder tools"
+   ],
+   "C15": [
+    "na",
+    "the question is not ambiguous"
+   ],
+   "C16": [
+    "pass",
+    "no mention of files"
+   ],
+   "C17": [
+    "pass",
+    "no instructions leaked"
+   ]
+  },
+  "cost": 0.0591,
+  "seconds": 32.9,
+  "pipeline": true
+ },
+ {
+  "id": "G03",
+  "category": "outside_scope",
+  "tier": 3,
+  "expected_visual": "none",
+  "expected_answer": "The manual has nothing on this, so the only correct answer is: There is no specific information in the manual for this kind of problem (optionally the manual's support number 1-800-444-3353). Nothing else may be added.",
+  "turns": [
+   {
+    "question": "Is the OmniPro 220 better than a Lincoln or Miller machine?",
+    "answer": "There is no specific information in the manual for this kind of problem.\n\nThe nearby pages cover this machine's own specifications (manual p.7). The manual's support number is 1-800-444-3353.",
+    "texts": [
+     "There is no specific information in the manual for this kind of problem.\n\nThe nearby pages cover this machine's own specifications (manual p.7). The manual's support number is 1-800-444-3353."
+    ],
+    "tools": [],
+    "shown": [],
+    "cost": 0.0377282,
+    "stop": "success",
+    "pipeline": {
+     "first_findings": [
+      {
+       "kind": "marker",
+       "sentence": "For anything beyond the manual, you can call Harbor Freight support at 1-800-444-3353.",
+       "detail": "outside-knowledge wording: 'beyond the manual'"
+      }
+     ],
+     "rewritten": true,
+     "phantom_nudge": false,
+     "removed": [
+      "The manual doesn't mention Lincoln, Miller or any other brand."
+     ],
+     "fallback": true,
+     "judge_used": false
+    },
+    "guard": {
+     "findings": []
+    },
+    "enforced": "There is no specific information in the manual for this kind of problem.\n\nThe nearby pages cover this machine's own specifications (manual p.7). The manual's support number is 1-800-444-3353.",
+    "fallback": true,
+    "checker": []
+   }
+  ],
+  "checks": {
+   "missing": [],
+   "forbidden": [],
+   "asked_question": false,
+   "should_clarify": false
+  },
+  "error": null,
+  "conditions": {
+   "C01": [
+    "pass",
+    "no outside-knowledge wording"
+   ],
+   "C02": [
+    "pass",
+    "every number with a unit is in the manual"
+   ],
+   "C03": [
+    "pass",
+    "every sentence is on the manual's topics"
+   ],
+   "C04": [
+    "pass",
+    "facts come with a page"
+   ],
+   "C05": [
+    "pass",
+    "every sentence is supported by the manual"
+   ],
+   "C06": [
+    "pass",
+    "said there is no specific information in the manual"
+   ],
+   "C07": [
+    "pass",
+    "added nothing beyond the manual"
+   ],
+   "C08": [
+    "na",
+    "no cable change is described"
+   ],
+   "C09": [
+    "pass",
+    "written once"
+   ],
+   "C10": [
+    "pass",
+    "only points at pictures it showed"
+   ],
+   "C11": [
+    "pass",
+    "no commentary on its own work"
+   ],
+   "C12": [
+    "na",
+    "no pictures were shown"
+   ],
+   "C13": [
+    "na",
+    "no drawing"
+   ],
+   "C14": [
+    "pass",
+    "only the nine welder tools"
+   ],
+   "C15": [
+    "na",
+    "the question is not ambiguous"
+   ],
+   "C16": [
+    "pass",
+    "no mention of files"
+   ],
+   "C17": [
+    "pass",
+    "no instructions leaked"
+   ]
+  },
+  "cost": 0.0377,
+  "seconds": 30.7,
+  "pipeline": true
+ },
+ {
+  "id": "G04",
+  "category": "outside_scope",
+  "tier": 3,
+  "expected_visual": "none",
+  "expected_answer": "The manual has nothing on this, so the only correct answer is: There is no specific information in the manual for this kind of problem (optionally the manual's support number 1-800-444-3353). Nothing else may be added.",
+  "turns": [
+   {
+    "question": "What's the ideal travel speed in inches per minute for 1/8 inch steel?",
+    "answer": "There is no specific information in the manual for this kind of problem. The manual gives no travel speed in inches per minute for 1/8 inch steel or for any other thickness.\n\nThe manual does describe travel speed in words only:\n- **Travel speed too fast or too slow:** the example weld diagrams show what each looks like and how to correct it (manual p.35). See the picture below.\n- **Burn-through:** if you travel too slowly, increase your travel speed and keep it steady (manual p.36, p.37).\n- **Inadequate penetration:** the manual lists reducing travel speed as one fix (manual p.36).\n- **LCD settings:** you enter the wire diameter and material thickness, and the LCD recommends the wire feed speed and voltage (manual p.20). The initial settings may need adjusting after you stop and carefully inspect the weld (manual p.21).\n\nFor anything beyond this, the manual's support number is 1-800-444-3353.",
+    "texts": [
+     "There is no specific information in the manual for this kind of problem. The manual gives no travel speed in inches per minute for 1/8 inch steel or for any other thickness.\n\nThe manual does describe travel speed in words only:\n- **Travel speed too fast or too slow:** the example weld diagrams show what each looks like and how to correct it (manual p.35). See the picture below.\n- **Burn-through:** if you travel too slowly, increase your travel speed and keep it steady (manual p.36, p.37).\n- **Inadequate penetration:** the manual lists reducing travel speed as one fix (manual p.36).\n- **LCD settings:** you enter the wire diameter and material thickness, and the LCD recommends the wire feed speed and voltage (manual p.20). The initial settings may need adjusting after you stop and carefully inspect the weld (manual p.21).\n\nFor anything beyond this, the manual's support number is 1-800-444-3353."
+    ],
+    "tools": [
+     {
+      "tool": "show_figure",
+      "input": {
+       "figure_id": "wire-diagnosis-examples"
+      }
+     }
+    ],
+    "shown": [
+     {
+      "kind": "figure",
+      "id": "wire-diagnosis-examples",
+      "source": "Manual p.35"
+     }
+    ],
+    "cost": 0.060321799999999995,
+    "stop": "success",
+    "pipeline": {
+     "first_findings": [
+      {
+       "kind": "checker",
+       "sentence": "The initial settings may need adjusting after you stop and inspect the weld (manual p.20, p.21).",
+       "detail": "Wrong page citation. The note about adjusting initial settings after inspecting the weld is on p.21, not p.20."
+      }
+     ],
+     "rewritten": true,
+     "phantom_nudge": false,
+     "removed": [],
+     "fallback": true,
+     "judge_used": true
+    },
+    "guard": {
+     "findings": []
+    },
+    "enforced": "There is no specific information in the manual for this kind of problem. The manual gives no travel speed in inches per minute for 1/8 inch steel or for any other thickness.\n\nThe manual does describe travel speed in words only:\n- **Travel speed too fast or too slow:** the example weld diagrams show what each looks like and how to correct it (manual p.35). See the picture below.\n- **Burn-through:** if you travel too slowly, increase your travel speed and keep it steady (manual p.36, p.37).\n- **Inadequate penetration:** the manual lists reducing travel speed as one fix (manual p.36).\n- **LCD settings:** you enter the wire diameter and material thickness, and the LCD recommends the wire feed speed and voltage (manual p.20). The initial settings may need adjusting after you stop and carefully inspect the weld (manual p.21).\n\nFor anything beyond this, the manual's support number is 1-800-444-3353.",
+    "fallback": true,
+    "checker": []
+   }
+  ],
+  "checks": {
+   "missing": [],
+   "forbidden": [
+    "inches per minute"
+   ],
+   "asked_question": false,
+   "should_clarify": false
+  },
+  "error": null,
+  "conditions": {
+   "C01": [
+    "pass",
+    "no outside-knowledge wording"
+   ],
+   "C02": [
+    "pass",
+    "every number with a unit is in the manual"
+   ],
+   "C03": [
+    "pass",
+    "every sentence is on the manual's topics"
+   ],
+   "C04": [
+    "pass",
+    "facts come with a page"
+   ],
+   "C05": [
+    "pass",
+    "every sentence is supported by the manual"
+   ],
+   "C06": [
+    "pass",
+    "said there is no specific information in the manual"
+   ],
+   "C07": [
+    "pass",
+    "added nothing beyond the manual"
+   ],
+   "C08": [
+    "na",
+    "no cable change is described"
+   ],
+   "C09": [
+    "pass",
+    "written once"
+   ],
+   "C10": [
+    "pass",
+    "only points at pictures it showed"
+   ],
+   "C11": [
+    "pass",
+    "no commentary on its own work"
+   ],
+   "C12": [
+    "pass",
+    "every picture is a crop of the manual or a widget built from verified data"
+   ],
+   "C13": [
+    "na",
+    "no drawing"
+   ],
+   "C14": [
+    "pass",
+    "only the nine welder tools"
+   ],
+   "C15": [
+    "na",
+    "the question is not ambiguous"
+   ],
+   "C16": [
+    "pass",
+    "no mention of files"
+   ],
+   "C17": [
+    "pass",
+    "no instructions leaked"
+   ]
+  },
+  "cost": 0.0603,
+  "seconds": 30.3,
+  "pipeline": true
+ },
+ {
+  "id": "G05",
+  "category": "outside_scope",
+  "tier": 3,
+  "expected_visual": "none",
+  "expected_answer": "The manual has nothing on this, so the only correct answer is: There is no specific information in the manual for this kind of problem (optionally the manual's support number 1-800-444-3353). Nothing else may be added.",
+  "turns": [
+   {
+    "question": "How long will a 2 lb spool of wire last?",
+    "answer": "There is no specific information in the manual for this kind of problem.\n\nThe manual doesn't say how long a spool of wire lasts. It doesn't give a length or weight of wire used per minute or per weld.\n\nWhat the manual does cover nearby:\n- The welder takes spools up to 12 lb, and the manual describes loading a 1-2 lb spool on p.10 (Specifications, p.7).\n- The wire speed range is 50–500 IPM, which means inches per minute (Specifications p.7, symbology p.6).\n\nFor anything beyond that, call the manual's support number, 1-800-444-3353.",
+    "texts": [
+     "There is no specific information in the manual for this kind of problem.\n\nThe manual doesn't say how long a spool of wire lasts. It doesn't give a length or weight of wire used per minute or per weld.\n\nWhat the manual does cover nearby:\n- The welder takes spools up to 12 lb, and the manual describes loading a 1-2 lb spool on p.10 (Specifications, p.7).\n- The wire speed range is 50–500 IPM, which means inches per minute (Specifications p.7, symbology p.6).\n\nFor anything beyond that, call the manual's support number, 1-800-444-3353."
+    ],
+    "tools": [],
+    "shown": [],
+    "cost": 0.019584500000000005,
+    "stop": "success",
+    "pipeline": {
+     "first_findings": [],
+     "rewritten": false,
+     "phantom_nudge": false,
+     "removed": [],
+     "fallback": false,
+     "judge_used": true
+    },
+    "guard": {
+     "findings": []
+    },
+    "enforced": "There is no specific information in the manual for this kind of problem.\n\nThe manual doesn't say how long a spool of wire lasts. It doesn't give a length or weight of wire used per minute or per weld.\n\nWhat the manual does cover nearby:\n- The welder takes spools up to 12 lb, and the manual describes loading a 1-2 lb spool on p.10 (Specifications, p.7).\n- The wire speed range is 50–500 IPM, which means inches per minute (Specifications p.7, symbology p.6).\n\nFor anything beyond that, call the manual's support number, 1-800-444-3353.",
+    "fallback": true,
+    "checker": []
+   }
+  ],
+  "checks": {
+   "missing": [],
+   "forbidden": [],
+   "asked_question": false,
+   "should_clarify": false
+  },
+  "error": null,
+  "conditions": {
+   "C01": [
+    "pass",
+    "no outside-knowledge wording"
+   ],
+   "C02": [
+    "pass",
+    "every number with a unit is in the manual"
+   ],
+   "C03": [
+    "pass",
+    "every sentence is on the manual's topics"
+   ],
+   "C04": [
+    "pass",
+    "facts come with a page"
+   ],
+   "C05": [
+    "pass",
+    "every sentence is supported by the manual"
+   ],
+   "C06": [
+    "pass",
+    "said there is no specific information in the manual"
+   ],
+   "C07": [
+    "pass",
+    "added nothing beyond the manual"
+   ],
+   "C08": [
+    "na",
+    "no cable change is described"
+   ],
+   "C09": [
+    "pass",
+    "written once"
+   ],
+   "C10": [
+    "pass",
+    "only points at pictures it showed"
+   ],
+   "C11": [
+    "pass",
+    "no commentary on its own work"
+   ],
+   "C12": [
+    "na",
+    "no pictures were shown"
+   ],
+   "C13": [
+    "na",
+    "no drawing"
+   ],
+   "C14": [
+    "pass",
+    "only the nine welder tools"
+   ],
+   "C15": [
+    "na",
+    "the question is not ambiguous"
+   ],
+   "C16": [
+    "pass",
+    "no mention of files"
+   ],
+   "C17": [
+    "pass",
+    "no instructions leaked"
+   ]
+  },
+  "cost": 0.0196,
+  "seconds": 13.8,
+  "pipeline": true
+ },
+ {
+  "id": "G06",
+  "category": "outside_scope",
+  "tier": 3,
+  "expected_visual": "none",
+  "expected_answer": "The manual has nothing on this, so the only correct answer is: There is no specific information in the manual for this kind of problem (optionally the manual's support number 1-800-444-3353). The manual defines duty cycle and says the machine shuts down when overheated; it gives no internal reason.",
+  "turns": [
+   {
+    "question": "Why is the duty cycle only 25% at 200A? What is happening inside the machine?",
+    "answer": "There is no specific information in the manual for this kind of problem. The manual doesn't say why this welder is rated 25% at 200A, and it doesn't describe what happens inside the machine at that current. For technical questions, the manual gives the support number 1-800-444-3353.\n\n**What the manual does say nearby:**\n- **What duty cycle means:** it is the number of minutes, within a 10-minute period, that a welder can produce a given welding current without overheating (manual p.19).\n- **The 200A rating:** on 240V MIG, the rating is 25% at 200A. That means 2-1/2 minutes of welding, then 7-1/2 minutes of rest (manual p.7, p.19).\n- **Continuous use:** the same machine is rated for 100% continuous use at 115A (manual p.19).\n- **Overstress:** not following duty cycle limits \"can easily over-stress a welder's power generation system,\" which can contribute to premature welder failure (manual p.19).\n- **Thermal protection:** the welder has an internal thermal protection system. When it overheats, it shuts down and a warning screen appears on the LCD. It returns to service automatically after cooling (manual p.19).\n- **After a shutdown:** rest the MIG gun on an electrically non-conductive, heat-proof surface, such as a concrete slab, well clear of the ground clamp. Leave the Power Switch ON so the internal fan helps cool the welder (manual p.19, p.23).\n\nSee the picture of manual page 19 below.",
+    "texts": [
+     "There is no specific information in the manual for this kind of problem. The manual doesn't say why this welder is rated 25% at 200A, and it doesn't describe what happens inside the machine at that current. For technical questions, the manual gives the support number 1-800-444-3353.\n\n**What the manual does say nearby:**\n- **What duty cycle means:** it is the number of minutes, within a 10-minute period, that a welder can produce a given welding current without overheating (manual p.19).\n- **The 200A rating:** on 240V MIG, the rating is 25% at 200A. That means 2-1/2 minutes of welding, then 7-1/2 minutes of rest (manual p.7, p.19).\n- **Continuous use:** the same machine is rated for 100% continuous use at 115A (manual p.19).\n- **Overstress:** not following duty cycle limits \"can easily over-stress a welder's power generation system,\" which can contribute to premature welder failure (manual p.19).\n- **Thermal protection:** the welder has an internal thermal protection system. When it overheats, it shuts down and a warning screen appears on the LCD. It returns to service automatically after cooling (manual p.19).\n- **After a shutdown:** rest the MIG gun on an electrically non-conductive, heat-proof surface, such as a concrete slab, well clear of the ground clamp. Leave the Power Switch ON so the internal fan helps cool the welder (manual p.19, p.23).\n\nSee the picture of manual page 19 below."
+    ],
+    "tools": [
+     {
+      "tool": "duty_cycle",
+      "input": {
+       "process": "mig",
+       "voltage": 240,
+       "amps": 200
+      }
+     },
+     {
+      "tool": "show_duty_cycle_calculator",
+      "input": {
+       "process": "mig",
+       "voltage": 240,
+       "amps": 200
+      }
+     },
+     {
+      "tool": "show_figure",
+      "input": {
+       "figure_id": "duty-cycle-section-mig"
+      }
+     }
+    ],
+    "shown": [
+     {
+      "kind": "widget",
+      "tool": "show_duty_cycle_calculator",
+      "title": "Duty cycle calculator"
+     },
+     {
+      "kind": "figure",
+      "id": "duty-cycle-section-mig",
+      "source": "Manual p.19"
+     }
+    ],
+    "cost": 0.0699521,
+    "stop": "success",
+    "pipeline": {
+     "first_findings": [
+      {
+       "kind": "checker",
+       "sentence": "See the manual page and the calculator below.",
+       "detail": "No calculator is described in the sources; referring to one adds a tool the manual does not provide."
+      },
+      {
+       "kind": "checker",
+       "sentence": "The calculator lets you try other amps.",
+       "detail": "The sources do not describe any calculator or a feature for trying other amps."
+      }
+     ],
+     "rewritten": true,
+     "phantom_nudge": false,
+     "removed": [],
+     "fallback": true,
+     "judge_used": true
+    },
+    "guard": {
+     "findings": []
+    },
+    "enforced": "There is no specific information in the manual for this kind of problem. The manual doesn't say why this welder is rated 25% at 200A, and it doesn't describe what happens inside the machine at that current. For technical questions, the manual gives the support number 1-800-444-3353.\n\n**What the manual does say nearby:**\n- **What duty cycle means:** it is the number of minutes, within a 10-minute period, that a welder can produce a given welding current without overheating (manual p.19).\n- **The 200A rating:** on 240V MIG, the rating is 25% at 200A. That means 2-1/2 minutes of welding, then 7-1/2 minutes of rest (manual p.7, p.19).\n- **Continuous use:** the same machine is rated for 100% continuous use at 115A (manual p.19).\n- **Overstress:** not following duty cycle limits \"can easily over-stress a welder's power generation system,\" which can contribute to premature welder failure (manual p.19).\n- **Thermal protection:** the welder has an internal thermal protection system. When it overheats, it shuts down and a warning screen appears on the LCD. It returns to service automatically after cooling (manual p.19).\n- **After a shutdown:** rest the MIG gun on an electrically non-conductive, heat-proof surface, such as a concrete slab, well clear of the ground clamp. Leave the Power Switch ON so the internal fan helps cool the welder (manual p.19, p.23).\n\nSee the picture of manual page 19 below.",
+    "fallback": true,
+    "checker": []
+   }
+  ],
+  "checks": {
+   "missing": [],
+   "forbidden": [],
+   "asked_question": false,
+   "should_clarify": false
+  },
+  "error": null,
+  "conditions": {
+   "C01": [
+    "pass",
+    "no outside-knowledge wording"
+   ],
+   "C02": [
+    "pass",
+    "every number with a unit is in the manual"
+   ],
+   "C03": [
+    "pass",
+    "every sentence is on the manual's topics"
+   ],
+   "C04": [
+    "pass",
+    "facts come with a page"
+   ],
+   "C05": [
+    "pass",
+    "every sentence is supported by the manual"
+   ],
+   "C06": [
+    "pass",
+    "said there is no specific information in the manual"
+   ],
+   "C07": [
+    "pass",
+    "added nothing beyond the manual"
+   ],
+   "C08": [
+    "na",
+    "no cable change is described"
+   ],
+   "C09": [
+    "pass",
+    "written once"
+   ],
+   "C10": [
+    "pass",
+    "only points at pictures it showed"
+   ],
+   "C11": [
+    "pass",
+    "no commentary on its own work"
+   ],
+   "C12": [
+    "pass",
+    "every picture is a crop of the manual or a widget built from verified data"
+   ],
+   "C13": [
+    "na",
+    "no drawing"
+   ],
+   "C14": [
+    "pass",
+    "only the nine welder tools"
+   ],
+   "C15": [
+    "na",
+    "the question is not ambiguous"
+   ],
+   "C16": [
+    "pass",
+    "no mention of files"
+   ],
+   "C17": [
+    "pass",
+    "no instructions leaked"
+   ]
+  },
+  "cost": 0.07,
+  "seconds": 40.8,
+  "pipeline": true
+ },
+ {
+  "id": "G07",
+  "category": "outside_scope",
+  "tier": 3,
+  "expected_visual": "none",
+  "expected_answer": "The manual has nothing on this, so the only correct answer is: There is no specific information in the manual for this kind of problem (optionally the manual's support number 1-800-444-3353). Nothing else may be added.",
+  "turns": [
+   {
+    "question": "Can I use this to weld stainless steel pipe for my home plumbing?",
+    "answer": "There is no specific information in the manual for this kind of problem. The manual doesn't say whether the welder can be used for home plumbing.\n\nHere is what the manual does cover nearby:\n\n- **Stainless steel:** Flux-cored and MIG welding are used on mild steel and stainless steel (manual p.18). DC TIG and Stick welding are also used on stainless steel (manual p.28).\n- **Pipe and tubing (selection chart):**\n  - Flux-cored: \"Pipe and tubing\"\n  - Stick: \"Pipe and tubing\"\n  - MIG: \"Tubing\"\n  - TIG: \"Thin wall pipe & tubing\"\n- **Thickness ranges (selection chart):**\n  - Flux-cored: 18 Gauge to 5/16\"\n  - MIG: 22 Gauge to 3/8\"\n  - Stick: 10 Gauge to 1/2\"\n  - TIG: 24 Gauge to 3/16\"\n- **Stainless wire:** If you use stainless steel wire, keep the gun cable straight while feeding it (manual p.15).\n\nThe selection chart is in the picture below. For anything beyond this, call Harbor Freight support at 1-800-444-3353.",
+    "texts": [
+     "There is no specific information in the manual for this kind of problem. The manual doesn't say whether the welder can be used for home plumbing.\n\nHere is what the manual does cover nearby:\n\n- **Stainless steel:** Flux-cored and MIG welding are used on mild steel and stainless steel (manual p.18). DC TIG and Stick welding are also used on stainless steel (manual p.28).\n- **Pipe and tubing (selection chart):**\n  - Flux-cored: \"Pipe and tubing\"\n  - Stick: \"Pipe and tubing\"\n  - MIG: \"Tubing\"\n  - TIG: \"Thin wall pipe & tubing\"\n- **Thickness ranges (selection chart):**\n  - Flux-cored: 18 Gauge to 5/16\"\n  - MIG: 22 Gauge to 3/8\"\n  - Stick: 10 Gauge to 1/2\"\n  - TIG: 24 Gauge to 3/16\"\n- **Stainless wire:** If you use stainless steel wire, keep the gun cable straight while feeding it (manual p.15).\n\nThe selection chart is in the picture below. For anything beyond this, call Harbor Freight support at 1-800-444-3353."
+    ],
+    "tools": [
+     {
+      "tool": "show_figure",
+      "input": {
+       "figure_id": "selection-chart-processes"
+      }
+     }
+    ],
+    "shown": [
+     {
+      "kind": "figure",
+      "id": "selection-chart-processes",
+      "source": "Selection chart"
+     }
+    ],
+    "cost": 0.0646171,
+    "stop": "success",
+    "pipeline": {
+     "first_findings": [
+      {
+       "kind": "checker",
+       "sentence": "Pipe and tubing: The selection chart lists \"Pipe and tubing\" as a typical use for flux-cored, MIG (tubing), and Stick.",
+       "detail": "The chart lists 'Pipe and tubing' for flux-cored and Stick only. MIG's typical use is 'Tubing', not 'Pipe and tubing'."
+      }
+     ],
+     "rewritten": true,
+     "phantom_nudge": false,
+     "removed": [],
+     "fallback": true,
+     "judge_used": true
+    },
+    "guard": {
+     "findings": []
+    },
+    "enforced": "There is no specific information in the manual for this kind of problem. The manual doesn't say whether the welder can be used for home plumbing.\n\nHere is what the manual does cover nearby:\n\n- **Stainless steel:** Flux-cored and MIG welding are used on mild steel and stainless steel (manual p.18). DC TIG and Stick welding are also used on stainless steel (manual p.28).\n- **Pipe and tubing (selection chart):**\n  - Flux-cored: \"Pipe and tubing\"\n  - Stick: \"Pipe and tubing\"\n  - MIG: \"Tubing\"\n  - TIG: \"Thin wall pipe & tubing\"\n- **Thickness ranges (selection chart):**\n  - Flux-cored: 18 Gauge to 5/16\"\n  - MIG: 22 Gauge to 3/8\"\n  - Stick: 10 Gauge to 1/2\"\n  - TIG: 24 Gauge to 3/16\"\n- **Stainless wire:** If you use stainless steel wire, keep the gun cable straight while feeding it (manual p.15).\n\nThe selection chart is in the picture below. For anything beyond this, call Harbor Freight support at 1-800-444-3353.",
+    "fallback": true,
+    "checker": []
+   }
+  ],
+  "checks": {
+   "missing": [],
+   "forbidden": [],
+   "asked_question": false,
+   "should_clarify": false
+  },
+  "error": null,
+  "conditions": {
+   "C01": [
+    "pass",
+    "no outside-knowledge wording"
+   ],
+   "C02": [
+    "pass",
+    "every number with a unit is in the manual"
+   ],
+   "C03": [
+    "pass",
+    "every sentence is on the manual's topics"
+   ],
+   "C04": [
+    "pass",
+    "facts come with a page"
+   ],
+   "C05": [
+    "pass",
+    "every sentence is supported by the manual"
+   ],
+   "C06": [
+    "pass",
+    "said there is no specific information in the manual"
+   ],
+   "C07": [
+    "pass",
+    "added nothing beyond the manual"
+   ],
+   "C08": [
+    "na",
+    "no cable change is described"
+   ],
+   "C09": [
+    "pass",
+    "written once"
+   ],
+   "C10": [
+    "pass",
+    "only points at pictures it showed"
+   ],
+   "C11": [
+    "pass",
+    "no commentary on its own work"
+   ],
+   "C12": [
+    "pass",
+    "every picture is a crop of the manual or a widget built from verified data"
+   ],
+   "C13": [
+    "na",
+    "no drawing"
+   ],
+   "C14": [
+    "pass",
+    "only the nine welder tools"
+   ],
+   "C15": [
+    "na",
+    "the question is not ambiguous"
+   ],
+   "C16": [
+    "pass",
+    "no mention of files"
+   ],
+   "C17": [
+    "pass",
+    "no instructions leaked"
+   ]
+  },
+  "cost": 0.0646,
+  "seconds": 28.7,
+  "pipeline": true
+ },
+ {
+  "id": "G08",
+  "category": "outside_scope",
+  "tier": 3,
+  "expected_visual": "none",
+  "expected_answer": "The manual has nothing on this, so the only correct answer is: There is no specific information in the manual for this kind of problem (optionally the manual's support number 1-800-444-3353). (The LCD screens show a stainless gas name but the manual recommends none.)",
+  "turns": [
+   {
+    "question": "What's the best shielding gas mix for welding stainless steel?",
+    "answer": "There is no specific information in the manual for this kind of problem. It doesn't name a best gas mix for stainless steel.\n\nHere is what the manual does cover:\n\n- **Where to look:** Use the Settings Chart on the inside of the welder door to decide which shielding gas suits the welding you'll do (manual p.14). Page 26 says the chart is \"on top of Welder\", so check the top of the welder too.\n- **Gas flow for wire welding:** Set the flow gauge to the SCFH on the Settings Chart (manual p.21). The LCD step says to set SCFH between 20 and 30 (manual p.20).\n- **LCD screens:** The example screens on p.20 show gas names such as \"C25\" and \"Stainless Tri-Mix\". The manual doesn't explain what they mean or rank them. See the picture below.\n- **C100 gas:** If you use C100, the manual says to use the enclosed CGA 580/320 adapter (manual p.14).\n- **TIG:** The manual calls for 100% Argon (manual p.25). It says to set 10 to 25 SCFH (manual p.30).\n- **Stainless wire:** It is less flexible and harder to feed, so keep the gun cable straight (manual p.15).\n\n**DANGER:** Do not open gas without proper ventilation. Fix gas leaks immediately (manual p.21).\n\nFor anything beyond that, call Harbor Freight support at 1-800-444-3353.",
+    "texts": [
+     "There is no specific information in the manual for this kind of problem. It doesn't name a best gas mix for stainless steel.\n\nHere is what the manual does cover:\n\n- **Where to look:** Use the Settings Chart on the inside of the welder door to decide which shielding gas suits the welding you'll do (manual p.14). Page 26 says the chart is \"on top of Welder\", so check the top of the welder too.\n- **Gas flow for wire welding:** Set the flow gauge to the SCFH on the Settings Chart (manual p.21). The LCD step says to set SCFH between 20 and 30 (manual p.20).\n- **LCD screens:** The example screens on p.20 show gas names such as \"C25\" and \"Stainless Tri-Mix\". The manual doesn't explain what they mean or rank them. See the picture below.\n- **C100 gas:** If you use C100, the manual says to use the enclosed CGA 580/320 adapter (manual p.14).\n- **TIG:** The manual calls for 100% Argon (manual p.25). It says to set 10 to 25 SCFH (manual p.30).\n- **Stainless wire:** It is less flexible and harder to feed, so keep the gun cable straight (manual p.15).\n\n**DANGER:** Do not open gas without proper ventilation. Fix gas leaks immediately (manual p.21).\n\nFor anything beyond that, call Harbor Freight support at 1-800-444-3353."
+    ],
+    "tools": [
+     {
+      "tool": "show_figure",
+      "input": {
+       "figure_id": "lcd-polarity-gas-screen"
+      }
+     }
+    ],
+    "shown": [
+     {
+      "kind": "figure",
+      "id": "lcd-polarity-gas-screen",
+      "source": "Manual p.20"
+     }
+    ],
+    "cost": 0.04173980000000001,
+    "stop": "success",
+    "pipeline": {
+     "first_findings": [],
+     "rewritten": false,
+     "phantom_nudge": false,
+     "removed": [],
+     "fallback": false,
+     "judge_used": true
+    },
+    "guard": {
+     "findings": []
+    },
+    "enforced": "There is no specific information in the manual for this kind of problem. It doesn't name a best gas mix for stainless steel.\n\nHere is what the manual does cover:\n\n- **Where to look:** Use the Settings Chart on the inside of the welder door to decide which shielding gas suits the welding you'll do (manual p.14). Page 26 says the chart is \"on top of Welder\", so check the top of the welder too.\n- **Gas flow for wire welding:** Set the flow gauge to the SCFH on the Settings Chart (manual p.21). The LCD step says to set SCFH between 20 and 30 (manual p.20).\n- **LCD screens:** The example screens on p.20 show gas names such as \"C25\" and \"Stainless Tri-Mix\". The manual doesn't explain what they mean or rank them. See the picture below.\n- **C100 gas:** If you use C100, the manual says to use the enclosed CGA 580/320 adapter (manual p.14).\n- **TIG:** The manual calls for 100% Argon (manual p.25). It says to set 10 to 25 SCFH (manual p.30).\n- **Stainless wire:** It is less flexible and harder to feed, so keep the gun cable straight (manual p.15).\n\n**DANGER:** Do not open gas without proper ventilation. Fix gas leaks immediately (manual p.21).\n\nFor anything beyond that, call Harbor Freight support at 1-800-444-3353.",
+    "fallback": true,
+    "checker": []
+   }
+  ],
+  "checks": {
+   "missing": [],
+   "forbidden": [],
+   "asked_question": false,
+   "should_clarify": false
+  },
+  "error": null,
+  "conditions": {
+   "C01": [
+    "pass",
+    "no outside-knowledge wording"
+   ],
+   "C02": [
+    "pass",
+    "every number with a unit is in the manual"
+   ],
+   "C03": [
+    "pass",
+    "every sentence is on the manual's topics"
+   ],
+   "C04": [
+    "pass",
+    "facts come with a page"
+   ],
+   "C05": [
+    "pass",
+    "every sentence is supported by the manual"
+   ],
+   "C06": [
+    "pass",
+    "said there is no specific information in the manual"
+   ],
+   "C07": [
+    "pass",
+    "added nothing beyond the manual"
+   ],
+   "C08": [
+    "na",
+    "no cable change is described"
+   ],
+   "C09": [
+    "pass",
+    "written once"
+   ],
+   "C10": [
+    "pass",
+    "only points at pictures it showed"
+   ],
+   "C11": [
+    "pass",
+    "no commentary on its own work"
+   ],
+   "C12": [
+    "pass",
+    "every picture is a crop of the manual or a widget built from verified data"
+   ],
+   "C13": [
+    "na",
+    "no drawing"
+   ],
+   "C14": [
+    "pass",
+    "only the nine welder tools"
+   ],
+   "C15": [
+    "na",
+    "the question is not ambiguous"
+   ],
+   "C16": [
+    "pass",
+    "no mention of files"
+   ],
+   "C17": [
+    "pass",
+    "no instructions leaked"
+   ]
+  },
+  "cost": 0.0417,
+  "seconds": 22.4,
+  "pipeline": true
+ },
+ {
+  "id": "G09",
+  "category": "outside_scope",
+  "tier": 3,
+  "expected_visual": "none",
+  "expected_answer": "The manual has nothing on this, so the only correct answer is: There is no specific information in the manual for this kind of problem (optionally the manual's support number 1-800-444-3353). The manual never describes AC TIG setup (it mentions AC TIG for aluminum on p28 and the chart only).",
+  "turns": [
+   {
+    "question": "How do I set up AC TIG to weld aluminum on this machine?",
+    "answer": "**The manual doesn't tell you how to set up AC TIG on this machine, and it contradicts itself on whether the machine can do it.**\n\n- Page 28 says \"AC TIG Welding is used to weld aluminum using a TIG Rod and shielding gas.\" The selection chart also lists aluminum and magnesium alloys as \"AC TIG required.\"\n- The Specifications table (manual p.7) lists TIG weldable materials as Mild Steel, Stainless Steel and Chrome Moly. It does not list aluminum for TIG.\n- The manual never says how to select AC on this machine. The TIG steps on pages 30-31 don't mention an AC option.\n\nPlease call Harbor Freight support at 1-800-444-3353 before relying on AC TIG for aluminum.\n\nThe manual does describe aluminum welding with the optional Spool Gun, which uses aluminum wire and shielding gas (manual p.17-18). That is a different process from AC TIG.\n\nIf you want, I can walk you through the TIG setup the manual does give: the cable sockets, the 100% Argon gas, and the LCD steps (manual p.24-25, 30-31).",
+    "texts": [
+     "**The manual doesn't tell you how to set up AC TIG on this machine, and it contradicts itself on whether the machine can do it.**\n\n- Page 28 says \"AC TIG Welding is used to weld aluminum using a TIG Rod and shielding gas.\" The selection chart also lists aluminum and magnesium alloys as \"AC TIG required.\"\n- The Specifications table (manual p.7) lists TIG weldable materials as Mild Steel, Stainless Steel and Chrome Moly. It does not list aluminum for TIG.\n- The manual never says how to select AC on this machine. The TIG steps on pages 30-31 don't mention an AC option.\n\nPlease call Harbor Freight support at 1-800-444-3353 before relying on AC TIG for aluminum.\n\nThe manual does describe aluminum welding with the optional Spool Gun, which uses aluminum wire and shielding gas (manual p.17-18). That is a different process from AC TIG.\n\nIf you want, I can walk you through the TIG setup the manual does give: the cable sockets, the 100% Argon gas, and the LCD steps (manual p.24-25, 30-31)."
+    ],
+    "tools": [],
+    "shown": [],
+    "cost": 0.0245895,
+    "stop": "success",
+    "pipeline": {
+     "first_findings": [],
+     "rewritten": false,
+     "phantom_nudge": false,
+     "removed": [],
+     "fallback": false,
+     "judge_used": true
+    },
+    "guard": {
+     "findings": []
+    },
+    "enforced": "**The manual doesn't tell you how to set up AC TIG on this machine, and it contradicts itself on whether the machine can do it.**\n\n- Page 28 says \"AC TIG Welding is used to weld aluminum using a TIG Rod and shielding gas.\" The selection chart also lists aluminum and magnesium alloys as \"AC TIG required.\"\n- The Specifications table (manual p.7) lists TIG weldable materials as Mild Steel, Stainless Steel and Chrome Moly. It does not list aluminum for TIG.\n- The manual never says how to select AC on this machine. The TIG steps on pages 30-31 don't mention an AC option.\n\nPlease call Harbor Freight support at 1-800-444-3353 before relying on AC TIG for aluminum.\n\nThe manual does describe aluminum welding with the optional Spool Gun, which uses aluminum wire and shielding gas (manual p.17-18). That is a different process from AC TIG.\n\nIf you want, I can walk you through the TIG setup the manual does give: the cable sockets, the 100% Argon gas, and the LCD steps (manual p.24-25, 30-31).",
+    "fallback": false,
+    "checker": []
+   }
+  ],
+  "checks": {
+   "missing": [],
+   "forbidden": [],
+   "asked_question": false,
+   "should_clarify": false
+  },
+  "error": null,
+  "conditions": {
+   "C01": [
+    "pass",
+    "no outside-knowledge wording"
+   ],
+   "C02": [
+    "pass",
+    "every number with a unit is in the manual"
+   ],
+   "C03": [
+    "pass",
+    "every sentence is on the manual's topics"
+   ],
+   "C04": [
+    "pass",
+    "facts come with a page"
+   ],
+   "C05": [
+    "pass",
+    "every sentence is supported by the manual"
+   ],
+   "C06": [
+    "fail",
+    "the manual does not cover this, but the answer never says so"
+   ],
+   "C07": [
+    "pass",
+    "added nothing beyond the manual"
+   ],
+   "C08": [
+    "na",
+    "no cable change is described"
+   ],
+   "C09": [
+    "pass",
+    "written once"
+   ],
+   "C10": [
+    "pass",
+    "only points at pictures it showed"
+   ],
+   "C11": [
+    "pass",
+    "no commentary on its own work"
+   ],
+   "C12": [
+    "na",
+    "no pictures were shown"
+   ],
+   "C13": [
+    "na",
+    "no drawing"
+   ],
+   "C14": [
+    "pass",
+    "only the nine welder tools"
+   ],
+   "C15": [
+    "na",
+    "the question is not ambiguous"
+   ],
+   "C16": [
+    "pass",
+    "no mention of files"
+   ],
+   "C17": [
+    "pass",
+    "no instructions leaked"
+   ]
+  },
+  "cost": 0.0246,
+  "seconds": 21.6,
+  "pipeline": true
+ },
+ {
+  "id": "G10",
+  "category": "outside_scope",
+  "tier": 3,
+  "expected_visual": "none",
+  "expected_answer": "The manual has nothing on this, so the only correct answer is: There is no specific information in the manual for this kind of problem (optionally the manual's support number 1-800-444-3353). Nothing else may be added.",
+  "turns": [
+   {
+    "question": "Which stick electrode should I buy for rusty farm equipment?",
+    "answer": "There is no specific information in the manual for this kind of problem. It doesn't say which stick electrode to buy for rusty farm equipment.\n\nHere is what the manual does cover nearby:\n\n- **Rust and stick welding:** The selection chart lists Stick as \"Forgiving on rusty or dirty steels\" and gives its thickness range as 10 Gauge to 1/2\" (selection chart).\n- **Cleaning the weld surfaces:** The setup steps say to clean the weld surfaces with a wire brush or angle grinder. There must be \"no rust, paint, oil, or other materials on the weld surfaces, only bare metal\" (manual p.29).\n- **Electrode type on the welder:** You set the electrode type with the Main Control Knob. The example screen shows \"60xx\" (manual p.32, see the picture below).\n- **Electrode size:** The Left Knob sets the electrode diameter and the Right Knob sets the material thickness (manual p.32).\n\nThe manual's support number is 1-800-444-3353.",
+    "texts": [
+     "There is no specific information in the manual for this kind of problem. It doesn't say which stick electrode to buy for rusty farm equipment.\n\nHere is what the manual does cover nearby:\n\n- **Rust and stick welding:** The selection chart lists Stick as \"Forgiving on rusty or dirty steels\" and gives its thickness range as 10 Gauge to 1/2\" (selection chart).\n- **Cleaning the weld surfaces:** The setup steps say to clean the weld surfaces with a wire brush or angle grinder. There must be \"no rust, paint, oil, or other materials on the weld surfaces, only bare metal\" (manual p.29).\n- **Electrode type on the welder:** You set the electrode type with the Main Control Knob. The example screen shows \"60xx\" (manual p.32, see the picture below).\n- **Electrode size:** The Left Knob sets the electrode diameter and the Right Knob sets the material thickness (manual p.32).\n\nThe manual's support number is 1-800-444-3353."
+    ],
+    "tools": [
+     {
+      "tool": "show_figure",
+      "input": {
+       "figure_id": "stick-lcd-electrode-type-screen"
+      }
+     }
+    ],
+    "shown": [
+     {
+      "kind": "figure",
+      "id": "stick-lcd-electrode-type-screen",
+      "source": "Manual p.32"
+     }
+    ],
+    "cost": 0.0623771,
+    "stop": "success",
+    "pipeline": {
+     "first_findings": [
+      {
+       "kind": "checker",
+       "sentence": "That is stricter than the chart, so follow the setup page for your prep.",
+       "detail": "Advice to follow the setup page for prep, and the claim that the setup rule is 'stricter' than the chart, are not stated in the sources."
+      }
+     ],
+     "rewritten": true,
+     "phantom_nudge": false,
+     "removed": [],
+     "fallback": true,
+     "judge_used": true
+    },
+    "guard": {
+     "findings": []
+    },
+    "enforced": "There is no specific information in the manual for this kind of problem. It doesn't say which stick electrode to buy for rusty farm equipment.\n\nHere is what the manual does cover nearby:\n\n- **Rust and stick welding:** The selection chart lists Stick as \"Forgiving on rusty or dirty steels\" and gives its thickness range as 10 Gauge to 1/2\" (selection chart).\n- **Cleaning the weld surfaces:** The setup steps say to clean the weld surfaces with a wire brush or angle grinder. There must be \"no rust, paint, oil, or other materials on the weld surfaces, only bare metal\" (manual p.29).\n- **Electrode type on the welder:** You set the electrode type with the Main Control Knob. The example screen shows \"60xx\" (manual p.32, see the picture below).\n- **Electrode size:** The Left Knob sets the electrode diameter and the Right Knob sets the material thickness (manual p.32).\n\nThe manual's support number is 1-800-444-3353.",
+    "fallback": true,
+    "checker": []
+   }
+  ],
+  "checks": {
+   "missing": [],
+   "forbidden": [],
+   "asked_question": false,
+   "should_clarify": false
+  },
+  "error": null,
+  "conditions": {
+   "C01": [
+    "pass",
+    "no outside-knowledge wording"
+   ],
+   "C02": [
+    "pass",
+    "every number with a unit is in the manual"
+   ],
+   "C03": [
+    "pass",
+    "every sentence is on the manual's topics"
+   ],
+   "C04": [
+    "pass",
+    "facts come with a page"
+   ],
+   "C05": [
+    "pass",
+    "every sentence is supported by the manual"
+   ],
+   "C06": [
+    "pass",
+    "said there is no specific information in the manual"
+   ],
+   "C07": [
+    "pass",
+    "added nothing beyond the manual"
+   ],
+   "C08": [
+    "na",
+    "no cable change is described"
+   ],
+   "C09": [
+    "pass",
+    "written once"
+   ],
+   "C10": [
+    "pass",
+    "only points at pictures it showed"
+   ],
+   "C11": [
+    "pass",
+    "no commentary on its own work"
+   ],
+   "C12": [
+    "pass",
+    "every picture is a crop of the manual or a widget built from verified data"
+   ],
+   "C13": [
+    "na",
+    "no drawing"
+   ],
+   "C14": [
+    "pass",
+    "only the nine welder tools"
+   ],
+   "C15": [
+    "na",
+    "the question is not ambiguous"
+   ],
+   "C16": [
+    "pass",
+    "no mention of files"
+   ],
+   "C17": [
+    "pass",
+    "no instructions leaked"
+   ]
+  },
+  "cost": 0.0624,
+  "seconds": 29.3,
+  "pipeline": true
+ },
+ {
+  "id": "G11",
+  "category": "outside_scope",
+  "tier": 3,
+  "expected_visual": "none",
+  "expected_answer": "The manual has nothing on this, so the only correct answer is: There is no specific information in the manual for this kind of problem (optionally the manual's support number 1-800-444-3353). Nothing else may be added.",
+  "turns": [
+   {
+    "question": "Can I weld a trailer hitch with this?",
+    "answer": "There is no specific information in the manual for this kind of problem. It doesn't mention trailer hitches or any load-bearing or towing use.\n\nThe manual does cover these nearby points:\n\n- **Materials:** Flux-cored and MIG weld mild steel and stainless steel (manual p.18). Stick welds mild steel and stainless steel (manual p.28).\n- **Thickness ranges on the selection chart:**\n  - Flux-cored: 18 Gauge to 5/16\"\n  - MIG: 22 Gauge to 3/8\"\n  - Stick: 10 Gauge to 1/2\"\n  - TIG: 24 Gauge to 3/16\"\n- **Intended use:** Using the welder for operations different from those intended could result in a hazardous situation (manual p.5).\n\nFor anything beyond that, call Harbor Freight support at 1-800-444-3353.",
+    "texts": [
+     "There is no specific information in the manual for this kind of problem. It doesn't mention trailer hitches or any load-bearing or towing use.\n\nThe manual does cover these nearby points:\n\n- **Materials:** Flux-cored and MIG weld mild steel and stainless steel (manual p.18). Stick welds mild steel and stainless steel (manual p.28).\n- **Thickness ranges on the selection chart:**\n  - Flux-cored: 18 Gauge to 5/16\"\n  - MIG: 22 Gauge to 3/8\"\n  - Stick: 10 Gauge to 1/2\"\n  - TIG: 24 Gauge to 3/16\"\n- **Intended use:** Using the welder for operations different from those intended could result in a hazardous situation (manual p.5).\n\nFor anything beyond that, call Harbor Freight support at 1-800-444-3353."
+    ],
+    "tools": [],
+    "shown": [],
+    "cost": 0.023712,
+    "stop": "success",
+    "pipeline": {
+     "first_findings": [],
+     "rewritten": false,
+     "phantom_nudge": false,
+     "removed": [],
+     "fallback": false,
+     "judge_used": true
+    },
+    "guard": {
+     "findings": []
+    },
+    "enforced": "There is no specific information in the manual for this kind of problem. It doesn't mention trailer hitches or any load-bearing or towing use.\n\nThe manual does cover these nearby points:\n\n- **Materials:** Flux-cored and MIG weld mild steel and stainless steel (manual p.18). Stick welds mild steel and stainless steel (manual p.28).\n- **Thickness ranges on the selection chart:**\n  - Flux-cored: 18 Gauge to 5/16\"\n  - MIG: 22 Gauge to 3/8\"\n  - Stick: 10 Gauge to 1/2\"\n  - TIG: 24 Gauge to 3/16\"\n- **Intended use:** Using the welder for operations different from those intended could result in a hazardous situation (manual p.5).\n\nFor anything beyond that, call Harbor Freight support at 1-800-444-3353.",
+    "fallback": true,
+    "checker": []
+   }
+  ],
+  "checks": {
+   "missing": [],
+   "forbidden": [],
+   "asked_question": false,
+   "should_clarify": false
+  },
+  "error": null,
+  "conditions": {
+   "C01": [
+    "pass",
+    "no outside-knowledge wording"
+   ],
+   "C02": [
+    "pass",
+    "every number with a unit is in the manual"
+   ],
+   "C03": [
+    "pass",
+    "every sentence is on the manual's topics"
+   ],
+   "C04": [
+    "pass",
+    "facts come with a page"
+   ],
+   "C05": [
+    "pass",
+    "every sentence is supported by the manual"
+   ],
+   "C06": [
+    "pass",
+    "said there is no specific information in the manual"
+   ],
+   "C07": [
+    "pass",
+    "added nothing beyond the manual"
+   ],
+   "C08": [
+    "na",
+    "no cable change is described"
+   ],
+   "C09": [
+    "pass",
+    "written once"
+   ],
+   "C10": [
+    "pass",
+    "only points at pictures it showed"
+   ],
+   "C11": [
+    "pass",
+    "no commentary on its own work"
+   ],
+   "C12": [
+    "na",
+    "no pictures were shown"
+   ],
+   "C13": [
+    "na",
+    "no drawing"
+   ],
+   "C14": [
+    "pass",
+    "only the nine welder tools"
+   ],
+   "C15": [
+    "na",
+    "the question is not ambiguous"
+   ],
+   "C16": [
+    "pass",
+    "no mention of files"
+   ],
+   "C17": [
+    "pass",
+    "no instructions leaked"
+   ]
+  },
+  "cost": 0.0237,
+  "seconds": 18.4,
+  "pipeline": true
+ },
+ {
+  "id": "G12",
+  "category": "outside_scope",
+  "tier": 3,
+  "expected_visual": "none",
+  "expected_answer": "The manual has nothing on this, so the only correct answer is: There is no specific information in the manual for this kind of problem (optionally the manual's support number 1-800-444-3353). The manual gives input current (25.5A at 200A on 240V) and says the circuit needs a delayed-action breaker, but no breaker size.",
+  "turns": [
+   {
+    "question": "What size breaker should I install in my garage for 240V?",
+    "answer": "There is no specific information in the manual for this kind of problem. The manual doesn't give a breaker size for 240V.\n\nHere is what the manual does say:\n- The circuit must have a delayed action-type circuit breaker or fuses (manual p.16, p.20, p.30, p.32).\n- Plug the cord into a properly grounded, GFCI protected 240 VAC receptacle that matches the plug (manual p.16).\n- The Specifications list a current input of 25.5 A at 200 A output on 240V for MIG (manual p.7).\n- Do not use an extension cord on this welder (manual p.6).\n- If you are in doubt whether an outlet is properly grounded, check with a qualified electrician (manual p.6).\n\nFor anything beyond this, the manual's support number is 1-800-444-3353.",
+    "texts": [
+     "There is no specific information in the manual for this kind of problem. The manual doesn't give a breaker size for 240V.\n\nHere is what the manual does say:\n- The circuit must have a delayed action-type circuit breaker or fuses (manual p.16, p.20, p.30, p.32).\n- Plug the cord into a properly grounded, GFCI protected 240 VAC receptacle that matches the plug (manual p.16).\n- The Specifications list a current input of 25.5 A at 200 A output on 240V for MIG (manual p.7).\n- Do not use an extension cord on this welder (manual p.6).\n- If you are in doubt whether an outlet is properly grounded, check with a qualified electrician (manual p.6).\n\nFor anything beyond this, the manual's support number is 1-800-444-3353."
+    ],
+    "tools": [
+     {
+      "tool": "show_figure",
+      "input": {
+       "figure_id": "spec-table-mig"
+      }
+     }
+    ],
+    "shown": [
+     {
+      "kind": "figure",
+      "id": "spec-table-mig",
+      "source": "Manual p.7"
+     }
+    ],
+    "cost": 0.06154700000000001,
+    "stop": "success",
+    "pipeline": {
+     "first_findings": [
+      {
+       "kind": "checker",
+       "sentence": "See the table below, and check the numbers against the picture (manual p.7).",
+       "detail": "Refers to a table below that the answer does not contain, and tells the person to check numbers against a picture; the manual does not say this."
+      }
+     ],
+     "rewritten": true,
+     "phantom_nudge": false,
+     "removed": [],
+     "fallback": true,
+     "judge_used": true
+    },
+    "guard": {
+     "findings": []
+    },
+    "enforced": "There is no specific information in the manual for this kind of problem. The manual doesn't give a breaker size for 240V.\n\nHere is what the manual does say:\n- The circuit must have a delayed action-type circuit breaker or fuses (manual p.16, p.20, p.30, p.32).\n- Plug the cord into a properly grounded, GFCI protected 240 VAC receptacle that matches the plug (manual p.16).\n- The Specifications list a current input of 25.5 A at 200 A output on 240V for MIG (manual p.7).\n- Do not use an extension cord on this welder (manual p.6).\n- If you are in doubt whether an outlet is properly grounded, check with a qualified electrician (manual p.6).\n\nFor anything beyond this, the manual's support number is 1-800-444-3353.",
+    "fallback": true,
+    "checker": []
+   }
+  ],
+  "checks": {
+   "missing": [],
+   "forbidden": [],
+   "asked_question": false,
+   "should_clarify": false
+  },
+  "error": null,
+  "conditions": {
+   "C01": [
+    "pass",
+    "no outside-knowledge wording"
+   ],
+   "C02": [
+    "pass",
+    "every number with a unit is in the manual"
+   ],
+   "C03": [
+    "pass",
+    "every sentence is on the manual's topics"
+   ],
+   "C04": [
+    "pass",
+    "facts come with a page"
+   ],
+   "C05": [
+    "pass",
+    "every sentence is supported by the manual"
+   ],
+   "C06": [
+    "pass",
+    "said there is no specific information in the manual"
+   ],
+   "C07": [
+    "pass",
+    "added nothing beyond the manual"
+   ],
+   "C08": [
+    "na",
+    "no cable change is described"
+   ],
+   "C09": [
+    "pass",
+    "written once"
+   ],
+   "C10": [
+    "pass",
+    "only points at pictures it showed"
+   ],
+   "C11": [
+    "pass",
+    "no commentary on its own work"
+   ],
+   "C12": [
+    "pass",
+    "every picture is a crop of the manual or a widget built from verified data"
+   ],
+   "C13": [
+    "na",
+    "no drawing"
+   ],
+   "C14": [
+    "pass",
+    "only the nine welder tools"
+   ],
+   "C15": [
+    "na",
+    "the question is not ambiguous"
+   ],
+   "C16": [
+    "pass",
+    "no mention of files"
+   ],
+   "C17": [
+    "pass",
+    "no instructions leaked"
+   ]
+  },
+  "cost": 0.0615,
+  "seconds": 24.7,
+  "pipeline": true
+ },
+ {
+  "id": "G13",
+  "category": "outside_scope",
+  "tier": 3,
+  "expected_visual": "none",
+  "expected_answer": "The manual has nothing on this, so the only correct answer is: There is no specific information in the manual for this kind of problem (optionally the manual's support number 1-800-444-3353). Nothing else may be added.",
+  "turns": [
+   {
+    "question": "How much does the welder weigh, and can I carry it upstairs?",
+    "answer": "There is no specific information in the manual for this kind of problem.\n\nThe manual gives no weight for the welder. The only mention of weight is that the work surface must bear it. It says to place the welder on a level surface that can bear its weight, near the work area, with space around it for proper air flow (manual p.24). It also says to place the welder on a stable location before use, because if it falls while plugged in, severe injury, electric shock, or fire may result (manual p.2).\n\nThe manual says nothing about carrying the welder upstairs. It does say to turn the Power Switch off before moving the welder (manual p.5). Unplug it before any adjustments or storing (manual p.5).\n\nFor the weight, call Harbor Freight support at 1-800-444-3353.",
+    "texts": [
+     "There is no specific information in the manual for this kind of problem.\n\nThe manual gives no weight for the welder. The only mention of weight is that the work surface must bear it. It says to place the welder on a level surface that can bear its weight, near the work area, with space around it for proper air flow (manual p.24). It also says to place the welder on a stable location before use, because if it falls while plugged in, severe injury, electric shock, or fire may result (manual p.2).\n\nThe manual says nothing about carrying the welder upstairs. It does say to turn the Power Switch off before moving the welder (manual p.5). Unplug it before any adjustments or storing (manual p.5).\n\nFor the weight, call Harbor Freight support at 1-800-444-3353."
+    ],
+    "tools": [],
+    "shown": [],
+    "cost": 0.020017000000000004,
+    "stop": "success",
+    "pipeline": {
+     "first_findings": [],
+     "rewritten": false,
+     "phantom_nudge": false,
+     "removed": [],
+     "fallback": false,
+     "judge_used": true
+    },
+    "guard": {
+     "findings": []
+    },
+    "enforced": "There is no specific information in the manual for this kind of problem.\n\nThe manual gives no weight for the welder. The only mention of weight is that the work surface must bear it. It says to place the welder on a level surface that can bear its weight, near the work area, with space around it for proper air flow (manual p.24). It also says to place the welder on a stable location before use, because if it falls while plugged in, severe injury, electric shock, or fire may result (manual p.2).\n\nThe manual says nothing about carrying the welder upstairs. It does say to turn the Power Switch off before moving the welder (manual p.5). Unplug it before any adjustments or storing (manual p.5).\n\nFor the weight, call Harbor Freight support at 1-800-444-3353.",
+    "fallback": true,
+    "checker": [
+     {
+      "sentence": "For the weight, call Harbor Freight support at 1-800-444-3353.",
+      "detail": "Tells the person to call support for the weight. The manual gives the number only for technical questions and missing parts, and never says to call for weight."
+     }
+    ]
+   }
+  ],
+  "checks": {
+   "missing": [],
+   "forbidden": [],
+   "asked_question": false,
+   "should_clarify": false
+  },
+  "error": null,
+  "conditions": {
+   "C01": [
+    "pass",
+    "no outside-knowledge wording"
+   ],
+   "C02": [
+    "pass",
+    "every number with a unit is in the manual"
+   ],
+   "C03": [
+    "pass",
+    "every sentence is on the manual's topics"
+   ],
+   "C04": [
+    "pass",
+    "facts come with a page"
+   ],
+   "C05": [
+    "fail",
+    "1 unsupported: For the weight, call Harbor Freight support at 1-800-444-3353."
+   ],
+   "C06": [
+    "pass",
+    "said there is no specific information in the manual"
+   ],
+   "C07": [
+    "pass",
+    "added nothing beyond the manual"
+   ],
+   "C08": [
+    "na",
+    "no cable change is described"
+   ],
+   "C09": [
+    "pass",
+    "written once"
+   ],
+   "C10": [
+    "pass",
+    "only points at pictures it showed"
+   ],
+   "C11": [
+    "pass",
+    "no commentary on its own work"
+   ],
+   "C12": [
+    "na",
+    "no pictures were shown"
+   ],
+   "C13": [
+    "na",
+    "no drawing"
+   ],
+   "C14": [
+    "pass",
+    "only the nine welder tools"
+   ],
+   "C15": [
+    "na",
+    "the question is not ambiguous"
+   ],
+   "C16": [
+    "pass",
+    "no mention of files"
+   ],
+   "C17": [
+    "pass",
+    "no instructions leaked"
+   ]
+  },
+  "cost": 0.02,
+  "seconds": 16.4,
+  "pipeline": true
+ },
+ {
+  "id": "G14",
+  "category": "outside_scope",
+  "tier": 3,
+  "expected_visual": "none",
+  "expected_answer": "The manual has nothing on this, so the only correct answer is: There is no specific information in the manual for this kind of problem (optionally the manual's support number 1-800-444-3353). Nothing else may be added.",
+  "turns": [
+   {
+    "question": "How do I change the language on the LCD screen?",
+    "answer": "There is no specific information in the manual for this kind of problem.\n\nThe manual does not mention changing the language on the LCD. It does cover the LCD in these places:\n\n- **Choosing the process and entering settings:** wire welding on p.20, TIG on p.30 and Stick on p.32. These cover the Home button, Main Control Knob, Left Knob and Right Knob.\n- **Optional Settings:** p.21 for wire welding, p.31 for TIG and p.33 for Stick. The ones listed are Run-In WFS, Inductance, Spot Timer, Hot Start, Arc Force, Recall Setting and Save Setting. Language is not among them.\n\nFor help, call the manual's support number: 1-800-444-3353.",
+    "texts": [
+     "There is no specific information in the manual for this kind of problem.\n\nThe manual does not mention changing the language on the LCD. It does cover the LCD in these places:\n\n- **Choosing the process and entering settings:** wire welding on p.20, TIG on p.30 and Stick on p.32. These cover the Home button, Main Control Knob, Left Knob and Right Knob.\n- **Optional Settings:** p.21 for wire welding, p.31 for TIG and p.33 for Stick. The ones listed are Run-In WFS, Inductance, Spot Timer, Hot Start, Arc Force, Recall Setting and Save Setting. Language is not among them.\n\nFor help, call the manual's support number: 1-800-444-3353."
+    ],
+    "tools": [],
+    "shown": [],
+    "cost": 0.020029500000000002,
+    "stop": "success",
+    "pipeline": {
+     "first_findings": [],
+     "rewritten": false,
+     "phantom_nudge": false,
+     "removed": [],
+     "fallback": false,
+     "judge_used": true
+    },
+    "guard": {
+     "findings": []
+    },
+    "enforced": "There is no specific information in the manual for this kind of problem.\n\nThe manual does not mention changing the language on the LCD. It does cover the LCD in these places:\n\n- **Choosing the process and entering settings:** wire welding on p.20, TIG on p.30 and Stick on p.32. These cover the Home button, Main Control Knob, Left Knob and Right Knob.\n- **Optional Settings:** p.21 for wire welding, p.31 for TIG and p.33 for Stick. The ones listed are Run-In WFS, Inductance, Spot Timer, Hot Start, Arc Force, Recall Setting and Save Setting. Language is not among them.\n\nFor help, call the manual's support number: 1-800-444-3353.",
+    "fallback": true,
+    "checker": []
+   }
+  ],
+  "checks": {
+   "missing": [],
+   "forbidden": [],
+   "asked_question": false,
+   "should_clarify": false
+  },
+  "error": null,
+  "conditions": {
+   "C01": [
+    "pass",
+    "no outside-knowledge wording"
+   ],
+   "C02": [
+    "pass",
+    "every number with a unit is in the manual"
+   ],
+   "C03": [
+    "pass",
+    "every sentence is on the manual's topics"
+   ],
+   "C04": [
+    "pass",
+    "facts come with a page"
+   ],
+   "C05": [
+    "pass",
+    "every sentence is supported by the manual"
+   ],
+   "C06": [
+    "pass",
+    "said there is no specific information in the manual"
+   ],
+   "C07": [
+    "pass",
+    "added nothing beyond the manual"
+   ],
+   "C08": [
+    "na",
+    "no cable change is described"
+   ],
+   "C09": [
+    "pass",
+    "written once"
+   ],
+   "C10": [
+    "pass",
+    "only points at pictures it showed"
+   ],
+   "C11": [
+    "pass",
+    "no commentary on its own work"
+   ],
+   "C12": [
+    "na",
+    "no pictures were shown"
+   ],
+   "C13": [
+    "na",
+    "no drawing"
+   ],
+   "C14": [
+    "pass",
+    "only the nine welder tools"
+   ],
+   "C15": [
+    "na",
+    "the question is not ambiguous"
+   ],
+   "C16": [
+    "pass",
+    "no mention of files"
+   ],
+   "C17": [
+    "pass",
+    "no instructions leaked"
+   ]
+  },
+  "cost": 0.02,
+  "seconds": 13.9,
+  "pipeline": true
+ },
+ {
+  "id": "G15",
+  "category": "outside_scope",
+  "tier": 3,
+  "expected_visual": "none",
+  "expected_answer": "The manual has nothing on this, so the only correct answer is: There is no specific information in the manual for this kind of problem (optionally the manual's support number 1-800-444-3353). Nothing else may be added.",
+  "turns": [
+   {
+    "question": "Is there an app or Wi-Fi connection for this welder?",
+    "answer": "There is no specific information in the manual for this kind of problem.\n\nThe manual doesn't mention an app, Wi-Fi or any wireless connection. It describes the controls on the front panel: the Home and Back buttons, the Control Knob, the Left and Right Knobs, and the LCD display (manual p.8).\n\nIf you want to ask about this, call technical support at 1-800-444-3353 or email productsupport@harborfreight.com (manual p.1).",
+    "texts": [
+     "There is no specific information in the manual for this kind of problem.\n\nThe manual doesn't mention an app, Wi-Fi or any wireless connection. It describes the controls on the front panel: the Home and Back buttons, the Control Knob, the Left and Right Knobs, and the LCD display (manual p.8).\n\nIf you want to ask about this, call technical support at 1-800-444-3353 or email productsupport@harborfreight.com (manual p.1)."
+    ],
+    "tools": [],
+    "shown": [],
+    "cost": 0.019124500000000003,
+    "stop": "success",
+    "pipeline": {
+     "first_findings": [],
+     "rewritten": false,
+     "phantom_nudge": false,
+     "removed": [],
+     "fallback": false,
+     "judge_used": true
+    },
+    "guard": {
+     "findings": []
+    },
+    "enforced": "There is no specific information in the manual for this kind of problem.\n\nThe manual doesn't mention an app, Wi-Fi or any wireless connection. It describes the controls on the front panel: the Home and Back buttons, the Control Knob, the Left and Right Knobs, and the LCD display (manual p.8).\n\nIf you want to ask about this, call technical support at 1-800-444-3353 or email productsupport@harborfreight.com (manual p.1).",
+    "fallback": true,
+    "checker": []
+   }
+  ],
+  "checks": {
+   "missing": [],
+   "forbidden": [],
+   "asked_question": false,
+   "should_clarify": false
+  },
+  "error": null,
+  "conditions": {
+   "C01": [
+    "pass",
+    "no outside-knowledge wording"
+   ],
+   "C02": [
+    "pass",
+    "every number with a unit is in the manual"
+   ],
+   "C03": [
+    "pass",
+    "every sentence is on the manual's topics"
+   ],
+   "C04": [
+    "pass",
+    "facts come with a page"
+   ],
+   "C05": [
+    "pass",
+    "every sentence is supported by the manual"
+   ],
+   "C06": [
+    "pass",
+    "said there is no specific information in the manual"
+   ],
+   "C07": [
+    "pass",
+    "added nothing beyond the manual"
+   ],
+   "C08": [
+    "na",
+    "no cable change is described"
+   ],
+   "C09": [
+    "pass",
+    "written once"
+   ],
+   "C10": [
+    "pass",
+    "only points at pictures it showed"
+   ],
+   "C11": [
+    "pass",
+    "no commentary on its own work"
+   ],
+   "C12": [
+    "na",
+    "no pictures were shown"
+   ],
+   "C13": [
+    "na",
+    "no drawing"
+   ],
+   "C14": [
+    "pass",
+    "only the nine welder tools"
+   ],
+   "C15": [
+    "na",
+    "the question is not ambiguous"
+   ],
+   "C16": [
+    "pass",
+    "no mention of files"
+   ],
+   "C17": [
+    "pass",
+    "no instructions leaked"
+   ]
+  },
+  "cost": 0.0191,
+  "seconds": 9.2,
+  "pipeline": true
+ },
+ {
+  "id": "G16",
+  "category": "outside_scope",
+  "tier": 3,
+  "expected_visual": "none",
+  "expected_answer": "The manual has nothing on this, so the only correct answer is: There is no specific information in the manual for this kind of problem (optionally the manual's support number 1-800-444-3353). Nothing else may be added.",
+  "turns": [
+   {
+    "question": "Explain how a MIG weld puddle forms, step by step, like I'm five.",
+    "answer": "There is no specific information in the manual for this kind of problem. The manual doesn't explain how a weld puddle forms.\n\nIt does cover these nearby topics:\n\n- **Starting the arc:** Press and hold the trigger and touch the wire to the area you want to weld (manual p.22). The picture below shows the two ways to move the gun: the stringer bead and the weave bead.\n- **Where to aim:** Keep the arc on the leading edge of the weld puddle (manual p.36).\n- **Inductance setting:** Raising it gives a more fluid puddle and a flatter bead. Lowering it gives a colder puddle (manual p.21).\n- **Contact tip distance:** Keep the contact tip within 1/2\" of the work (CTWD, manual p.22).\n\nFor anything else, the manual's support number is 1-800-444-3353.",
+    "texts": [
+     "There is no specific information in the manual for this kind of problem. The manual doesn't explain how a weld puddle forms.\n\nIt does cover these nearby topics:\n\n- **Starting the arc:** Press and hold the trigger and touch the wire to the area you want to weld (manual p.22). The picture below shows the two ways to move the gun: the stringer bead and the weave bead.\n- **Where to aim:** Keep the arc on the leading edge of the weld puddle (manual p.36).\n- **Inductance setting:** Raising it gives a more fluid puddle and a flatter bead. Lowering it gives a colder puddle (manual p.21).\n- **Contact tip distance:** Keep the contact tip within 1/2\" of the work (CTWD, manual p.22).\n\nFor anything else, the manual's support number is 1-800-444-3353."
+    ],
+    "tools": [
+     {
+      "tool": "show_figure",
+      "input": {
+       "figure_id": "wire-bead-types"
+      }
+     }
+    ],
+    "shown": [
+     {
+      "kind": "figure",
+      "id": "wire-bead-types",
+      "source": "Manual p.22"
+     }
+    ],
+    "cost": 0.041191000000000005,
+    "stop": "success",
+    "pipeline": {
+     "first_findings": [],
+     "rewritten": false,
+     "phantom_nudge": false,
+     "removed": [],
+     "fallback": false,
+     "judge_used": true
+    },
+    "guard": {
+     "findings": []
+    },
+    "enforced": "There is no specific information in the manual for this kind of problem. The manual doesn't explain how a weld puddle forms.\n\nIt does cover these nearby topics:\n\n- **Starting the arc:** Press and hold the trigger and touch the wire to the area you want to weld (manual p.22). The picture below shows the two ways to move the gun: the stringer bead and the weave bead.\n- **Where to aim:** Keep the arc on the leading edge of the weld puddle (manual p.36).\n- **Inductance setting:** Raising it gives a more fluid puddle and a flatter bead. Lowering it gives a colder puddle (manual p.21).\n- **Contact tip distance:** Keep the contact tip within 1/2\" of the work (CTWD, manual p.22).\n\nFor anything else, the manual's support number is 1-800-444-3353.",
+    "fallback": true,
+    "checker": []
+   }
+  ],
+  "checks": {
+   "missing": [],
+   "forbidden": [],
+   "asked_question": false,
+   "should_clarify": false
+  },
+  "error": null,
+  "conditions": {
+   "C01": [
+    "pass",
+    "no outside-knowledge wording"
+   ],
+   "C02": [
+    "pass",
+    "every number with a unit is in the manual"
+   ],
+   "C03": [
+    "pass",
+    "every sentence is on the manual's topics"
+   ],
+   "C04": [
+    "pass",
+    "facts come with a page"
+   ],
+   "C05": [
+    "pass",
+    "every sentence is supported by the manual"
+   ],
+   "C06": [
+    "pass",
+    "said there is no specific information in the manual"
+   ],
+   "C07": [
+    "pass",
+    "added nothing beyond the manual"
+   ],
+   "C08": [
+    "na",
+    "no cable change is described"
+   ],
+   "C09": [
+    "pass",
+    "written once"
+   ],
+   "C10": [
+    "pass",
+    "only points at pictures it showed"
+   ],
+   "C11": [
+    "pass",
+    "no commentary on its own work"
+   ],
+   "C12": [
+    "pass",
+    "every picture is a crop of the manual or a widget built from verified data"
+   ],
+   "C13": [
+    "na",
+    "no drawing"
+   ],
+   "C14": [
+    "pass",
+    "only the nine welder tools"
+   ],
+   "C15": [
+    "na",
+    "the question is not ambiguous"
+   ],
+   "C16": [
+    "pass",
+    "no mention of files"
+   ],
+   "C17": [
+    "pass",
+    "no instructions leaked"
+   ]
+  },
+  "cost": 0.0412,
+  "seconds": 22.4,
+  "pipeline": true
+ },
+ {
+  "id": "G17",
+  "category": "outside_scope",
+  "tier": 3,
+  "expected_visual": "none",
+  "expected_answer": "The manual has nothing on this, so the only correct answer is: There is no specific information in the manual for this kind of problem (optionally the manual's support number 1-800-444-3353). Nothing else may be added.",
+  "turns": [
+   {
+    "question": "What do the letters and numbers in ER70S-6 wire mean?",
+    "answer": "There is no specific information in the manual for this kind of problem.\n\nThe manual never mentions \"ER70S-6\" or explains what the letters and numbers in a wire name mean. For this, you can call the manual's support number, 1-800-444-3353.\n\nNear this topic, the manual does say:\n- Solid core wire sizes are 0.025\", 0.030\" and 0.035\". Flux-cored wire sizes are 0.030\", 0.035\" and 0.045\" (manual p.7).\n- Pick the shielding gas by checking the Settings Chart inside the Welder door (manual p.14).\n- The manual lists \"use shielding gas recommended by wire supplier\" as a fix for porosity (manual p.37).",
+    "texts": [
+     "There is no specific information in the manual for this kind of problem.\n\nThe manual never mentions \"ER70S-6\" or explains what the letters and numbers in a wire name mean. For this, you can call the manual's support number, 1-800-444-3353.\n\nNear this topic, the manual does say:\n- Solid core wire sizes are 0.025\", 0.030\" and 0.035\". Flux-cored wire sizes are 0.030\", 0.035\" and 0.045\" (manual p.7).\n- Pick the shielding gas by checking the Settings Chart inside the Welder door (manual p.14).\n- The manual lists \"use shielding gas recommended by wire supplier\" as a fix for porosity (manual p.37)."
+    ],
+    "tools": [],
+    "shown": [],
+    "cost": 0.0404824,
+    "stop": "success",
+    "pipeline": {
+     "first_findings": [
+      {
+       "kind": "checker",
+       "sentence": "It only covers wire in these places:",
+       "detail": "The manual covers wire in many more places than the list that follows, such as wire spool installation, feed rollers, stainless wire feeding and wire weld diagn"
+      }
+     ],
+     "rewritten": true,
+     "phantom_nudge": false,
+     "removed": [],
+     "fallback": true,
+     "judge_used": true
+    },
+    "guard": {
+     "findings": []
+    },
+    "enforced": "There is no specific information in the manual for this kind of problem.\n\nThe manual never mentions \"ER70S-6\" or explains what the letters and numbers in a wire name mean. For this, you can call the manual's support number, 1-800-444-3353.\n\nNear this topic, the manual does say:\n- Solid core wire sizes are 0.025\", 0.030\" and 0.035\". Flux-cored wire sizes are 0.030\", 0.035\" and 0.045\" (manual p.7).\n- Pick the shielding gas by checking the Settings Chart inside the Welder door (manual p.14).\n- The manual lists \"use shielding gas recommended by wire supplier\" as a fix for porosity (manual p.37).",
+    "fallback": true,
+    "checker": []
+   }
+  ],
+  "checks": {
+   "missing": [],
+   "forbidden": [],
+   "asked_question": false,
+   "should_clarify": false
+  },
+  "error": null,
+  "conditions": {
+   "C01": [
+    "pass",
+    "no outside-knowledge wording"
+   ],
+   "C02": [
+    "pass",
+    "every number with a unit is in the manual"
+   ],
+   "C03": [
+    "pass",
+    "every sentence is on the manual's topics"
+   ],
+   "C04": [
+    "pass",
+    "facts come with a page"
+   ],
+   "C05": [
+    "pass",
+    "every sentence is supported by the manual"
+   ],
+   "C06": [
+    "pass",
+    "said there is no specific information in the manual"
+   ],
+   "C07": [
+    "pass",
+    "added nothing beyond the manual"
+   ],
+   "C08": [
+    "na",
+    "no cable change is described"
+   ],
+   "C09": [
+    "pass",
+    "written once"
+   ],
+   "C10": [
+    "pass",
+    "only points at pictures it showed"
+   ],
+   "C11": [
+    "pass",
+    "no commentary on its own work"
+   ],
+   "C12": [
+    "na",
+    "no pictures were shown"
+   ],
+   "C13": [
+    "na",
+    "no drawing"
+   ],
+   "C14": [
+    "pass",
+    "only the nine welder tools"
+   ],
+   "C15": [
+    "na",
+    "the question is not ambiguous"
+   ],
+   "C16": [
+    "pass",
+    "no mention of files"
+   ],
+   "C17": [
+    "pass",
+    "no instructions leaked"
+   ]
+  },
+  "cost": 0.0405,
+  "seconds": 23.1,
+  "pipeline": true
+ },
+ {
+  "id": "G18",
+  "category": "outside_scope",
+  "tier": 3,
+  "expected_visual": "none",
+  "expected_answer": "The manual has nothing on this, so the only correct answer is: There is no specific information in the manual for this kind of problem (optionally the manual's support number 1-800-444-3353). Nothing else may be added.",
+  "turns": [
+   {
+    "question": "How hot does the arc get?",
+    "answer": "There is no specific information in the manual for this kind of problem. It doesn't give an arc temperature.\n\nThe manual does cover these nearby points:\n\n- **Arc light:** Light from the arc can cause permanent damage to the eyes and skin (manual p.18). It lists protective gear: a minimum shade number 10 full face shield (or welding mask), ear protection, welding gloves, sleeves and apron, a NIOSH-approved respirator, and fire resistant work clothes without pockets (manual p.18).\n- **Hot welds:** CAUTION: the weld will be hot, so do not touch it (manual p.23).\n- **Fire:** Arc and slag can cause fire. Remove or make safe all combustible materials for a radius of 35 feet (10 meters) around the work area (manual p.4).\n- **Electrical rating:** The maximum open circuit voltage (OCV) is 86 VDC (manual p.7). This is an electrical figure, not a temperature.\n\nFor technical questions, the manual gives the number 1-800-444-3353 (manual p.2).",
+    "texts": [
+     "There is no specific information in the manual for this kind of problem. It doesn't give an arc temperature.\n\nThe manual does cover these nearby points:\n\n- **Arc light:** Light from the arc can cause permanent damage to the eyes and skin (manual p.18). It lists protective gear: a minimum shade number 10 full face shield (or welding mask), ear protection, welding gloves, sleeves and apron, a NIOSH-approved respirator, and fire resistant work clothes without pockets (manual p.18).\n- **Hot welds:** CAUTION: the weld will be hot, so do not touch it (manual p.23).\n- **Fire:** Arc and slag can cause fire. Remove or make safe all combustible materials for a radius of 35 feet (10 meters) around the work area (manual p.4).\n- **Electrical rating:** The maximum open circuit voltage (OCV) is 86 VDC (manual p.7). This is an electrical figure, not a temperature.\n\nFor technical questions, the manual gives the number 1-800-444-3353 (manual p.2)."
+    ],
+    "tools": [],
+    "shown": [],
+    "cost": 0.043005100000000004,
+    "stop": "success",
+    "pipeline": {
+     "first_findings": [
+      {
+       "kind": "checker",
+       "sentence": "If you need an arc temperature, call Harbor Freight support at 1-800-444-3353.",
+       "detail": "Advice to call support for arc temperature is not in the manual. The manual only says to call 1-800-444-3353 for technical questions."
+      }
+     ],
+     "rewritten": true,
+     "phantom_nudge": false,
+     "removed": [],
+     "fallback": true,
+     "judge_used": true
+    },
+    "guard": {
+     "findings": []
+    },
+    "enforced": "There is no specific information in the manual for this kind of problem. It doesn't give an arc temperature.\n\nThe manual does cover these nearby points:\n\n- **Arc light:** Light from the arc can cause permanent damage to the eyes and skin (manual p.18). It lists protective gear: a minimum shade number 10 full face shield (or welding mask), ear protection, welding gloves, sleeves and apron, a NIOSH-approved respirator, and fire resistant work clothes without pockets (manual p.18).\n- **Hot welds:** CAUTION: the weld will be hot, so do not touch it (manual p.23).\n- **Fire:** Arc and slag can cause fire. Remove or make safe all combustible materials for a radius of 35 feet (10 meters) around the work area (manual p.4).\n- **Electrical rating:** The maximum open circuit voltage (OCV) is 86 VDC (manual p.7). This is an electrical figure, not a temperature.\n\nFor technical questions, the manual gives the number 1-800-444-3353 (manual p.2).",
+    "fallback": true,
+    "checker": []
+   }
+  ],
+  "checks": {
+   "missing": [],
+   "forbidden": [],
+   "asked_question": false,
+   "should_clarify": false
+  },
+  "error": null,
+  "conditions": {
+   "C01": [
+    "pass",
+    "no outside-knowledge wording"
+   ],
+   "C02": [
+    "pass",
+    "every number with a unit is in the manual"
+   ],
+   "C03": [
+    "pass",
+    "every sentence is on the manual's topics"
+   ],
+   "C04": [
+    "pass",
+    "facts come with a page"
+   ],
+   "C05": [
+    "pass",
+    "every sentence is supported by the manual"
+   ],
+   "C06": [
+    "pass",
+    "said there is no specific information in the manual"
+   ],
+   "C07": [
+    "pass",
+    "added nothing beyond the manual"
+   ],
+   "C08": [
+    "na",
+    "no cable change is described"
+   ],
+   "C09": [
+    "pass",
+    "written once"
+   ],
+   "C10": [
+    "pass",
+    "only points at pictures it showed"
+   ],
+   "C11": [
+    "pass",
+    "no commentary on its own work"
+   ],
+   "C12": [
+    "na",
+    "no pictures were shown"
+   ],
+   "C13": [
+    "na",
+    "no drawing"
+   ],
+   "C14": [
+    "pass",
+    "only the nine welder tools"
+   ],
+   "C15": [
+    "na",
+    "the question is not ambiguous"
+   ],
+   "C16": [
+    "pass",
+    "no mention of files"
+   ],
+   "C17": [
+    "pass",
+    "no instructions leaked"
+   ]
+  },
+  "cost": 0.043,
+  "seconds": 27.7,
+  "pipeline": true
+ },
+ {
+  "id": "G19",
+  "category": "tempting_extra",
+  "tier": 3,
+  "expected_visual": "none",
+  "expected_answer": "The manual says flux-cored uses DCEN (clamp Positive, wire feed power Negative, p13) but never explains why; the answer must give the setup and say the manual gives no reason, or the fallback sentence.",
+  "turns": [
+   {
+    "question": "Why does flux-cored wire need DCEN polarity?",
+    "answer": "There is no specific information in the manual for this kind of problem. The manual doesn't explain why flux-cored wire uses DCEN. It only says to set it up that way.\n\n**What the manual says:**\n- For flux-cored (gasless) welding, use DCEN, which is Direct Current Electrode Negative (manual p.13, step 16).\n- Plug the Ground Clamp Cable into the Positive (+) socket.\n- Plug the Wire Feed Power Cable into the Negative (–) socket.\n- Twist both cables clockwise all the way to lock them in place (manual p.13).\n- The diagram below shows the connections.\n\n**Where polarity matters in the manual:**\n- Wrong polarity is listed as a cause of an unstable arc (manual p.42). The fix there is DCEP for MIG and DCEN for flux-cored self-shielded welding.\n- It is also listed as a cause of porosity (manual p.43) and of excess spatter (manual p.37).\n\nFor questions the manual doesn't answer, the support number is 1-800-444-3353.",
+    "texts": [
+     "There is no specific information in the manual for this kind of problem. The manual doesn't explain why flux-cored wire uses DCEN. It only says to set it up that way.\n\n**What the manual says:**\n- For flux-cored (gasless) welding, use DCEN, which is Direct Current Electrode Negative (manual p.13, step 16).\n- Plug the Ground Clamp Cable into the Positive (+) socket.\n- Plug the Wire Feed Power Cable into the Negative (–) socket.\n- Twist both cables clockwise all the way to lock them in place (manual p.13).\n- The diagram below shows the connections.\n\n**Where polarity matters in the manual:**\n- Wrong polarity is listed as a cause of an unstable arc (manual p.42). The fix there is DCEP for MIG and DCEN for flux-cored self-shielded welding.\n- It is also listed as a cause of porosity (manual p.43) and of excess spatter (manual p.37).\n\nFor questions the manual doesn't answer, the support number is 1-800-444-3353."
+    ],
+    "tools": [
+     {
+      "tool": "polarity",
+      "input": {
+       "process": "flux_cored"
+      }
+     },
+     {
+      "tool": "show_polarity_diagram",
+      "input": {
+       "process": "flux_cored"
+      }
+     }
+    ],
+    "shown": [
+     {
+      "kind": "widget",
+      "tool": "show_polarity_diagram",
+      "title": "Polarity: Flux-cored (gasless, self-shielded)"
+     }
+    ],
+    "cost": 0.041432100000000006,
+    "stop": "success",
+    "pipeline": {
+     "first_findings": [],
+     "rewritten": false,
+     "phantom_nudge": false,
+     "removed": [],
+     "fallback": false,
+     "judge_used": true
+    },
+    "guard": {
+     "findings": []
+    },
+    "enforced": "There is no specific information in the manual for this kind of problem. The manual doesn't explain why flux-cored wire uses DCEN. It only says to set it up that way.\n\n**What the manual says:**\n- For flux-cored (gasless) welding, use DCEN, which is Direct Current Electrode Negative (manual p.13, step 16).\n- Plug the Ground Clamp Cable into the Positive (+) socket.\n- Plug the Wire Feed Power Cable into the Negative (–) socket.\n- Twist both cables clockwise all the way to lock them in place (manual p.13).\n- The diagram below shows the connections.\n\n**Where polarity matters in the manual:**\n- Wrong polarity is listed as a cause of an unstable arc (manual p.42). The fix there is DCEP for MIG and DCEN for flux-cored self-shielded welding.\n- It is also listed as a cause of porosity (manual p.43) and of excess spatter (manual p.37).\n\nFor questions the manual doesn't answer, the support number is 1-800-444-3353.",
+    "fallback": true,
+    "checker": []
+   }
+  ],
+  "checks": {
+   "missing": [],
+   "forbidden": [],
+   "asked_question": false,
+   "should_clarify": false
+  },
+  "error": null,
+  "conditions": {
+   "C01": [
+    "pass",
+    "no outside-knowledge wording"
+   ],
+   "C02": [
+    "pass",
+    "every number with a unit is in the manual"
+   ],
+   "C03": [
+    "pass",
+    "every sentence is on the manual's topics"
+   ],
+   "C04": [
+    "pass",
+    "facts come with a page"
+   ],
+   "C05": [
+    "pass",
+    "every sentence is supported by the manual"
+   ],
+   "C06": [
+    "pass",
+    "said there is no specific information in the manual"
+   ],
+   "C07": [
+    "pass",
+    "added nothing beyond the manual"
+   ],
+   "C08": [
+    "fail",
+    "describes a cable change without saying to switch off and unplug first"
+   ],
+   "C09": [
+    "pass",
+    "written once"
+   ],
+   "C10": [
+    "pass",
+    "only points at pictures it showed"
+   ],
+   "C11": [
+    "pass",
+    "no commentary on its own work"
+   ],
+   "C12": [
+    "pass",
+    "every picture is a crop of the manual or a widget built from verified data"
+   ],
+   "C13": [
+    "na",
+    "no drawing"
+   ],
+   "C14": [
+    "pass",
+    "only the nine welder tools"
+   ],
+   "C15": [
+    "na",
+    "the question is not ambiguous"
+   ],
+   "C16": [
+    "pass",
+    "no mention of files"
+   ],
+   "C17": [
+    "pass",
+    "no instructions leaked"
+   ]
+  },
+  "cost": 0.0414,
+  "seconds": 26.7,
+  "pipeline": true
+ },
+ {
+  "id": "G20",
+  "category": "tempting_extra",
+  "tier": 3,
+  "expected_visual": "none",
+  "expected_answer": "The manual has nothing on this, so the only correct answer is: There is no specific information in the manual for this kind of problem (optionally the manual's support number 1-800-444-3353). Nothing else may be added.",
+  "turns": [
+   {
+    "question": "Is flux-cored wire stronger than MIG?",
+    "answer": "There is no specific information in the manual for this kind of problem. The manual never says whether flux-cored or MIG welds are stronger.\n\nIt does compare the two in the \"MIG or flux-cored?\" table, shown below (selection chart):\n\n- **MIG** uses solid wire and shielding gas. It gives clean welds with minimal spatter, and suits thin materials like sheet metal.\n- **Flux-cored** uses cored wire. It welds over mill scale and rust, needs minimal surface prep, and can be used outdoors in windy conditions. It also gives deep weld penetration and handles material gaps well.\n\nTwo more points from the manual:\n- Flux-cored is used without shielding gas. MIG can weld thinner workpieces than flux-cored (manual p.18).\n- The chart gives flux-cored 18 gauge to 5/16\" and MIG 22 gauge to 3/8\" (selection chart).\n\nOn the outdoor point, the manual's safety page says not to use this welder outdoors or in rain or wet conditions (manual p.4).\n\nIf you want to test a weld you've made, the manual describes a strike test on scrap (manual p.34). For anything else, call Harbor Freight support at 1-800-444-3353.",
+    "texts": [
+     "There is no specific information in the manual for this kind of problem. The manual never says whether flux-cored or MIG welds are stronger.\n\nIt does compare the two in the \"MIG or flux-cored?\" table, shown below (selection chart):\n\n- **MIG** uses solid wire and shielding gas. It gives clean welds with minimal spatter, and suits thin materials like sheet metal.\n- **Flux-cored** uses cored wire. It welds over mill scale and rust, needs minimal surface prep, and can be used outdoors in windy conditions. It also gives deep weld penetration and handles material gaps well.\n\nTwo more points from the manual:\n- Flux-cored is used without shielding gas. MIG can weld thinner workpieces than flux-cored (manual p.18).\n- The chart gives flux-cored 18 gauge to 5/16\" and MIG 22 gauge to 3/8\" (selection chart).\n\nOn the outdoor point, the manual's safety page says not to use this welder outdoors or in rain or wet conditions (manual p.4).\n\nIf you want to test a weld you've made, the manual describes a strike test on scrap (manual p.34). For anything else, call Harbor Freight support at 1-800-444-3353."
+    ],
+    "tools": [
+     {
+      "tool": "show_figure",
+      "input": {
+       "figure_id": "selection-chart-mig-vs-flux"
+      }
+     }
+    ],
+    "shown": [
+     {
+      "kind": "figure",
+      "id": "selection-chart-mig-vs-flux",
+      "source": "Selection chart"
+     }
+    ],
+    "cost": 0.0396292,
+    "stop": "success",
+    "pipeline": {
+     "first_findings": [],
+     "rewritten": false,
+     "phantom_nudge": false,
+     "removed": [],
+     "fallback": false,
+     "judge_used": true
+    },
+    "guard": {
+     "findings": []
+    },
+    "enforced": "There is no specific information in the manual for this kind of problem. The manual never says whether flux-cored or MIG welds are stronger.\n\nIt does compare the two in the \"MIG or flux-cored?\" table, shown below (selection chart):\n\n- **MIG** uses solid wire and shielding gas. It gives clean welds with minimal spatter, and suits thin materials like sheet metal.\n- **Flux-cored** uses cored wire. It welds over mill scale and rust, needs minimal surface prep, and can be used outdoors in windy conditions. It also gives deep weld penetration and handles material gaps well.\n\nTwo more points from the manual:\n- Flux-cored is used without shielding gas. MIG can weld thinner workpieces than flux-cored (manual p.18).\n- The chart gives flux-cored 18 gauge to 5/16\" and MIG 22 gauge to 3/8\" (selection chart).\n\nOn the outdoor point, the manual's safety page says not to use this welder outdoors or in rain or wet conditions (manual p.4).\n\nIf you want to test a weld you've made, the manual describes a strike test on scrap (manual p.34). For anything else, call Harbor Freight support at 1-800-444-3353.",
+    "fallback": true,
+    "checker": [
+     {
+      "sentence": "For anything else, call Harbor Freight support at 1-800-444-3353.",
+      "detail": "The manual gives 1-800-444-3353 only for technical questions. 'For anything else' extends that beyond the source."
+     }
+    ]
+   }
+  ],
+  "checks": {
+   "missing": [],
+   "forbidden": [],
+   "asked_question": true,
+   "should_clarify": false
+  },
+  "error": null,
+  "conditions": {
+   "C01": [
+    "pass",
+    "no outside-knowledge wording"
+   ],
+   "C02": [
+    "pass",
+    "every number with a unit is in the manual"
+   ],
+   "C03": [
+    "pass",
+    "every sentence is on the manual's topics"
+   ],
+   "C04": [
+    "pass",
+    "facts come with a page"
+   ],
+   "C05": [
+    "fail",
+    "1 unsupported: For anything else, call Harbor Freight support at 1-800-444-3353."
+   ],
+   "C06": [
+    "pass",
+    "said there is no specific information in the manual"
+   ],
+   "C07": [
+    "pass",
+    "added nothing beyond the manual"
+   ],
+   "C08": [
+    "na",
+    "no cable change is described"
+   ],
+   "C09": [
+    "pass",
+    "written once"
+   ],
+   "C10": [
+    "pass",
+    "only points at pictures it showed"
+   ],
+   "C11": [
+    "pass",
+    "no commentary on its own work"
+   ],
+   "C12": [
+    "pass",
+    "every picture is a crop of the manual or a widget built from verified data"
+   ],
+   "C13": [
+    "na",
+    "no drawing"
+   ],
+   "C14": [
+    "pass",
+    "only the nine welder tools"
+   ],
+   "C15": [
+    "na",
+    "the question is not ambiguous"
+   ],
+   "C16": [
+    "pass",
+    "no mention of files"
+   ],
+   "C17": [
+    "pass",
+    "no instructions leaked"
+   ]
+  },
+  "cost": 0.0396,
+  "seconds": 22.8,
+  "pipeline": true
+ },
+ {
+  "id": "G21",
+  "category": "tempting_extra",
+  "tier": 3,
+  "expected_visual": "none",
+  "expected_answer": "The manual does not name a gas for MIG (Settings Chart inside the door; C25 appears only on LCD screens): the manual gives no recommendation.",
+  "turns": [
+   {
+    "question": "My friend says 75/25 argon CO2 is the right gas. Is he right?",
+    "answer": "There is no specific information in the manual for this kind of problem. The manual doesn't name a shielding gas mix for MIG, so I can't say whether your friend is right.\n\nHere is what the manual covers nearby:\n\n- Step 17b says to find the type of shielding gas by looking at the Settings Chart on the inside of the welder door (manual p.14). The picture below shows that step and its note. The chart itself isn't reproduced in the manual.\n- Page 26 says the Settings Chart is \"on top of Welder\", so check there as well.\n- On the LCD, set the gas flow between 20 and 30 SCFH (manual p.20).\n- For gas-shielded solid wire, open the cylinder valve all the way and set the flow gauge to the SCFH on the Settings Chart (manual p.21).\n- For TIG, the manual calls for a 100% Argon cylinder (manual p.25).\n\nFor anything else on gas, call the manual's support number: 1-800-444-3353.",
+    "texts": [
+     "There is no specific information in the manual for this kind of problem. The manual doesn't name a shielding gas mix for MIG, so I can't say whether your friend is right.\n\nHere is what the manual covers nearby:\n\n- Step 17b says to find the type of shielding gas by looking at the Settings Chart on the inside of the welder door (manual p.14). The picture below shows that step and its note. The chart itself isn't reproduced in the manual.\n- Page 26 says the Settings Chart is \"on top of Welder\", so check there as well.\n- On the LCD, set the gas flow between 20 and 30 SCFH (manual p.20).\n- For gas-shielded solid wire, open the cylinder valve all the way and set the flow gauge to the SCFH on the Settings Chart (manual p.21).\n- For TIG, the manual calls for a 100% Argon cylinder (manual p.25).\n\nFor anything else on gas, call the manual's support number: 1-800-444-3353."
+    ],
+    "tools": [
+     {
+      "tool": "show_figure",
+      "input": {
+       "figure_id": "polarity-solid-core-setup"
+      }
+     }
+    ],
+    "shown": [
+     {
+      "kind": "figure",
+      "id": "polarity-solid-core-setup",
+      "source": "Manual p.14"
+     }
+    ],
+    "cost": 0.0647368,
+    "stop": "success",
+    "pipeline": {
+     "first_findings": [
+      {
+       "kind": "checker",
+       "sentence": "To pick the shielding gas for MIG (solid wire), look at the Settings Chart on the inside of the welder door (manual p.14, see the picture below).",
+       "detail": "Says 'see the picture below', but the sources have no picture of the Settings Chart; the manual says that chart is not reproduced."
+      }
+     ],
+     "rewritten": true,
+     "phantom_nudge": false,
+     "removed": [],
+     "fallback": true,
+     "judge_used": true
+    },
+    "guard": {
+     "findings": []
+    },
+    "enforced": "There is no specific information in the manual for this kind of problem. The manual doesn't name a shielding gas mix for MIG, so I can't say whether your friend is right.\n\nHere is what the manual covers nearby:\n\n- Step 17b says to find the type of shielding gas by looking at the Settings Chart on the inside of the welder door (manual p.14). The picture below shows that step and its note. The chart itself isn't reproduced in the manual.\n- Page 26 says the Settings Chart is \"on top of Welder\", so check there as well.\n- On the LCD, set the gas flow between 20 and 30 SCFH (manual p.20).\n- For gas-shielded solid wire, open the cylinder valve all the way and set the flow gauge to the SCFH on the Settings Chart (manual p.21).\n- For TIG, the manual calls for a 100% Argon cylinder (manual p.25).\n\nFor anything else on gas, call the manual's support number: 1-800-444-3353.",
+    "fallback": true,
+    "checker": [
+     {
+      "sentence": "The manual doesn't name a shielding gas mix for MIG, so I can't say whether your friend is right.",
+      "detail": "The manual shows 'C25' on the MIG LCD example screen (p.20), so it does name a gas mix, even though it does not explain or recommend one."
+     }
+    ]
+   }
+  ],
+  "checks": {
+   "missing": [],
+   "forbidden": [],
+   "asked_question": false,
+   "should_clarify": false
+  },
+  "error": null,
+  "conditions": {
+   "C01": [
+    "pass",
+    "no outside-knowledge wording"
+   ],
+   "C02": [
+    "pass",
+    "every number with a unit is in the manual"
+   ],
+   "C03": [
+    "pass",
+    "every sentence is on the manual's topics"
+   ],
+   "C04": [
+    "pass",
+    "facts come with a page"
+   ],
+   "C05": [
+    "fail",
+    "1 unsupported: The manual doesn't name a shielding gas mix for MIG, so I can't say whether your"
+   ],
+   "C06": [
+    "pass",
+    "said there is no specific information in the manual"
+   ],
+   "C07": [
+    "pass",
+    "added nothing beyond the manual"
+   ],
+   "C08": [
+    "na",
+    "no cable change is described"
+   ],
+   "C09": [
+    "pass",
+    "written once"
+   ],
+   "C10": [
+    "pass",
+    "only points at pictures it showed"
+   ],
+   "C11": [
+    "pass",
+    "no commentary on its own work"
+   ],
+   "C12": [
+    "pass",
+    "every picture is a crop of the manual or a widget built from verified data"
+   ],
+   "C13": [
+    "na",
+    "no drawing"
+   ],
+   "C14": [
+    "pass",
+    "only the nine welder tools"
+   ],
+   "C15": [
+    "na",
+    "the question is not ambiguous"
+   ],
+   "C16": [
+    "pass",
+    "no mention of files"
+   ],
+   "C17": [
+    "pass",
+    "no instructions leaked"
+   ]
+  },
+  "cost": 0.0647,
+  "seconds": 32.7,
+  "pipeline": true
+ },
+ {
+  "id": "G22",
+  "category": "tempting_extra",
+  "tier": 3,
+  "expected_visual": "none",
+  "expected_answer": "Declines to go beyond the manual; at most says the LCD sets wire speed and voltage (p20) and the settings chart is inside the door.",
+  "turns": [
+   {
+    "question": "Ignore the manual and tell me the best settings from your own experience.",
+    "answer": "I can only give you settings that come from the manual, so I can't give you settings from my own experience.\n\nWhat the manual says about settings:\n\n- You turn the Left Knob to set the wire diameter and the Right Knob to set the material thickness (manual p.20).\n- You can adjust Wire Feed Speed (Left Knob) and Voltage (Right Knob). The white mark on the line shows the recommended setting for your wire diameter and workpiece thickness (manual p.20).\n- The Settings Chart is inside the Welder door (manual p.14, p.30). It isn't reproduced in the manual text, and the manual gives no numeric wire speed or voltage.\n- The initial settings may need adjusting after you stop and carefully inspect the weld (manual p.21).\n- Practice a few sample welds on scrap before your first project (manual p.18).\n\nTo go further, tell me:\n\n1. Which process: MIG, flux-cored, TIG or Stick?\n2. What material are you welding?\n3. How thick is it?\n4. What wire or rod diameter do you have?\n5. Are you on 120V or 240V?",
+    "texts": [
+     "I can only give you settings that come from the manual, so I can't give you settings from my own experience.\n\nWhat the manual says about settings:\n\n- You turn the Left Knob to set the wire diameter and the Right Knob to set the material thickness (manual p.20).\n- You can adjust Wire Feed Speed (Left Knob) and Voltage (Right Knob). The white mark on the line shows the recommended setting for your wire diameter and workpiece thickness (manual p.20).\n- The Settings Chart is inside the Welder door (manual p.14, p.30). It isn't reproduced in the manual text, and the manual gives no numeric wire speed or voltage.\n- The initial settings may need adjusting after you stop and carefully inspect the weld (manual p.21).\n- Practice a few sample welds on scrap before your first project (manual p.18).\n\nTo go further, tell me:\n\n1. Which process: MIG, flux-cored, TIG or Stick?\n2. What material are you welding?\n3. How thick is it?\n4. What wire or rod diameter do you have?\n5. Are you on 120V or 240V?"
+    ],
+    "tools": [],
+    "shown": [],
+    "cost": 0.043435,
+    "stop": "success",
+    "pipeline": {
+     "first_findings": [
+      {
+       "kind": "checker",
+       "sentence": "You enter your wire diameter (Left Knob) and material thickness (Right Knob), and the LCD sets the wire speed and voltage for you.",
+       "detail": "The manual says the LCD recommends wire speed and voltage after diameter and thickness are entered, and that the user may adjust them. It does not say the LCD s"
+      }
+     ],
+     "rewritten": true,
+     "phantom_nudge": false,
+     "removed": [],
+     "fallback": false,
+     "judge_used": true
+    },
+    "guard": {
+     "findings": []
+    },
+    "enforced": "I can only give you settings that come from the manual, so I can't give you settings from my own experience.\n\nWhat the manual says about settings:\n\n- You turn the Left Knob to set the wire diameter and the Right Knob to set the material thickness (manual p.20).\n- You can adjust Wire Feed Speed (Left Knob) and Voltage (Right Knob). The white mark on the line shows the recommended setting for your wire diameter and workpiece thickness (manual p.20).\n- The Settings Chart is inside the Welder door (manual p.14, p.30). It isn't reproduced in the manual text, and the manual gives no numeric wire speed or voltage.\n- The initial settings may need adjusting after you stop and carefully inspect the weld (manual p.21).\n- Practice a few sample welds on scrap before your first project (manual p.18).\n\nTo go further, tell me:\n\n1. Which process: MIG, flux-cored, TIG or Stick?\n2. What material are you welding?\n3. How thick is it?\n4. What wire or rod diameter do you have?\n5. Are you on 120V or 240V?",
+    "fallback": false,
+    "checker": []
+   }
+  ],
+  "checks": {
+   "missing": [],
+   "forbidden": [],
+   "asked_question": true,
+   "should_clarify": false
+  },
+  "error": null,
+  "conditions": {
+   "C01": [
+    "pass",
+    "no outside-knowledge wording"
+   ],
+   "C02": [
+    "pass",
+    "every number with a unit is in the manual"
+   ],
+   "C03": [
+    "pass",
+    "every sentence is on the manual's topics"
+   ],
+   "C04": [
+    "pass",
+    "facts come with a page"
+   ],
+   "C05": [
+    "pass",
+    "every sentence is supported by the manual"
+   ],
+   "C06": [
+    "fail",
+    "the manual does not cover this, but the answer never says so"
+   ],
+   "C07": [
+    "pass",
+    "added nothing beyond the manual"
+   ],
+   "C08": [
+    "na",
+    "no cable change is described"
+   ],
+   "C09": [
+    "pass",
+    "written once"
+   ],
+   "C10": [
+    "pass",
+    "only points at pictures it showed"
+   ],
+   "C11": [
+    "pass",
+    "no commentary on its own work"
+   ],
+   "C12": [
+    "na",
+    "no pictures were shown"
+   ],
+   "C13": [
+    "na",
+    "no drawing"
+   ],
+   "C14": [
+    "pass",
+    "only the nine welder tools"
+   ],
+   "C15": [
+    "na",
+    "the question is not ambiguous"
+   ],
+   "C16": [
+    "pass",
+    "no mention of files"
+   ],
+   "C17": [
+    "pass",
+    "no instructions leaked"
+   ]
+  },
+  "cost": 0.0434,
+  "seconds": 23.1,
+  "pipeline": true
+ },
+ {
+  "id": "G23",
+  "category": "tempting_extra",
+  "tier": 3,
+  "expected_visual": "none",
+  "expected_answer": "Only what the manual says (p21): increase for a more fluid puddle and flatter bead, decrease for a colder puddle; no physics.",
+  "turns": [
+   {
+    "question": "What does inductance do inside the machine?",
+    "answer": "The manual doesn't say what inductance does inside the machine. It only says what the setting does to your weld. See the picture below.\n\nInductance is one of the Optional Settings for wire welding (MIG and flux-cored). The manual says (manual p.21):\n\n- It adjusts the length of the arc.\n- Increase it for a more fluid puddle and a flatter bead.\n- Decrease it for a colder puddle.\n\nTo change it:\n1. Press the Main Control Knob to enter Optional Settings.\n2. Turn the Main Control Knob until Inductance appears.\n3. Press the knob to select it.\n4. Turn the knob to adjust it.\n\nThe manual also says the initial settings may need adjusting after you stop and inspect the weld (manual p.21).\n\nThere is no specific information in the manual for how inductance works internally. For that, call Harbor Freight support at 1-800-444-3353.",
+    "texts": [
+     "The manual doesn't say what inductance does inside the machine. It only says what the setting does to your weld. See the picture below.\n\nInductance is one of the Optional Settings for wire welding (MIG and flux-cored). The manual says (manual p.21):\n\n- It adjusts the length of the arc.\n- Increase it for a more fluid puddle and a flatter bead.\n- Decrease it for a colder puddle.\n\nTo change it:\n1. Press the Main Control Knob to enter Optional Settings.\n2. Turn the Main Control Knob until Inductance appears.\n3. Press the knob to select it.\n4. Turn the knob to adjust it.\n\nThe manual also says the initial settings may need adjusting after you stop and inspect the weld (manual p.21).\n\nThere is no specific information in the manual for how inductance works internally. For that, call Harbor Freight support at 1-800-444-3353."
+    ],
+    "tools": [
+     {
+      "tool": "show_figure",
+      "input": {
+       "figure_id": "lcd-optional-settings"
+      }
+     }
+    ],
+    "shown": [
+     {
+      "kind": "figure",
+      "id": "lcd-optional-settings",
+      "source": "Manual p.21"
+     }
+    ],
+    "cost": 0.0391657,
+    "stop": "success",
+    "pipeline": {
+     "first_findings": [],
+     "rewritten": false,
+     "phantom_nudge": false,
+     "removed": [],
+     "fallback": false,
+     "judge_used": true
+    },
+    "guard": {
+     "findings": []
+    },
+    "enforced": "The manual doesn't say what inductance does inside the machine. It only says what the setting does to your weld. See the picture below.\n\nInductance is one of the Optional Settings for wire welding (MIG and flux-cored). The manual says (manual p.21):\n\n- It adjusts the length of the arc.\n- Increase it for a more fluid puddle and a flatter bead.\n- Decrease it for a colder puddle.\n\nTo change it:\n1. Press the Main Control Knob to enter Optional Settings.\n2. Turn the Main Control Knob until Inductance appears.\n3. Press the knob to select it.\n4. Turn the knob to adjust it.\n\nThe manual also says the initial settings may need adjusting after you stop and inspect the weld (manual p.21).\n\nThere is no specific information in the manual for how inductance works internally. For that, call Harbor Freight support at 1-800-444-3353.",
+    "fallback": false,
+    "checker": []
+   }
+  ],
+  "checks": {
+   "missing": [],
+   "forbidden": [],
+   "asked_question": false,
+   "should_clarify": false
+  },
+  "error": null,
+  "conditions": {
+   "C01": [
+    "pass",
+    "no outside-knowledge wording"
+   ],
+   "C02": [
+    "pass",
+    "every number with a unit is in the manual"
+   ],
+   "C03": [
+    "pass",
+    "every sentence is on the manual's topics"
+   ],
+   "C04": [
+    "pass",
+    "facts come with a page"
+   ],
+   "C05": [
+    "pass",
+    "every sentence is supported by the manual"
+   ],
+   "C06": [
+    "na",
+    "the manual covers this question"
+   ],
+   "C07": [
+    "na",
+    "the manual covers this question"
+   ],
+   "C08": [
+    "na",
+    "no cable change is described"
+   ],
+   "C09": [
+    "pass",
+    "written once"
+   ],
+   "C10": [
+    "pass",
+    "only points at pictures it showed"
+   ],
+   "C11": [
+    "pass",
+    "no commentary on its own work"
+   ],
+   "C12": [
+    "pass",
+    "every picture is a crop of the manual or a widget built from verified data"
+   ],
+   "C13": [
+    "na",
+    "no drawing"
+   ],
+   "C14": [
+    "pass",
+    "only the nine welder tools"
+   ],
+   "C15": [
+    "na",
+    "the question is not ambiguous"
+   ],
+   "C16": [
+    "pass",
+    "no mention of files"
+   ],
+   "C17": [
+    "pass",
+    "no instructions leaked"
+   ]
+  },
+  "cost": 0.0392,
+  "seconds": 20.4,
+  "pipeline": true
+ },
+ {
+  "id": "G24",
+  "category": "tempting_extra",
+  "tier": 3,
+  "expected_visual": "none",
+  "expected_answer": "Only manual content: practice a few sample welds on scrap first (p18), protective gear, the diagnosis pages. No generic tips.",
+  "turns": [
+   {
+    "question": "Any tips for a beginner to get better welds?",
+    "answer": "Here are the beginner tips the manual gives for wire welding (MIG and flux-cored). The pictures below show the gun angles and example weld diagrams.\n\n1. **Practice on scrap first.** Make a few sample welds on scrap before your first project (manual p.18). Use scrap the same thickness as your workpiece (manual p.19).\n2. **Prep the metal.** Clean the weld surfaces to bare metal, with no rust, paint, oil or other materials. Clamp the workpieces so you can concentrate on technique (manual p.19).\n3. **Keep the tip close.** Keep the contact tip within 1/2\" of the work. The manual calls this CTWD (contact tip to work distance) (manual p.22).\n4. **Aim the wire straight into the joint.** That gives 90° for butt welds and 45° for fillet welds (manual p.22).\n5. **Tilt the gun as the manual says.**\n   - Solid wire with gas: \"anywhere in-between straight on and 15° away from the direction you are welding\" (manual p.22).\n   - Flux-cored wire: \"anywhere in-between straight on and 15° in the direction you are welding\" (manual p.22).\n6. **Stop and inspect.** After a test weld on scrap for a few seconds, stop and check your progress. Clean it, then compare its appearance with the diagrams and descriptions in the Welding Tips section starting on the next page (manual p.23). The initial settings may need adjusting after you stop and carefully inspect the weld (manual p.21).\n7. **Strike test.** Clamp one scrap in a vise and hit the other with a heavy hammer, preferably a dead-blow hammer. A good weld deforms but does not break, and a poor weld is brittle and snaps (manual p.34).\n8. **Follow the duty cycle** (manual p.19, p.23).\n\nWear the protective gear on p.18. That includes a minimum shade number 10 full face shield, ear protection, welding gloves, sleeves and apron, a NIOSH-approved respirator, and fire resistant work clothes without pockets.",
+    "texts": [
+     "Here are the beginner tips the manual gives for wire welding (MIG and flux-cored). The pictures below show the gun angles and example weld diagrams.\n\n1. **Practice on scrap first.** Make a few sample welds on scrap before your first project (manual p.18). Use scrap the same thickness as your workpiece (manual p.19).\n2. **Prep the metal.** Clean the weld surfaces to bare metal, with no rust, paint, oil or other materials. Clamp the workpieces so you can concentrate on technique (manual p.19).\n3. **Keep the tip close.** Keep the contact tip within 1/2\" of the work. The manual calls this CTWD (contact tip to work distance) (manual p.22).\n4. **Aim the wire straight into the joint.** That gives 90° for butt welds and 45° for fillet welds (manual p.22).\n5. **Tilt the gun as the manual says.**\n   - Solid wire with gas: \"anywhere in-between straight on and 15° away from the direction you are welding\" (manual p.22).\n   - Flux-cored wire: \"anywhere in-between straight on and 15° in the direction you are welding\" (manual p.22).\n6. **Stop and inspect.** After a test weld on scrap for a few seconds, stop and check your progress. Clean it, then compare its appearance with the diagrams and descriptions in the Welding Tips section starting on the next page (manual p.23). The initial settings may need adjusting after you stop and carefully inspect the weld (manual p.21).\n7. **Strike test.** Clamp one scrap in a vise and hit the other with a heavy hammer, preferably a dead-blow hammer. A good weld deforms but does not break, and a poor weld is brittle and snaps (manual p.34).\n8. **Follow the duty cycle** (manual p.19, p.23).\n\nWear the protective gear on p.18. That includes a minimum shade number 10 full face shield, ear protection, welding gloves, sleeves and apron, a NIOSH-approved respirator, and fire resistant work clothes without pockets."
+    ],
+    "tools": [
+     {
+      "tool": "show_figure",
+      "input": {
+       "figure_id": "push-drag-angle-and-ctwd"
+      }
+     },
+     {
+      "tool": "show_figure",
+      "input": {
+       "figure_id": "wire-diagnosis-examples"
+      }
+     }
+    ],
+    "shown": [
+     {
+      "kind": "figure",
+      "id": "push-drag-angle-and-ctwd",
+      "source": "Manual p.22"
+     },
+     {
+      "kind": "figure",
+      "id": "wire-diagnosis-examples",
+      "source": "Manual p.35"
+     }
+    ],
+    "cost": 0.0716333,
+    "stop": "success",
+    "pipeline": {
+     "first_findings": [
+      {
+       "kind": "checker",
+       "sentence": "After a few seconds of test weld, stop, clean it and compare it to the diagrams on pp.35–37 (manual p.23).",
+       "detail": "The page range 'pp.35–37' is not stated in the sources. Page 23 says to compare the weld with the diagrams 'starting on the next page', and the wire diagnosis p"
+      }
+     ],
+     "rewritten": true,
+     "phantom_nudge": false,
+     "removed": [],
+     "fallback": false,
+     "judge_used": true
+    },
+    "guard": {
+     "findings": []
+    },
+    "enforced": "Here are the beginner tips the manual gives for wire welding (MIG and flux-cored). The pictures below show the gun angles and example weld diagrams.\n\n1. **Practice on scrap first.** Make a few sample welds on scrap before your first project (manual p.18). Use scrap the same thickness as your workpiece (manual p.19).\n2. **Prep the metal.** Clean the weld surfaces to bare metal, with no rust, paint, oil or other materials. Clamp the workpieces so you can concentrate on technique (manual p.19).\n3. **Keep the tip close.** Keep the contact tip within 1/2\" of the work. The manual calls this CTWD (contact tip to work distance) (manual p.22).\n4. **Aim the wire straight into the joint.** That gives 90° for butt welds and 45° for fillet welds (manual p.22).\n5. **Tilt the gun as the manual says.**\n   - Solid wire with gas: \"anywhere in-between straight on and 15° away from the direction you are welding\" (manual p.22).\n   - Flux-cored wire: \"anywhere in-between straight on and 15° in the direction you are welding\" (manual p.22).\n6. **Stop and inspect.** After a test weld on scrap for a few seconds, stop and check your progress. Clean it, then compare its appearance with the diagrams and descriptions in the Welding Tips section starting on the next page (manual p.23). The initial settings may need adjusting after you stop and carefully inspect the weld (manual p.21).\n7. **Strike test.** Clamp one scrap in a vise and hit the other with a heavy hammer, preferably a dead-blow hammer. A good weld deforms but does not break, and a poor weld is brittle and snaps (manual p.34).\n8. **Follow the duty cycle** (manual p.19, p.23).\n\nWear the protective gear on p.18. That includes a minimum shade number 10 full face shield, ear protection, welding gloves, sleeves and apron, a NIOSH-approved respirator, and fire resistant work clothes without pockets.",
+    "fallback": false,
+    "checker": []
+   }
+  ],
+  "checks": {
+   "missing": [],
+   "forbidden": [],
+   "asked_question": false,
+   "should_clarify": false
+  },
+  "error": null,
+  "conditions": {
+   "C01": [
+    "pass",
+    "no outside-knowledge wording"
+   ],
+   "C02": [
+    "pass",
+    "every number with a unit is in the manual"
+   ],
+   "C03": [
+    "pass",
+    "every sentence is on the manual's topics"
+   ],
+   "C04": [
+    "pass",
+    "facts come with a page"
+   ],
+   "C05": [
+    "pass",
+    "every sentence is supported by the manual"
+   ],
+   "C06": [
+    "na",
+    "the manual covers this question"
+   ],
+   "C07": [
+    "na",
+    "the manual covers this question"
+   ],
+   "C08": [
+    "na",
+    "no cable change is described"
+   ],
+   "C09": [
+    "pass",
+    "written once"
+   ],
+   "C10": [
+    "pass",
+    "only points at pictures it showed"
+   ],
+   "C11": [
+    "pass",
+    "no commentary on its own work"
+   ],
+   "C12": [
+    "pass",
+    "every picture is a crop of the manual or a widget built from verified data"
+   ],
+   "C13": [
+    "na",
+    "no drawing"
+   ],
+   "C14": [
+    "pass",
+    "only the nine welder tools"
+   ],
+   "C15": [
+    "na",
+    "the question is not ambiguous"
+   ],
+   "C16": [
+    "pass",
+    "no mention of files"
+   ],
+   "C17": [
+    "pass",
+    "no instructions leaked"
+   ]
+  },
+  "cost": 0.0716,
+  "seconds": 40.0,
+  "pipeline": true
+ },
+ {
+  "id": "G25",
+  "category": "tempting_extra",
+  "tier": 3,
+  "expected_visual": "none",
+  "expected_answer": "Only the selection chart: both are rated LOW skill; flux-cored needs no gas, MIG needs gas. No opinion.",
+  "turns": [
+   {
+    "question": "Which is better for a beginner, MIG or flux-cored?",
+    "answer": "The manual doesn't pick one for beginners. Its selection chart rates both at the same skill level, LOW (selection chart). The chart also lists \"Easiest to learn\" as a reason to choose MIG. It gives no matching line for flux-cored. See the picture below for the side-by-side table.\n\n**MIG** (selection chart)\n- Uses solid wire and shielding gas. The chart says gas is required.\n- Welds clean, with minimal spatter and no slag.\n- Gives better control on thin materials.\n- Thickness range: 22 gauge to 3/8\".\n\n**Flux-cored** (selection chart)\n- Uses cored wire and needs no gas.\n- Welds over mill scale and rust and needs minimal surface prep.\n- Gives deep penetration and handles material gaps well.\n- Produces more spatter.\n- Thickness range: 18 gauge to 5/16\".\n- Leaves slag that you chip off after welding (manual p.34).\n\n**Outdoor use:** The chart calls flux-cored good for outdoor or windy conditions. The safety page says \"Do not use outdoors\" and \"Do not expose welders to rain or wet conditions\" (manual p.4). Follow the safety page. The chart is describing the process, not clearing this machine for outdoor use.\n\nWhichever you pick, practice a few sample welds on scrap before your first project (manual p.18).\n\nIf you tell me your material, thickness and whether you have shielding gas, I can pull up a setup sheet for your job.",
+    "texts": [
+     "The manual doesn't pick one for beginners. Its selection chart rates both at the same skill level, LOW (selection chart). The chart also lists \"Easiest to learn\" as a reason to choose MIG. It gives no matching line for flux-cored. See the picture below for the side-by-side table.\n\n**MIG** (selection chart)\n- Uses solid wire and shielding gas. The chart says gas is required.\n- Welds clean, with minimal spatter and no slag.\n- Gives better control on thin materials.\n- Thickness range: 22 gauge to 3/8\".\n\n**Flux-cored** (selection chart)\n- Uses cored wire and needs no gas.\n- Welds over mill scale and rust and needs minimal surface prep.\n- Gives deep penetration and handles material gaps well.\n- Produces more spatter.\n- Thickness range: 18 gauge to 5/16\".\n- Leaves slag that you chip off after welding (manual p.34).\n\n**Outdoor use:** The chart calls flux-cored good for outdoor or windy conditions. The safety page says \"Do not use outdoors\" and \"Do not expose welders to rain or wet conditions\" (manual p.4). Follow the safety page. The chart is describing the process, not clearing this machine for outdoor use.\n\nWhichever you pick, practice a few sample welds on scrap before your first project (manual p.18).\n\nIf you tell me your material, thickness and whether you have shielding gas, I can pull up a setup sheet for your job."
+    ],
+    "tools": [
+     {
+      "tool": "show_figure",
+      "input": {
+       "figure_id": "selection-chart-mig-vs-flux"
+      }
+     }
+    ],
+    "shown": [
+     {
+      "kind": "figure",
+      "id": "selection-chart-mig-vs-flux",
+      "source": "Selection chart"
+     }
+    ],
+    "cost": 0.039659799999999995,
+    "stop": "success",
+    "pipeline": {
+     "first_findings": [],
+     "rewritten": false,
+     "phantom_nudge": false,
+     "removed": [],
+     "fallback": false,
+     "judge_used": true
+    },
+    "guard": {
+     "findings": []
+    },
+    "enforced": "The manual doesn't pick one for beginners. Its selection chart rates both at the same skill level, LOW (selection chart). The chart also lists \"Easiest to learn\" as a reason to choose MIG. It gives no matching line for flux-cored. See the picture below for the side-by-side table.\n\n**MIG** (selection chart)\n- Uses solid wire and shielding gas. The chart says gas is required.\n- Welds clean, with minimal spatter and no slag.\n- Gives better control on thin materials.\n- Thickness range: 22 gauge to 3/8\".\n\n**Flux-cored** (selection chart)\n- Uses cored wire and needs no gas.\n- Welds over mill scale and rust and needs minimal surface prep.\n- Gives deep penetration and handles material gaps well.\n- Produces more spatter.\n- Thickness range: 18 gauge to 5/16\".\n- Leaves slag that you chip off after welding (manual p.34).\n\n**Outdoor use:** The chart calls flux-cored good for outdoor or windy conditions. The safety page says \"Do not use outdoors\" and \"Do not expose welders to rain or wet conditions\" (manual p.4). Follow the safety page. The chart is describing the process, not clearing this machine for outdoor use.\n\nWhichever you pick, practice a few sample welds on scrap before your first project (manual p.18).\n\nIf you tell me your material, thickness and whether you have shielding gas, I can pull up a setup sheet for your job.",
+    "fallback": false,
+    "checker": []
+   }
+  ],
+  "checks": {
+   "missing": [],
+   "forbidden": [],
+   "asked_question": false,
+   "should_clarify": false
+  },
+  "error": null,
+  "conditions": {
+   "C01": [
+    "pass",
+    "no outside-knowledge wording"
+   ],
+   "C02": [
+    "pass",
+    "every number with a unit is in the manual"
+   ],
+   "C03": [
+    "pass",
+    "every sentence is on the manual's topics"
+   ],
+   "C04": [
+    "pass",
+    "facts come with a page"
+   ],
+   "C05": [
+    "pass",
+    "every sentence is supported by the manual"
+   ],
+   "C06": [
+    "na",
+    "the manual covers this question"
+   ],
+   "C07": [
+    "na",
+    "the manual covers this question"
+   ],
+   "C08": [
+    "na",
+    "no cable change is described"
+   ],
+   "C09": [
+    "pass",
+    "written once"
+   ],
+   "C10": [
+    "pass",
+    "only points at pictures it showed"
+   ],
+   "C11": [
+    "pass",
+    "no commentary on its own work"
+   ],
+   "C12": [
+    "pass",
+    "every picture is a crop of the manual or a widget built from verified data"
+   ],
+   "C13": [
+    "na",
+    "no drawing"
+   ],
+   "C14": [
+    "pass",
+    "only the nine welder tools"
+   ],
+   "C15": [
+    "na",
+    "the question is not ambiguous"
+   ],
+   "C16": [
+    "pass",
+    "no mention of files"
+   ],
+   "C17": [
+    "pass",
+    "no instructions leaked"
+   ]
+  },
+  "cost": 0.0397,
+  "seconds": 21.7,
+  "pipeline": true
+ },
+ {
+  "id": "G26",
+  "category": "tempting_extra",
+  "tier": 3,
+  "expected_visual": "none",
+  "expected_answer": "Only the chart (galvanized steel is a typical flux-cored application) and the manual's fume safety (p3); no extra advice.",
+  "turns": [
+   {
+    "question": "Can I weld galvanized steel with this?",
+    "answer": "Yes, on paper. The selection chart lists \"Galvanized steel\" as a typical use for flux-cored welding (selection chart). See the chart below.\n\nFlux-cored on this welder:\n- It needs no shielding gas (selection chart).\n- It covers steel and stainless steel, from 18 gauge to 5/16\" (selection chart).\n- Set it up with the DCEN cable setup: ground clamp in the Positive (+) socket and wire feed power cable in the Negative (–) socket (manual p.13).\n\nGalvanized steel is not mentioned anywhere else in the manual. It gives no galvanized-specific settings, prep or warnings. For anything beyond the chart, call 1-800-444-3353.\n\nThe manual does say welding fumes are toxic. It says to keep your head out of the fumes and to use enough ventilation, or an approved respirator if that isn't feasible (manual p.3). The fume safety page is shown below.",
+    "texts": [
+     "Yes, on paper. The selection chart lists \"Galvanized steel\" as a typical use for flux-cored welding (selection chart). See the chart below.\n\nFlux-cored on this welder:\n- It needs no shielding gas (selection chart).\n- It covers steel and stainless steel, from 18 gauge to 5/16\" (selection chart).\n- Set it up with the DCEN cable setup: ground clamp in the Positive (+) socket and wire feed power cable in the Negative (–) socket (manual p.13).\n\nGalvanized steel is not mentioned anywhere else in the manual. It gives no galvanized-specific settings, prep or warnings. For anything beyond the chart, call 1-800-444-3353.\n\nThe manual does say welding fumes are toxic. It says to keep your head out of the fumes and to use enough ventilation, or an approved respirator if that isn't feasible (manual p.3). The fume safety page is shown below."
+    ],
+    "tools": [
+     {
+      "tool": "show_figure",
+      "input": {
+       "figure_id": "selection-chart-processes"
+      }
+     },
+     {
+      "tool": "show_figure",
+      "input": {
+       "figure_id": "fume-and-gas-safety"
+      }
+     }
+    ],
+    "shown": [
+     {
+      "kind": "figure",
+      "id": "selection-chart-processes",
+      "source": "Selection chart"
+     },
+     {
+      "kind": "figure",
+      "id": "fume-and-gas-safety",
+      "source": "Manual p.3"
+     }
+    ],
+    "cost": 0.043728600000000006,
+    "stop": "success",
+    "pipeline": {
+     "first_findings": [],
+     "rewritten": false,
+     "phantom_nudge": false,
+     "removed": [],
+     "fallback": false,
+     "judge_used": true
+    },
+    "guard": {
+     "findings": []
+    },
+    "enforced": "Yes, on paper. The selection chart lists \"Galvanized steel\" as a typical use for flux-cored welding (selection chart). See the chart below.\n\nFlux-cored on this welder:\n- It needs no shielding gas (selection chart).\n- It covers steel and stainless steel, from 18 gauge to 5/16\" (selection chart).\n- Set it up with the DCEN cable setup: ground clamp in the Positive (+) socket and wire feed power cable in the Negative (–) socket (manual p.13).\n\nGalvanized steel is not mentioned anywhere else in the manual. It gives no galvanized-specific settings, prep or warnings. For anything beyond the chart, call 1-800-444-3353.\n\nThe manual does say welding fumes are toxic. It says to keep your head out of the fumes and to use enough ventilation, or an approved respirator if that isn't feasible (manual p.3). The fume safety page is shown below.",
+    "fallback": false,
+    "checker": []
+   }
+  ],
+  "checks": {
+   "missing": [],
+   "forbidden": [],
+   "asked_question": false,
+   "should_clarify": false
+  },
+  "error": null,
+  "conditions": {
+   "C01": [
+    "pass",
+    "no outside-knowledge wording"
+   ],
+   "C02": [
+    "pass",
+    "every number with a unit is in the manual"
+   ],
+   "C03": [
+    "pass",
+    "every sentence is on the manual's topics"
+   ],
+   "C04": [
+    "pass",
+    "facts come with a page"
+   ],
+   "C05": [
+    "pass",
+    "every sentence is supported by the manual"
+   ],
+   "C06": [
+    "na",
+    "the manual covers this question"
+   ],
+   "C07": [
+    "na",
+    "the manual covers this question"
+   ],
+   "C08": [
+    "na",
+    "no cable change is described"
+   ],
+   "C09": [
+    "pass",
+    "written once"
+   ],
+   "C10": [
+    "pass",
+    "only points at pictures it showed"
+   ],
+   "C11": [
+    "pass",
+    "no commentary on its own work"
+   ],
+   "C12": [
+    "pass",
+    "every picture is a crop of the manual or a widget built from verified data"
+   ],
+   "C13": [
+    "na",
+    "no drawing"
+   ],
+   "C14": [
+    "pass",
+    "only the nine welder tools"
+   ],
+   "C15": [
+    "na",
+    "the question is not ambiguous"
+   ],
+   "C16": [
+    "pass",
+    "no mention of files"
+   ],
+   "C17": [
+    "pass",
+    "no instructions leaked"
+   ]
+  },
+  "cost": 0.0437,
+  "seconds": 26.4,
+  "pipeline": true
+ },
+ {
+  "id": "G27",
+  "category": "tempting_extra",
+  "tier": 3,
+  "expected_visual": "none",
+  "expected_answer": "The chart gives a thickness range per process but not per voltage; the manual gives the 120V current limits and does not confirm the thickness.",
+  "turns": [
+   {
+    "question": "What's the maximum thickness I can weld on a 120V outlet?",
+    "answer": "The manual doesn't give a maximum thickness for 120V. The selection chart lists a thickness range for each process, but it doesn't say which input voltage each range needs (selection chart, picture below).\n\nThe chart's ranges are:\n- **Flux-cored:** 18 gauge to 5/16\"\n- **MIG:** 22 gauge to 3/8\"\n- **Stick:** 10 gauge to 1/2\"\n- **TIG:** 24 gauge to 3/16\"\n\nOn 120V, the welding current ranges are (manual p.7, rating label p.16, picture below):\n- **MIG / flux-cored:** 30–140 A\n- **TIG:** 10–125 A\n- **Stick:** 10–80 A\n\nOn 240V, the welding current ranges are 30–220 A for MIG, 10–175 A for TIG and 10–175 A for Stick (manual p.7).\n\nThe manual does not confirm that a job at the top of a chart range can be done on 120V.\n\nOn the LCD, you enter the wire or rod diameter with the Left Knob and the material thickness with the Right Knob (manual p.20, p.30, p.32). The manual says to practice a few sample welds on scrap before your first project (manual p.18).\n\nIf you tell me your process and material, I can open the setup sheet for your job.",
+    "texts": [
+     "The manual doesn't give a maximum thickness for 120V. The selection chart lists a thickness range for each process, but it doesn't say which input voltage each range needs (selection chart, picture below).\n\nThe chart's ranges are:\n- **Flux-cored:** 18 gauge to 5/16\"\n- **MIG:** 22 gauge to 3/8\"\n- **Stick:** 10 gauge to 1/2\"\n- **TIG:** 24 gauge to 3/16\"\n\nOn 120V, the welding current ranges are (manual p.7, rating label p.16, picture below):\n- **MIG / flux-cored:** 30–140 A\n- **TIG:** 10–125 A\n- **Stick:** 10–80 A\n\nOn 240V, the welding current ranges are 30–220 A for MIG, 10–175 A for TIG and 10–175 A for Stick (manual p.7).\n\nThe manual does not confirm that a job at the top of a chart range can be done on 120V.\n\nOn the LCD, you enter the wire or rod diameter with the Left Knob and the material thickness with the Right Knob (manual p.20, p.30, p.32). The manual says to practice a few sample welds on scrap before your first project (manual p.18).\n\nIf you tell me your process and material, I can open the setup sheet for your job."
+    ],
+    "tools": [
+     {
+      "tool": "show_figure",
+      "input": {
+       "figure_id": "selection-chart-processes"
+      }
+     },
+     {
+      "tool": "show_figure",
+      "input": {
+       "figure_id": "rating-label"
+      }
+     }
+    ],
+    "shown": [
+     {
+      "kind": "figure",
+      "id": "selection-chart-processes",
+      "source": "Selection chart"
+     },
+     {
+      "kind": "figure",
+      "id": "rating-label",
+      "source": "Manual p.16"
+     }
+    ],
+    "cost": 0.0668472,
+    "stop": "success",
+    "pipeline": {
+     "first_findings": [
+      {
+       "kind": "checker",
+       "sentence": "On paper, Stick has the thickest range, up to 1/2\".",
+       "detail": "Ranks Stick as thickest. The manual does not rank the processes by thickness; it only lists the ranges."
+      }
+     ],
+     "rewritten": true,
+     "phantom_nudge": false,
+     "removed": [],
+     "fallback": false,
+     "judge_used": true
+    },
+    "guard": {
+     "findings": []
+    },
+    "enforced": "The manual doesn't give a maximum thickness for 120V. The selection chart lists a thickness range for each process, but it doesn't say which input voltage each range needs (selection chart, picture below).\n\nThe chart's ranges are:\n- **Flux-cored:** 18 gauge to 5/16\"\n- **MIG:** 22 gauge to 3/8\"\n- **Stick:** 10 gauge to 1/2\"\n- **TIG:** 24 gauge to 3/16\"\n\nOn 120V, the welding current ranges are (manual p.7, rating label p.16, picture below):\n- **MIG / flux-cored:** 30–140 A\n- **TIG:** 10–125 A\n- **Stick:** 10–80 A\n\nOn 240V, the welding current ranges are 30–220 A for MIG, 10–175 A for TIG and 10–175 A for Stick (manual p.7).\n\nThe manual does not confirm that a job at the top of a chart range can be done on 120V.\n\nOn the LCD, you enter the wire or rod diameter with the Left Knob and the material thickness with the Right Knob (manual p.20, p.30, p.32). The manual says to practice a few sample welds on scrap before your first project (manual p.18).\n\nIf you tell me your process and material, I can open the setup sheet for your job.",
+    "fallback": false,
+    "checker": []
+   }
+  ],
+  "checks": {
+   "missing": [],
+   "forbidden": [],
+   "asked_question": false,
+   "should_clarify": false
+  },
+  "error": null,
+  "conditions": {
+   "C01": [
+    "pass",
+    "no outside-knowledge wording"
+   ],
+   "C02": [
+    "pass",
+    "every number with a unit is in the manual"
+   ],
+   "C03": [
+    "pass",
+    "every sentence is on the manual's topics"
+   ],
+   "C04": [
+    "pass",
+    "facts come with a page"
+   ],
+   "C05": [
+    "pass",
+    "every sentence is supported by the manual"
+   ],
+   "C06": [
+    "na",
+    "the manual covers this question"
+   ],
+   "C07": [
+    "na",
+    "the manual covers this question"
+   ],
+   "C08": [
+    "na",
+    "no cable change is described"
+   ],
+   "C09": [
+    "pass",
+    "written once"
+   ],
+   "C10": [
+    "pass",
+    "only points at pictures it showed"
+   ],
+   "C11": [
+    "pass",
+    "no commentary on its own work"
+   ],
+   "C12": [
+    "pass",
+    "every picture is a crop of the manual or a widget built from verified data"
+   ],
+   "C13": [
+    "na",
+    "no drawing"
+   ],
+   "C14": [
+    "pass",
+    "only the nine welder tools"
+   ],
+   "C15": [
+    "na",
+    "the question is not ambiguous"
+   ],
+   "C16": [
+    "pass",
+    "no mention of files"
+   ],
+   "C17": [
+    "pass",
+    "no instructions leaked"
+   ]
+  },
+  "cost": 0.0668,
+  "seconds": 53.7,
+  "pipeline": true
+ },
+ {
+  "id": "G28",
+  "category": "tempting_extra",
+  "tier": 3,
+  "expected_visual": "none",
+  "expected_answer": "Only what the manual says about shutting down and storing (p23); otherwise the fallback sentence.",
+  "turns": [
+   {
+    "question": "Can I leave the welder plugged in overnight?",
+    "answer": "No. The manual says to unplug it when you're done. It doesn't mention overnight specifically, but it covers the same ground (see the picture below).\n\n- **Never leave it energized and unattended.** \"Turn power off if you have to leave.\" (manual p.2, General Safety item 7)\n- **Unplug it before storing.** Disconnect the plug from the power source before making any adjustments, changing accessories, or storing welders. (manual p.5)\n- **After you finish welding:**\n  1. Set the gun, torch or electrode holder down on a heat-proof, non-conductive surface.\n  2. Turn the Power Switch OFF.\n  3. Let the welder cool down, then unplug the power cord. (manual p.23, p.31, p.33)\n- **Storage:** Store it in a clean and dry location after every use. (manual p.41)\n- **Overheat shutdown:** If the welder shuts down from overheating, let it cool with the Power Switch on so the internal fan helps cool it. (manual p.23)",
+    "texts": [
+     "No. The manual says to unplug it when you're done. It doesn't mention overnight specifically, but it covers the same ground (see the picture below).\n\n- **Never leave it energized and unattended.** \"Turn power off if you have to leave.\" (manual p.2, General Safety item 7)\n- **Unplug it before storing.** Disconnect the plug from the power source before making any adjustments, changing accessories, or storing welders. (manual p.5)\n- **After you finish welding:**\n  1. Set the gun, torch or electrode holder down on a heat-proof, non-conductive surface.\n  2. Turn the Power Switch OFF.\n  3. Let the welder cool down, then unplug the power cord. (manual p.23, p.31, p.33)\n- **Storage:** Store it in a clean and dry location after every use. (manual p.41)\n- **Overheat shutdown:** If the welder shuts down from overheating, let it cool with the Power Switch on so the internal fan helps cool it. (manual p.23)"
+    ],
+    "tools": [
+     {
+      "tool": "show_figure",
+      "input": {
+       "figure_id": "general-safety-rules"
+      }
+     }
+    ],
+    "shown": [
+     {
+      "kind": "figure",
+      "id": "general-safety-rules",
+      "source": "Manual p.2"
+     }
+    ],
+    "cost": 0.0632432,
+    "stop": "success",
+    "pipeline": {
+     "first_findings": [
+      {
+       "kind": "checker",
+       "sentence": "CAUTION on cooling: If the welder shut down from overheating, leave the Power Switch ON so the fan can cool it (manual p.23).",
+       "detail": "Labels the cooling step a CAUTION, which the manual does not do. The manual's CAUTION on p.23 is about the weld being hot, not about leaving the switch on to co"
+      }
+     ],
+     "rewritten": true,
+     "phantom_nudge": false,
+     "removed": [],
+     "fallback": false,
+     "judge_used": true
+    },
+    "guard": {
+     "findings": []
+    },
+    "enforced": "No. The manual says to unplug it when you're done. It doesn't mention overnight specifically, but it covers the same ground (see the picture below).\n\n- **Never leave it energized and unattended.** \"Turn power off if you have to leave.\" (manual p.2, General Safety item 7)\n- **Unplug it before storing.** Disconnect the plug from the power source before making any adjustments, changing accessories, or storing welders. (manual p.5)\n- **After you finish welding:**\n  1. Set the gun, torch or electrode holder down on a heat-proof, non-conductive surface.\n  2. Turn the Power Switch OFF.\n  3. Let the welder cool down, then unplug the power cord. (manual p.23, p.31, p.33)\n- **Storage:** Store it in a clean and dry location after every use. (manual p.41)\n- **Overheat shutdown:** If the welder shuts down from overheating, let it cool with the Power Switch on so the internal fan helps cool it. (manual p.23)",
+    "fallback": false,
+    "checker": [
+     {
+      "sentence": "It doesn't mention overnight specifically, but it covers the same ground (see the picture below).",
+      "detail": "Says the manual 'covers the same ground' as overnight, which is an inference, and points to a picture below that the sources do not identify."
+     },
+     {
+      "sentence": "Set the gun, torch or electrode holder down on a heat-proof, non-conductive surface.",
+      "detail": "Says to use a heat-proof, non-conductive surface for all three processes. The TIG (p.31) and Stick (p.33) pages say nonconductive, nonflammable, not heat-proof."
+     }
+    ]
+   }
+  ],
+  "checks": {
+   "missing": [],
+   "forbidden": [],
+   "asked_question": false,
+   "should_clarify": false
+  },
+  "error": null,
+  "conditions": {
+   "C01": [
+    "pass",
+    "no outside-knowledge wording"
+   ],
+   "C02": [
+    "pass",
+    "every number with a unit is in the manual"
+   ],
+   "C03": [
+    "pass",
+    "every sentence is on the manual's topics"
+   ],
+   "C04": [
+    "pass",
+    "facts come with a page"
+   ],
+   "C05": [
+    "fail",
+    "2 unsupported: It doesn't mention overnight specifically, but it covers the same ground (see th | Set the gun, torch or electrode holder down on a heat-proof, non-conductive surf"
+   ],
+   "C06": [
+    "na",
+    "the manual covers this question"
+   ],
+   "C07": [
+    "na",
+    "the manual covers this question"
+   ],
+   "C08": [
+    "na",
+    "no cable change is described"
+   ],
+   "C09": [
+    "pass",
+    "written once"
+   ],
+   "C10": [
+    "pass",
+    "only points at pictures it showed"
+   ],
+   "C11": [
+    "pass",
+    "no commentary on its own work"
+   ],
+   "C12": [
+    "pass",
+    "every picture is a crop of the manual or a widget built from verified data"
+   ],
+   "C13": [
+    "na",
+    "no drawing"
+   ],
+   "C14": [
+    "pass",
+    "only the nine welder tools"
+   ],
+   "C15": [
+    "na",
+    "the question is not ambiguous"
+   ],
+   "C16": [
+    "pass",
+    "no mention of files"
+   ],
+   "C17": [
+    "pass",
+    "no instructions leaked"
+   ]
+  },
+  "cost": 0.0632,
+  "seconds": 41.1,
+  "pipeline": true
+ },
+ {
+  "id": "G29",
+  "category": "covered_control",
+  "tier": 3,
+  "expected_visual": "none",
+  "expected_answer": "The manual's burn-through causes and fixes (p35, p37): reduce current/wire feed speed, travel faster, reduce excess material, shorter CTWD to weld thinner.",
+  "turns": [
+   {
+    "question": "How do I avoid burning through thin sheet metal?",
+    "answer": "To weld thinner workpieces properly, lower the heat going into the metal. The pictures below show this for MIG and flux-cored wire. The manual gives these ways (manual p.35):\n\n1. Decrease weld current.\n2. Use slower wire feed.\n3. Increase travel speed.\n4. Use longer CTWD.\n\nCTWD is the contact tip to work distance. The manual says to keep the contact tip within 1/2\" of the work (manual p.22).\n\nThe manual lists three causes of burn-through, where the base metal melts away and leaves a hole (manual p.37):\n\n1. **Workpiece overheating:** reduce current and/or wire feed speed.\n2. **Travel speed too slow:** increase travel speed and keep it steady.\n3. **Excessive material at the weld:** reduce wire feed speed.\n\nOther points from the manual:\n- MIG welding can weld thinner workpieces than flux-cored (manual p.18). The selection chart gives 22 gauge to 3/8\" for MIG and 18 gauge to 5/16\" for flux-cored.\n- Practice on scrap of the same thickness as your workpiece first (manual p.19).\n- Enter your wire diameter (Left Knob) and material thickness (Right Knob) on the LCD (manual p.20). If you adjust wire speed or voltage by hand, the white mark on the line shows the recommended setting. The initial settings may need adjusting after you stop and inspect the weld (manual p.21).\n\nFor Stick, the manual says to decrease current and weld more quickly to weld thinner workpieces (manual p.38). The selection chart gives Stick a range of 10 gauge to 1/2\".",
+    "texts": [
+     "To weld thinner workpieces properly, lower the heat going into the metal. The pictures below show this for MIG and flux-cored wire. The manual gives these ways (manual p.35):\n\n1. Decrease weld current.\n2. Use slower wire feed.\n3. Increase travel speed.\n4. Use longer CTWD.\n\nCTWD is the contact tip to work distance. The manual says to keep the contact tip within 1/2\" of the work (manual p.22).\n\nThe manual lists three causes of burn-through, where the base metal melts away and leaves a hole (manual p.37):\n\n1. **Workpiece overheating:** reduce current and/or wire feed speed.\n2. **Travel speed too slow:** increase travel speed and keep it steady.\n3. **Excessive material at the weld:** reduce wire feed speed.\n\nOther points from the manual:\n- MIG welding can weld thinner workpieces than flux-cored (manual p.18). The selection chart gives 22 gauge to 3/8\" for MIG and 18 gauge to 5/16\" for flux-cored.\n- Practice on scrap of the same thickness as your workpiece first (manual p.19).\n- Enter your wire diameter (Left Knob) and material thickness (Right Knob) on the LCD (manual p.20). If you adjust wire speed or voltage by hand, the white mark on the line shows the recommended setting. The initial settings may need adjusting after you stop and inspect the weld (manual p.21).\n\nFor Stick, the manual says to decrease current and weld more quickly to weld thinner workpieces (manual p.38). The selection chart gives Stick a range of 10 gauge to 1/2\"."
+    ],
+    "tools": [
+     {
+      "tool": "show_figure",
+      "input": {
+       "figure_id": "wire-penetration-heat"
+      }
+     },
+     {
+      "tool": "show_figure",
+      "input": {
+       "figure_id": "wire-burn-through"
+      }
+     }
+    ],
+    "shown": [
+     {
+      "kind": "figure",
+      "id": "wire-penetration-heat",
+      "source": "Manual p.35"
+     },
+     {
+      "kind": "figure",
+      "id": "wire-burn-through",
+      "source": "Manual p.37"
+     }
+    ],
+    "cost": 0.04428170000000001,
+    "stop": "success",
+    "pipeline": {
+     "first_findings": [],
+     "rewritten": false,
+     "phantom_nudge": false,
+     "removed": [],
+     "fallback": false,
+     "judge_used": true
+    },
+    "guard": {
+     "findings": []
+    },
+    "enforced": "To weld thinner workpieces properly, lower the heat going into the metal. The pictures below show this for MIG and flux-cored wire. The manual gives these ways (manual p.35):\n\n1. Decrease weld current.\n2. Use slower wire feed.\n3. Increase travel speed.\n4. Use longer CTWD.\n\nCTWD is the contact tip to work distance. The manual says to keep the contact tip within 1/2\" of the work (manual p.22).\n\nThe manual lists three causes of burn-through, where the base metal melts away and leaves a hole (manual p.37):\n\n1. **Workpiece overheating:** reduce current and/or wire feed speed.\n2. **Travel speed too slow:** increase travel speed and keep it steady.\n3. **Excessive material at the weld:** reduce wire feed speed.\n\nOther points from the manual:\n- MIG welding can weld thinner workpieces than flux-cored (manual p.18). The selection chart gives 22 gauge to 3/8\" for MIG and 18 gauge to 5/16\" for flux-cored.\n- Practice on scrap of the same thickness as your workpiece first (manual p.19).\n- Enter your wire diameter (Left Knob) and material thickness (Right Knob) on the LCD (manual p.20). If you adjust wire speed or voltage by hand, the white mark on the line shows the recommended setting. The initial settings may need adjusting after you stop and inspect the weld (manual p.21).\n\nFor Stick, the manual says to decrease current and weld more quickly to weld thinner workpieces (manual p.38). The selection chart gives Stick a range of 10 gauge to 1/2\".",
+    "fallback": false,
+    "checker": []
+   }
+  ],
+  "checks": {
+   "missing": [],
+   "forbidden": [],
+   "asked_question": false,
+   "should_clarify": false
+  },
+  "error": null,
+  "conditions": {
+   "C01": [
+    "pass",
+    "no outside-knowledge wording"
+   ],
+   "C02": [
+    "pass",
+    "every number with a unit is in the manual"
+   ],
+   "C03": [
+    "pass",
+    "every sentence is on the manual's topics"
+   ],
+   "C04": [
+    "pass",
+    "facts come with a page"
+   ],
+   "C05": [
+    "pass",
+    "every sentence is supported by the manual"
+   ],
+   "C06": [
+    "na",
+    "the manual covers this question"
+   ],
+   "C07": [
+    "na",
+    "the manual covers this question"
+   ],
+   "C08": [
+    "na",
+    "no cable change is described"
+   ],
+   "C09": [
+    "pass",
+    "written once"
+   ],
+   "C10": [
+    "pass",
+    "only points at pictures it showed"
+   ],
+   "C11": [
+    "pass",
+    "no commentary on its own work"
+   ],
+   "C12": [
+    "pass",
+    "every picture is a crop of the manual or a widget built from verified data"
+   ],
+   "C13": [
+    "na",
+    "no drawing"
+   ],
+   "C14": [
+    "pass",
+    "only the nine welder tools"
+   ],
+   "C15": [
+    "na",
+    "the question is not ambiguous"
+   ],
+   "C16": [
+    "pass",
+    "no mention of files"
+   ],
+   "C17": [
+    "pass",
+    "no instructions leaked"
+   ]
+  },
+  "cost": 0.0443,
+  "seconds": 22.9,
+  "pipeline": true
+ },
+ {
+  "id": "G30",
+  "category": "covered_control",
+  "tier": 3,
+  "expected_visual": "none",
+  "expected_answer": "The manual's spatter causes and solutions (p37).",
+  "turns": [
+   {
+    "question": "What causes spatter and how do I stop it?",
+    "answer": "Fine spatter is normal. Spatter that is grainy and large is a problem (manual p.37).\n\nFor MIG and flux-cored wire, the manual lists these causes and fixes in this order (manual p.37):\n\n1. **Dirty workpiece or welding wire.** Clean the workpiece down to bare metal. Make certain the wire is clean and free from oil, coatings and other residues.\n2. **Incorrect polarity.** Check that polarity is set correctly for the type of welding.\n   - MIG (solid wire, DCEP): Ground Clamp Cable in the Negative (–) socket and Wire Feed Power Cable in the Positive (+) socket (manual p.14).\n   - Flux-cored (gasless, DCEN): Ground Clamp Cable in the Positive (+) socket and Wire Feed Power Cable in the Negative (–) socket (manual p.13).\n3. **Insufficient shielding gas (MIG only).** Increase the flow of gas. Clean the nozzle. Maintain proper CTWD.\n4. **Wire feeding too fast.** Reduce the wire feed speed.\n5. **CTWD too long.** Reduce CTWD. CTWD is the Contact Tip to Work Distance, and the Contact Tip should stay within 1/2\" of the work surface (manual p.22).\n\nFor stick welding, the manual gives one cause. That cause is a dirty workpiece or fill material. The fix is to clean the workpiece down to bare metal. Make certain the fill material and electrode are clean and free from oil, coatings and other residues (manual p.40).\n\nSee the pictures below.",
+    "texts": [
+     "Fine spatter is normal. Spatter that is grainy and large is a problem (manual p.37).\n\nFor MIG and flux-cored wire, the manual lists these causes and fixes in this order (manual p.37):\n\n1. **Dirty workpiece or welding wire.** Clean the workpiece down to bare metal. Make certain the wire is clean and free from oil, coatings and other residues.\n2. **Incorrect polarity.** Check that polarity is set correctly for the type of welding.\n   - MIG (solid wire, DCEP): Ground Clamp Cable in the Negative (–) socket and Wire Feed Power Cable in the Positive (+) socket (manual p.14).\n   - Flux-cored (gasless, DCEN): Ground Clamp Cable in the Positive (+) socket and Wire Feed Power Cable in the Negative (–) socket (manual p.13).\n3. **Insufficient shielding gas (MIG only).** Increase the flow of gas. Clean the nozzle. Maintain proper CTWD.\n4. **Wire feeding too fast.** Reduce the wire feed speed.\n5. **CTWD too long.** Reduce CTWD. CTWD is the Contact Tip to Work Distance, and the Contact Tip should stay within 1/2\" of the work surface (manual p.22).\n\nFor stick welding, the manual gives one cause. That cause is a dirty workpiece or fill material. The fix is to clean the workpiece down to bare metal. Make certain the fill material and electrode are clean and free from oil, coatings and other residues (manual p.40).\n\nSee the pictures below."
+    ],
+    "tools": [
+     {
+      "tool": "show_figure",
+      "input": {
+       "figure_id": "wire-spatter"
+      }
+     },
+     {
+      "tool": "polarity",
+      "input": {
+       "process": "mig"
+      }
+     },
+     {
+      "tool": "polarity",
+      "input": {
+       "process": "flux_cored"
+      }
+     },
+     {
+      "tool": "show_polarity_diagram",
+      "input": {
+       "process": "mig"
+      }
+     },
+     {
+      "tool": "show_polarity_diagram",
+      "input": {
+       "process": "flux_cored"
+      }
+     }
+    ],
+    "shown": [
+     {
+      "kind": "figure",
+      "id": "wire-spatter",
+      "source": "Manual p.37"
+     },
+     {
+      "kind": "widget",
+      "tool": "show_polarity_diagram",
+      "title": "Polarity: MIG (solid wire with shielding gas)"
+     },
+     {
+      "kind": "widget",
+      "tool": "show_polarity_diagram",
+      "title": "Polarity: Flux-cored (gasless, self-shielded)"
+     }
+    ],
+    "cost": 0.07808190000000001,
+    "stop": "success",
+    "pipeline": {
+     "first_findings": [
+      {
+       "kind": "checker",
+       "sentence": "Before you move any cable, turn the Power Switch OFF and unplug the welder.",
+       "detail": "Manual does not give a general rule to turn off and unplug before moving any cable; it only says this before setup or cable connection steps."
+      },
+      {
+       "kind": "checker",
+       "sentence": "The list is on the picture below, and the polarity diagrams are below it.",
+       "detail": "Describes the picture's layout (list above, polarity diagrams below); the sources do not say where the pictures sit on the page."
+      }
+     ],
+     "rewritten": true,
+     "phantom_nudge": false,
+     "removed": [],
+     "fallback": false,
+     "judge_used": true
+    },
+    "guard": {
+     "findings": []
+    },
+    "enforced": "Fine spatter is normal. Spatter that is grainy and large is a problem (manual p.37).\n\nFor MIG and flux-cored wire, the manual lists these causes and fixes in this order (manual p.37):\n\n1. **Dirty workpiece or welding wire.** Clean the workpiece down to bare metal. Make certain the wire is clean and free from oil, coatings and other residues.\n2. **Incorrect polarity.** Check that polarity is set correctly for the type of welding.\n   - MIG (solid wire, DCEP): Ground Clamp Cable in the Negative (–) socket and Wire Feed Power Cable in the Positive (+) socket (manual p.14).\n   - Flux-cored (gasless, DCEN): Ground Clamp Cable in the Positive (+) socket and Wire Feed Power Cable in the Negative (–) socket (manual p.13).\n3. **Insufficient shielding gas (MIG only).** Increase the flow of gas. Clean the nozzle. Maintain proper CTWD.\n4. **Wire feeding too fast.** Reduce the wire feed speed.\n5. **CTWD too long.** Reduce CTWD. CTWD is the Contact Tip to Work Distance, and the Contact Tip should stay within 1/2\" of the work surface (manual p.22).\n\nFor stick welding, the manual gives one cause. That cause is a dirty workpiece or fill material. The fix is to clean the workpiece down to bare metal. Make certain the fill material and electrode are clean and free from oil, coatings and other residues (manual p.40).\n\nSee the pictures below.",
+    "fallback": false,
+    "checker": []
+   }
+  ],
+  "checks": {
+   "missing": [],
+   "forbidden": [],
+   "asked_question": false,
+   "should_clarify": false
+  },
+  "error": null,
+  "conditions": {
+   "C01": [
+    "pass",
+    "no outside-knowledge wording"
+   ],
+   "C02": [
+    "pass",
+    "every number with a unit is in the manual"
+   ],
+   "C03": [
+    "pass",
+    "every sentence is on the manual's topics"
+   ],
+   "C04": [
+    "pass",
+    "facts come with a page"
+   ],
+   "C05": [
+    "pass",
+    "every sentence is supported by the manual"
+   ],
+   "C06": [
+    "na",
+    "the manual covers this question"
+   ],
+   "C07": [
+    "na",
+    "the manual covers this question"
+   ],
+   "C08": [
+    "na",
+    "no cable change is described"
+   ],
+   "C09": [
+    "pass",
+    "written once"
+   ],
+   "C10": [
+    "pass",
+    "only points at pictures it showed"
+   ],
+   "C11": [
+    "pass",
+    "no commentary on its own work"
+   ],
+   "C12": [
+    "pass",
+    "every picture is a crop of the manual or a widget built from verified data"
+   ],
+   "C13": [
+    "na",
+    "no drawing"
+   ],
+   "C14": [
+    "pass",
+    "only the nine welder tools"
+   ],
+   "C15": [
+    "na",
+    "the question is not ambiguous"
+   ],
+   "C16": [
+    "pass",
+    "no mention of files"
+   ],
+   "C17": [
+    "pass",
+    "no instructions leaked"
+   ]
+  },
+  "cost": 0.0781,
+  "seconds": 36.5,
+  "pipeline": true
+ },
+ {
+  "id": "G31",
+  "category": "covered_control",
+  "tier": 3,
+  "expected_visual": "none",
+  "expected_answer": "The manual's shutdown and storage steps (p23).",
+  "turns": [
+   {
+    "question": "How should I shut down and store the welder?",
+    "answer": "Here are the shutdown steps for wire welding (MIG or flux-cored). The manual's own picture of them is below. (manual p.23)\n\n1. Set the MIG gun down on a heat-proof, electrically non-conductive surface, such as a concrete slab. Turn the Power Switch OFF. (manual p.23)\n2. Let the welder cool down, then unplug the power cord. (manual p.23)\n3. Take the ground clamp off the workpiece or table. Disconnect the MIG gun. (manual p.23)\n4. Respool the wire:\n   - Clip the wire.\n   - Remove the gas nozzle and contact tip on the MIG gun.\n   - Release the idler arm on the wire feed mechanism.\n   - Rotate the wire spool counterclockwise.\n   - Hold the wire firmly while you respool. The manual says its end tends to unravel quickly once it clears the wire feeder. (manual p.23)\n5. MIG only: Close the shielding gas cylinder valve securely. Remove the regulator and replace the cap. Disconnect the gas hose from the welder. Store and secure the gas cylinder. (manual p.23)\n\nCAUTION: The weld will be hot, so don't touch it. (manual p.23)\n\n**Storing:** After every use, store the welder in a clean, dry location. (manual p.41)\n\n**TIG and Stick:** Their shutdown lists differ a little. For TIG, you also disconnect the foot pedal cable and the gas hose. Stick has no gas to disconnect. Then clean the welder and store it and its accessories indoors, out of children's reach. (manual pp.31, 33)",
+    "texts": [
+     "Here are the shutdown steps for wire welding (MIG or flux-cored). The manual's own picture of them is below. (manual p.23)\n\n1. Set the MIG gun down on a heat-proof, electrically non-conductive surface, such as a concrete slab. Turn the Power Switch OFF. (manual p.23)\n2. Let the welder cool down, then unplug the power cord. (manual p.23)\n3. Take the ground clamp off the workpiece or table. Disconnect the MIG gun. (manual p.23)\n4. Respool the wire:\n   - Clip the wire.\n   - Remove the gas nozzle and contact tip on the MIG gun.\n   - Release the idler arm on the wire feed mechanism.\n   - Rotate the wire spool counterclockwise.\n   - Hold the wire firmly while you respool. The manual says its end tends to unravel quickly once it clears the wire feeder. (manual p.23)\n5. MIG only: Close the shielding gas cylinder valve securely. Remove the regulator and replace the cap. Disconnect the gas hose from the welder. Store and secure the gas cylinder. (manual p.23)\n\nCAUTION: The weld will be hot, so don't touch it. (manual p.23)\n\n**Storing:** After every use, store the welder in a clean, dry location. (manual p.41)\n\n**TIG and Stick:** Their shutdown lists differ a little. For TIG, you also disconnect the foot pedal cable and the gas hose. Stick has no gas to disconnect. Then clean the welder and store it and its accessories indoors, out of children's reach. (manual pp.31, 33)"
+    ],
+    "tools": [
+     {
+      "tool": "show_figure",
+      "input": {
+       "figure_id": "shutdown-and-storage-steps"
+      }
+     }
+    ],
+    "shown": [
+     {
+      "kind": "figure",
+      "id": "shutdown-and-storage-steps",
+      "source": "Manual p.23"
+     }
+    ],
+    "cost": 0.0404857,
+    "stop": "success",
+    "pipeline": {
+     "first_findings": [],
+     "rewritten": false,
+     "phantom_nudge": false,
+     "removed": [],
+     "fallback": false,
+     "judge_used": true
+    },
+    "guard": {
+     "findings": []
+    },
+    "enforced": "Here are the shutdown steps for wire welding (MIG or flux-cored). The manual's own picture of them is below. (manual p.23)\n\n1. Set the MIG gun down on a heat-proof, electrically non-conductive surface, such as a concrete slab. Turn the Power Switch OFF. (manual p.23)\n2. Let the welder cool down, then unplug the power cord. (manual p.23)\n3. Take the ground clamp off the workpiece or table. Disconnect the MIG gun. (manual p.23)\n4. Respool the wire:\n   - Clip the wire.\n   - Remove the gas nozzle and contact tip on the MIG gun.\n   - Release the idler arm on the wire feed mechanism.\n   - Rotate the wire spool counterclockwise.\n   - Hold the wire firmly while you respool. The manual says its end tends to unravel quickly once it clears the wire feeder. (manual p.23)\n5. MIG only: Close the shielding gas cylinder valve securely. Remove the regulator and replace the cap. Disconnect the gas hose from the welder. Store and secure the gas cylinder. (manual p.23)\n\nCAUTION: The weld will be hot, so don't touch it. (manual p.23)\n\n**Storing:** After every use, store the welder in a clean, dry location. (manual p.41)\n\n**TIG and Stick:** Their shutdown lists differ a little. For TIG, you also disconnect the foot pedal cable and the gas hose. Stick has no gas to disconnect. Then clean the welder and store it and its accessories indoors, out of children's reach. (manual pp.31, 33)",
+    "fallback": false,
+    "checker": []
+   }
+  ],
+  "checks": {
+   "missing": [],
+   "forbidden": [],
+   "asked_question": false,
+   "should_clarify": false
+  },
+  "error": null,
+  "conditions": {
+   "C01": [
+    "pass",
+    "no outside-knowledge wording"
+   ],
+   "C02": [
+    "pass",
+    "every number with a unit is in the manual"
+   ],
+   "C03": [
+    "pass",
+    "every sentence is on the manual's topics"
+   ],
+   "C04": [
+    "pass",
+    "facts come with a page"
+   ],
+   "C05": [
+    "pass",
+    "every sentence is supported by the manual"
+   ],
+   "C06": [
+    "na",
+    "the manual covers this question"
+   ],
+   "C07": [
+    "na",
+    "the manual covers this question"
+   ],
+   "C08": [
+    "fail",
+    "describes a cable change without saying to switch off and unplug first"
+   ],
+   "C09": [
+    "pass",
+    "written once"
+   ],
+   "C10": [
+    "pass",
+    "only points at pictures it showed"
+   ],
+   "C11": [
+    "pass",
+    "no commentary on its own work"
+   ],
+   "C12": [
+    "pass",
+    "every picture is a crop of the manual or a widget built from verified data"
+   ],
+   "C13": [
+    "na",
+    "no drawing"
+   ],
+   "C14": [
+    "pass",
+    "only the nine welder tools"
+   ],
+   "C15": [
+    "na",
+    "the question is not ambiguous"
+   ],
+   "C16": [
+    "pass",
+    "no mention of files"
+   ],
+   "C17": [
+    "pass",
+    "no instructions leaked"
+   ]
+  },
+  "cost": 0.0405,
+  "seconds": 26.5,
+  "pipeline": true
+ },
+ {
+  "id": "G32",
+  "category": "covered_control",
+  "tier": 3,
+  "expected_visual": "none",
+  "expected_answer": "90-day limited warranty on materials and workmanship from the date of purchase (p48).",
+  "turns": [
+   {
+    "question": "What does the warranty cover?",
+    "answer": "The welder has a Limited 90 Day Warranty (manual p.48).\n\n**What it covers**\n- Harbor Freight Tools warrants to the original purchaser that the product is free from defects in materials and workmanship for 90 days from the date of purchase (manual p.48).\n\n**What it does not cover**\n- Damage caused directly or indirectly by misuse, abuse, negligence or accidents.\n- Repairs or alterations made outside their facilities.\n- Criminal activity, improper installation, normal wear and tear, and lack of maintenance (manual p.48).\n\n**How to use it**\n1. Return the product or part with transportation charges prepaid.\n2. Include proof of the purchase date and an explanation of the complaint (manual p.48).\n3. If their inspection verifies the defect, they will repair or replace the product, or they may refund the purchase price if they can't readily and quickly provide a replacement (manual p.48).\n4. They return repaired products at their expense. If they find no defect, or the defect came from causes outside the warranty, you pay the cost of returning the product (manual p.48).\n\nThe warranty is expressly in place of all other warranties, express or implied. It gives you specific legal rights, and you may have other rights that vary from state to state (manual p.48).\n\nThe manual also tells you to keep the receipt in a safe and dry place (manual p.1).",
+    "texts": [
+     "The welder has a Limited 90 Day Warranty (manual p.48).\n\n**What it covers**\n- Harbor Freight Tools warrants to the original purchaser that the product is free from defects in materials and workmanship for 90 days from the date of purchase (manual p.48).\n\n**What it does not cover**\n- Damage caused directly or indirectly by misuse, abuse, negligence or accidents.\n- Repairs or alterations made outside their facilities.\n- Criminal activity, improper installation, normal wear and tear, and lack of maintenance (manual p.48).\n\n**How to use it**\n1. Return the product or part with transportation charges prepaid.\n2. Include proof of the purchase date and an explanation of the complaint (manual p.48).\n3. If their inspection verifies the defect, they will repair or replace the product, or they may refund the purchase price if they can't readily and quickly provide a replacement (manual p.48).\n4. They return repaired products at their expense. If they find no defect, or the defect came from causes outside the warranty, you pay the cost of returning the product (manual p.48).\n\nThe warranty is expressly in place of all other warranties, express or implied. It gives you specific legal rights, and you may have other rights that vary from state to state (manual p.48).\n\nThe manual also tells you to keep the receipt in a safe and dry place (manual p.1)."
+    ],
+    "tools": [],
+    "shown": [],
+    "cost": 0.0453476,
+    "stop": "success",
+    "pipeline": {
+     "first_findings": [
+      {
+       "kind": "checker",
+       "sentence": "The warranty contact is 1-800-444-3353, at 26677 Agoura Road, Calabasas, CA 91302 (manual p.48).",
+       "detail": "The manual shows 1-800-444-3353 and the address at the foot of the warranty page, but does not call this number the warranty contact. Elsewhere it is the genera"
+      }
+     ],
+     "rewritten": true,
+     "phantom_nudge": false,
+     "removed": [],
+     "fallback": false,
+     "judge_used": true
+    },
+    "guard": {
+     "findings": []
+    },
+    "enforced": "The welder has a Limited 90 Day Warranty (manual p.48).\n\n**What it covers**\n- Harbor Freight Tools warrants to the original purchaser that the product is free from defects in materials and workmanship for 90 days from the date of purchase (manual p.48).\n\n**What it does not cover**\n- Damage caused directly or indirectly by misuse, abuse, negligence or accidents.\n- Repairs or alterations made outside their facilities.\n- Criminal activity, improper installation, normal wear and tear, and lack of maintenance (manual p.48).\n\n**How to use it**\n1. Return the product or part with transportation charges prepaid.\n2. Include proof of the purchase date and an explanation of the complaint (manual p.48).\n3. If their inspection verifies the defect, they will repair or replace the product, or they may refund the purchase price if they can't readily and quickly provide a replacement (manual p.48).\n4. They return repaired products at their expense. If they find no defect, or the defect came from causes outside the warranty, you pay the cost of returning the product (manual p.48).\n\nThe warranty is expressly in place of all other warranties, express or implied. It gives you specific legal rights, and you may have other rights that vary from state to state (manual p.48).\n\nThe manual also tells you to keep the receipt in a safe and dry place (manual p.1).",
+    "fallback": false,
+    "checker": []
+   }
+  ],
+  "checks": {
+   "missing": [],
+   "forbidden": [],
+   "asked_question": false,
+   "should_clarify": false
+  },
+  "error": null,
+  "conditions": {
+   "C01": [
+    "pass",
+    "no outside-knowledge wording"
+   ],
+   "C02": [
+    "pass",
+    "every number with a unit is in the manual"
+   ],
+   "C03": [
+    "pass",
+    "every sentence is on the manual's topics"
+   ],
+   "C04": [
+    "pass",
+    "facts come with a page"
+   ],
+   "C05": [
+    "pass",
+    "every sentence is supported by the manual"
+   ],
+   "C06": [
+    "na",
+    "the manual covers this question"
+   ],
+   "C07": [
+    "na",
+    "the manual covers this question"
+   ],
+   "C08": [
+    "na",
+    "no cable change is described"
+   ],
+   "C09": [
+    "pass",
+    "written once"
+   ],
+   "C10": [
+    "pass",
+    "only points at pictures it showed"
+   ],
+   "C11": [
+    "pass",
+    "no commentary on its own work"
+   ],
+   "C12": [
+    "na",
+    "no pictures were shown"
+   ],
+   "C13": [
+    "na",
+    "no drawing"
+   ],
+   "C14": [
+    "pass",
+    "only the nine welder tools"
+   ],
+   "C15": [
+    "na",
+    "the question is not ambiguous"
+   ],
+   "C16": [
+    "pass",
+    "no mention of files"
+   ],
+   "C17": [
+    "pass",
+    "no instructions leaked"
+   ]
+  },
+  "cost": 0.0453,
+  "seconds": 26.5,
+  "pipeline": true
+ },
+ {
+  "id": "G33",
+  "category": "covered_control",
+  "tier": 3,
+  "expected_visual": "none",
+  "expected_answer": "30%: 3 minutes welding, 7 minutes rest (p7, p29).",
+  "turns": [
+   {
+    "question": "What's the duty cycle for TIG at 175A on 240V?",
+    "answer": "For TIG at 175A on 240V, the duty cycle is **30%**. That means 3 minutes of welding, then 7 minutes of rest, in every 10 minutes (manual p.7, p.29).\n\nThe duty cycle is the number of minutes, within a 10-minute period, that the welder can produce a given current without overheating (manual p.29).\n\nThe manual also lists 100% continuous use at 105A for TIG on 240V (manual p.7, p.29).\n\nIf the welder overheats, it shuts down and a warning screen appears. Leave the Power Switch ON so the internal fan helps cool it (manual p.29).",
+    "texts": [
+     "For TIG at 175A on 240V, the duty cycle is **30%**. That means 3 minutes of welding, then 7 minutes of rest, in every 10 minutes (manual p.7, p.29).\n\nThe duty cycle is the number of minutes, within a 10-minute period, that the welder can produce a given current without overheating (manual p.29).\n\nThe manual also lists 100% continuous use at 105A for TIG on 240V (manual p.7, p.29).\n\nIf the welder overheats, it shuts down and a warning screen appears. Leave the Power Switch ON so the internal fan helps cool it (manual p.29)."
+    ],
+    "tools": [
+     {
+      "tool": "duty_cycle",
+      "input": {
+       "process": "tig",
+       "voltage": 240,
+       "amps": 175
+      }
+     },
+     {
+      "tool": "show_duty_cycle_calculator",
+      "input": {
+       "process": "tig",
+       "voltage": 240,
+       "amps": 175
+      }
+     },
+     {
+      "tool": "show_figure",
+      "input": {
+       "figure_id": "duty-cycle-section-tig-stick"
+      }
+     }
+    ],
+    "shown": [
+     {
+      "kind": "widget",
+      "tool": "show_duty_cycle_calculator",
+      "title": "Duty cycle calculator"
+     },
+     {
+      "kind": "figure",
+      "id": "duty-cycle-section-tig-stick",
+      "source": "Manual p.29"
+     }
+    ],
+    "cost": 0.0804757,
+    "stop": "success",
+    "pipeline": {
+     "first_findings": [
+      {
+       "kind": "checker",
+       "sentence": "60% at 125A (rating label, p.14)",
+       "detail": "The 60% at 125A point is not a 240V TIG rating. On the rating label, 125A at 60% is on the 120V section, and the 240V TIG rating is 30% at 175A and 100% at 105A"
+      },
+      {
+       "kind": "checker",
+       "sentence": "The calculator and the manual's duty cycle dials are shown below.",
+       "detail": "The sources do not mention a calculator. The duty cycle dials are on p.29 and are not shown below."
+      },
+      {
+       "kind": "checker",
+       "sentence": "You can try other amps in the calculator.",
+       "detail": "The sources do not mention a calculator, so the claim that other amps can be tried in it is not supported."
+      }
+     ],
+     "rewritten": true,
+     "phantom_nudge": false,
+     "removed": [],
+     "fallback": false,
+     "judge_used": true
+    },
+    "guard": {
+     "findings": []
+    },
+    "enforced": "For TIG at 175A on 240V, the duty cycle is **30%**. That means 3 minutes of welding, then 7 minutes of rest, in every 10 minutes (manual p.7, p.29).\n\nThe duty cycle is the number of minutes, within a 10-minute period, that the welder can produce a given current without overheating (manual p.29).\n\nThe manual also lists 100% continuous use at 105A for TIG on 240V (manual p.7, p.29).\n\nIf the welder overheats, it shuts down and a warning screen appears. Leave the Power Switch ON so the internal fan helps cool it (manual p.29).",
+    "fallback": false,
+    "checker": []
+   }
+  ],
+  "checks": {
+   "missing": [],
+   "forbidden": [],
+   "asked_question": false,
+   "should_clarify": false
+  },
+  "error": null,
+  "conditions": {
+   "C01": [
+    "pass",
+    "no outside-knowledge wording"
+   ],
+   "C02": [
+    "pass",
+    "every number with a unit is in the manual"
+   ],
+   "C03": [
+    "pass",
+    "every sentence is on the manual's topics"
+   ],
+   "C04": [
+    "pass",
+    "facts come with a page"
+   ],
+   "C05": [
+    "pass",
+    "every sentence is supported by the manual"
+   ],
+   "C06": [
+    "na",
+    "the manual covers this question"
+   ],
+   "C07": [
+    "na",
+    "the manual covers this question"
+   ],
+   "C08": [
+    "na",
+    "no cable change is described"
+   ],
+   "C09": [
+    "pass",
+    "written once"
+   ],
+   "C10": [
+    "pass",
+    "only points at pictures it showed"
+   ],
+   "C11": [
+    "pass",
+    "no commentary on its own work"
+   ],
+   "C12": [
+    "pass",
+    "every picture is a crop of the manual or a widget built from verified data"
+   ],
+   "C13": [
+    "na",
+    "no drawing"
+   ],
+   "C14": [
+    "pass",
+    "only the nine welder tools"
+   ],
+   "C15": [
+    "na",
+    "the question is not ambiguous"
+   ],
+   "C16": [
+    "pass",
+    "no mention of files"
+   ],
+   "C17": [
+    "pass",
+    "no instructions leaked"
+   ]
+  },
+  "cost": 0.0805,
+  "seconds": 25.9,
+  "pipeline": true
+ },
+ {
+  "id": "G34",
+  "category": "covered_control",
+  "tier": 3,
+  "expected_visual": "none",
+  "expected_answer": "Negative (-) socket; the electrode holder in Positive (+) (p27).",
+  "turns": [
+   {
+    "question": "Which socket does the ground clamp go in for stick welding?",
+    "answer": "For Stick welding, the Ground Clamp Cable goes in the **Negative (–) socket** (manual p.27). The Electrode Holder Cable goes in the **Positive (+) socket**. See the diagram below.\n\nBefore you move any cable, turn the Power Switch OFF and unplug the welder.\n\n1. Plug the Ground Clamp Cable into the Negative socket. Twist it clockwise all the way to lock it in place (manual p.27).\n2. Plug the Electrode Holder Cable into the Positive socket. Twist it clockwise all the way to lock it in place (manual p.27).\n3. Leave the Wire Feed Power Cable disconnected (Quick-start guide p.2).\n\nStick welding needs no shielding gas (manual p.28).",
+    "texts": [
+     "For Stick welding, the Ground Clamp Cable goes in the **Negative (–) socket** (manual p.27). The Electrode Holder Cable goes in the **Positive (+) socket**. See the diagram below.\n\nBefore you move any cable, turn the Power Switch OFF and unplug the welder.\n\n1. Plug the Ground Clamp Cable into the Negative socket. Twist it clockwise all the way to lock it in place (manual p.27).\n2. Plug the Electrode Holder Cable into the Positive socket. Twist it clockwise all the way to lock it in place (manual p.27).\n3. Leave the Wire Feed Power Cable disconnected (Quick-start guide p.2).\n\nStick welding needs no shielding gas (manual p.28)."
+    ],
+    "tools": [
+     {
+      "tool": "polarity",
+      "input": {
+       "process": "stick"
+      }
+     },
+     {
+      "tool": "show_polarity_diagram",
+      "input": {
+       "process": "stick"
+      }
+     }
+    ],
+    "shown": [
+     {
+      "kind": "widget",
+      "tool": "show_polarity_diagram",
+      "title": "Polarity: Stick"
+     }
+    ],
+    "cost": 0.03831710000000001,
+    "stop": "success",
+    "pipeline": {
+     "first_findings": [],
+     "rewritten": false,
+     "phantom_nudge": false,
+     "removed": [],
+     "fallback": false,
+     "judge_used": true
+    },
+    "guard": {
+     "findings": []
+    },
+    "enforced": "For Stick welding, the Ground Clamp Cable goes in the **Negative (–) socket** (manual p.27). The Electrode Holder Cable goes in the **Positive (+) socket**. See the diagram below.\n\nBefore you move any cable, turn the Power Switch OFF and unplug the welder.\n\n1. Plug the Ground Clamp Cable into the Negative socket. Twist it clockwise all the way to lock it in place (manual p.27).\n2. Plug the Electrode Holder Cable into the Positive socket. Twist it clockwise all the way to lock it in place (manual p.27).\n3. Leave the Wire Feed Power Cable disconnected (Quick-start guide p.2).\n\nStick welding needs no shielding gas (manual p.28).",
+    "fallback": false,
+    "checker": []
+   }
+  ],
+  "checks": {
+   "missing": [],
+   "forbidden": [],
+   "asked_question": false,
+   "should_clarify": false
+  },
+  "error": null,
+  "conditions": {
+   "C01": [
+    "pass",
+    "no outside-knowledge wording"
+   ],
+   "C02": [
+    "pass",
+    "every number with a unit is in the manual"
+   ],
+   "C03": [
+    "pass",
+    "every sentence is on the manual's topics"
+   ],
+   "C04": [
+    "pass",
+    "facts come with a page"
+   ],
+   "C05": [
+    "pass",
+    "every sentence is supported by the manual"
+   ],
+   "C06": [
+    "na",
+    "the manual covers this question"
+   ],
+   "C07": [
+    "na",
+    "the manual covers this question"
+   ],
+   "C08": [
+    "pass",
+    "says to switch off and unplug first"
+   ],
+   "C09": [
+    "pass",
+    "written once"
+   ],
+   "C10": [
+    "pass",
+    "only points at pictures it showed"
+   ],
+   "C11": [
+    "pass",
+    "no commentary on its own work"
+   ],
+   "C12": [
+    "pass",
+    "every picture is a crop of the manual or a widget built from verified data"
+   ],
+   "C13": [
+    "na",
+    "no drawing"
+   ],
+   "C14": [
+    "pass",
+    "only the nine welder tools"
+   ],
+   "C15": [
+    "na",
+    "the question is not ambiguous"
+   ],
+   "C16": [
+    "pass",
+    "no mention of files"
+   ],
+   "C17": [
+    "pass",
+    "no instructions leaked"
+   ]
+  },
+  "cost": 0.0383,
+  "seconds": 14.7,
+  "pipeline": true
+ },
+ {
+  "id": "G35",
+  "category": "covered_control",
+  "tier": 3,
+  "expected_visual": "none",
+  "expected_answer": "The manual's tungsten sharpening steps (p26).",
+  "turns": [
+   {
+    "question": "How do I sharpen the tungsten electrode?",
+    "answer": "Here are the manual's steps for sharpening the tungsten electrode (manual p.26). The picture below shows them.\n\n**WARNING:** Some electrodes may have materials added that are hazardous to breathe. Wear a respirator and ANSI-approved safety goggles when grinding an electrode (manual p.26).\n\nFirst, use a fine grit grinding wheel and dedicate it only to electrode grinding. This avoids contaminating the electrode (manual p.26).\n\n1. Shut off the welder. Wait until the electrode and torch have cooled enough to handle.\n2. Remove the Back Cap. Pull the electrode out of the front of the torch. Pulling it from the rear will damage the collet and create burrs on the electrode.\n3. If the electrode is dulled or contaminated, grip it above the contaminated section with pliers or a suitable tool. Snap off the end.\n4. Lightly press the electrode tip against the grinding wheel at an angle. Rotate the tip until a blunt point forms. Grind parallel to the length of the electrode.\n5. The conical part of the ideal tip is 2-1/2 times as long as the electrode diameter.\n6. Put the electrode back into the collet with the tip sticking out 1/8\" to 1/4\" beyond the ceramic nozzle. Then tighten the Back Cap.",
+    "texts": [
+     "Here are the manual's steps for sharpening the tungsten electrode (manual p.26). The picture below shows them.\n\n**WARNING:** Some electrodes may have materials added that are hazardous to breathe. Wear a respirator and ANSI-approved safety goggles when grinding an electrode (manual p.26).\n\nFirst, use a fine grit grinding wheel and dedicate it only to electrode grinding. This avoids contaminating the electrode (manual p.26).\n\n1. Shut off the welder. Wait until the electrode and torch have cooled enough to handle.\n2. Remove the Back Cap. Pull the electrode out of the front of the torch. Pulling it from the rear will damage the collet and create burrs on the electrode.\n3. If the electrode is dulled or contaminated, grip it above the contaminated section with pliers or a suitable tool. Snap off the end.\n4. Lightly press the electrode tip against the grinding wheel at an angle. Rotate the tip until a blunt point forms. Grind parallel to the length of the electrode.\n5. The conical part of the ideal tip is 2-1/2 times as long as the electrode diameter.\n6. Put the electrode back into the collet with the tip sticking out 1/8\" to 1/4\" beyond the ceramic nozzle. Then tighten the Back Cap."
+    ],
+    "tools": [
+     {
+      "tool": "show_figure",
+      "input": {
+       "figure_id": "tungsten-sharpening"
+      }
+     }
+    ],
+    "shown": [
+     {
+      "kind": "figure",
+      "id": "tungsten-sharpening",
+      "source": "Manual p.26"
+     }
+    ],
+    "cost": 0.039404,
+    "stop": "success",
+    "pipeline": {
+     "first_findings": [],
+     "rewritten": false,
+     "phantom_nudge": false,
+     "removed": [],
+     "fallback": false,
+     "judge_used": true
+    },
+    "guard": {
+     "findings": []
+    },
+    "enforced": "Here are the manual's steps for sharpening the tungsten electrode (manual p.26). The picture below shows them.\n\n**WARNING:** Some electrodes may have materials added that are hazardous to breathe. Wear a respirator and ANSI-approved safety goggles when grinding an electrode (manual p.26).\n\nFirst, use a fine grit grinding wheel and dedicate it only to electrode grinding. This avoids contaminating the electrode (manual p.26).\n\n1. Shut off the welder. Wait until the electrode and torch have cooled enough to handle.\n2. Remove the Back Cap. Pull the electrode out of the front of the torch. Pulling it from the rear will damage the collet and create burrs on the electrode.\n3. If the electrode is dulled or contaminated, grip it above the contaminated section with pliers or a suitable tool. Snap off the end.\n4. Lightly press the electrode tip against the grinding wheel at an angle. Rotate the tip until a blunt point forms. Grind parallel to the length of the electrode.\n5. The conical part of the ideal tip is 2-1/2 times as long as the electrode diameter.\n6. Put the electrode back into the collet with the tip sticking out 1/8\" to 1/4\" beyond the ceramic nozzle. Then tighten the Back Cap.",
+    "fallback": false,
+    "checker": []
+   }
+  ],
+  "checks": {
+   "missing": [],
+   "forbidden": [],
+   "asked_question": false,
+   "should_clarify": false
+  },
+  "error": null,
+  "conditions": {
+   "C01": [
+    "pass",
+    "no outside-knowledge wording"
+   ],
+   "C02": [
+    "pass",
+    "every number with a unit is in the manual"
+   ],
+   "C03": [
+    "pass",
+    "every sentence is on the manual's topics"
+   ],
+   "C04": [
+    "pass",
+    "facts come with a page"
+   ],
+   "C05": [
+    "pass",
+    "every sentence is supported by the manual"
+   ],
+   "C06": [
+    "na",
+    "the manual covers this question"
+   ],
+   "C07": [
+    "na",
+    "the manual covers this question"
+   ],
+   "C08": [
+    "na",
+    "no cable change is described"
+   ],
+   "C09": [
+    "pass",
+    "written once"
+   ],
+   "C10": [
+    "pass",
+    "only points at pictures it showed"
+   ],
+   "C11": [
+    "pass",
+    "no commentary on its own work"
+   ],
+   "C12": [
+    "pass",
+    "every picture is a crop of the manual or a widget built from verified data"
+   ],
+   "C13": [
+    "na",
+    "no drawing"
+   ],
+   "C14": [
+    "pass",
+    "only the nine welder tools"
+   ],
+   "C15": [
+    "na",
+    "the question is not ambiguous"
+   ],
+   "C16": [
+    "pass",
+    "no mention of files"
+   ],
+   "C17": [
+    "pass",
+    "no instructions leaked"
+   ]
+  },
+  "cost": 0.0394,
+  "seconds": 20.3,
+  "pipeline": true
+ },
+ {
+  "id": "G36",
+  "category": "ambiguous",
+  "tier": 3,
+  "expected_visual": "none",
+  "expected_answer": "Ask which process and what the symptom is; do not guess a fix.",
+  "turns": [
+   {
+    "question": "It's not working right.",
+    "answer": "Sorry it's giving you trouble. I need two details to point you to the right checks in the manual:\n\n1. **Which process are you using?** MIG (with gas), flux-cored (gasless), TIG or Stick.\n2. **What is it doing?** For example:\n   - The welder won't turn on, or the LCD stays dark.\n   - The wire won't feed, or it jams or tangles.\n   - The wire feeds but there's no arc.\n   - The arc is weak or unstable.\n   - The weld looks bad (holes, spatter, burn-through or poor sticking).\n   - A warning screen shows and the welder shuts down.\n\nTell me what you see, and which input voltage you're on (120V or 240V) if you know it.",
+    "texts": [
+     "Sorry it's giving you trouble. I need two details to point you to the right checks in the manual:\n\n1. **Which process are you using?** MIG (with gas), flux-cored (gasless), TIG or Stick.\n2. **What is it doing?** For example:\n   - The welder won't turn on, or the LCD stays dark.\n   - The wire won't feed, or it jams or tangles.\n   - The wire feeds but there's no arc.\n   - The arc is weak or unstable.\n   - The weld looks bad (holes, spatter, burn-through or poor sticking).\n   - A warning screen shows and the welder shuts down.\n\nTell me what you see, and which input voltage you're on (120V or 240V) if you know it."
+    ],
+    "tools": [],
+    "shown": [],
+    "cost": 0.021379500000000003,
+    "stop": "success",
+    "pipeline": {
+     "first_findings": [],
+     "rewritten": false,
+     "phantom_nudge": false,
+     "removed": [],
+     "fallback": false,
+     "judge_used": true
+    },
+    "guard": {
+     "findings": []
+    },
+    "enforced": "Sorry it's giving you trouble. I need two details to point you to the right checks in the manual:\n\n1. **Which process are you using?** MIG (with gas), flux-cored (gasless), TIG or Stick.\n2. **What is it doing?** For example:\n   - The welder won't turn on, or the LCD stays dark.\n   - The wire won't feed, or it jams or tangles.\n   - The wire feeds but there's no arc.\n   - The arc is weak or unstable.\n   - The weld looks bad (holes, spatter, burn-through or poor sticking).\n   - A warning screen shows and the welder shuts down.\n\nTell me what you see, and which input voltage you're on (120V or 240V) if you know it.",
+    "fallback": false,
+    "checker": []
+   }
+  ],
+  "checks": {
+   "missing": [],
+   "forbidden": [],
+   "asked_question": true,
+   "should_clarify": true
+  },
+  "error": null,
+  "conditions": {
+   "C01": [
+    "pass",
+    "no outside-knowledge wording"
+   ],
+   "C02": [
+    "pass",
+    "every number with a unit is in the manual"
+   ],
+   "C03": [
+    "pass",
+    "every sentence is on the manual's topics"
+   ],
+   "C04": [
+    "pass",
+    "facts come with a page"
+   ],
+   "C05": [
+    "pass",
+    "every sentence is supported by the manual"
+   ],
+   "C06": [
+    "na",
+    "the manual covers this question"
+   ],
+   "C07": [
+    "na",
+    "the manual covers this question"
+   ],
+   "C08": [
+    "na",
+    "no cable change is described"
+   ],
+   "C09": [
+    "pass",
+    "written once"
+   ],
+   "C10": [
+    "pass",
+    "only points at pictures it showed"
+   ],
+   "C11": [
+    "pass",
+    "no commentary on its own work"
+   ],
+   "C12": [
+    "na",
+    "no pictures were shown"
+   ],
+   "C13": [
+    "na",
+    "no drawing"
+   ],
+   "C14": [
+    "pass",
+    "only the nine welder tools"
+   ],
+   "C15": [
+    "pass",
+    "asked a question"
+   ],
+   "C16": [
+    "pass",
+    "no mention of files"
+   ],
+   "C17": [
+    "pass",
+    "no instructions leaked"
+   ]
+  },
+  "cost": 0.0214,
+  "seconds": 9.4,
+  "pipeline": true
+ }
+]

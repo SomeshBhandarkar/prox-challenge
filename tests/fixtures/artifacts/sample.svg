@@ -1,0 +1,7 @@
+<svg viewBox="0 0 300 120" role="img" aria-label="Two sockets">
+  <title>Two sockets</title>
+  <circle cx="80" cy="60" r="40" fill="none" stroke="var(--accent)" stroke-width="8"/>
+  <text x="80" y="72" text-anchor="middle" font-size="36" fill="var(--accent)">&#8722;</text>
+  <circle cx="220" cy="60" r="40" fill="none" stroke="var(--bad)" stroke-width="8"/>
+  <text x="220" y="72" text-anchor="middle" font-size="36" fill="var(--bad)">+</text>
+</svg>

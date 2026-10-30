@@ -1,0 +1,260 @@
+{
+ "source": "Click areas drawn on the manual's own pictures (pages 8 and 9). `box` = [left, top, width, height] as fractions of the picture. Every text is the manual's own wording with its page, and tests check each word against the cited pages.",
+ "front-panel-controls": [
+  {
+   "id": "home_button",
+   "label": "Home Button",
+   "box": [
+    0.3077,
+    0.2854,
+    0.0484,
+    0.0504
+   ],
+   "text": "Press Home Button on Control Panel. Then turn Main Control Knob until desired process appears on LCD display screen (manual p.20)."
+  },
+  {
+   "id": "back_button",
+   "label": "Back Button",
+   "box": [
+    0.6466,
+    0.2854,
+    0.0484,
+    0.0504
+   ],
+   "text": "Press Back Button to return to the previous screen (manual p.20, p.30, p.32)."
+  },
+  {
+   "id": "lcd_display",
+   "label": "LCD Display",
+   "box": [
+    0.3769,
+    0.2266,
+    0.249,
+    0.1343
+   ],
+   "text": "Turn Main Control Knob until desired process appears on LCD display screen (manual p.20). If you adjust Wire Feed Speed or Voltage manually, the white mark on the line shows the recommended setting for your wire diameter and workpiece thickness (manual p.20)."
+  },
+  {
+   "id": "left_knob",
+   "label": "Left Knob",
+   "box": [
+    0.3389,
+    0.3777,
+    0.0622,
+    0.0504
+   ],
+   "text": "Turn Left Knob to set wire diameter (manual p.20), rod diameter for TIG (manual p.30) or electrode diameter for Stick (manual p.32). On the Auto Weld screen, turn Left Knob to adjust Wire Feed Speed (Amperage) for wire welding (manual p.20) or output amperage for TIG and Stick (manual p.30, p.32)."
+  },
+  {
+   "id": "control_knob",
+   "label": "Control Knob",
+   "box": [
+    0.462,
+    0.3738,
+    0.0775,
+    0.0627
+   ],
+   "text": "Turn Main Control Knob until desired process appears, then press Main Control Knob to select process (manual p.20). Press Main Control Knob to go to next screen (manual p.20). In Optional Settings, turn Main Control Knob to adjust setting (manual p.21)."
+  },
+  {
+   "id": "right_knob",
+   "label": "Right Knob",
+   "box": [
+    0.6003,
+    0.376,
+    0.0622,
+    0.0504
+   ],
+   "text": "Turn Right Knob to set material thickness (manual p.20, p.30, p.32). On the Auto Weld screen, turn Right Knob to adjust Voltage (manual p.20). For TIG and Stick, turn Right Knob to ON to energize TIG Torch or Electrode Holder (manual p.30, p.32)."
+  },
+  {
+   "id": "storage_compartment",
+   "label": "Storage Compartment",
+   "box": [
+    0.3181,
+    0.4561,
+    0.3769,
+    0.0672
+   ],
+   "text": "The Storage Compartment is on the front panel (manual p.8)."
+  },
+  {
+   "id": "power_switch",
+   "label": "Power Switch",
+   "box": [
+    0.4184,
+    0.5624,
+    0.083,
+    0.0727
+   ],
+   "text": "Turn the Power Switch off and unplug the Welder before setup (manual p.10). Plug the Power Cord into a properly grounded, GFCI protected receptacle that matches the plug and turn the Power Switch ON (manual p.16). Allow the Welder to cool with the Power Switch on (manual p.19)."
+  },
+  {
+   "id": "mig_gun_cable_socket",
+   "label": "MIG Gun / Spool Gun Cable Socket",
+   "box": [
+    0.2732,
+    0.582,
+    0.0692,
+    0.056
+   ],
+   "text": "Loosen the Knob on the Wire Feed mechanism, then insert the Gun Cable Connector through the hole on the Welder front and into the socket on the Wire Feed. Ensure that the Gun Cable Connector is fully inserted, then tighten the Knob securely (manual p.13). If Connector is not fully inserted, the gas connection will leak (manual p.13)."
+  },
+  {
+   "id": "spool_gun_gas_outlet",
+   "label": "Spool Gun Gas Outlet",
+   "box": [
+    0.2849,
+    0.7023,
+    0.083,
+    0.0699
+   ],
+   "text": "When using an optional Spool Gun (sold separately), connect the Spool Gun gas hose to the Spool Gun Gas Outlet (manual p.8)."
+  },
+  {
+   "id": "negative_socket",
+   "label": "Negative Socket",
+   "box": [
+    0.4578,
+    0.7023,
+    0.0864,
+    0.0699
+   ],
+   "text": "Solid Core (gas shielded): Ground Clamp Cable (manual p.14). Flux-Cored (gasless): Wire Feed Power Cable (manual p.13). TIG: TIG Torch Cable (manual p.24). Stick: Ground Clamp Cable (manual p.27). Twist cables clockwise all the way to lock in place (manual p.13)."
+  },
+  {
+   "id": "wire_feed_power_cable",
+   "label": "Wire Feed Power Cable",
+   "box": [
+    0.5671,
+    0.7359,
+    0.0519,
+    0.042
+   ],
+   "text": "Plug Wire Feed Power Cable into Positive (+) Socket for Solid Core (manual p.14) or into Negative (–) Socket for Flux-Cored (manual p.13)."
+  },
+  {
+   "id": "positive_socket",
+   "label": "Positive Socket",
+   "box": [
+    0.6418,
+    0.7023,
+    0.0864,
+    0.0699
+   ],
+   "text": "Solid Core (gas shielded): Wire Feed Power Cable (manual p.14). Flux-Cored (gasless): Ground Clamp Cable (manual p.13). TIG: Ground Clamp Cable (manual p.24). Stick: Electrode Holder Cable (manual p.27). Twist cables clockwise all the way to lock in place (manual p.13)."
+  }
+ ],
+ "interior-controls": [
+  {
+   "id": "cold_wire_feed_switch",
+   "label": "Cold Wire Feed Switch",
+   "box": [
+    0.574,
+    0.3825,
+    0.0346,
+    0.0578
+   ],
+   "text": "Point the Gun away from all objects. Press and hold the Cold Wire Feed Switch until the wire feeds through two inches (manual p.16). Do not touch Trigger while feeding wire through to gun (manual p.16)."
+  },
+  {
+   "id": "feed_tensioner",
+   "label": "Feed Tensioner",
+   "box": [
+    0.6086,
+    0.4403,
+    0.0519,
+    0.0746
+   ],
+   "text": "Swing the Feed Tensioner up to latch it across the tip of the arm (manual p.15). If the wire does not feed properly and the Spool is stationary, turn OFF and unplug the Welder and slightly tighten the Feed Tensioner clockwise before retrying (manual p.16)."
+  },
+  {
+   "id": "wire_feed_mechanism",
+   "label": "Wire Feed Mechanism",
+   "box": [
+    0.5533,
+    0.5037,
+    0.2006,
+    0.2519
+   ],
+   "text": "Keep hands away from Wire Feed mechanism (manual p.16). Parts may be at welding voltage (manual p.16). Insert the Gun Cable Connector into the socket on the Wire Feed mechanism (manual p.13)."
+  },
+  {
+   "id": "idler_arm",
+   "label": "Idler Arm",
+   "box": [
+    0.6224,
+    0.5457,
+    0.0795,
+    0.0793
+   ],
+   "text": "Make sure the welding wire is resting in the groove of the Feed Roller, then push the wire Idler Arm down (manual p.15)."
+  },
+  {
+   "id": "feed_roller_knob",
+   "label": "Feed Roller Knob",
+   "box": [
+    0.6155,
+    0.611,
+    0.0761,
+    0.084
+   ],
+   "text": "Check that the Feed Roller is correct for the type of wire being used (solid core or flux-cored) and that it is turned to properly match the wire size marked on the Wire Spool. Unscrew the Feed Roller Knob counterclockwise, flip or replace the Feed Roller as needed, then screw the Feed Roller Knob back into place (manual p.12)."
+  },
+  {
+   "id": "wire_spool",
+   "label": "Wire Spool",
+   "box": [
+    0.3043,
+    0.5131,
+    0.1383,
+    0.1866
+   ],
+   "text": "Wire Spool Capacity: up to 12 lb spool (manual p.7). Spool installation steps: 1-2 pound (manual p.10) and 10-12 pound (manual p.11)."
+  },
+  {
+   "id": "spool_knob",
+   "label": "Spool Knob",
+   "box": [
+    0.3389,
+    0.5597,
+    0.0761,
+    0.1026
+   ],
+   "text": "For a 10-12 pound spool, screw the Spool Knob into the Spool Adapter (manual p.11)."
+  },
+  {
+   "id": "wire_inlet_liner",
+   "label": "Wire Inlet Liner",
+   "box": [
+    0.5083,
+    0.5504,
+    0.0692,
+    0.0606
+   ],
+   "text": "Guide at least 12 inches of wire into the Wire Inlet Liner and Feed Guide (manual p.15)."
+  },
+  {
+   "id": "foot_pedal_socket",
+   "label": "Foot Pedal Socket",
+   "box": [
+    0.5809,
+    0.7696,
+    0.0622,
+    0.084
+   ],
+   "text": "For TIG, insert the Foot Pedal Cable through the hole on the front and connect it to the Foot Pedal Socket inside (manual p.24)."
+  },
+  {
+   "id": "wire_feed_control_socket",
+   "label": "Wire Feed Control Socket",
+   "box": [
+    0.6535,
+    0.7696,
+    0.0588,
+    0.084
+   ],
+   "text": "Insert the Wire Feed Control Cable through the hole on the Welder front and connect it to the Wire Feed Control Socket inside the machine, then tighten the lock ring on the Cable plug (manual p.13). Note that the plug on the Cable fits into the Socket in one specific orientation only (manual p.13)."
+  }
+ ]
+}

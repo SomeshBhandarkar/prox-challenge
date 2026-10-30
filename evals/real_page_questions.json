@@ -1,0 +1,19 @@
+[
+  {"id": "duty-cycle", "q": "What's the duty cycle for MIG welding at 200A on 240V?"},
+  {"id": "flux-porosity", "q": "I'm getting porosity in my flux-cored welds. What should I check?"},
+  {"id": "tig-polarity", "q": "I'm setting up for TIG. Which socket does the ground clamp go in?"},
+  {"id": "ambiguous", "q": "What settings should I use?", "follow": ["MIG, solid wire, 240V, 1/8 inch mild steel, 0.030 wire"]},
+  {"id": "setup-sheet", "q": "Set me up for MIG welding 1/8 inch mild steel with 0.030 solid wire on 240V."},
+  {"id": "chart-24ga", "q": "I want to weld 24 gauge sheet metal with MIG. Can this machine do that?"},
+  {"id": "schematic", "q": "Which connector does the LCD screen plug into on the control board, and how many fans and valves are there?"},
+  {"id": "wire-feed", "q": "How do I thread the wire through the feed mechanism?"},
+  {"id": "front-panel", "q": "I just unboxed it. Where is the power switch and what do the knobs do?"},
+  {"id": "spatter", "q": "My welds are very spattery. What does the manual say about that?"},
+  {"id": "cheat-sheet", "q": "Make me a cheat sheet of which cable goes in which socket for all four processes."},
+  {"id": "wire-not-feeding", "q": "The wire stopped feeding in the middle of a weld. What do I check?"},
+  {"id": "rating-label", "q": "What does the rating label say for MIG on 240V: the amps and the duty cycles?"},
+  {"id": "parts", "q": "I need to order a new contact tip. What is its part number?"},
+  {"id": "outside-manual", "q": "What brand of welding helmet should I buy, and what shade do the pros use for MIG?"},
+  {"id": "garage-first-day", "q": "I just bought this welder and I'm standing in my garage with the box open. What should I do first?"},
+  {"id": "120v-thick", "q": "I only have 120V in my garage. Can I weld 3/8 inch steel plate with this?"}
+]

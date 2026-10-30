@@ -1,0 +1,28 @@
+# Optional. Render (render.com) can run this straight from the GitHub repository with its own Python runtime: no Docker involved.
+# Use it with New > Blueprint, or ignore this file and type the same settings into New > Web Service (see docs/DEPLOY.md).
+# You type ANTHROPIC_API_KEY into Render yourself; it is never in git.
+services:
+  - type: web
+    name: omnipro-assistant
+    runtime: python
+    plan: free                    # 512 MB: the site takes about 80 MB and EACH open conversation about 260 MB, so only ONE conversation fits
+    buildCommand: pip install -r requirements.txt
+    startCommand: python -m app.server --no-open
+    healthCheckPath: /api/health
+    envVars:
+      - key: ANTHROPIC_API_KEY
+        sync: false               # asked for in the Render dashboard
+      - key: APP_HOST             # the app listens on this computer only unless told otherwise; a host must reach it
+        value: 0.0.0.0
+      - key: MODEL
+        value: sonnet
+      - key: DAILY_BUDGET_USD     # all visitors together, per UTC day
+        value: "3"
+      - key: RATE_LIMIT_PER_HOUR  # per visitor
+        value: "20"
+      - key: SESSION_BUDGET_USD   # per conversation
+        value: "0.75"
+      - key: MAX_CONVERSATIONS    # on a plan with 1 GB or more, 2 or 3 is fine
+        value: "1"
+      - key: TRUST_PROXY          # Render puts one proxy in front of the site
+        value: "on"

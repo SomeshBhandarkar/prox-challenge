@@ -1,0 +1,603 @@
+[
+ {
+  "id": "Q02",
+  "category": "duty_cycle_specs",
+  "tier": 1,
+  "expected_visual": "spec table highlight or calculator showing 120V max 140A",
+  "expected_answer": "No. On 120V the MIG welding current range is 30-140A, so 200A is not possible. On 120V the rated duty cycle is 40% at 100A (4 min welding, 6 min rest) and 100% at 75A. 200A needs 240V input (30-220A).",
+  "turns": [
+   {
+    "question": "I only have a regular 120V outlet. Can I MIG weld at 200A?",
+    "answer": "No. On 120V, your MIG welder can't output 200A. The manual gives a 120V MIG range of 30 to 140A (manual p.7). The 200A number only applies on 240V (manual p.7 and p.19).\n\n**What 120V can do (manual p.7, p.19):**\n- 40% duty cycle at 100A: 4 minutes welding, then 6 minutes resting.\n- 100% continuous at 75A.\n\nDuty cycle means how many minutes out of every 10 you can weld before the machine needs to cool (manual p.19). Go past it and the welder shuts itself down with a warning screen (manual p.23).\n\n**If you need 200A:** the manual rates 200A only at 240V, 25% duty cycle (2-1/2 minutes welding, 7-1/2 resting) (manual p.19). That needs a 240V outlet. General advice: a 240V outlet gives the machine more current to work with, but check with an electrician about the circuit before you plug in.\n\nI've also put the duty cycle calculator on screen, set to 120V and 100A, so you can see the 120V limits for yourself.",
+    "tools": [
+     {
+      "tool": "duty_cycle",
+      "input": {
+       "process": "mig",
+       "voltage": 120,
+       "amps": 200
+      }
+     },
+     {
+      "tool": "show_figure",
+      "input": {
+       "figure_id": "spec-table-mig"
+      }
+     },
+     {
+      "tool": "show_duty_cycle_calculator",
+      "input": {
+       "process": "mig",
+       "voltage": 120,
+       "amps": 100
+      }
+     }
+    ],
+    "shown": [
+     {
+      "kind": "figure",
+      "tool": "show_figure",
+      "id": "spec-table-mig",
+      "source": "Manual p.7"
+     },
+     {
+      "kind": "widget",
+      "tool": "show_duty_cycle_calculator",
+      "title": "Duty cycle calculator"
+     }
+    ],
+    "cost": 0.011570010000000002,
+    "stop": "success"
+   }
+  ],
+  "checks": {
+   "missing": [
+    "not possible on 120V",
+    "30-140A",
+    "240V needed for 200A"
+   ],
+   "forbidden": [],
+   "asked_question": false,
+   "should_clarify": false
+  },
+  "error": null,
+  "cost": 0.0116,
+  "seconds": 7.2
+ },
+ {
+  "id": "Q07",
+  "category": "duty_cycle_specs",
+  "tier": 1,
+  "expected_visual": "spec table highlight",
+  "expected_answer": "Input current at 200A on 240V MIG is 25.5A (I1max 25.5A, I1eff 12.8A on the rating label). The manual only states the receptacle must be properly grounded and GFCI protected, 120 VAC (20 amp rated) or 240 VAC matching the plug, on a circuit with a delayed-action type breaker or fuses, with no extension cord. It does not state a 240V breaker size.",
+  "turns": [
+   {
+    "question": "What breaker size do I need on 240V, and how much current does it draw when I MIG at 200A?",
+    "answer": "**Breaker size:** The manual doesn't give a breaker amp rating for 240V. It only says the circuit must have a delayed action-type circuit breaker or fuses (manual p.16). Ask a licensed electrician to size it for this welder.\n\n**Current at 200A MIG:** The welder draws **25.5 A** from the 240V line when it outputs 200A (manual p.7).\n\nAsk me if you want the duty cycle limits at 200A, which affect how long you can weld before resting.",
+    "tools": [],
+    "shown": [],
+    "cost": 0.0013351,
+    "stop": "success"
+   }
+  ],
+  "checks": {
+   "missing": [
+    "25.5A",
+    "grounded GFCI",
+    "no extension cord"
+   ],
+   "forbidden": [],
+   "asked_question": false,
+   "should_clarify": false
+  },
+  "error": null,
+  "cost": 0.0013,
+  "seconds": 7.8
+ },
+ {
+  "id": "Q15",
+  "category": "polarity_cables",
+  "tier": 1,
+  "expected_visual": "spool-gun setup figure p17 + front panel highlight",
+  "expected_answer": "Plug the Ground Clamp Cable into Negative (-) and the Wire Feed Power Cable into Positive (+); twist to lock. Loosen the knob on the wire feed mechanism, push the Spool Gun Cable Connector fully in (or the gas connection leaks) and tighten (do not overtighten). Connect the Wire Feed Control Cable to the Wire Feed Control Socket (one orientation, tighten the lock ring). Connect the Spool Gun gas hose to the Spool Gun Gas Outlet on the front, and set up shielding gas per paragraph 17 on p14. Refer to the Spool Gun manual for operation.",
+  "turns": [
+   {
+    "question": "How do I connect the optional spool gun for aluminum?",
+    "answer": "Here's how to hook up the spool gun (manual p.17). See the picture below.\n\n**Cables and sockets (polarity):**\n- **Ground clamp cable:** Negative (–) socket. Push it in and twist clockwise to lock.\n- **Wire feed power cable:** Positive (+) socket. Push it in and twist clockwise to lock.\n\n**Steps:**\n1. Turn the Power Switch off and unplug the welder first (manual p.17 setup, and p.10 warning).\n2. Plug the ground clamp cable into the Negative socket and twist to lock.\n3. Plug the wire feed power cable into the Positive socket and twist to lock.\n4. Loosen the knob on the wire feed mechanism. Push the spool gun cable connector through the hole on the front and into the socket on the wire feed. Make sure it is fully in, then tighten the knob. Don't overtighten it (NOTICE on p.17). If it isn't fully in, the gas will leak.\n5. Insert the wire feed control cable through the hole on the front. Connect it to the Wire Feed Control Socket inside the machine, then tighten the lock ring. The plug only fits one way.\n6. Connect the spool gun's gas hose to the **Spool Gun Gas Outlet** on the front panel (manual p.8 and p.17).\n7. For gas setup, see p.14 steps c to f.\n\n**Notes:**\n- The spool gun needs shielding gas.\n- The manual does not name the polarity for the spool gun. It only gives the socket layout above. The manual also says to see the spool gun's own manual for operation (p.17, step 6).\n- The manual says aluminum needs the optional spool gun (p.18), and gives no wire speed or voltage for aluminum. Use the LCD and the Settings Chart inside the door.\nI also made a stray call that displayed a blank \"noop\" card with the word \"unused\" in it. It has no part in the setup. Ignore it. Nothing in it affects your welder.",
+    "tools": [
+     {
+      "tool": "polarity",
+      "input": {
+       "process": "spool_gun"
+      }
+     },
+     {
+      "tool": "show_polarity_diagram",
+      "input": {
+       "process": "spool_gun"
+      }
+     },
+     {
+      "tool": "show_figure",
+      "input": {
+       "figure_id": "spool-gun-setup"
+      }
+     },
+     {
+      "tool": "create_artifact",
+      "input": {
+       "identifier": "never-used",
+       "type": "html",
+       "title": "noop",
+       "code": "<p>unused</p>"
+      }
+     }
+    ],
+    "shown": [
+     {
+      "kind": "widget",
+      "tool": "show_polarity_diagram",
+      "title": "Polarity: Spool gun (optional, for aluminum MIG)"
+     },
+     {
+      "kind": "figure",
+      "tool": "show_figure",
+      "id": "spool-gun-setup",
+      "source": "Manual p.17"
+     },
+     {
+      "kind": "artifact",
+      "tool": "create_artifact",
+      "title": "noop",
+      "identifier": "never-used"
+     }
+    ],
+    "cost": 0.0031857000000000005,
+    "stop": "success"
+   }
+  ],
+  "checks": {
+   "missing": [
+    "connector fully inserted"
+   ],
+   "forbidden": [],
+   "asked_question": false,
+   "should_clarify": false
+  },
+  "error": null,
+  "cost": 0.0032,
+  "seconds": 7.8
+ },
+ {
+  "id": "Q17",
+  "category": "polarity_cables",
+  "tier": 1,
+  "expected_visual": "front panel and interior diagrams with both highlighted",
+  "expected_answer": "The Wire Feed Power Cable is the lead on the front panel that you plug into the Positive or Negative socket depending on the process (DCEP for solid MIG, DCEN for flux-cored). The Wire Feed Control Cable is a separate cable that goes through the hole on the front and plugs into the Wire Feed Control Socket inside the machine; its plug fits in one specific orientation and you tighten the lock ring.",
+  "turns": [
+   {
+    "question": "What's the difference between the wire feed power cable and the wire feed control cable?",
+    "answer": "They do different jobs, and they plug in in different places.\n\n**Wire Feed Power Cable** carries the welding current to the wire feed. It goes on the front panel, in a socket that depends on your process (manual p.13–14):\n- **MIG (solid wire with gas):** into the **Positive (+)** socket. The ground clamp goes in the Negative (−) socket.\n- **Flux-cored (gasless):** into the **Negative (−)** socket. The ground clamp goes in the Positive (+) socket.\n\nTwist it clockwise until it locks. The diagram below shows the MIG setup.\n\n**Wire Feed Control Cable** carries the control signal that tells the feeder how fast to run. It has no polarity choice:\n1. Push it through the hole on the front of the welder.\n2. Plug it into the **Wire Feed Control Socket inside the machine** (see the picture below).\n3. It fits only one way, so turn it until it lines up, then tighten the lock ring (manual p.13, step 15).\n\n**Quick rule:** the thick power cable goes to the front sockets and sets the polarity. The control cable goes inside the machine and only carries signals.",
+    "tools": [
+     {
+      "tool": "polarity",
+      "input": {
+       "process": "mig"
+      }
+     },
+     {
+      "tool": "polarity",
+      "input": {
+       "process": "flux_cored"
+      }
+     },
+     {
+      "tool": "show_polarity_diagram",
+      "input": {
+       "process": "mig"
+      }
+     },
+     {
+      "tool": "show_figure",
+      "input": {
+       "figure_id": "interior-controls"
+      }
+     }
+    ],
+    "shown": [
+     {
+      "kind": "widget",
+      "tool": "show_polarity_diagram",
+      "title": "Polarity: MIG (solid wire with shielding gas)"
+     },
+     {
+      "kind": "figure",
+      "tool": "show_figure",
+      "id": "interior-controls",
+      "source": "Manual p.9"
+     }
+    ],
+    "cost": 0.0023980200000000003,
+    "stop": "success"
+   }
+  ],
+  "checks": {
+   "missing": [
+    "one orientation only"
+   ],
+   "forbidden": [],
+   "asked_question": false,
+   "should_clarify": false
+  },
+  "error": null,
+  "cost": 0.0024,
+  "seconds": 7.1
+ },
+ {
+  "id": "Q24",
+  "category": "wire_feed",
+  "tier": 1,
+  "expected_visual": "gun-angle figure p22",
+  "expected_answer": "CTWD is Contact Tip to Work Distance; keep it 1/2 inch or less. For solid wire with shielding gas use a push angle (tilted 0-15 degrees away from the weld direction); for flux-cored without gas use a drag angle (0-15 degrees in the direction of travel). Straight in at 90 degrees for butt welds and 45 degrees for fillet welds. Cut the wire to 1/2 inch stickout.",
+  "turns": [
+   {
+    "question": "What's CTWD and what gun angle should I use for flux-cored versus solid wire?",
+    "answer": "**CTWD** means \"contact tip to work distance\": the gap between the tip of your gun and the metal you're welding. Keep it **1/2 inch or less** (manual p.22). The longer the gap, the more the weld suffers.\n\n**Gun tilt (see the picture below, manual p.22):**\n\n- **Solid wire with shielding gas (MIG):** use a **push angle** of 0 to 15°. Tilt the gun so the wire points away from the direction you're welding.\n- **Flux-cored wire (no gas):** use a **drag angle** of 0 to 15°. Tilt the gun so the wire points in the direction you're welding.\n\nBoth are small tilts. Anywhere from straight on up to 15° works.\n\nSeparately, the angle you look at from the front of the joint is 90° for a butt (end-to-end) weld and 45° for a fillet (T-shaped) weld (manual p.22).",
+    "tools": [
+     {
+      "tool": "show_figure",
+      "input": {
+       "figure_id": "push-drag-angle-and-ctwd"
+      }
+     }
+    ],
+    "shown": [
+     {
+      "kind": "figure",
+      "tool": "show_figure",
+      "id": "push-drag-angle-and-ctwd",
+      "source": "Manual p.22"
+     }
+    ],
+    "cost": 0.002253185,
+    "stop": "success"
+   }
+  ],
+  "checks": {
+   "missing": [],
+   "forbidden": [],
+   "asked_question": false,
+   "should_clarify": false
+  },
+  "error": null,
+  "cost": 0.0023,
+  "seconds": 7.3
+ },
+ {
+  "id": "Q43",
+  "category": "parts_maintenance",
+  "tier": 1,
+  "expected_visual": "parts list table p46",
+  "expected_answer": "Yes: the parts list includes a 120 VAC Power Cord (part 55) and a 240 VAC Power Cord (part 61), and the manual says to use only one of the supplied power cords or an identical replacement.",
+  "turns": [
+   {
+    "question": "Does this welder come with both a 120V and a 240V power cord?",
+    "answer": "Yes. The parts list includes both:\n\n- **Part 55:** 120 VAC Power Cord (qty 1)\n- **Part 61:** 240 VAC Power Cord (qty 1)\n\n(manual p.46)\n\nUse the one that matches your outlet. The plug only fits one way into the Power Input socket on the back (manual p.16). Don't use an extension cord with this welder, and don't patch or modify a cord (manual p.6).",
+    "tools": [],
+    "shown": [],
+    "cost": 0.0009763500000000002,
+    "stop": "success"
+   }
+  ],
+  "checks": {
+   "missing": [],
+   "forbidden": [],
+   "asked_question": false,
+   "should_clarify": false
+  },
+  "error": null,
+  "cost": 0.001,
+  "seconds": 3.6
+ },
+ {
+  "id": "Q66",
+  "category": "image_reasoning",
+  "tier": 2,
+  "expected_visual": "rating label crop",
+  "expected_answer": "MIG on 240V (label range 30A/15.5V to 220A/25V): 24V at 200A (25%), 20.5V at 130A (60%), 19.75V at 115A (100%). Open-circuit voltage U0 is 86V (86VDC).",
+  "turns": [
+   {
+    "question": "On the machine's rating label, what output voltage goes with each rated current for MIG on 240V, and what's the open-circuit voltage?",
+    "answer": "On the 240V MIG side of the rating label, the output voltage for each rated current is (manual p.14, p.16; see the label picture below):\n\n- **200 A at 24 V** (25% duty cycle)\n- **130 A at 20.5 V** (60% duty cycle)\n- **115 A at 19.75 V** (100% duty cycle)\n\nThe open-circuit voltage (U0) is **86 V**.\n\nThe label's MIG range on 240V is 30 A at 15.5 V up to 220 A at 25 V (manual p.14).",
+    "tools": [
+     {
+      "tool": "show_figure",
+      "input": {
+       "figure_id": "rating-label"
+      }
+     }
+    ],
+    "shown": [
+     {
+      "kind": "figure",
+      "tool": "show_figure",
+      "id": "rating-label",
+      "source": "Manual p.16"
+     }
+    ],
+    "cost": 0.00217921,
+    "stop": "success"
+   }
+  ],
+  "checks": {
+   "missing": [
+    "24V at 200A",
+    "20.5V at 130A",
+    "19.75V at 115A",
+    "OCV 86V"
+   ],
+   "forbidden": [],
+   "asked_question": false,
+   "should_clarify": false
+  },
+  "error": null,
+  "cost": 0.0022,
+  "seconds": 6.7
+ },
+ {
+  "id": "Q67",
+  "category": "image_reasoning",
+  "tier": 2,
+  "expected_visual": "duty-cycle bar + label crop",
+  "expected_answer": "Continuous (100%) stick welding: 60A on 120V (22.4V on the label) and 100A on 240V (24V on the label).",
+  "turns": [
+   {
+    "question": "What's the highest current I can stick weld continuously on 120V versus 240V, and what output voltage is that on the label?",
+    "answer": "**Continuous stick welding (100% duty cycle):**\n\n- **120V:** up to **60 A**\n- **240V:** up to **100 A**\n\nThe 240V setup gives you about 40 A more continuous current.\n\n**Label output voltage at those points (manual p.14, back-panel rating label):**\n\n- **120V, 60 A:** about **22.4 V**\n- **240V, 100 A:** **24 V**\n\nThe label is cramped, so check the printed label on your machine if the numbers matter to you. The 100% points match the Specifications table (manual p.7) and the stick duty cycle dials (manual p.29).\n\nI've also opened the duty cycle calculator so you can try other amps. Above these points, the manual's rated times apply: 40% or 60% on 120V and 25% on 240V.",
+    "tools": [
+     {
+      "tool": "duty_cycle",
+      "input": {
+       "process": "stick",
+       "voltage": 120,
+       "amps": 60
+      }
+     },
+     {
+      "tool": "duty_cycle",
+      "input": {
+       "process": "stick",
+       "voltage": 240,
+       "amps": 100
+      }
+     },
+     {
+      "tool": "show_duty_cycle_calculator",
+      "input": {
+       "process": "stick",
+       "voltage": 120,
+       "amps": 60
+      }
+     },
+     {
+      "tool": "show_duty_cycle_calculator",
+      "input": {
+       "process": "stick",
+       "voltage": 240,
+       "amps": 100
+      }
+     }
+    ],
+    "shown": [
+     {
+      "kind": "widget",
+      "tool": "show_duty_cycle_calculator",
+      "title": "Duty cycle calculator"
+     },
+     {
+      "kind": "widget",
+      "tool": "show_duty_cycle_calculator",
+      "title": "Duty cycle calculator"
+     }
+    ],
+    "cost": 0.0037389150000000006,
+    "stop": "success"
+   }
+  ],
+  "checks": {
+   "missing": [
+    "60A on 120V",
+    "22.4V",
+    "100A on 240V",
+    "24V"
+   ],
+   "forbidden": [],
+   "asked_question": false,
+   "should_clarify": false
+  },
+  "error": null,
+  "cost": 0.0037,
+  "seconds": 11.7
+ },
+ {
+  "id": "Q77",
+  "category": "safety_reasoning",
+  "tier": 2,
+  "expected_visual": "parts list excerpt",
+  "expected_answer": "Don't use the welder with a damaged cord or plug; have it repaired by a service facility. Use only one of the supplied cords or an identical replacement, don't install a thinner or longer cord, and don't patch cords. The 240 VAC Power Cord is part 61 (the 120 VAC cord is part 55); choose the cord that matches your receptacle, and if the plug doesn't fit the outlet have an electrician install the right outlet instead of using an adapter.",
+  "turns": [
+   {
+    "question": "My 240V power cord got nicked. Can I tape it or use the 120V cord instead? What part is it?",
+    "answer": "**Don't tape it, and don't use it until it's replaced.** The manual says not to use the welder if the power cord or plug is damaged. It must be repaired by a service facility before use (manual p.6). It also says not to patch cords together, because moisture can get into the patch and cause electric shock (manual p.6).\n\n**The 120V cord:** The manual lets you plug in either the 120V or 240V cord (manual p.16), but each cord only works with the matching outlet. The 120V cord is not a backup for a 240V outlet. Also, 120V gives less welding current range than 240V (manual p.7).\n\n**The part:**\n- **Part 61: 240 VAC Power Cord** (manual p.46)\n- Part 55 is the 120 VAC Power Cord (manual p.46).\n- Order with UPC 193175422590. The manual notes that some parts are not sold individually (manual p.46). If the cord isn't available on its own, call Harbor Freight at 1-800-444-3353 (manual p.46).\n\nUnplug the welder before you inspect or handle the cord (manual p.41).",
+    "tools": [],
+    "shown": [],
+    "cost": 0.0017839750000000001,
+    "stop": "success"
+   }
+  ],
+  "checks": {
+   "missing": [
+    "no adapter plugs"
+   ],
+   "forbidden": [],
+   "asked_question": false,
+   "should_clarify": false
+  },
+  "error": null,
+  "cost": 0.0018,
+  "seconds": 10.8
+ },
+ {
+  "id": "Q78",
+  "category": "deep_detail",
+  "tier": 2,
+  "expected_visual": "tungsten figure p26",
+  "expected_answer": "Use a fine-grit grinding wheel dedicated to tungsten, grind parallel to the length of the electrode, and make the conical tip about 2-1/2 times as long as the electrode diameter. Remove and re-insert the electrode from the front of the torch (pulling from the rear damages the collet). The tip should protrude 1/8 to 1/4 inch beyond the ceramic nozzle, and in use keep the electrode 1 to 1.5 times its diameter from the workpiece. Wear a respirator and ANSI goggles when grinding.",
+  "turns": [
+   {
+    "question": "How should I grind my tungsten, and how far should it stick out of the ceramic nozzle?",
+    "answer": "**Short answer:** Stick out **1/8 to 1/4 inch** past the ceramic nozzle. Grind it on a dedicated wheel, parallel to its length, to a blunt point (manual p.26).\n\n**How to grind it:**\n1. Shut off the welder and let the electrode and torch cool.\n2. Remove the back cap. Pull the electrode out the **front** of the torch. Pulling it from the rear damages the collet and makes burrs.\n3. If it's dull or contaminated, snap off the end above the bad section with pliers.\n4. Use a fine grit wheel that only you use for tungsten, so it doesn't get contaminated.\n5. Grind **parallel to the length** of the electrode. Lightly press the tip against the wheel at an angle, rotating it until you get a blunt point.\n6. Aim for a conical (cone-shaped) tip about **2-1/2 times the electrode's diameter** long.\n7. Put it back in the collet so **1/8\" to 1/4\"** sticks out past the ceramic nozzle, then retighten the back cap.\n\n**Safety:** Some electrodes have additives that are hazardous to breathe. Wear a respirator and ANSI-approved safety goggles while grinding (manual p.26).\n\nSee the picture below.",
+    "tools": [
+     {
+      "tool": "show_figure",
+      "input": {
+       "figure_id": "tungsten-sharpening"
+      }
+     }
+    ],
+    "shown": [
+     {
+      "kind": "figure",
+      "tool": "show_figure",
+      "id": "tungsten-sharpening",
+      "source": "Manual p.26"
+     }
+    ],
+    "cost": 0.00209758,
+    "stop": "success"
+   }
+  ],
+  "checks": {
+   "missing": [
+    "dedicated fine-grit wheel"
+   ],
+   "forbidden": [],
+   "asked_question": false,
+   "should_clarify": false
+  },
+  "error": null,
+  "cost": 0.0021,
+  "seconds": 6.0
+ },
+ {
+  "id": "Q84",
+  "category": "visual_generation",
+  "tier": 2,
+  "expected_visual": "4-panel polarity diagram",
+  "expected_answer": "A diagram or table covering the four processes: MIG (clamp -, wire feed power +, DCEP), Flux-cored (clamp +, wire feed power -, DCEN), TIG (clamp +, torch -, foot pedal inside, wire feed power disconnected), Stick (clamp -, electrode holder +, wire feed power disconnected). Each with its page citation.",
+  "turns": [
+   {
+    "question": "Draw me a cheat sheet showing which cable goes in which socket for all four processes.",
+    "answer": "I made a cheat sheet with all four processes on one card, and I've also pulled up a diagram for each one.\n\n**MIG (solid wire, gas)**\n- Negative (-): Ground Clamp Cable\n- Positive (+): Wire Feed Power Cable\n- Polarity is DCEP. (manual p.14)\n\n**Flux-cored (gasless wire)**\n- Positive (+): Ground Clamp Cable\n- Negative (-): Wire Feed Power Cable\n- Polarity is DCEN. (manual p.13)\n- This is the reverse of MIG. Swap the two cables when you switch.\n\n**TIG**\n- Positive (+): Ground Clamp Cable\n- Negative (-): TIG Torch Cable\n- The manual doesn't label this DCEN or DCEP. (manual p.24)\n\n**Stick**\n- Negative (-): Ground Clamp Cable\n- Positive (+): Electrode Holder Cable\n- The manual doesn't label this DCEN or DCEP. (manual p.27)\n\nPlug in the power cord last. Twist each cable clockwise until it locks. (manual p.24, p.27)",
+    "tools": [
+     {
+      "tool": "polarity",
+      "input": {
+       "process": "mig"
+      }
+     },
+     {
+      "tool": "polarity",
+      "input": {
+       "process": "flux_cored"
+      }
+     },
+     {
+      "tool": "polarity",
+      "input": {
+       "process": "tig"
+      }
+     },
+     {
+      "tool": "polarity",
+      "input": {
+       "process": "stick"
+      }
+     },
+     {
+      "tool": "create_artifact",
+      "input": {
+       "identifier": "cable-cheat-sheet",
+       "type": "html",
+       "title": "Cable Socket Cheat Sheet: All 4 Processes",
+       "code": "<style>\n.cs{font-family:system-ui,sans-serif;color:var(--fg);background:var(--bg);padding:12px;max-width:760px}\n.cs h2{font-size:22px;margin:4px 0 10px}\n.cs .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;margin-bottom:12px}\n.cs h3{font-size:19px;margin:0 0 8px;color:var(--accent)}\n.cs .row{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0}\n.cs .socket{flex:1 1 200px;background:var(--panel);border:2px solid var(--line);border-radius:10px;padding:10px}\n.cs .pos{border-color:var(--bad)}\n.cs .neg{border-color:var(--fg)}\n.cs .lbl{font-size:14px;color:var(--muted)}\n.cs .big{font-size:18px;font-weight:700}\n.cs .sym{font-size:20px;font-weight:700}\n.cs .note{font-size:14px;color:var(--muted);margin-top:8px}\n.cs .warn{color:var(--warn);font-size:14px;margin-top:6px}\n.cs ul{margin:6px 0 0 18px;padding:0;font-size:15px}\n</style>\n<div class=\"cs\">\n<h2>Which cable goes where</h2>\n\n<div class=\"card\">\n<h3>1. MIG (solid wire + gas)</h3>\n<div class=\"row\">\n<div class=\"socket neg\"><div class=\"lbl\">NEGATIVE (-)</div><div class=\"big\">Ground Clamp Cable</div></div>\n<div class=\"socket pos\"><div class=\"lbl\">POSITIVE (+)</div><div class=\"big\">Wire Feed Power Cable</div></div>\n</div>\n<div class=\"note\">Polarity: DCEP. Gas needed, 20-30 SCFH. (manual p.14, step 17a)</div>\n</div>\n\n<div class=\"card\">\n<h3>2. Flux-Cored (gasless wire)</h3>\n<div class=\"row\">\n<div class=\"socket pos\"><div class=\"lbl\">POSITIVE (+)</div><div class=\"big\">Ground Clamp Cable</div></div>\n<div class=\"socket neg\"><div class=\"lbl\">NEGATIVE (-)</div><div class=\"big\">Wire Feed Power Cable</div></div>\n</div>\n<div class=\"note\">Polarity: DCEN. No shielding gas. (manual p.13, step 16)</div>\n<div class=\"warn\">Flux-cored is the reverse of MIG. Swap these two cables when you switch.</div>\n</div>\n\n<div class=\"card\">\n<h3>3. TIG (DC)</h3>\n<div class=\"row\">\n<div class=\"socket pos\"><div class=\"lbl\">POSITIVE (+)</div><div class=\"big\">Ground Clamp Cable</div></div>\n<div class=\"socket neg\"><div class=\"lbl\">NEGATIVE (-)</div><div class=\"big\">TIG Torch Cable</div></div>\n</div>\n<div class=\"note\">Also: foot pedal cable into the foot pedal socket inside the welder; argon gas hose to the regulator. Wire Feed Power Cable stays disconnected. (manual p.24-25)</div>\n</div>\n\n<div class=\"card\">\n<h3>4. Stick</h3>\n<div class=\"row\">\n<div class=\"socket neg\"><div class=\"lbl\">NEGATIVE (-)</div><div class=\"big\">Ground Clamp Cable</div></div>\n<div class=\"socket pos\"><div class=\"lbl\">POSITIVE (+)</div><div class=\"big\">Electrode Holder Cable</div></div>\n</div>\n<div class=\"note\">No shielding gas. Wire Feed Power Cable stays disconnected. (manual p.27)</div>\n</div>\n\n<div class=\"card\">\n<h3>Good to know</h3>\n<ul>\n<li>The manual labels MIG and flux-cored as DCEP and DCEN. It does not use those labels for TIG or Stick.</li>\n<li>Always plug in the power cord last, and only after the cables are set. (manual p.24, p.27)</li>\n<li>Twist each cable clockwise all the way to lock it.</li>\n</ul>\n</div>\n</div>\n"
+      }
+     },
+     {
+      "tool": "show_polarity_diagram",
+      "input": {
+       "process": "mig"
+      }
+     },
+     {
+      "tool": "show_polarity_diagram",
+      "input": {
+       "process": "flux_cored"
+      }
+     },
+     {
+      "tool": "show_polarity_diagram",
+      "input": {
+       "process": "tig"
+      }
+     },
+     {
+      "tool": "show_polarity_diagram",
+      "input": {
+       "process": "stick"
+      }
+     }
+    ],
+    "shown": [
+     {
+      "kind": "artifact",
+      "tool": "create_artifact",
+      "title": "Cable Socket Cheat Sheet: All 4 Processes",
+      "identifier": "cable-cheat-sheet"
+     },
+     {
+      "kind": "widget",
+      "tool": "show_polarity_diagram",
+      "title": "Polarity: MIG (solid wire with shielding gas)"
+     },
+     {
+      "kind": "widget",
+      "tool": "show_polarity_diagram",
+      "title": "Polarity: Flux-cored (gasless, self-shielded)"
+     },
+     {
+      "kind": "widget",
+      "tool": "show_polarity_diagram",
+      "title": "Polarity: TIG (DC)"
+     },
+     {
+      "kind": "widget",
+      "tool": "show_polarity_diagram",
+      "title": "Polarity: Stick"
+     }
+    ],
+    "cost": 0.004409955,
+    "stop": "success"
+   }
+  ],
+  "checks": {
+   "missing": [],
+   "forbidden": [],
+   "asked_question": false,
+   "should_clarify": false
+  },
+  "error": null,
+  "cost": 0.0044,
+  "seconds": 13.4
+ }
+]

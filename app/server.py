@@ -1,0 +1,579 @@
+"""The website's server: the chat (server-sent events), the manual pictures, and the sandboxed frames for widgets and drawings.
+
+    .venv/bin/python -m app.server            (python3 run.py does this for you)
+
+How a question travels: the page POSTs to /api/chat; this file hands it to that conversation's agent, and streams back events:
+  session (the conversation id) | status (what the agent is doing) | text (a piece of the answer) |
+  show (a picture, widget or drawing to display) | error | done.
+Widgets and drawings are never sent through the stream: they are stored under a random token and served at /embed/<token>, so the
+page can put them in a frame with sandbox="allow-scripts" (no access to the page, cookies or network).
+"""
+import argparse
+import asyncio
+import base64
+import binascii
+import json
+import os
+import re
+import secrets
+import socket
+import threading
+import time
+import webbrowser
+from collections import OrderedDict
+from contextlib import asynccontextmanager
+
+from claude_agent_sdk import AssistantMessage, ClaudeSDKClient, ResultMessage, TextBlock, ToolUseBlock
+from fastapi import FastAPI, Request
+from fastapi.exceptions import RequestValidationError
+from fastapi.responses import FileResponse, HTMLResponse, JSONResponse, StreamingResponse
+from pydantic import BaseModel, Field
+from starlette.datastructures import MutableHeaders
+
+from app.agent import make_options, require_api_key, resolve_model
+from app.answering import answer
+from app.judge import check_with_model
+from app.knowledge import ROOT
+from app.show import PREFIX, render_show
+from app.limits import Limits
+from app.textdupe import DROP_AT, repeated_share, shingles
+from app.tools.figures import BY_ID, DEFAULT_PDF, FIGURES_DIR, pdf_of
+
+WEB = ROOT / "web"
+PAGES_DIR = ROOT / "knowledge" / "pages"
+MANUAL_PAGES = 48
+MAX_QUESTION_CHARS = 2000  # a pasted wall of text would cost real money
+MAX_SESSIONS = 10          # each conversation runs its own Claude process
+IDLE_SECONDS = 30 * 60
+MAX_EMBEDS = 200
+CLOSE_WAIT_SECONDS = 15    # how long a new conversation waits for the one it replaces to finish closing
+DEFAULT_SESSION_BUDGET_USD = 1.00  # per conversation; set SESSION_BUDGET_USD in .env to change it
+LOCAL_HOSTS = {"127.0.0.1", "localhost", "::1"}
+
+PAGE_CSP = ("default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; frame-src 'self'; connect-src 'self'; "
+            "object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'")
+# Widgets and drawings come from our own tools and from the model. Whatever they contain, this keeps them in a box.
+EMBED_CSP = ("sandbox allow-scripts; default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data:; "
+             "font-src data:; connect-src 'none'; frame-src 'none'; form-action 'none'; base-uri 'none'; frame-ancestors 'self'")
+
+STATUS = {
+    "duty_cycle": "Checking the duty cycle data",
+    "polarity": "Looking up which cable goes where",
+    "view_manual_page": "Reading a page of the manual",
+    "show_figure": "Finding the picture in the manual",
+    "show_polarity_diagram": "Drawing the cable diagram",
+    "show_duty_cycle_calculator": "Building the duty cycle calculator",
+    "show_troubleshooting_flowchart": "Building the troubleshooting flowchart",
+    "show_setup_guide": "Putting the setup sheet together",
+    "ask_for_details": "Getting the questions ready",
+    "create_artifact": "Drawing a custom diagram",
+}
+STOPPED = {
+    "error_max_budget_usd": "This conversation reached its spending limit. Start a new chat to keep going.",
+    "error_max_turns": "That took too many steps and I had to stop. Try asking in smaller pieces.",
+}
+CREDIT_WORDS = re.compile(r"credit balance|out of credit|insufficient (?:credit|funds)|add credits|purchase credits", re.I)
+HINTS = {
+    "authentication_failed": "The API key was refused. Check ANTHROPIC_API_KEY in .env, then restart.",
+    "billing_error": "The Anthropic account behind this key has no credits left. Add credits in the Anthropic Console (Plans & Billing), then ask again.",
+    "rate_limit": "Anthropic is rate limiting this key. Wait a moment and try again.",
+}
+
+
+# ---------- what goes over the wire ----------
+def sse(event: str, data: dict) -> str:
+    return f"event: {event}\ndata: {json.dumps(data, ensure_ascii=False)}\n\n"
+
+
+class Embeds:
+    """The most recent widgets and drawings, by random token. Old ones fall out so memory stays small."""
+
+    def __init__(self, limit: int = MAX_EMBEDS):
+        self.limit, self.items = limit, OrderedDict()
+
+    def add(self, html: str) -> str:
+        token = secrets.token_urlsafe(16)
+        self.items[token] = html
+        while len(self.items) > self.limit:
+            self.items.popitem(last=False)
+        return token
+
+    def get(self, token: str) -> str | None:
+        html = self.items.get(token)
+        if html is not None:
+            self.items.move_to_end(token)
+        return html
+
+
+def public(shown: dict, embeds: Embeds) -> dict:
+    """What the page needs to display one shown item. HTML stays on the server; the page gets a link to a sandboxed frame."""
+    kind = shown["kind"]
+    if kind == "figure":
+        f = BY_ID.get(shown["id"], {})
+        page = f.get("page") if f and pdf_of(f) == DEFAULT_PDF else None
+        out = {"kind": "figure", "id": shown["id"], "caption": shown["caption"], "source": shown["source"],
+               "url": shown["url"], "manual_page": page}
+        if shown.get("hotspots"):
+            out["hotspots"] = [{"id": h["id"], "label": h["label"], "box": h["box"], "text": h["text"]} for h in shown["hotspots"]]
+        return out
+    if kind == "choices":   # tap-to-answer questions: the options were built from verified data and are plain text
+        return {"kind": "choices", "tool": shown["tool"], "title": shown["title"], "groups": shown["groups"]}
+    if kind in ("widget", "artifact"):
+        out = {"kind": kind, "tool": shown["tool"], "title": shown["title"], "embed": "/embed/" + embeds.add(shown["html"])}
+        if kind == "artifact":
+            out["identifier"] = shown["identifier"]
+        return out
+    detail = str(shown["message"])  # written for the model, so the page shows a short plain sentence and keeps this only for debugging
+    return {"kind": "error", "tool": shown["tool"], "message": "I couldn't show a picture there." if shown["tool"] == "show_figure" else "I couldn't draw that one.",
+            "detail": detail if len(detail) <= 200 else detail[:197] + "..."}
+
+
+def events_for(message, embeds: Embeds, seen: set | None = None) -> list[tuple[str, dict]]:
+    """Turn one SDK message into zero or more (event, data) pairs for the page.
+    `seen` holds what this answer already showed, so the same picture or widget (or the same paragraph written again) is never shown twice in one answer."""
+    seen = set() if seen is None else seen
+    out: list[tuple[str, dict]] = []
+    if isinstance(message, AssistantMessage):
+        code = message.error
+        sdk_sentence = " ".join(b.text for b in message.content if isinstance(b, TextBlock))
+        if code and CREDIT_WORDS.search(sdk_sentence):
+            code = "billing_error"  # the SDK reports an empty balance under the "authentication_failed" code: say what is really wrong
+        if code:
+            out.append(("error", {"message": HINTS.get(code, f"The assistant reported a problem ({code})."), "code": str(code)}))
+        explained = code in HINTS  # the SDK also writes the error as a sentence ("Invalid API key..."): our explanation replaces it
+        for block in message.content:
+            if isinstance(block, TextBlock) and block.text.strip():
+                if not explained:
+                    text = block.text.strip()
+                    said = set().union(*(k[1] for k in seen if k[0] == "text"))
+                    if repeated_share(text, said) >= DROP_AT:
+                        continue  # the model wrote its answer again after a picture tool: the person already has it
+                    seen.add(("text", frozenset(shingles(text))))
+                    out.append(("text", {"text": text}))
+            elif isinstance(block, ToolUseBlock) and isinstance(block.name, str) and block.name.startswith(PREFIX):
+                shown = render_show(block.name, block.input)
+                if shown is not None and shown.get("silent"):
+                    continue  # a refused placeholder: nothing for the person to see
+                key = (block.name, json.dumps(block.input, sort_keys=True, default=str))
+                if shown is not None and key in seen:
+                    continue  # the same call again in this answer
+                seen.add(key)
+                out.append(("status", {"text": STATUS.get(block.name[len(PREFIX):], "Working on it")}))
+                if shown is not None:
+                    out.append(("show", public(shown, embeds)))
+    elif isinstance(message, ResultMessage):
+        if message.is_error or message.subtype != "success":
+            out.append(("error", {"message": STOPPED.get(message.subtype, "Something went wrong while answering."),
+                                  "code": message.subtype, "fatal": message.subtype == "error_max_budget_usd"}))
+        out.append(("done", {"ok": not message.is_error and message.subtype == "success", "cost_usd": message.total_cost_usd}))
+    return out
+
+
+# ---------- one conversation = one worker task ----------
+class Session:
+    """One conversation. All calls to the SDK client happen inside one background task: the client must be opened and closed by the
+    same task, and every web request runs in a different one. Requests hand their question to the worker through a queue."""
+
+    def __init__(self, sid: str, client_factory, options_factory, embeds: Embeds, clock=time.monotonic, judge=None, guard_text=True, on_spend=None,
+                 wait_for=()):
+        self.id, self.client_factory, self.options_factory, self.embeds, self.clock, self.judge = sid, client_factory, options_factory, embeds, clock, judge
+        self.guard_text, self.on_spend, self.billed = guard_text, on_spend, 0.0
+        self.wait_for = list(wait_for)   # conversations that are still shutting down: each one is a ~260 MB process, so this one starts after them
+        self.inbox: asyncio.Queue = asyncio.Queue()
+        self.pending = 0       # questions handed over and not yet finished (0 or 1)
+        self.closing = False   # no new questions; the worker stops after the current one
+        self.dead = False      # the worker has stopped
+        self.last_used = clock()
+        self.task = asyncio.get_running_loop().create_task(self._run())
+
+    @property
+    def busy(self) -> bool:
+        return self.pending > 0
+
+    def submit(self, message: str, image: dict | None = None) -> asyncio.Queue | None:
+        """Hand a question to the worker. Returns the queue its events arrive on (None marks the end), or None if still answering."""
+        if self.pending or self.closing or self.dead:
+            return None
+        self.pending += 1
+        self.last_used = self.clock()
+        out: asyncio.Queue = asyncio.Queue()
+        self.inbox.put_nowait((message, image, out))
+        return out
+
+    def close(self) -> None:
+        if not self.closing:
+            self.closing = True
+            self.inbox.put_nowait(None)
+
+    def _fatal(self) -> None:
+        self.closing = True
+
+    def _emit(self, out: asyncio.Queue):
+        """Hands each event to the page's queue. The cost of a finished answer is also reported here, in the worker, so it is counted even if the
+        visitor closed the tab. The SDK's figure is a running total for the conversation, so only the change since the last answer is new spending."""
+        def emit(event, data):
+            if event == "done" and self.on_spend is not None and isinstance(data.get("cost_usd"), (int, float)):
+                total = float(data["cost_usd"])
+                delta = total - self.billed if total >= self.billed else total
+                self.billed = total
+                self.on_spend(delta, checked=bool(self.judge) and bool(data.get("ok")))
+            out.put_nowait((event, data))
+        return emit
+
+    async def _answer(self, client, message: str, image: dict | None, out: asyncio.Queue) -> None:
+        try:
+            await answer(client, message, self.embeds, self._emit(out), events_for,
+                         judge=self.judge, guard_text=self.guard_text, on_fatal=self._fatal, image=image)
+        except Exception as e:  # noqa: BLE001
+            self.closing = True  # after a failure the conversation state is unknown: start clean next time
+            out.put_nowait(("error", {"message": f"Something went wrong talking to Claude ({type(e).__name__}). Check the terminal "
+                                                 "where the server is running.", "code": "exception", "fatal": True}))
+            out.put_nowait(("done", {"ok": False, "cost_usd": None}))
+
+    async def _run(self) -> None:
+        try:
+            if self.wait_for:   # never two engine processes for one slot: a host with little memory would run out when someone clicks "New chat"
+                await asyncio.wait(self.wait_for, timeout=CLOSE_WAIT_SECONDS)
+            async with self.client_factory(options=self.options_factory()) as client:
+                while True:
+                    job = await self.inbox.get()
+                    if job is None:
+                        return
+                    message, image, out = job
+                    try:
+                        await self._answer(client, message, image, out)
+                    finally:
+                        out.put_nowait(None)
+                        self.pending -= 1
+                        self.last_used = self.clock()
+                    if self.closing:
+                        return
+        except asyncio.CancelledError:
+            raise
+        except Exception as e:  # noqa: BLE001  (could not start the agent, or it died)
+            self.closing = True
+            reason = HINTS["authentication_failed"] if "uthentic" in str(e) else (
+                f"Could not start the assistant ({type(e).__name__}). Check ANTHROPIC_API_KEY in .env and the terminal where the server runs.")
+            while not self.inbox.empty():
+                job = self.inbox.get_nowait()
+                if job is not None:
+                    _, _, out = job
+                    out.put_nowait(("error", {"message": reason, "code": "start_failed", "fatal": True}))
+                    out.put_nowait(("done", {"ok": False, "cost_usd": None}))
+                    out.put_nowait(None)
+                    self.pending -= 1
+        finally:
+            self.dead = True
+
+
+class Sessions:
+    """All open conversations: idle ones expire, and there is a cap so a stray script cannot start unlimited Claude processes."""
+
+    def __init__(self, client_factory, options_factory, embeds: Embeds, limit: int = MAX_SESSIONS, idle: float = IDLE_SECONDS, clock=time.monotonic, judge=None, guard_text=True, on_spend=None):
+        self.client_factory, self.options_factory, self.embeds, self.judge, self.guard_text = client_factory, options_factory, embeds, judge, guard_text
+        self.on_spend = on_spend
+        self.limit, self.idle, self.clock = limit, idle, clock
+        self.items: OrderedDict[str, Session] = OrderedDict()
+        self.closing: list = []   # tasks of conversations told to close that may still be shutting down
+
+    def _close(self, s: Session) -> None:
+        s.close()
+        self.closing = [t for t in self.closing if not t.done()] + [s.task]
+
+    def sweep(self) -> None:
+        now = self.clock()
+        for sid, s in list(self.items.items()):
+            if s.dead or (not s.busy and now - s.last_used > self.idle):
+                self._close(s)
+                del self.items[sid]
+
+    def get_or_create(self, sid) -> Session | None:
+        """The conversation with this id, or a fresh one (also when the id is unknown or expired). None when every slot is busy."""
+        self.sweep()
+        s = self.items.get(sid) if isinstance(sid, str) else None
+        if s is not None and not s.closing:
+            self.items.move_to_end(sid)
+            return s
+        if s is not None:
+            self._close(self.items.pop(sid))   # already ending: remember its task so the replacement waits for it
+        while len(self.items) >= self.limit:
+            oldest_idle = next((k for k, v in self.items.items() if not v.busy), None)
+            if oldest_idle is None:
+                return None
+            self._close(self.items.pop(oldest_idle))
+        new = Session(secrets.token_urlsafe(9), self.client_factory, self.options_factory, self.embeds, self.clock, self.judge, self.guard_text, self.on_spend,
+                      wait_for=[t for t in self.closing if not t.done()])
+        self.items[new.id] = new
+        return new
+
+    def drop(self, sid) -> bool:
+        s = self.items.pop(sid, None) if isinstance(sid, str) else None
+        if s is not None:
+            self._close(s)
+        return s is not None
+
+    async def close_all(self) -> None:
+        sessions = list(self.items.values())
+        self.items.clear()
+        for s in sessions:
+            s.close()
+        if sessions:
+            await asyncio.wait([s.task for s in sessions], timeout=5)
+            for s in sessions:
+                if not s.task.done():
+                    s.task.cancel()
+
+
+# ---------- the web app ----------
+class SafeHeaders:
+    """Adds two harmless headers to every response. A plain ASGI middleware, so streamed answers are never held back."""
+
+    def __init__(self, app):
+        self.app = app
+
+    async def __call__(self, scope, receive, send):
+        if scope["type"] != "http":
+            return await self.app(scope, receive, send)
+
+        async def add_headers(message):
+            if message["type"] == "http.response.start":
+                headers = MutableHeaders(scope=message)
+                headers.setdefault("X-Content-Type-Options", "nosniff")
+                headers.setdefault("Referrer-Policy", "no-referrer")
+            await send(message)
+
+        await self.app(scope, receive, add_headers)
+
+
+MAX_IMAGE_BYTES = 3_000_000   # after the page has shrunk the photo (it sends about 0.2 to 0.6 MB)
+IMAGE_TYPES = {"image/jpeg": b"\xff\xd8\xff", "image/png": b"\x89PNG\r\n\x1a\n", "image/webp": b"RIFF"}   # what each must start with
+PHOTO_QUESTION = "What's wrong with this weld?"   # used when a photo is sent with no words
+
+
+class ImageIn(BaseModel):
+    media_type: str = Field(max_length=40)
+    data: str = Field(max_length=MAX_IMAGE_BYTES * 4 // 3 + 64)   # base64 text
+
+
+class ChatIn(BaseModel):
+    message: str = Field(max_length=MAX_QUESTION_CHARS)
+    session_id: str | None = Field(default=None, max_length=64)
+    image: ImageIn | None = None
+
+
+def check_image(image: ImageIn) -> tuple[int, str] | None:
+    """None if the photo is usable, else (status, sentence for the page). The bytes must really be a JPEG, PNG or WebP of a sane size:
+    the label the browser put on it is not trusted."""
+    wanted = IMAGE_TYPES.get(image.media_type)
+    if wanted is None:
+        return 422, "Please send a JPG, PNG or WebP photo."
+    try:
+        raw = base64.b64decode(image.data, validate=True)
+    except (binascii.Error, ValueError):
+        return 422, "That photo could not be read. Try another one."
+    if len(raw) > MAX_IMAGE_BYTES:
+        return 413, "That photo is too large (the limit is 3 MB). Try a smaller one."
+    if not raw.startswith(wanted) or (image.media_type == "image/webp" and raw[8:12] != b"WEBP"):
+        return 422, "That file is not a real JPG, PNG or WebP photo."
+    return None
+
+
+class ResetIn(BaseModel):
+    session_id: str | None = Field(default=None, max_length=64)
+
+
+def _error(status: int, message: str) -> JSONResponse:
+    return JSONResponse({"error": message}, status_code=status)
+
+
+def session_budget(environ=os.environ) -> float:
+    raw = str(environ.get("SESSION_BUDGET_USD", "")).strip()
+    if not raw:
+        return DEFAULT_SESSION_BUDGET_USD
+    try:
+        value = float(raw)
+    except ValueError:
+        value = float("nan")
+    if not value > 0 or value == float("inf"):
+        raise SystemExit(f'SESSION_BUDGET_USD in .env must be a positive number of dollars, like 1.00 (it is "{raw[:30]}").')
+    return value
+
+
+def create_app(client_factory=ClaudeSDKClient, options_factory=None, model: str | None = None, budget: float | None = None,
+               limit: int = MAX_SESSIONS, idle: float = IDLE_SECONDS, clock=time.monotonic, judge=None, guard_text: bool = True,
+               limits: Limits | None = None) -> FastAPI:
+    model_id = resolve_model(model)
+    limits = limits or Limits()   # nothing limited unless main() passes the settings from .env
+    cap = session_budget() if budget is None else budget
+    options_factory = options_factory or (lambda: make_options(model_id, cap))
+    embeds = Embeds()
+    sessions = Sessions(client_factory, options_factory, embeds, limit, idle, clock, judge, guard_text, limits.spent)
+
+    @asynccontextmanager
+    async def lifespan(app: FastAPI):
+        yield
+        await sessions.close_all()
+
+    app = FastAPI(title="Vulcan OmniPro 220 assistant", docs_url=None, redoc_url=None, openapi_url=None, lifespan=lifespan)
+    app.state.sessions, app.state.embeds, app.state.model, app.state.limits = sessions, embeds, model_id, limits
+
+    app.add_middleware(SafeHeaders)
+
+    @app.exception_handler(RequestValidationError)
+    async def bad_request(request: Request, exc: RequestValidationError):
+        if any("image" in map(str, e.get("loc", ())) for e in exc.errors()):
+            return _error(422, "That photo could not be used. Send a JPG, PNG or WebP photo under 3 MB.")
+        return _error(422, f"Send a message of 1 to {MAX_QUESTION_CHARS} characters.")
+
+    @app.get("/")
+    async def index():
+        page = WEB / "index.html"
+        if not page.is_file():
+            return _error(404, "The page is missing (web/index.html).")
+        return FileResponse(page, media_type="text/html", headers={"Content-Security-Policy": PAGE_CSP, "X-Frame-Options": "DENY",
+                                                                    "Cache-Control": "no-cache"})
+
+    @app.get("/static/{name:path}")
+    async def static(name: str):
+        root = (WEB / "static").resolve()
+        try:   # a NUL byte or a file name that is too long makes the filesystem raise: that is "not found", never a server error
+            path = (root / name).resolve()
+            found = "\x00" not in name and path.is_relative_to(root) and path.is_file()
+        except (ValueError, OSError):
+            found = False
+        if not found:
+            return _error(404, "No such file.")
+        return FileResponse(path, headers={"Cache-Control": "no-cache"})
+
+    @app.get("/api/health")
+    async def health():
+        try:
+            require_api_key()
+            key = True
+        except SystemExit:
+            key = False
+        return {"ok": True, "model": model_id, "key": key}
+
+    @app.get("/figures/{figure_id}.png")
+    async def figure(figure_id: str):
+        if not re.fullmatch(r"[a-z0-9-]+", figure_id) or figure_id not in BY_ID or not (FIGURES_DIR / f"{figure_id}.png").is_file():
+            return _error(404, "No such picture.")
+        return FileResponse(FIGURES_DIR / f"{figure_id}.png", media_type="image/png", headers={"Cache-Control": "public, max-age=3600"})
+
+    @app.get("/pages/{number}.jpg")
+    async def manual_page(number: str):
+        if not re.fullmatch(r"\d{1,2}", number) or not 1 <= int(number) <= MANUAL_PAGES:
+            return _error(404, "The manual has pages 1 to 48.")
+        path = PAGES_DIR / f"page-{int(number):02d}.jpg"
+        if not path.is_file():
+            return _error(404, "No such page.")
+        return FileResponse(path, media_type="image/jpeg", headers={"Cache-Control": "public, max-age=3600"})
+
+    @app.get("/embed/{token}")
+    async def embed(token: str):
+        html = embeds.get(token) if re.fullmatch(r"[A-Za-z0-9_-]{8,64}", token) else None
+        if html is None:
+            return _error(404, "That drawing is no longer available. Ask again to redraw it.")
+        return HTMLResponse(html, headers={"Content-Security-Policy": EMBED_CSP, "Cache-Control": "no-store"})
+
+    @app.post("/api/chat")
+    async def chat(body: ChatIn, request: Request):
+        message = body.message.strip() or (PHOTO_QUESTION if body.image else "")
+        if not message:
+            return _error(422, f"Send a message of 1 to {MAX_QUESTION_CHARS} characters.")
+        if body.image:
+            problem = check_image(body.image)
+            if problem:
+                return _error(*problem)
+        refused = limits.refusal(request.scope)
+        if refused:
+            status, text, wait = refused
+            return JSONResponse({"error": text}, status_code=status, headers={"Retry-After": str(wait)})
+        session = sessions.get_or_create(body.session_id)
+        if session is None:
+            return _error(503, "The server is busy with other conversations. Try again in a moment.")
+        out = session.submit(message, {"media_type": body.image.media_type, "data": body.image.data} if body.image else None)
+        if out is None:
+            return _error(409, "Still answering the last question. Wait for it to finish.")
+        limits.accepted(request.scope)
+
+        async def stream():
+            yield sse("session", {"session_id": session.id, "resumed": session.id == body.session_id})
+            while True:
+                item = await out.get()
+                if item is None:
+                    return
+                yield sse(*item)
+
+        return StreamingResponse(stream(), media_type="text/event-stream", headers={"Cache-Control": "no-store", "X-Accel-Buffering": "no"})
+
+    @app.post("/api/reset")
+    async def reset(body: ResetIn):
+        return {"ok": True, "closed": sessions.drop(body.session_id)}
+
+    return app
+
+
+# ---------- starting it ----------
+def find_free_port(host: str, start: int, tries: int = 20) -> int:
+    """The first port from `start` that nothing is using, so a busy 8000 never stops the app from starting."""
+    for port in range(start, start + tries):
+        with socket.socket(socket.AF_INET6 if ":" in host else socket.AF_INET, socket.SOCK_STREAM) as s:
+            try:
+                s.bind((host, port))
+            except OSError:
+                continue
+            return port
+    raise SystemExit(f"No free port between {start} and {start + tries - 1}. Set APP_PORT in .env to another number.")
+
+
+def parse_args(argv: list[str]) -> argparse.Namespace:
+    p = argparse.ArgumentParser(prog="app.server", description="Run the Vulcan OmniPro 220 assistant website.")
+    p.add_argument("--model", default=None, help="haiku, sonnet or opus (default: MODEL in .env, then sonnet)")
+    p.add_argument("--host", default=os.environ.get("APP_HOST", "").strip() or "127.0.0.1")
+    p.add_argument("--port", type=int, default=None, help="default: APP_PORT in .env, then PORT (set by hosting services), then 8000 (the next free port is used if busy)")
+    p.add_argument("--no-open", action="store_true", help="do not open the browser")
+    args = p.parse_args(argv)
+    try:
+        args.model_id = resolve_model(args.model)
+    except ValueError as e:
+        p.error(str(e))
+    if args.port is None:
+        name = "APP_PORT" if os.environ.get("APP_PORT", "").strip() else ("PORT" if os.environ.get("PORT", "").strip() else "APP_PORT")
+        raw = os.environ.get(name, "").strip() or "8000"   # PORT is what most hosting services set
+        if not raw.isdigit():
+            p.error(f'{name} must be a number, like 8000 (it is "{raw[:20]}")')
+        args.port = int(raw)
+    if not 1 <= args.port <= 65535:
+        p.error("the port must be between 1 and 65535")
+    return args
+
+
+def main(argv: list[str] | None = None) -> None:
+    import sys
+    import uvicorn
+
+    args = parse_args(sys.argv[1:] if argv is None else argv)
+    require_api_key()
+    cap = session_budget()
+    limits = Limits.from_env()
+    port = find_free_port(args.host, args.port)
+    url = f"http://{'localhost' if args.host in LOCAL_HOSTS else args.host}:{port}"
+    print(f"Vulcan OmniPro 220 assistant ({args.model_id}, up to ${cap:.2f} per conversation) is at {url}", flush=True)
+    print("Answers are checked against the manual before you see them (set GROUNDING_JUDGE=off in .env to switch off the second, model-based check).", flush=True)
+    if args.host not in LOCAL_HOSTS:
+        if limits.active:
+            print(f"Public mode: every visitor spends this API key, so it is limited to {limits.describe()}.", flush=True)
+        else:
+            print(f"WARNING: {args.host} makes this page reachable from other machines, and every visitor spends YOUR API key. "
+                  "Set DAILY_BUDGET_USD and RATE_LIMIT_PER_HOUR in .env to limit that.", flush=True)
+    print("Press Ctrl+C to stop.", flush=True)
+    if not args.no_open:
+        threading.Timer(1.0, webbrowser.open, [url]).start()
+    judge = None if os.environ.get("GROUNDING_JUDGE", "").strip().lower() in ("off", "0", "false", "no") else check_with_model
+    uvicorn.run(create_app(model=args.model_id, budget=cap, judge=judge, limit=limits.max_conversations or MAX_SESSIONS, limits=limits),
+                host=args.host, port=port, log_level="warning")
+
+
+if __name__ == "__main__":
+    main()
