@@ -208,6 +208,32 @@ def refers_to_support(sentence: str) -> bool:
     return len(s) <= 200 and bool(_REFERRAL.search(s))
 
 
+# What the assistant says when a photo is not a weld, or matches none of the manual's weld pictures. Written here once, taught to the model word for
+# word (INSTRUCTIONS) and never judged: they claim nothing. The weld pictures are on pp.35-37 (wire welding) and pp.38-40 (Stick).
+PHOTO_NO_WELD = ("I can't find a weld in this photo, so I can't match it to anything in the manual. "
+                 "To compare your weld yourself, see the weld pictures on manual pages 35 to 40.")
+PHOTO_NO_MATCH = ("Your photo doesn't clearly match any one of the manual's weld pictures, so I can't point you to a cause from it. "
+                  "To compare your weld yourself, see the weld pictures on manual pages 35 to 40.")
+
+
+def _plain(text) -> str:
+    return str(text).replace("’", "'").replace("**", "").strip().rstrip(".!").lower()
+
+
+_PHOTO_DECLINES = {_plain(s) for c in (PHOTO_NO_WELD, PHOTO_NO_MATCH) for s in split_sentences(c)}
+_PHOTO_OPENERS = tuple(_plain(split_sentences(c)[0]) for c in (PHOTO_NO_WELD, PHOTO_NO_MATCH))
+
+
+def is_photo_decline(sentence) -> bool:
+    return _plain(sentence) in _PHOTO_DECLINES
+
+
+def declines_photo(text) -> bool:
+    """True when the answer says the photo is not a weld or matches nothing in the manual: the page then shows no weld pictures."""
+    plain = _plain(text)
+    return any(opener in plain for opener in _PHOTO_OPENERS)
+
+
 SUPPORT_LEVEL = 0.6      # a sentence is "unsupported" when fewer than this share of its content words appear in the manual or the question
 MIN_CONTENT_WORDS = 5    # shorter sentences are not judged by word overlap (the number and marker checks still apply)
 

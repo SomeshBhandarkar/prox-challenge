@@ -15,6 +15,7 @@ from pathlib import Path
 from claude_agent_sdk import AssistantMessage, ResultMessage, TextBlock, ToolUseBlock
 
 from app import server
+from app.guard import PHOTO_NO_MATCH
 from app.server import create_app, find_free_port
 from app.show import PREFIX
 
@@ -142,9 +143,12 @@ def scenario(text: str, history: tuple = ()) -> list[tuple]:
                      "figure, polarity, duty, flowchart, setup, details, symptom, panel, interior, photo, draw, broken, badfigure, placeholder, twice, everything, lists, repeat, phantom, long, callout, unsafe, slow, limit, budget, crash.")]
 
 
-PHOTO_REPLY = [("tool", "show_figure", {"figure_id": "wire-diagnosis-examples"}), ("tool", "show_figure", {"figure_id": "wire-porosity"}),
-               ("text", "Your photo looks closest to the manual's picture of porosity (manual p.37), shown below. The manual lists these causes: dirty workpiece, "
+PHOTO_REPLY = [("tool", "show_figure", {"figure_id": "wire-porosity"}),
+               ("text", "Your photo matches the manual's picture of porosity (manual p.37), shown below. The manual lists these causes: dirty workpiece, "
                         "gun used too far from the workpiece, incorrect polarity and dirty welding wire (manual p.37). A photo cannot settle it, so compare it with the manual's pictures.")]
+# a photo that matches nothing: the model called pictures before it made up its mind, and the page must show none of them (type "nomatch" with the photo)
+PHOTO_DECLINE = [("tool", "show_figure", {"figure_id": "wire-diagnosis-examples"}), ("tool", "show_figure", {"figure_id": "wire-porosity"}),
+                 ("text", PHOTO_NO_MATCH)]
 
 
 class DemoClient:
@@ -178,7 +182,10 @@ class DemoClient:
 
     async def receive_response(self):
         subtype = "success"
-        steps = PHOTO_REPLY if self.photos[-1] else scenario(self.queries[-1], tuple(self.queries[:-1]))
+        if self.photos[-1]:
+            steps = PHOTO_DECLINE if "nomatch" in self.queries[-1].lower() else PHOTO_REPLY
+        else:
+            steps = scenario(self.queries[-1], tuple(self.queries[:-1]))
         for step in steps:
             if step[0] == "text":
                 yield AssistantMessage(content=[TextBlock(step[1])], model="demo")

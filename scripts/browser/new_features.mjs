@@ -197,7 +197,7 @@ const dims = await sentDims();
 check('the big photo was shrunk to 1568 pixels on its longest side before it left the browser', dims && Math.max(...dims) === 1568 && Math.min(...dims) === 1045, JSON.stringify(dims));
 check('the photo that went out is small enough to be sent quickly (under 2 MB of text)', sent1 && sent1.size < 2000000, String(sent1 && sent1.size));
 check('the sent bubble shows the photo as a thumbnail with the question', await ev(`(() => { const b = document.querySelector('.msg.user .bubble'); return Boolean(b.querySelector('img.sent-photo[src^="data:image/jpeg"]')) && b.textContent.includes("What's wrong with this weld?"); })()`));
-check('the assistant answers with the manual\'s own pictures and says which one the photo is closest to', await ev(`document.querySelectorAll('.answer-visuals figure.figure').length === 2 && document.querySelector('.answer-text').textContent.includes('Your photo looks closest to the manual')`));
+check('the assistant answers with ONE of the manual\'s own pictures and says the photo matches it', await ev(`document.querySelectorAll('.answer-visuals figure.figure').length === 1 && document.querySelector('.answer-text').textContent.includes('Your photo matches the manual')`));
 check('the photo strip is cleared after sending and Send waits again', !(await attached()) && await ev(`document.getElementById('send').disabled`));
 await shot('photo-answer');
 
@@ -211,6 +211,16 @@ const sent2 = await lastSent();
 check('typed words and the photo travel together', sent2 && sent2.message === 'my weld has little holes in it' && sent2.hasImage, JSON.stringify(sent2));
 const dims2 = await sentDims();
 check('a small photo is not blown up', dims2 && dims2[0] === 300 && dims2[1] === 200, JSON.stringify(dims2));
+
+// a photo that matches nothing: the model called two pictures first, but the page shows none and says so plainly
+await reset();
+await upload(smallPng);
+await expect('a photo is attached for the no-match case', `!document.getElementById('attachment').hidden`, 8000);
+await ev(`(() => { const i = document.getElementById('input'); i.value = 'nomatch'; i.dispatchEvent(new Event('input')); document.getElementById('composer').requestSubmit(); })()`);
+await idleAfterAnswer(1);
+check('a photo that matches nothing gets the plain sentence and no weld pictures at all', await ev(`document.querySelectorAll('figure.figure').length === 0 && document.querySelector('.answer-text').textContent.includes("doesn't clearly match any one of the manual's weld pictures")`), await text('.answer-text'));
+check('and it points to the manual pages instead', await ev(`document.querySelector('.answer-text').textContent.includes('pages 35 to 40')`));
+await shot('photo-no-match');
 
 // files that are not photos
 await reset();

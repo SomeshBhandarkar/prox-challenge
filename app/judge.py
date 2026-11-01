@@ -12,7 +12,7 @@ import re
 
 from claude_agent_sdk import AssistantMessage, ClaudeAgentOptions, ClaudeSDKClient, ResultMessage, TextBlock
 
-from app.guard import FALLBACK, Finding, points_only, refers_to_support, split_sentences
+from app.guard import FALLBACK, Finding, is_photo_decline, points_only, refers_to_support, split_sentences
 
 JUDGE_MODEL = "haiku"
 TIMEOUT_SECONDS = 40
@@ -60,7 +60,8 @@ def _is_fallback(sentence: str) -> bool:
 def numbered(answer: str, limit: int = MAX_SENTENCES) -> tuple[str, list]:
     """The answer as numbered sentences (questions, bare pointers, support referrals and the fallback sentence are left out: they claim nothing), and the sentence behind each number."""
     # questions claim nothing; neither does a bare pointer ("the table is shown below") or a referral to the manual's support number
-    sentences = [s for s in split_sentences(answer) if not s.endswith("?") and not points_only(s) and not refers_to_support(s) and not _is_fallback(s)][:limit]
+    sentences = [s for s in split_sentences(answer) if not s.endswith("?") and not points_only(s) and not refers_to_support(s) and not _is_fallback(s)
+                 and not is_photo_decline(s)][:limit]
     return "\n".join(f"{i}. {s}" for i, s in enumerate(sentences, 1)), sentences
 
 
