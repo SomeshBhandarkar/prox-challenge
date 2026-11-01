@@ -3,7 +3,7 @@
 #   scripts/browser/run.sh page_flows       (about 70 checks of the chat page)
 #   scripts/browser/run.sh voice_check      (the voice buttons, with a simulated microphone and speaker)
 #   scripts/browser/run.sh guard_flow       (the manual-only guardrails on the real page; starts the demo server with --guard)
-#   scripts/browser/run.sh new_features     (tap-to-answer questions, the clickable front panel, sending a weld photo)
+#   scripts/browser/run.sh new_features     (tap-to-answer questions and the clickable front panel)
 # Screenshots and the server log go to ./browser-check-output/<name>/ (git-ignored). Each run uses its own free port and its own
 # Chrome, and shuts both down hard at the end, so runs can never see each other's leftovers.
 set -u

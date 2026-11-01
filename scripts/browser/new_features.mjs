@@ -1,10 +1,7 @@
-// Real-browser checks of the three newer page features, against the demo server (canned answers, no API key, no cost):
-// tap-to-answer questions, the clickable front panel, and sending a photo of a weld.
+// Real-browser checks of the two newer page features, against the demo server (canned answers, no API key, no cost):
+// tap-to-answer questions and the clickable front panel.
 //   scripts/browser/run.sh new_features
 import { openBrowser, sleep } from './cdp.mjs';
-import { mkdirSync, writeFileSync } from 'node:fs';
-import { resolve } from 'node:path';
-import { deflateSync, crc32 } from 'node:zlib';
 
 const SITE = process.env.SITE || 'http://localhost:8135/';
 const out = process.argv[2] || '/tmp/new-feature-checks';
@@ -14,15 +11,6 @@ const count = (sel) => ev(`document.querySelectorAll(${JSON.stringify(sel)}).len
 const text = (sel) => ev(`(document.querySelector(${JSON.stringify(sel)}) || {}).textContent || ''`);
 const click = (sel, i = 0) => ev(`document.querySelectorAll(${JSON.stringify(sel)})[${i}].click()`);
 const reset = async () => { await ev(`${$('new-chat')}.click()`); await waitFor(`document.querySelectorAll('.conversation').length === 0`, 'the chat to clear'); };
-// a real PNG (a gradient), made here so the browser has an actual picture to decode and shrink
-function makePng(width, height) {
-  const chunk = (type, data) => { const t = Buffer.from(type), len = Buffer.alloc(4); len.writeUInt32BE(data.length); const crc = Buffer.alloc(4); crc.writeUInt32BE(crc32(Buffer.concat([t, data])) >>> 0); return Buffer.concat([len, t, data, crc]); };
-  const ihdr = Buffer.alloc(13); ihdr.writeUInt32BE(width, 0); ihdr.writeUInt32BE(height, 4); ihdr[8] = 8; ihdr[9] = 2;
-  const row = Buffer.alloc(1 + width * 3);
-  const raw = Buffer.alloc(row.length * height);
-  for (let y = 0; y < height; y++) { for (let x = 0; x < width; x++) { const o = y * row.length + 1 + x * 3; raw[o] = (x * 255 / width) | 0; raw[o + 1] = (y * 255 / height) | 0; raw[o + 2] = 120; } }
-  return Buffer.concat([Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]), chunk('IHDR', ihdr), chunk('IDAT', deflateSync(raw)), chunk('IEND', Buffer.alloc(0))]);
-}
 // every question the page posts, kept so the checks can look at exactly what was sent
 const TEE = `(() => { window.__sent = []; const real = window.fetch; window.fetch = (...a) => { try { if (String(a[0]).includes('/api/chat')) window.__sent.push(JSON.parse(a[1].body)); } catch (e) {} return real(...a); }; })();`;
 const noOverflow = () => ev(`document.documentElement.scrollWidth <= document.documentElement.clientWidth + 1`);
@@ -157,94 +145,6 @@ check('on a phone the picture and its boxes fit the screen', await noOverflow() 
 await tapSpot('Positive Socket');
 check('on a phone the explanation shows under the picture', await ev(`!document.querySelector('.hotspot-info').hidden`) && await noOverflow());
 await shot('panel-phone');
-await viewport(1100, 900);
-
-// ================================================================ 3. sending a photo of a weld
-mkdirSync(out, { recursive: true });
-// absolute paths: the browser runs in its own folder and would not find a relative one
-const here = resolve(out);
-const bigPng = `${here}/weld-big.png`, smallPng = `${here}/weld-small.png`, notAPhoto = `${here}/notes.txt`, brokenPng = `${here}/broken.png`;
-writeFileSync(bigPng, makePng(2400, 1600)); writeFileSync(smallPng, makePng(300, 200));
-writeFileSync(notAPhoto, 'this is not a photo'); writeFileSync(brokenPng, Buffer.from('definitely not a png, only named like one'));
-const upload = async (path) => {
-  const { root } = await cdp('DOM.getDocument', { depth: 1 });
-  const { nodeId } = await cdp('DOM.querySelector', { nodeId: root.nodeId, selector: '#photo-input' });
-  await cdp('DOM.setFileInputFiles', { files: [path], nodeId });
-};
-const attached = () => ev(`!document.getElementById('attachment').hidden`);
-const lastSent = () => ev(`(() => { const s = window.__sent[window.__sent.length - 1]; return s ? { message: s.message, hasImage: Boolean(s.image), type: s.image && s.image.media_type, head: s.image && s.image.data.slice(0, 4), size: s.image && s.image.data.length, keys: Object.keys(s).sort().join() } : null; })()`);
-const sentDims = () => ev(`new Promise((res) => { const s = window.__sent[window.__sent.length - 1]; const i = new Image(); i.onload = () => res([i.naturalWidth, i.naturalHeight]); i.onerror = () => res(null); i.src = 'data:' + s.image.media_type + ';base64,' + s.image.data; })`);
-
-await reset();
-await viewport(1100, 900);
-check('there is a button for attaching a photo, with a name for screen readers', await ev(`(() => { const b = document.getElementById('photo'); return !b.disabled && !b.hidden && b.getAttribute('aria-label').includes('photo'); })()`));
-check('nothing is attached at first and Send waits', !(await attached()) && await ev(`document.getElementById('send').disabled`));
-await upload(bigPng);
-await expect('choosing a photo shows a preview strip', `!document.getElementById('attachment').hidden && document.getElementById('attachment-img').src.startsWith('data:image/jpeg')`, 8000);
-check('a photo alone is enough to send (no words needed)', await ev(`!document.getElementById('send').disabled`));
-await shot('photo-attached');
-await click('#attachment-remove');
-check('the remove button takes the photo back and disables Send again', !(await attached()) && await ev(`document.getElementById('send').disabled && !document.getElementById('attachment-img').getAttribute('src')`));
-
-// send a photo with no words
-await upload(bigPng);
-await expect('a photo is attached again', `!document.getElementById('attachment').hidden`, 8000);
-await ev(`document.getElementById('composer').requestSubmit()`);
-await idleAfterAnswer(1);
-const sent1 = await lastSent();
-check('the request carried the default question and one JPEG photo, nothing else', sent1 && sent1.message === "What's wrong with this weld?" && sent1.hasImage && sent1.type === 'image/jpeg' && sent1.head === '/9j/' && sent1.keys === 'image,message,session_id', JSON.stringify(sent1));
-const dims = await sentDims();
-check('the big photo was shrunk to 1568 pixels on its longest side before it left the browser', dims && Math.max(...dims) === 1568 && Math.min(...dims) === 1045, JSON.stringify(dims));
-check('the photo that went out is small enough to be sent quickly (under 2 MB of text)', sent1 && sent1.size < 2000000, String(sent1 && sent1.size));
-check('the sent bubble shows the photo as a thumbnail with the question', await ev(`(() => { const b = document.querySelector('.msg.user .bubble'); return Boolean(b.querySelector('img.sent-photo[src^="data:image/jpeg"]')) && b.textContent.includes("What's wrong with this weld?"); })()`));
-check('the assistant answers with ONE of the manual\'s own pictures and says the photo matches it', await ev(`document.querySelectorAll('.answer-visuals figure.figure').length === 1 && document.querySelector('.answer-text').textContent.includes('Your photo matches the manual')`));
-check('the photo strip is cleared after sending and Send waits again', !(await attached()) && await ev(`document.getElementById('send').disabled`));
-await shot('photo-answer');
-
-// with words, a small photo
-await reset();
-await upload(smallPng);
-await expect('a small photo is attached', `!document.getElementById('attachment').hidden`, 8000);
-await ev(`(() => { const i = document.getElementById('input'); i.value = 'my weld has little holes in it'; i.dispatchEvent(new Event('input')); document.getElementById('composer').requestSubmit(); })()`);
-await idleAfterAnswer(1);
-const sent2 = await lastSent();
-check('typed words and the photo travel together', sent2 && sent2.message === 'my weld has little holes in it' && sent2.hasImage, JSON.stringify(sent2));
-const dims2 = await sentDims();
-check('a small photo is not blown up', dims2 && dims2[0] === 300 && dims2[1] === 200, JSON.stringify(dims2));
-
-// a photo that matches nothing: the model called two pictures first, but the page shows none and says so plainly
-await reset();
-await upload(smallPng);
-await expect('a photo is attached for the no-match case', `!document.getElementById('attachment').hidden`, 8000);
-await ev(`(() => { const i = document.getElementById('input'); i.value = 'nomatch'; i.dispatchEvent(new Event('input')); document.getElementById('composer').requestSubmit(); })()`);
-await idleAfterAnswer(1);
-check('a photo that matches nothing gets the plain sentence and no weld pictures at all', await ev(`document.querySelectorAll('figure.figure').length === 0 && document.querySelector('.answer-text').textContent.includes("doesn't clearly match any one of the manual's weld pictures")`), await text('.answer-text'));
-check('and it points to the manual pages instead', await ev(`document.querySelector('.answer-text').textContent.includes('pages 35 to 40')`));
-await shot('photo-no-match');
-
-// files that are not photos
-await reset();
-await upload(notAPhoto);
-await sleep(400);
-check('a text file is refused with a plain sentence and nothing is attached', !(await attached()) && (await text('#status-text')).includes('Please choose a photo'), await text('#status-text'));
-await upload(brokenPng);
-await expect('a broken picture file is refused too', `document.getElementById('status-text').textContent.includes('could not read that photo')`, 6000);
-check('...and still nothing is attached', !(await attached()));
-
-// busy, new chat, phone
-await ask('slow please');
-await expect('the photo button waits while an answer is being written', `document.getElementById('photo').disabled`, 4000);
-await idleAfterAnswer(1);
-check('and it comes back afterwards', await ev(`!document.getElementById('photo').disabled`));
-await upload(smallPng);
-await expect('a photo is attached before New chat', `!document.getElementById('attachment').hidden`, 8000);
-await reset();
-check('New chat drops a photo that was waiting', !(await attached()));
-await viewport(390, 800, { mobile: true });
-await upload(smallPng);
-await expect('a photo can be attached on a phone', `!document.getElementById('attachment').hidden`, 8000);
-check('on a phone the preview strip fits and nothing runs off the edge', await noOverflow());
-await shot('photo-phone');
 await viewport(1100, 900);
 
 

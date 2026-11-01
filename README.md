@@ -41,7 +41,6 @@ Some things worth asking first:
 - *I'm getting porosity in my flux-cored welds. What do I check?*
 - *What settings should I use?* (it asks you with buttons)
 - *Show me the controls on the front panel.* (tap the parts)
-- Attach a photo of a weld and send *What's wrong with this weld?*
 - *Draw me a cheat sheet of which cable goes in which socket for all four processes.*
 - *What brand of welding helmet should I buy?* (not in the manual, so it says so)
 
@@ -51,7 +50,7 @@ It's one agent with ten tools. I thought about splitting it into several agents,
 
 ```mermaid
 flowchart TD
-    you["You<br/>type, speak, or attach a photo of a weld"] --> page["Chat page<br/>plain HTML, CSS and JavaScript"]
+    you["You<br/>type or speak"] --> page["Chat page<br/>plain HTML, CSS and JavaScript"]
     page -->|"your question"| server["Server<br/>FastAPI, one worker per conversation"]
     server --> agent["The agent<br/>Claude through the Agent SDK<br/>the whole manual sits in its prompt"]
     agent <-->|"asks for exact facts"| lookups["Lookup tools<br/>duty cycle, polarity,<br/>view a manual page"]
@@ -122,11 +121,9 @@ The front panel (page 8) and the inside of the welder (page 9) come straight fro
   <img src="docs/screens/tap-to-answer.png" width="49%" alt="Buttons for process, voltage, material, thickness and wire size">
 </p>
 
-### Photos and voice
+### Voice
 
-You can attach a photo of a weld. The page shrinks it in your browser and the server checks that it really is a JPEG, PNG or WebP of a sensible size. The agent uses the photo for one thing: deciding whether it clearly matches one of the manual's weld pictures (pages 35 to 40). If it does, it shows that one picture and gives the manual's causes and corrections for it. If the photo isn't a weld, or doesn't clearly match any picture, it says so in a fixed sentence, shows no weld pictures, and points you to those pages to compare yourself. It doesn't describe your weld or guess a cause of its own.
-
-For voice, there's a microphone next to Send that fills the question box as you speak, and you press Send yourself. A speaker button on each answer reads it aloud. Both use the browser's own speech features (Chrome and Edge), so there's no second API key.
+There's a microphone next to Send that fills the question box as you speak, and you press Send yourself. A speaker button on each answer reads it aloud. Both use the browser's own speech features (Chrome and Edge), so there's no second API key.
 
 ### Staying inside the manual
 

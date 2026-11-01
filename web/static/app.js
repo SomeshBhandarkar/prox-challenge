@@ -7,10 +7,7 @@
   const startup = $('startup'), shell = $('app-shell'), phrase = $('intro-phrase'), loading = $('startup-loading');
   const log = $('log'), thread = $('thread'), welcome = $('welcome'), input = $('input'), sendBtn = $('send'), form = $('composer');
   const statusText = $('status-text'), statusDot = $('status-dot'), counter = $('count'), micBtn = $('mic');
-  const photoBtn = $('photo'), photoInput = $('photo-input'), attachment = $('attachment'), attachImg = $('attachment-img'), attachRemove = $('attachment-remove');
   const MAX = 2000;
-  const PHOTO_QUESTION = "What's wrong with this weld?";   // sent when a photo goes with no words (the server uses the same sentence)
-  const MAX_SIDE = 1568, MAX_PHOTO_CHARS = 2800000;   // longest side in pixels, and the size of the text form of the shrunken photo
   const HINT = 'Enter to send · Shift + Enter for a new line';
   const INTRO = ['Welding', 'shouldn’t', 'feel', 'like', 'a', 'full-time', 'job.'];
   const EYEBROW = {   // the small label above a card's title
@@ -25,7 +22,6 @@
     retries: new Map(),   // drawing identifier -> how many automatic fixes were tried
     fix: null,            // a drawing that reported an error and still needs one fix request
     abort: null,
-    photo: null,          // a photo waiting to be sent: { media_type, data (base64), url (for the preview) }
   };
 
   // ---------- small helpers ----------
@@ -159,18 +155,11 @@
 
   // ---------- what appears in the conversation ----------
   // One exchange = the person's question (if any) and the assistant's answer, which fills in as events arrive.
-  function startExchange(userText, photo = null) {
+  function startExchange(userText) {
     const wrap = el('div', 'conversation');
     if (userText) {
       const u = el('div', 'msg user');
-      const bubble = el('div', 'bubble', userText);
-      if (photo) {
-        const thumb = el('img', 'sent-photo');
-        thumb.src = photo.url;
-        thumb.alt = 'The photo you sent';
-        bubble.prepend(thumb);
-      }
-      u.append(bubble);
+      u.append(el('div', 'bubble', userText));
       wrap.append(u);
     }
     const msg = el('div', 'msg assistant');
@@ -453,8 +442,7 @@
   function setBusy(on) {
     state.busy = on;
     micBtn.disabled = on;
-    photoBtn.disabled = on;
-    sendBtn.disabled = on || (!input.value.trim() && !state.photo);
+    sendBtn.disabled = on || !input.value.trim();
     log.setAttribute('aria-busy', String(on));
     thread.querySelectorAll('.choices:not(.done)').forEach((c) => c.refresh && c.refresh());
   }
@@ -492,14 +480,14 @@
     return `The server had a problem (error ${status}).`;
   }
 
-  async function send(text, automatic = false, photo = null) {
+  async function send(text, automatic = false) {
     text = text.trim();
     if (state.busy || !text) return;
     cancelListening();   // a new question: stop listening for the old one and stop reading the last answer
     stopReading();
     welcome.hidden = true;
     if (automatic) addNote('The drawing had a problem, so I asked the assistant to fix it.');
-    const answer = startExchange(automatic ? null : text, photo);
+    const answer = startExchange(automatic ? null : text);
     setBusy(true);
     setStatus('Thinking');
     let finished = false;
@@ -507,7 +495,7 @@
     try {
       const resp = await fetch('/api/chat', {
         method: 'POST', headers: { 'Content-Type': 'application/json' }, signal: state.abort.signal,
-        body: JSON.stringify({ message: text, session_id: state.sid, ...(photo ? { image: { media_type: photo.media_type, data: photo.data } } : {}) }),
+        body: JSON.stringify({ message: text, session_id: state.sid }),
       });
       if (!resp.ok) {
         let body = null;
@@ -541,7 +529,6 @@
 
   function newChat() {
     cancelListening();
-    clearPhoto();
     stopReading();
     if (state.abort) state.abort.abort();
     if (state.sid) fetch('/api/reset', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ session_id: state.sid }) }).catch(() => {});
@@ -556,7 +543,7 @@
   function grow() {
     input.style.height = 'auto';
     if (input.value) input.style.height = Math.min(input.scrollHeight, 160) + 'px';   // an empty box keeps its default height (the placeholder must not be measured)
-    sendBtn.disabled = state.busy || (!input.value.trim() && !state.photo);
+    sendBtn.disabled = state.busy || !input.value.trim();
     const near = input.value.length > MAX - 200;
     counter.textContent = near ? `${input.value.length} / ${MAX}` : HINT;
     counter.classList.toggle('near', near);
@@ -567,11 +554,10 @@
   });
   form.addEventListener('submit', (e) => {
     e.preventDefault();
-    const text = input.value, photo = state.photo;
-    if (state.busy || (!text.trim() && !photo)) return;
+    const text = input.value;
+    if (state.busy || !text.trim()) return;
     input.value = '';
-    clearPhoto();
-    send(text.trim() || PHOTO_QUESTION, false, photo);
+    send(text.trim());
   });
   $('starters').addEventListener('click', (e) => { const b = e.target.closest('button[data-q]'); if (b) send(b.dataset.q); });
   $('new-chat').addEventListener('click', newChat);
@@ -579,46 +565,6 @@
     if (synth) synth.cancel();
     if (state.sid) navigator.sendBeacon('/api/reset', new Blob([JSON.stringify({ session_id: state.sid })], { type: 'application/json' }));
   });
-
-  // ---------- a photo of the weld (optional) ----------
-  // The photo is shrunk and re-saved as a JPEG in this browser before it is sent: that keeps it small, drops any location data the camera added,
-  // and means the server only ever receives a plain JPEG. It is shown back as a small thumbnail and is never stored.
-  function flash(message) {
-    setStatus(message, true);
-    setTimeout(() => { if (!state.busy && statusText.textContent === message) setStatus(null); }, 6000);
-  }
-  function clearPhoto() {
-    state.photo = null;
-    attachment.hidden = true;
-    attachImg.removeAttribute('src');
-    grow();
-  }
-  async function attachPhoto(file) {
-    if (!file || !String(file.type).startsWith('image/')) { flash('Please choose a photo (a JPG, PNG or WebP file).'); return; }
-    if (file.size > 25 * 1024 * 1024) { flash('That photo is too large. Choose one under 25 MB.'); return; }
-    let bitmap;
-    try { bitmap = await createImageBitmap(file); } catch (e) { flash('I could not read that photo. Try a JPG or PNG.'); return; }
-    const scale = Math.min(1, MAX_SIDE / Math.max(bitmap.width, bitmap.height));
-    const canvas = document.createElement('canvas');
-    canvas.width = Math.max(1, Math.round(bitmap.width * scale));
-    canvas.height = Math.max(1, Math.round(bitmap.height * scale));
-    const ctx = canvas.getContext('2d');
-    ctx.fillStyle = '#fff';   // a transparent PNG would turn black as a JPEG
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-    ctx.drawImage(bitmap, 0, 0, canvas.width, canvas.height);
-    if (bitmap.close) bitmap.close();
-    let quality = 0.85, url = canvas.toDataURL('image/jpeg', quality);
-    while (url.length > MAX_PHOTO_CHARS && quality > 0.4) { quality -= 0.15; url = canvas.toDataURL('image/jpeg', quality); }
-    if (url.length > MAX_PHOTO_CHARS) { flash('That photo is still too large. Try a smaller one.'); return; }
-    state.photo = { media_type: 'image/jpeg', data: url.slice(url.indexOf(',') + 1), url };
-    attachImg.src = url;
-    attachment.hidden = false;
-    grow();
-    input.focus();
-  }
-  photoBtn.addEventListener('click', () => { if (!state.busy) photoInput.click(); });
-  photoInput.addEventListener('change', () => { const f = photoInput.files && photoInput.files[0]; photoInput.value = ''; if (f) attachPhoto(f); });
-  attachRemove.addEventListener('click', () => { clearPhoto(); input.focus(); });
 
   // ---------- voice (optional: the buttons stay hidden where the browser has no speech support) ----------
   // Speaking FILLS the question box; the person checks what was heard and presses send, so a misheard word never goes out by itself.

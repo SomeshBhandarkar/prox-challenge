@@ -4,7 +4,7 @@
 
 Type one of these words in the chat to see what the page does with it:
   figure  polarity  duty  flowchart  setup  draw  broken  badfigure  placeholder  twice  everything  lists  repeat  phantom  long  callout  unsafe  slow  limit  budget  crash
-  details (tap-to-answer questions)  symptom (the same, for a problem)  panel interior (the clickable front panel and inside)  photo (a weld photo is sent with the question)
+  details (tap-to-answer questions)  symptom (the same, for a problem)  panel interior (the clickable front panel and inside)
 The answers are NOT from the manual. They only exercise the page. The real app is:  python3 run.py
 """
 import argparse
@@ -15,7 +15,6 @@ from pathlib import Path
 from claude_agent_sdk import AssistantMessage, ResultMessage, TextBlock, ToolUseBlock
 
 from app import server
-from app.guard import PHOTO_NO_MATCH
 from app.server import create_app, find_free_port
 from app.show import PREFIX
 
@@ -140,15 +139,7 @@ def scenario(text: str, history: tuple = ()) -> list[tuple]:
     if "crash" in t:
         return [("raise", "demo crash")]
     return [("text", "This is the demo agent: the answers are canned and nothing is sent to Claude. Try one of these words: "
-                     "figure, polarity, duty, flowchart, setup, details, symptom, panel, interior, photo, draw, broken, badfigure, placeholder, twice, everything, lists, repeat, phantom, long, callout, unsafe, slow, limit, budget, crash.")]
-
-
-PHOTO_REPLY = [("tool", "show_figure", {"figure_id": "wire-porosity"}),
-               ("text", "Your photo matches the manual's picture of porosity (manual p.37), shown below. The manual lists these causes: dirty workpiece, "
-                        "gun used too far from the workpiece, incorrect polarity and dirty welding wire (manual p.37). A photo cannot settle it, so compare it with the manual's pictures.")]
-# a photo that matches nothing: the model called pictures before it made up its mind, and the page must show none of them (type "nomatch" with the photo)
-PHOTO_DECLINE = [("tool", "show_figure", {"figure_id": "wire-diagnosis-examples"}), ("tool", "show_figure", {"figure_id": "wire-porosity"}),
-                 ("text", PHOTO_NO_MATCH)]
+                     "figure, polarity, duty, flowchart, setup, details, symptom, panel, interior, draw, broken, badfigure, placeholder, twice, everything, lists, repeat, phantom, long, callout, unsafe, slow, limit, budget, crash.")]
 
 
 class DemoClient:
@@ -156,7 +147,6 @@ class DemoClient:
 
     def __init__(self, options=None):
         self.queries: list[str] = []
-        self.photos: list[bool] = []   # whether each question came with a photo
 
     async def __aenter__(self):
         return self
@@ -164,28 +154,12 @@ class DemoClient:
     async def __aexit__(self, *exc):
         return False
 
-    async def query(self, prompt) -> None:
-        """The real client takes a string, or (for a question with a photo) a stream of message dicts holding image and text blocks."""
-        if isinstance(prompt, str):
-            self.queries.append(prompt)
-            self.photos.append(False)
-            return
-        words, photo = [], False
-        async for message in prompt:
-            for block in message["message"]["content"]:
-                if block.get("type") == "text":
-                    words.append(block["text"])
-                elif block.get("type") == "image" and block.get("source", {}).get("data"):
-                    photo = True
-        self.queries.append(" ".join(words))
-        self.photos.append(photo)
+    async def query(self, prompt: str) -> None:
+        self.queries.append(prompt)
 
     async def receive_response(self):
         subtype = "success"
-        if self.photos[-1]:
-            steps = PHOTO_DECLINE if "nomatch" in self.queries[-1].lower() else PHOTO_REPLY
-        else:
-            steps = scenario(self.queries[-1], tuple(self.queries[:-1]))
+        steps = scenario(self.queries[-1], tuple(self.queries[:-1]))
         for step in steps:
             if step[0] == "text":
                 yield AssistantMessage(content=[TextBlock(step[1])], model="demo")

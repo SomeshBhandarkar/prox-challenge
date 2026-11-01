@@ -7,8 +7,6 @@
     4. The rewrite is checked again. Any sentence still unsupported is removed. If too little is left, the answer is FALLBACK:
        "There is no specific information in the manual for this kind of problem."
     A draft that points at a picture below without having shown one gets the same single follow-up (see app/phantom.py).
-    When the person sent a photo, the pictures are held until the final text is known: if the answer says the photo is not a weld or matches
-    nothing in the manual (guard.PHOTO_NO_WELD / PHOTO_NO_MATCH), no weld pictures are shown.
 """
 from dataclasses import dataclass, field
 
@@ -40,26 +38,8 @@ class Outcome:
         return bool(self.first_findings)
 
 
-PHOTO_WORDS = "photo looks closest resembles matches picture"   # words the word-level guard may take as the person's own when they sent a photo
-PHOTO_NOTE = " [the person attached a photo of their weld]"   # tells the fact-checker it cannot see the photo
-
-
-def user_message(text: str, image: dict | None):
-    """What the SDK is sent: the plain words, or (with a photo) one streamed user message holding the photo and the words.
-    `image` = {"media_type": "image/jpeg", "data": <base64>} and has already been checked by the server."""
-    if not image:
-        return text
-
-    async def one():
-        yield {"type": "user", "message": {"role": "user", "content": [
-            {"type": "image", "source": {"type": "base64", "media_type": image["media_type"], "data": image["data"]}},
-            {"type": "text", "text": text}]}, "parent_tool_use_id": None}
-    return one()
-
-
-async def collect(client, prompt, embeds, seen: set, state: dict, emit, events_for, on_fatal=lambda: None, held: list | None = None) -> Draft:
-    """Send one prompt (words, or words plus a photo). Pass statuses, pictures and errors on at once; keep the text (and the final "done") for the caller.
-    With `held` (a list), pictures are put in it instead of being passed on: the caller decides later whether they are shown."""
+async def collect(client, prompt: str, embeds, seen: set, state: dict, emit, events_for, on_fatal=lambda: None) -> Draft:
+    """Send one prompt. Pass statuses, pictures and errors on at once; keep the text (and the final "done") for the caller."""
     draft = Draft()
     await client.query(prompt)
     async for sdk_message in client.receive_response():
@@ -79,9 +59,6 @@ async def collect(client, prompt, embeds, seen: set, state: dict, emit, events_f
                 continue
             elif event == "show":
                 draft.shows += 1
-                if held is not None:
-                    held.append((event, data))
-                    continue
             emit(event, data)
     return draft
 
@@ -93,28 +70,15 @@ def _forget_text(seen: set) -> None:
 
 
 async def answer(client, question: str, embeds, emit, events_for, *, judge=None, guard_text: bool = True, on_fatal=lambda: None,
-                 outcome: Outcome | None = None, image: dict | None = None) -> Outcome:
+                 outcome: Outcome | None = None) -> Outcome:
     """Answer one question. `emit(event, data)` receives what the page should see; `judge` is an async (answer, question) -> list[Finding] | None.
     guard_text=False skips the manual-only checks (the demo agent's canned replies are not from the manual); the picture follow-up still applies."""
     out = outcome or Outcome()
     seen, state = set(), {"sent_error": False}
-    asked = question + " " + PHOTO_WORDS if image else question            # what the word-level guard counts as the person's own words
-    asked_judge = question + PHOTO_NOTE if image else question              # what the fact-checker is told
-    # With a photo, the pictures wait until the final text is known: an answer that says "this photo matches nothing in the manual" must not
-    # sit under weld pictures the model called before it made up its mind.
-    held = [] if image else None
-    draft = await collect(client, user_message(question, image), embeds, seen, state, emit, events_for, on_fatal, held)
+    draft = await collect(client, question, embeds, seen, state, emit, events_for, on_fatal)
     text = "\n\n".join(draft.texts)
 
-    def release(final: str) -> None:
-        if held and not guard.declines_photo(final):
-            for event, data in held:
-                emit(event, data)
-        if held:
-            held.clear()
-
     if draft.errored or not draft.done or not draft.done.get("ok") or not text.strip():
-        release(text)
         for t in draft.texts:                      # nothing to check: an error already explained itself, or there is no text
             emit("text", {"text": t})
         out.final_text = text
@@ -122,9 +86,9 @@ async def answer(client, question: str, embeds, emit, events_for, *, judge=None,
             emit("done", draft.done)
         return out
 
-    findings = list(guard.check(text, asked).findings) if guard_text else []
+    findings = list(guard.check(text, question).findings) if guard_text else []
     if guard_text and not findings and judge is not None:
-        second = await _ask_judge(judge, text, asked_judge)
+        second = await _ask_judge(judge, text, question)
         out.judge_used = second is not None
         findings = second or []
     out.first_findings = list(findings)
@@ -141,7 +105,7 @@ async def answer(client, question: str, embeds, emit, events_for, *, judge=None,
         out.rewritten, out.phantom_nudge = bool(findings), phantom
         if findings:
             _forget_text(seen)
-        again = await collect(client, request, embeds, seen, state, emit, events_for, on_fatal, held)
+        again = await collect(client, request, embeds, seen, state, emit, events_for, on_fatal)
         done = again.done or done
         if findings:
             replacement = "\n\n".join(again.texts).strip()
@@ -153,14 +117,13 @@ async def answer(client, question: str, embeds, emit, events_for, *, judge=None,
         now = set(guard.split_sentences(final_text))
         extra = [f for f in findings if f.sentence in now]
         if findings and judge is not None and final_text != text:
-            extra += [f for f in (await _ask_judge(judge, final_text, asked_judge) or []) if f.sentence not in {e.sentence for e in extra}]
+            extra += [f for f in (await _ask_judge(judge, final_text, question) or []) if f.sentence not in {e.sentence for e in extra}]
         if guard_text:
-            cleaned, report2 = guard.enforce(final_text, asked, extra)
+            cleaned, report2 = guard.enforce(final_text, question, extra)
             out.removed = [f.sentence for f in report2.findings if f.sentence]
             out.fallback = cleaned.startswith(guard.FALLBACK)
             final_text = cleaned
     out.final_text = final_text
-    release(final_text)
     if final_text.strip():
         emit("text", {"text": final_text})
     if done is not None:

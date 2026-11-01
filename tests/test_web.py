@@ -261,25 +261,7 @@ def test_numbered_lists_keep_their_numbers_when_bullets_sit_inside_or_between_th
     assert "<img" not in hostile and "<script" not in hostile and "&lt;img" in hostile and "&lt;script&gt;" in hostile, hostile
 
 
-# ---------- the three newer features: tap-to-answer questions, tappable pictures, weld photos ----------
-def test_the_photo_feature_matches_the_server_and_adds_no_way_to_reach_outside():
-    assert re.search(r'PHOTO_QUESTION = "([^"]+)"', JS).group(1) == S.PHOTO_QUESTION      # the page and the server use the same default question
-    for needle in ("createImageBitmap", "toDataURL('image/jpeg'", "media_type: 'image/jpeg'", "image: { media_type: photo.media_type, data: photo.data }"):
-        assert needle in JS, needle
-    assert "createObjectURL" not in JS and "blob:" not in JS and "blob:" not in HTML        # the preview is a data: URL, so the page policy needs no blob:
-    max_chars = int(re.search(r"MAX_PHOTO_CHARS = (\d+)", JS).group(1))
-    assert max_chars * 3 // 4 <= S.MAX_IMAGE_BYTES                                         # whatever the page sends is a size the server accepts
-    assert 'type="file" accept="image/*" hidden' in HTML and 'id="photo"' in HTML and 'aria-label="Attach a photo of your weld"' in HTML
-    assert JS.count("innerHTML") == 1                                                      # still only the escaping renderer writes HTML
-
-
-def test_the_page_does_not_send_or_keep_a_photo_it_was_not_given():
-    # the photo is cleared when sent, removed, or the chat is reset, and the send button needs words or a photo
-    assert "clearPhoto();\n    send(text.trim() || PHOTO_QUESTION, false, photo);" in JS
-    assert "function newChat() {\n    cancelListening();\n    clearPhoto();" in JS
-    assert "(!input.value.trim() && !state.photo)" in JS and "photoBtn.disabled = on;" in JS
-
-
+# ---------- the two newer features: tap-to-answer questions and tappable pictures ----------
 def test_tappable_picture_boxes_are_placed_by_script_not_by_inline_style_attributes():
     assert "Object.assign(b.style, { left:" in JS and 'style="' not in HTML                 # the page policy forbids style attributes in markup
     assert "proseBlock(h.text)" in JS and "info.replaceChildren(el('h4', '', h.label)" in JS   # the explanation goes through the escaping renderer

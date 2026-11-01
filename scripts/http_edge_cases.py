@@ -7,7 +7,6 @@ It also works against the real app (python3 run.py --no-open --port 8000), where
 Prints PASS/FAIL lines and exits with 1 if anything failed. The server must still be healthy at the end.
 """
 import argparse
-import base64
 import http.client
 import json
 import socket
@@ -26,9 +25,6 @@ def check(name, ok, detail=""):
     total += 1
     fails += 0 if ok else 1
     print(("PASS " if ok else "FAIL ") + name + (f"   [{str(detail)[:200]}]" if detail else ""), flush=True)
-
-
-JPEG_B64 = base64.b64encode(b"\xff\xd8\xff\xe0" + b"\x00" * 40 + b"\xff\xd9").decode()   # starts like a real JPEG
 
 
 def raw(host, port, request: bytes, wait=3.0):
@@ -158,14 +154,6 @@ def main():
         "5 MB body": b'{"message": "' + b"x" * 5_000_000 + b'"}', "deeply nested json": b'{"message": ' + b"[" * 5000 + b"]" * 5000 + b"}",
         "session id is a huge string": json.dumps({"message": "hi", "session_id": "s" * 100000}).encode(),
         "session id is a number": b'{"message": "hi", "session_id": 123}', "session id is an object": b'{"message": "hi", "session_id": {"a": 1}}',
-        # photos: every one of these is refused before anything could reach the model
-        "photo is a string": b'{"message": "hi", "image": "abc"}',
-        "photo labelled as HTML": json.dumps({"message": "hi", "image": {"media_type": "text/html", "data": JPEG_B64}}).encode(),
-        "photo labelled SVG (can carry script)": json.dumps({"message": "hi", "image": {"media_type": "image/svg+xml", "data": JPEG_B64}}).encode(),
-        "photo whose bytes are not what its label says": json.dumps({"message": "hi", "image": {"media_type": "image/png", "data": JPEG_B64}}).encode(),
-        "photo that is not base64": json.dumps({"message": "hi", "image": {"media_type": "image/jpeg", "data": "***not base64***"}}).encode(),
-        "photo of 5 MB": json.dumps({"message": "hi", "image": {"media_type": "image/jpeg", "data": base64.b64encode(b"\xff\xd8\xff" + b"0" * 5_000_000).decode()}}).encode(),
-        "photo of 30 MB of text": json.dumps({"message": "hi", "image": {"media_type": "image/jpeg", "data": "A" * 30_000_000}}).encode(),
     }
     for name, body in bodies.items():
         try:
@@ -182,13 +170,6 @@ def main():
 
     # ---------------- conversations
     print("--- conversations (these send real questions: free on the demo server)")
-    status, body_text = None, ""
-    try:
-        s_, _, body = request(host, port, "POST", "/api/chat", body=json.dumps({"message": "what is wrong with this weld?", "image": {"media_type": "image/jpeg", "data": JPEG_B64}}), headers=J, timeout=30)
-        status, body_text = s_, body.decode("utf-8", "replace") if isinstance(body, (bytes, bytearray)) else str(body)
-    except (OSError, http.client.HTTPException) as e:
-        body_text = str(e)
-    check("a real-looking photo with a question is accepted and answered", status == 200 and "event: done" in body_text and JPEG_B64 not in body_text, status)
     status, ev = chat(host, port, "duty cycle please")
     names = [n for n, _ in ev]
     check("one question streams session -> status -> text -> show -> done", status == 200 and names[0] == "session" and names[-1] == "done" and "text" in names and "show" in names, names)

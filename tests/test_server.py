@@ -145,6 +145,15 @@ def test_bad_questions_are_refused_before_any_agent_is_started(client, body):
     assert r.status_code == 422 and "1 to 2000" in r.json()["error"] and Recorder.made == []
 
 
+def test_an_old_cached_page_that_still_sends_a_photo_is_answered_from_its_words_alone(client):
+    # the photo feature was removed; a browser still holding the old page must neither crash the server nor have a picture reach the model
+    photo = {"media_type": "image/jpeg", "data": "QUJD"}
+    r = client.post("/api/chat", json={"message": "figure please", "image": photo})
+    assert r.status_code == 200 and kinds(events(r))[-1] == "done"
+    assert Recorder.made[-1].queries[-1] == "figure please" and all(isinstance(q, str) for q in Recorder.made[-1].queries)
+    assert client.post("/api/chat", json={"message": "   ", "image": photo}).status_code == 422   # a photo alone is not a question any more
+
+
 def test_garbage_bodies_are_refused_too(client):
     assert client.post("/api/chat", content=b"not json", headers={"content-type": "application/json"}).status_code == 422
     assert client.post("/api/chat", content=b"[]", headers={"content-type": "application/json"}).status_code == 422

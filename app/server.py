@@ -10,8 +10,6 @@ page can put them in a frame with sandbox="allow-scripts" (no access to the page
 """
 import argparse
 import asyncio
-import base64
-import binascii
 import json
 import os
 import re
@@ -190,14 +188,14 @@ class Session:
     def busy(self) -> bool:
         return self.pending > 0
 
-    def submit(self, message: str, image: dict | None = None) -> asyncio.Queue | None:
+    def submit(self, message: str) -> asyncio.Queue | None:
         """Hand a question to the worker. Returns the queue its events arrive on (None marks the end), or None if still answering."""
         if self.pending or self.closing or self.dead:
             return None
         self.pending += 1
         self.last_used = self.clock()
         out: asyncio.Queue = asyncio.Queue()
-        self.inbox.put_nowait((message, image, out))
+        self.inbox.put_nowait((message, out))
         return out
 
     def close(self) -> None:
@@ -220,10 +218,10 @@ class Session:
             out.put_nowait((event, data))
         return emit
 
-    async def _answer(self, client, message: str, image: dict | None, out: asyncio.Queue) -> None:
+    async def _answer(self, client, message: str, out: asyncio.Queue) -> None:
         try:
             await answer(client, message, self.embeds, self._emit(out), events_for,
-                         judge=self.judge, guard_text=self.guard_text, on_fatal=self._fatal, image=image)
+                         judge=self.judge, guard_text=self.guard_text, on_fatal=self._fatal)
         except Exception as e:  # noqa: BLE001
             self.closing = True  # after a failure the conversation state is unknown: start clean next time
             out.put_nowait(("error", {"message": f"Something went wrong talking to Claude ({type(e).__name__}). Check the terminal "
@@ -239,9 +237,9 @@ class Session:
                     job = await self.inbox.get()
                     if job is None:
                         return
-                    message, image, out = job
+                    message, out = job
                     try:
-                        await self._answer(client, message, image, out)
+                        await self._answer(client, message, out)
                     finally:
                         out.put_nowait(None)
                         self.pending -= 1
@@ -257,7 +255,7 @@ class Session:
             while not self.inbox.empty():
                 job = self.inbox.get_nowait()
                 if job is not None:
-                    _, _, out = job
+                    _, out = job
                     out.put_nowait(("error", {"message": reason, "code": "start_failed", "fatal": True}))
                     out.put_nowait(("done", {"ok": False, "cost_usd": None}))
                     out.put_nowait(None)
@@ -345,37 +343,9 @@ class SafeHeaders:
         await self.app(scope, receive, add_headers)
 
 
-MAX_IMAGE_BYTES = 3_000_000   # after the page has shrunk the photo (it sends about 0.2 to 0.6 MB)
-IMAGE_TYPES = {"image/jpeg": b"\xff\xd8\xff", "image/png": b"\x89PNG\r\n\x1a\n", "image/webp": b"RIFF"}   # what each must start with
-PHOTO_QUESTION = "What's wrong with this weld?"   # used when a photo is sent with no words
-
-
-class ImageIn(BaseModel):
-    media_type: str = Field(max_length=40)
-    data: str = Field(max_length=MAX_IMAGE_BYTES * 4 // 3 + 64)   # base64 text
-
-
 class ChatIn(BaseModel):
     message: str = Field(max_length=MAX_QUESTION_CHARS)
     session_id: str | None = Field(default=None, max_length=64)
-    image: ImageIn | None = None
-
-
-def check_image(image: ImageIn) -> tuple[int, str] | None:
-    """None if the photo is usable, else (status, sentence for the page). The bytes must really be a JPEG, PNG or WebP of a sane size:
-    the label the browser put on it is not trusted."""
-    wanted = IMAGE_TYPES.get(image.media_type)
-    if wanted is None:
-        return 422, "Please send a JPG, PNG or WebP photo."
-    try:
-        raw = base64.b64decode(image.data, validate=True)
-    except (binascii.Error, ValueError):
-        return 422, "That photo could not be read. Try another one."
-    if len(raw) > MAX_IMAGE_BYTES:
-        return 413, "That photo is too large (the limit is 3 MB). Try a smaller one."
-    if not raw.startswith(wanted) or (image.media_type == "image/webp" and raw[8:12] != b"WEBP"):
-        return 422, "That file is not a real JPG, PNG or WebP photo."
-    return None
 
 
 class ResetIn(BaseModel):
@@ -421,8 +391,6 @@ def create_app(client_factory=ClaudeSDKClient, options_factory=None, model: str 
 
     @app.exception_handler(RequestValidationError)
     async def bad_request(request: Request, exc: RequestValidationError):
-        if any("image" in map(str, e.get("loc", ())) for e in exc.errors()):
-            return _error(422, "That photo could not be used. Send a JPG, PNG or WebP photo under 3 MB.")
         return _error(422, f"Send a message of 1 to {MAX_QUESTION_CHARS} characters.")
 
     @app.get("/")
@@ -478,13 +446,9 @@ def create_app(client_factory=ClaudeSDKClient, options_factory=None, model: str 
 
     @app.post("/api/chat")
     async def chat(body: ChatIn, request: Request):
-        message = body.message.strip() or (PHOTO_QUESTION if body.image else "")
+        message = body.message.strip()
         if not message:
             return _error(422, f"Send a message of 1 to {MAX_QUESTION_CHARS} characters.")
-        if body.image:
-            problem = check_image(body.image)
-            if problem:
-                return _error(*problem)
         refused = limits.refusal(request.scope)
         if refused:
             status, text, wait = refused
@@ -492,7 +456,7 @@ def create_app(client_factory=ClaudeSDKClient, options_factory=None, model: str 
         session = sessions.get_or_create(body.session_id)
         if session is None:
             return _error(503, "The server is busy with other conversations. Try again in a moment.")
-        out = session.submit(message, {"media_type": body.image.media_type, "data": body.image.data} if body.image else None)
+        out = session.submit(message)
         if out is None:
             return _error(409, "Still answering the last question. Wait for it to finish.")
         limits.accepted(request.scope)

@@ -12,7 +12,7 @@ import re
 
 from claude_agent_sdk import AssistantMessage, ClaudeAgentOptions, ClaudeSDKClient, ResultMessage, TextBlock
 
-from app.guard import FALLBACK, Finding, is_photo_decline, points_only, refers_to_support, split_sentences
+from app.guard import FALLBACK, Finding, points_only, refers_to_support, split_sentences
 
 JUDGE_MODEL = "haiku"
 TIMEOUT_SECONDS = 40
@@ -31,8 +31,6 @@ Judge the facts a sentence states, never the pointer or the referral in it.
 - UNSUPPORTED: it adds anything the sources do not say. That includes advice and tips; explanations of WHY something works; typical, recommended or \
 "safe" values; comparisons, rankings or "most likely / most common" claims the manual does not make; guesses; definitions from general knowledge; \
 descriptions of what a picture looks like when the sources do not say; steps or procedures not in the manual; and any wrong number, page or step.
-If the question ends with "[the person attached a photo of their weld]", you cannot see the photo: accept a sentence that says which of the manual's \
-weld pictures the photo looks closest to, and judge everything else in the answer as usual.
 Rewording is fine; adding is not. Quoting the manual is supported. Arithmetic that only restates the manual's own duty-cycle examples \
 (25% means 2-1/2 minutes welding and 7-1/2 minutes resting in 10) is supported. When unsure whether a sentence is in the sources, search them first; \
 only mark it unsupported if the sources do not say it.
@@ -60,8 +58,7 @@ def _is_fallback(sentence: str) -> bool:
 def numbered(answer: str, limit: int = MAX_SENTENCES) -> tuple[str, list]:
     """The answer as numbered sentences (questions, bare pointers, support referrals and the fallback sentence are left out: they claim nothing), and the sentence behind each number."""
     # questions claim nothing; neither does a bare pointer ("the table is shown below") or a referral to the manual's support number
-    sentences = [s for s in split_sentences(answer) if not s.endswith("?") and not points_only(s) and not refers_to_support(s) and not _is_fallback(s)
-                 and not is_photo_decline(s)][:limit]
+    sentences = [s for s in split_sentences(answer) if not s.endswith("?") and not points_only(s) and not refers_to_support(s) and not _is_fallback(s)][:limit]
     return "\n".join(f"{i}. {s}" for i, s in enumerate(sentences, 1)), sentences
 
 

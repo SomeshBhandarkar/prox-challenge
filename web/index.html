@@ -22,7 +22,6 @@
   <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></symbol>
   <symbol id="i-left" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></symbol>
   <symbol id="i-right" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol>
-  <symbol id="i-photo" viewBox="0 0 24 24"><path d="M4 8h3l1.5-2h7L17 8h3a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1Zm8 9a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z"/></symbol>
   <symbol id="i-mic" viewBox="0 0 24 24"><path d="M12 3a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V6a3 3 0 0 0-3-3Zm-7 9a7 7 0 0 0 14 0m-7 7v3"/></symbol>
   <symbol id="i-speaker" viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9H4Zm12 0a4 4 0 0 1 0 6m2.5-9a8 8 0 0 1 0 12"/></symbol>
 </svg>
@@ -73,18 +72,11 @@
 
     <div class="composer-wrap">
       <form id="composer" class="composer" autocomplete="off">
-        <div class="attachment" id="attachment" hidden>
-          <img id="attachment-img" alt="Your photo, ready to send">
-          <span>Photo ready to send. I compare it with the manual&rsquo;s weld pictures.</span>
-          <button class="icon-button" id="attachment-remove" type="button" aria-label="Remove the photo"><svg class="icon" aria-hidden="true"><use href="#i-x"/></svg></button>
-        </div>
         <label for="input" class="sr-only">Your question</label>
         <textarea id="input" rows="1" maxlength="2000" placeholder="Ask about your OmniPro 220..." enterkeyhint="send"></textarea>
         <div class="composer-actions">
           <span class="count" id="count">Enter to send &middot; Shift + Enter for a new line</span>
           <div class="composer-buttons">
-            <input id="photo-input" type="file" accept="image/*" hidden>
-            <button class="mic attach" id="photo" type="button" aria-label="Attach a photo of your weld" title="Attach a photo of your weld"><svg class="icon" aria-hidden="true"><use href="#i-photo"/></svg></button>
             <button class="mic" id="mic" type="button" hidden aria-pressed="false" aria-label="Speak your question" title="Speak your question"><svg class="icon" aria-hidden="true"><use href="#i-mic"/></svg></button>
             <button class="send" id="send" type="submit" aria-label="Send message"><svg class="icon" aria-hidden="true"><use href="#i-send"/></svg></button>
           </div>
