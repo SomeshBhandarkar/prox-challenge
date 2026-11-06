@@ -203,6 +203,18 @@ def test_speaking_only_fills_the_question_box_and_never_sends_it():
     assert "cancelListening()" in new_chat and "stopReading()" in new_chat
 
 
+def test_the_microphone_keeps_listening_through_pauses_and_has_a_two_minute_safety_stop():
+    start = re.search(r"function startListening\(\) \{(.*?)\n  \}\n", JS, re.S).group(1)
+    assert "r.continuous = true" in start and "r.continuous = false" not in JS             # a pause does not end it
+    assert "SILENCE_LIMIT_MS = 120000;" in JS and "arm();" in start                       # two minutes without words ends it, and every result restarts that clock
+    onend = re.search(r"r\.onend = \(\) => \{(.*?)\n    \};", start, re.S).group(1)
+    assert "r.start()" in onend and "wantStop" in onend and "carried" in onend            # a round the browser ended by itself is started again, keeping the words
+    assert "quickEnds <= 4" in onend                                                      # ...but not forever when every round ends at once
+    assert "'no-speech'" not in re.search(r"const MIC_PROBLEMS = \{.*?\};", JS, re.S).group(0)   # a quiet moment is not an error message
+    assert "recog ? stopListening() : startListening()" in JS                             # tapping the microphone is the way to stop
+    assert "clearTimeout(silenceTimer)" in re.search(r"function micIdle\(\) \{(.*?)\n  \}\n", JS, re.S).group(1)   # a stopped microphone leaves no timer behind
+
+
 @pytest.mark.skipif(shutil.which("node") is None, reason="node is not installed (this test runs the page's reading-aloud patterns)")
 def test_reading_aloud_says_page_numbers_in_words_and_does_not_split_decimals():
     split = re.search(r"\.split\((/\(\?<=\[\.!\?\]\)\\s\+\|\\n\+/)\)", JS).group(1)

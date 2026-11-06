@@ -575,13 +575,15 @@
   const MIC_BLOCKED = 'The microphone is blocked. Allow it in your browser’s address bar, then try again.';
   const MIC_PROBLEMS = {
     'not-allowed': MIC_BLOCKED, 'service-not-allowed': MIC_BLOCKED,
-    'no-speech': 'I didn’t hear anything. Tap the microphone and try again.',
     'audio-capture': 'I couldn’t find a microphone.',
     network: 'Speech recognition needs an internet connection.',
   };
-  let recog = null, reading = null;
+  const SILENCE_LIMIT_MS = 120000;   // the microphone stays on through pauses, but turns itself off after two minutes with no words
+  const SILENCE_MSG = 'I stopped listening after two minutes of silence. Tap the microphone to start again.';
+  let recog = null, reading = null, silenceTimer = null, wantStop = false;
 
   function micIdle() {
+    clearTimeout(silenceTimer);
     recog = null;
     micBtn.classList.remove('listening');
     micBtn.setAttribute('aria-pressed', 'false');
@@ -594,25 +596,53 @@
     try { r.abort(); } catch (e) { /* already stopped */ }
     micIdle();
   }
+  function stopListening() {   // the person tapped the microphone (or the silence limit was reached)
+    const r = recog;
+    wantStop = true;
+    clearTimeout(silenceTimer);
+    try { r.stop(); } catch (e) { cancelListening(); return; }
+    // if the browser never reports the end, do not leave the button stuck on "listening"
+    setTimeout(() => { if (recog === r) { cancelListening(); if (!state.busy) setStatus(null); } }, 2500);
+  }
   function startListening() {
     if (state.busy || recog) return;
     const base = input.value.trim();
-    let problem = false;
+    let problem = false, tooQuiet = false, carried = '', heard = '', startedAt = Date.now(), quickEnds = 0;
+    wantStop = false;
     const r = recog = new Recognition();
-    r.lang = LANG; r.interimResults = true; r.continuous = false;
+    r.lang = LANG; r.interimResults = true; r.continuous = true;   // continuous: a pause does not end it
+    const arm = () => { clearTimeout(silenceTimer); silenceTimer = setTimeout(() => { tooQuiet = true; stopListening(); }, SILENCE_LIMIT_MS); };
     r.onresult = (e) => {   // only fills the box: nothing is sent by voice alone
-      const said = Array.from(e.results, (res) => res[0].transcript).join('').trim();
-      input.value = ((base ? base + ' ' : '') + said).slice(0, MAX);
+      heard = Array.from(e.results, (res) => res[0].transcript).join(' ').replace(/\s+/g, ' ').trim();
+      input.value = [base, carried, heard].filter(Boolean).join(' ').slice(0, MAX);
       grow();
+      arm();
     };
     r.onerror = (e) => {
-      if (e.error === 'aborted') return;
+      if (e.error === 'no-speech') return;   // a few quiet seconds: Chrome ends this round and the code below listens again
+      if (e.error === 'aborted') { wantStop = true; return; }
       problem = true;
       setStatus(MIC_PROBLEMS[e.error] || 'The microphone stopped (' + e.error + ').', true);
       statusDot.classList.remove('active');
     };
-    r.onend = () => { micIdle(); if (!problem && !state.busy) setStatus(null); input.focus(); };
+    r.onend = () => {
+      if (!problem && !wantStop && !state.busy) {   // Chrome ended this round by itself (a pause, or a long stretch): keep what was heard, listen again
+        carried = [carried, heard].filter(Boolean).join(' ');
+        heard = '';
+        quickEnds = Date.now() - startedAt < 700 ? quickEnds + 1 : 0;   // a round that ends at once, again and again, is not a pause: give up
+        if (quickEnds <= 4) {
+          try { startedAt = Date.now(); r.start(); return; } catch (err) { /* cannot start again: stop below */ }
+        }
+        problem = true;
+        setStatus('The microphone stopped. Tap it to try again.', true);
+      }
+      micIdle();
+      if (tooQuiet) setStatus(SILENCE_MSG, true);
+      else if (!problem && !state.busy) setStatus(null);
+      input.focus();
+    };
     try { r.start(); } catch (err) { micIdle(); return; }
+    arm();
     micBtn.classList.add('listening');
     micBtn.setAttribute('aria-pressed', 'true');
     micBtn.setAttribute('aria-label', 'Stop listening');
@@ -620,7 +650,7 @@
   }
   if (Recognition) {
     micBtn.hidden = false;
-    micBtn.addEventListener('click', () => (recog ? recog.stop() : startListening()));
+    micBtn.addEventListener('click', () => (recog ? stopListening() : startListening()));
   }
 
   function stopReading() {

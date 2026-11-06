@@ -123,7 +123,7 @@ The front panel (page 8) and the inside of the welder (page 9) come straight fro
 
 ### Voice
 
-There's a microphone next to Send that fills the question box as you speak, and you press Send yourself. A speaker button on each answer reads it aloud. Both use the browser's own speech features (Chrome and Edge), so there's no second API key.
+There's a microphone next to Send that fills the question box as you speak. It keeps listening through pauses until you tap it again (it turns itself off after two minutes of silence), and you press Send yourself. A speaker button on each answer reads it aloud. Both use the browser's own speech features (Chrome and Edge), so there's no second API key.
 
 ### Staying inside the manual
 

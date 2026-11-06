@@ -11,12 +11,17 @@ const { ev, waitFor, expect, load, ask, idleAfterAnswer, viewport, check, finish
 // what the page sees instead of a real microphone and speaker
 const SUPPORTED = `(() => {
   const S = window.__speech = { instances: [], spoken: [], cancelled: 0, delay: 20 };
+  // the page's two-minute silence limit, shortened to half a second so this check can watch it happen
+  const realSetTimeout = window.setTimeout;
+  window.setTimeout = (f, ms, ...a) => realSetTimeout(f, ms === 120000 ? 500 : ms, ...a);
   class FakeRecognition {
-    constructor() { S.instances.push(this); }
-    start() { this.started = true; }
+    constructor() { S.instances.push(this); this.starts = 0; }
+    start() { this.started = true; this.starts++; }
     stop() { this.stopped = true; setTimeout(() => this.onend && this.onend(), 0); }
     abort() { this.aborted = true; }
     say(text) { this.onresult && this.onresult({ results: [[{ transcript: text }]] }); }
+    sayAll(parts) { this.onresult && this.onresult({ results: parts.map((t) => [{ transcript: t }]) }); }   // several phrases in one round
+    endByItself() { this.onend && this.onend(); }   // what Chrome does after a pause: the round ends without anyone tapping
     fail(code) { this.onerror && this.onerror({ error: code }); this.onend && this.onend(); }
   }
   window.webkitSpeechRecognition = FakeRecognition;
@@ -73,7 +78,7 @@ check('a very long speech is cut at the 2000-character limit', await ev(`${$('in
 await ev(`${inst}.stop()`); await expect('idle again', idle);
 await setBox('');
 
-for (const [code, expected] of [['not-allowed', 'microphone is blocked'], ['service-not-allowed', 'microphone is blocked'], ['no-speech', 'didn’t hear anything'],
+for (const [code, expected] of [['not-allowed', 'microphone is blocked'], ['service-not-allowed', 'microphone is blocked'],
   ['audio-capture', 'couldn’t find a microphone'], ['network', 'internet connection'], ['weird', 'microphone stopped (weird)']]) {
   await tapMic();
   await ev(`${inst}.fail(${JSON.stringify(code)})`);
@@ -84,6 +89,40 @@ for (const [code, expected] of [['not-allowed', 'microphone is blocked'], ['serv
 await tapMic();
 await ev(`${inst}.fail('aborted')`);
 check('"aborted" is silent: no error message, back to Ready', (await status()) === 'Ready when you are.' && await ev(idle), await status());
+
+// pauses do not stop it: Chrome ends a round after a quiet moment, and the page listens again until the person taps the microphone
+await tapMic();
+check('listening is continuous (the browser is told not to stop at a pause)', await ev(`${inst}.continuous === true`));
+await ev(`${inst}.say('what is the duty cycle')`);
+await ev(`${inst}.endByItself()`);
+check('after a pause the round ends but the microphone keeps listening (it started again)', await ev(`${inst}.starts === 2 && ${$('mic')}.classList.contains('listening')`));
+check('...and the status line still says it is listening', (await status()).startsWith('Listening...'), await status());
+await ev(`${inst}.say('for TIG')`);
+check('words after the pause are added to the words before it', await ev(`${$('input')}.value === 'what is the duty cycle for TIG'`), await ev(`${$('input')}.value`));
+await ev(`${inst}.sayAll(['for TIG', ' at 125 amps'])`);
+check('several phrases in one round are joined with single spaces', await ev(`${$('input')}.value === 'what is the duty cycle for TIG at 125 amps'`), await ev(`${$('input')}.value`));
+await ev(`${inst}.fail('no-speech')`);
+check('a quiet stretch ("no-speech") is not an error: no message and still listening', await ev(`${inst}.starts === 3 && ${$('mic')}.classList.contains('listening')`) && (await status()).startsWith('Listening...'), await status());
+await tapMic();
+await expect('only tapping the microphone stops it', idle);
+check('the words are kept after stopping', await ev(`${$('input')}.value === 'what is the duty cycle for TIG at 125 amps'`), await ev(`${$('input')}.value`));
+await setBox('');
+await tapMic();
+for (let i = 0; i < 6; i++) await ev(`${inst}.endByItself()`);
+check('a recognizer that ends at once, again and again, is given up on with a plain message', await ev(idle) && (await status()).includes('microphone stopped'), await status());
+
+// the safety stop: no words for the whole limit (shortened to half a second here) and it turns itself off
+await tapMic();
+await sleep(900);
+check('with no words for the whole limit, listening stops by itself with a plain message', await ev(idle) && (await status()).includes('two minutes of silence'), await status());
+// hearing words restarts the silence clock
+await tapMic();
+await sleep(350); await ev(`${inst}.say('hello')`);
+await sleep(350);
+check('hearing words restarts the silence clock (still listening after more than the limit in total)', await ev(`${$('mic')}.classList.contains('listening')`));
+await sleep(700);
+check('...and it stops after the quiet that follows the last words, keeping them', await ev(idle) && await ev(`${$('input')}.value === 'hello'`), await ev(`${$('input')}.value`));
+await setBox('');
 
 // sending while listening: the question goes, listening is cancelled, late words are ignored
 await tapMic();
