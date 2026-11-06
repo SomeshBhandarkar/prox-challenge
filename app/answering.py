@@ -1,7 +1,7 @@
 """How one question is answered, from the model's draft to what the person reads. Used by the website server (and testable on its own).
 
-    1. The model drafts its answer. Pictures, widgets and statuses stream to the page at once (they come from the manual's own pictures and
-       verified data); the TEXT is held back until it has been checked.
+    1. The model drafts its answer. Statuses stream to the page at once; the pictures, widgets and drawings it asks for, and the TEXT, are held
+       back until the text has been checked, then shown together (a picture that appeared first with the text popping in above it looked broken).
     2. The word-level guard (app/guard.py) judges the draft; if it is clean, the fact-checker model (app/judge.py) reads it against the manual.
     3. If either objects, the model is asked ONCE to rewrite the whole answer using only the manual. The draft is thrown away, never shown.
     4. The rewrite is checked again. Any sentence still unsupported is removed. If too little is left, the answer is FALLBACK:
@@ -38,8 +38,9 @@ class Outcome:
         return bool(self.first_findings)
 
 
-async def collect(client, prompt: str, embeds, seen: set, state: dict, emit, events_for, on_fatal=lambda: None) -> Draft:
-    """Send one prompt. Pass statuses, pictures and errors on at once; keep the text (and the final "done") for the caller."""
+async def collect(client, prompt: str, embeds, seen: set, state: dict, emit, events_for, on_fatal=lambda: None, held: list | None = None) -> Draft:
+    """Send one prompt. Pass statuses and errors on at once; keep the text (and the final "done") for the caller.
+    Pictures go into `held` when it is given (the caller shows them together with the text), otherwise they are passed on at once."""
     draft = Draft()
     await client.query(prompt)
     async for sdk_message in client.receive_response():
@@ -59,6 +60,9 @@ async def collect(client, prompt: str, embeds, seen: set, state: dict, emit, eve
                 continue
             elif event == "show":
                 draft.shows += 1
+                if held is not None:
+                    held.append((event, data))
+                    continue
             emit(event, data)
     return draft
 
@@ -75,10 +79,18 @@ async def answer(client, question: str, embeds, emit, events_for, *, judge=None,
     guard_text=False skips the manual-only checks (the demo agent's canned replies are not from the manual); the picture follow-up still applies."""
     out = outcome or Outcome()
     seen, state = set(), {"sent_error": False}
-    draft = await collect(client, question, embeds, seen, state, emit, events_for, on_fatal)
+    held: list = []   # pictures and widgets wait here until the text is final, so they appear together with it
+
+    def release() -> None:
+        for event, data in held:
+            emit(event, data)
+        held.clear()
+
+    draft = await collect(client, question, embeds, seen, state, emit, events_for, on_fatal, held)
     text = "\n\n".join(draft.texts)
 
     if draft.errored or not draft.done or not draft.done.get("ok") or not text.strip():
+        release()
         for t in draft.texts:                      # nothing to check: an error already explained itself, or there is no text
             emit("text", {"text": t})
         out.final_text = text
@@ -105,7 +117,7 @@ async def answer(client, question: str, embeds, emit, events_for, *, judge=None,
         out.rewritten, out.phantom_nudge = bool(findings), phantom
         if findings:
             _forget_text(seen)
-        again = await collect(client, request, embeds, seen, state, emit, events_for, on_fatal)
+        again = await collect(client, request, embeds, seen, state, emit, events_for, on_fatal, held)
         done = again.done or done
         if findings:
             replacement = "\n\n".join(again.texts).strip()
@@ -124,6 +136,7 @@ async def answer(client, question: str, embeds, emit, events_for, *, judge=None,
             out.fallback = cleaned.startswith(guard.FALLBACK)
             final_text = cleaned
     out.final_text = final_text
+    release()
     if final_text.strip():
         emit("text", {"text": final_text})
     if done is not None:

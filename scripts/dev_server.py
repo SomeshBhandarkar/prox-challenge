@@ -3,7 +3,7 @@
     .venv/bin/python -m scripts.dev_server            then open the address it prints
 
 Type one of these words in the chat to see what the page does with it:
-  figure  polarity  duty  flowchart  setup  draw  broken  badfigure  placeholder  twice  everything  lists  repeat  phantom  long  callout  unsafe  slow  limit  budget  crash
+  figure  polarity  duty  flowchart  setup  draw  broken  badfigure  placeholder  twice  everything  lists  repeat  phantom  together  long  callout  unsafe  slow  limit  budget  crash
   details (tap-to-answer questions)  symptom (the same, for a problem)  panel interior (the clickable front panel and inside)
 The answers are NOT from the manual. They only exercise the page. The real app is:  python3 run.py
 """
@@ -118,6 +118,8 @@ def scenario(text: str, history: tuple = ()) -> list[tuple]:
     if "setup" in t:
         return [("tool", "show_setup_guide", {"process": "mig", "voltage": 240, "material": "steel", "thickness": "1/8 inch", "wire_diameter": "0.030"}),
                 ("text", "The setup sheet is below (manual p.20).")]
+    if "together" in t:   # a picture is asked for first and the text comes 1.5 s later: the page must show neither until both are ready
+        return [("tool", "show_figure", {"figure_id": "rating-label"}), ("sleep", 1.5), ("text", "The rating label is shown below (manual p.14).")]
     if "slow" in t:
         return [("tool", "view_manual_page", {"page": 14}), ("sleep", 2.5), ("text", "That took a moment.")]
     if "repeat" in t:   # the model wrote its answer, called a picture tool, then wrote the answer again (real output from exam Q43)
@@ -139,7 +141,7 @@ def scenario(text: str, history: tuple = ()) -> list[tuple]:
     if "crash" in t:
         return [("raise", "demo crash")]
     return [("text", "This is the demo agent: the answers are canned and nothing is sent to Claude. Try one of these words: "
-                     "figure, polarity, duty, flowchart, setup, details, symptom, panel, interior, draw, broken, badfigure, placeholder, twice, everything, lists, repeat, phantom, long, callout, unsafe, slow, limit, budget, crash.")]
+                     "figure, polarity, duty, flowchart, setup, details, symptom, panel, interior, draw, broken, badfigure, placeholder, twice, everything, lists, repeat, phantom, together, long, callout, unsafe, slow, limit, budget, crash.")]
 
 
 class DemoClient:

@@ -73,9 +73,54 @@ def test_a_clean_answer_is_shown_once_after_both_checks_with_one_done():
     assert judge.asked == [GOOD] and out.violated is False and out.judge_used is True
 
 
-def test_pictures_stream_at_once_but_the_text_waits_for_the_checks_and_done_comes_last():
+def test_the_picture_comes_before_the_text_and_done_comes_last():
     _, events, _ = run([[("text", GOOD), SHOW]])
     assert kinds(events) == ["status", "show", "text", "done"]
+
+
+def watched(plan, judge_result=None, question="what is the duty cycle?"):
+    """Run an answer with a fact-checker that records what the page had received while the checker was still reading.
+    Returns (all events, what the page had at the first check, the judge's calls)."""
+    events, at_check = [], []
+
+    async def checker(answer, q):
+        at_check.append(kinds(events))
+        return judge_result if judge_result is not None else []
+    asyncio.run(A.answer(Scripted(plan), question, S.Embeds(), lambda e, d: events.append((e, d)), S.events_for, judge=checker))
+    return events, at_check
+
+
+def test_pictures_wait_for_the_checks_and_appear_together_with_the_text():
+    # the page used to get the picture first and the text seconds later, so the text popped in above the picture and pushed it down
+    events, at_check = watched([[SHOW, ("text", GOOD)]])
+    assert at_check == [["status"]]                                 # while the checker was reading: a status line, no picture and no text
+    assert kinds(events) == ["status", "show", "text", "done"]       # then the picture, the text and the end, in that order
+
+
+def test_every_picture_waits_not_just_the_first_and_all_come_before_the_text():
+    second = ("tool", "show_figure", {"figure_id": "spec-table-mig"})
+    events, at_check = watched([[SHOW, second, ("text", GOOD)]])
+    assert at_check == [["status", "status"]]                        # two status lines, still no picture
+    assert kinds(events) == ["status", "status", "show", "show", "text", "done"]
+
+
+def test_pictures_asked_for_in_the_draft_and_in_the_rewrite_all_wait_and_the_draft_text_is_never_shown():
+    other = ("tool", "show_figure", {"figure_id": "spec-table-mig"})
+    events, at_check = watched([[SHOW, ("text", BAD)], [other, ("text", GOOD)]])
+    assert at_check == [["status", "status"]]                        # the checker only ever judged the rewrite, and nothing was on the page yet
+    assert kinds(events) == ["status", "status", "show", "show", "text", "done"] and texts(events) == [GOOD]
+
+
+def test_a_picture_is_not_lost_when_the_answer_fails_or_has_no_text():
+    events, _ = watched([[SHOW, ("error", "rate_limit")]])
+    assert "show" in kinds(events) and kinds(events)[-1] == "done"
+    events, _ = watched([[SHOW]])                                    # a picture and no words at all
+    assert kinds(events) == ["status", "show", "done"]
+
+
+def test_an_answer_without_pictures_is_unchanged():
+    events, at_check = watched([[("text", GOOD)]])
+    assert kinds(events) == ["text", "done"] and at_check == [[]]
 
 
 def test_a_draft_with_outside_wording_is_never_shown_the_model_is_asked_once_to_rewrite_and_only_the_rewrite_is_shown():

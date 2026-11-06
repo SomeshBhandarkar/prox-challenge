@@ -137,6 +137,15 @@ await reset();
 await ask('badfigure'); await idleAfterAnswer(1);
 check('a picture that does not exist shows a quiet note, not a crash', (await text('.answer-visuals .note')).includes("couldn't show a picture"));
 
+// ---------------------------------------------------------------- a picture and its text appear together
+// the picture is asked for first and the text follows 1.5 s later; the page used to show the picture alone and then pop the text in above it
+await reset();
+await ask('together please');
+await sleep(700);
+check('while the answer is still being checked, no picture and no text are on the page yet', await ev(`document.querySelectorAll('figure.figure').length === 0 && !document.querySelector('.answer-text').textContent.trim()`));
+await idleAfterAnswer(1);
+check('then the text and its picture arrive together', await ev(`document.querySelectorAll('figure.figure').length === 1 && document.querySelector('.answer-text').textContent.includes('rating label')`));
+
 // ---------------------------------------------------------------- busy, double send, keyboard
 await reset();
 await ask('slow one');
