@@ -6,7 +6,7 @@
   const $ = (id) => document.getElementById(id);
   const startup = $('startup'), shell = $('app-shell'), phrase = $('intro-phrase'), enterLine = $('startup-prompt');
   const log = $('log'), thread = $('thread'), welcome = $('welcome'), input = $('input'), sendBtn = $('send'), form = $('composer');
-  const statusText = $('status-text'), statusDot = $('status-dot'), counter = $('count'), micBtn = $('mic');
+  const statusText = $('status-text'), statusDot = $('status-dot'), statusStrip = $('status'), counter = $('count'), micBtn = $('mic');
   const MAX = 2000;
   const HINT = 'Enter to send · Shift + Enter for a new line';
   const INTRO = ['Welding', 'shouldn’t', 'feel', 'like', 'a', 'full-time', 'job.'];
@@ -19,6 +19,7 @@
     busy: false,
     stick: true,          // keep the newest content in view unless the person scrolled up
     body: null,           // the answer being filled in
+    working: null,        // the "Thinking..." line under the person's question while an answer is being written
     retries: new Map(),   // drawing identifier -> how many automatic fixes were tried
     fix: null,            // a drawing that reported an error and still needs one fix request
     abort: null,
@@ -181,7 +182,11 @@
     state.body = el('div', 'body');
     state.prose = el('div', 'answer-text');
     state.visuals = el('div', 'answer-visuals');
-    state.body.append(state.prose, state.visuals);
+    // "Thinking..." sits under the question, at the left, and the answer fills in above it (like other chat apps)
+    state.working = el('div', 'working');
+    state.working.setAttribute('aria-hidden', 'true');   // the status strip is the live region that screen readers hear
+    state.working.append(el('span', 'working-dot'), el('span', 'working-text', 'Thinking...'));
+    state.body.append(state.prose, state.visuals, state.working);
     state.msg = msg;
     state.sawText = false;
     msg.append(label, state.body);
@@ -447,11 +452,14 @@
 
   // ---------- talking to the server ----------
   function setStatus(text, plain) {   // plain = a full sentence, so no "..." is added
-    statusText.textContent = text ? (plain ? text : text + '...') : 'Ready when you are.';
+    const line = text ? (plain ? text : text + '...') : 'Ready when you are.';
+    statusText.textContent = line;
     statusDot.classList.toggle('active', Boolean(text));
+    if (text && state.working) state.working.lastChild.textContent = line;   // what the assistant is doing, shown under the question
   }
   function setBusy(on) {
     state.busy = on;
+    statusStrip.classList.toggle('quiet', on);   // while an answer is written the progress shows under the question, not up here
     micBtn.disabled = on;
     sendBtn.disabled = on || !input.value.trim();
     log.setAttribute('aria-busy', String(on));
@@ -499,6 +507,7 @@
     welcome.hidden = true;
     if (automatic) addNote('The drawing had a problem, so I asked the assistant to fix it.');
     const answer = startExchange(automatic ? null : text);
+    const working = state.working;
     setBusy(true);
     setStatus('Thinking');
     let finished = false;
@@ -530,6 +539,8 @@
       if (e.name !== 'AbortError') addProblem("I couldn't reach the server. Is it still running?");
     } finally {
       state.abort = null;
+      working.remove();
+      if (state.working === working) state.working = null;
       if (!answer.querySelectorAll('.answer-text > *, .answer-visuals > *').length) answer.remove();
       else addListenButton(answer);
       setBusy(false);
@@ -543,7 +554,7 @@
     stopReading();
     if (state.abort) state.abort.abort();
     if (state.sid) fetch('/api/reset', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ session_id: state.sid }) }).catch(() => {});
-    state.sid = null; state.fix = null; state.body = state.prose = state.visuals = state.msg = null; state.retries.clear();
+    state.sid = null; state.fix = null; state.body = state.prose = state.visuals = state.msg = state.working = null; state.retries.clear();
     thread.querySelectorAll('.conversation, .note').forEach((n) => n.remove());
     welcome.hidden = false;
     setStatus(null);

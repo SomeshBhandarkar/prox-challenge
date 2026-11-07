@@ -56,6 +56,7 @@ button:focus-visible, textarea:focus-visible, select:focus-visible, .thread:focu
 .status-strip { flex: none; height: 42px; display: flex; align-items: center; gap: 8px; color: var(--muted); font-size: 12px; }
 .status-dot { width: 7px; height: 7px; border-radius: 50%; background: #a9a39c; }
 .status-dot.active { background: var(--orange); animation: pulse 1.1s infinite; }
+.status-strip.quiet { opacity: 0; }   /* still read out by screen readers; sighted people see the progress under their question */
 .thread { flex: 1; min-height: 0; overflow-y: auto; padding: 22px 0 30px; scrollbar-color: var(--line) transparent; }
 
 /* ---------- welcome ---------- */
@@ -78,6 +79,9 @@ button:focus-visible, textarea:focus-visible, select:focus-visible, .thread:focu
 .mini-mark { width: 25px; height: 25px; border-radius: 6px; font-size: 9px; }
 .time { margin-left: auto; font-weight: 400; }
 .body { min-width: 0; }
+.working { display: flex; align-items: center; gap: 9px; margin: 0; padding: 2px 0; color: var(--muted); font-size: 14px; }
+.working-dot { flex: none; width: 8px; height: 8px; border-radius: 50%; background: var(--orange); animation: pulse 1.1s infinite; }
+.answer-text:not(:empty) ~ .working, .answer-visuals:not(:empty) ~ .working { margin-top: 14px; }
 .answer-text:empty { display: none; }
 .answer-visuals > :first-child { margin-top: 0; }
 .answer-visuals > :last-child, .answer-text > :last-child { margin-bottom: 0; }
@@ -231,6 +235,7 @@ button:focus-visible, textarea:focus-visible, select:focus-visible, .thread:focu
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+  .working-dot { animation: none; }   /* an endless animation squeezed to 0.01 ms would flicker */
   .mic.listening { animation: none; }   /* the filled button already shows that it is listening */
   .startup-prompt.visible { animation: none; }   /* an endless animation squeezed to 0.01 ms would flicker */
 }

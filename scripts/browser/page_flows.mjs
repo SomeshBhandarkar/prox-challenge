@@ -194,11 +194,24 @@ await ask('slow one');
 await sleep(300);
 check('Send is disabled while an answer is being written', await ev(`${$('send')}.disabled`));
 check('the status line says what is happening', (await text('#status-text')).length > 3 && !(await text('#status-text')).startsWith('Ready'));
+// "Thinking..." belongs under the person's question, at the left, not up in the status strip
+const where = await ev(`(() => { const w = document.querySelector('.conversation .working'); if (!w) return null;
+  const q = document.querySelector('.conversation .bubble').getBoundingClientRect(), r = w.getBoundingClientRect(), m = document.querySelector('.conversation .msg.assistant').getBoundingClientRect(),
+    strip = ${$('status')}.getBoundingClientRect(), vis = getComputedStyle(${$('status')}).opacity;
+  return { under: r.top > q.bottom, leftOfBubble: r.left < q.left, insideAnswer: r.left >= m.left && r.right <= m.right + 1, stripTop: strip.bottom <= q.top, stripHidden: vis === '0', words: w.textContent.trim(), ariaHidden: w.getAttribute('aria-hidden') };
+})()`);
+check('a working line appears under the question while the answer is being written', Boolean(where && where.under), JSON.stringify(where));
+check('...at the left of the answer, not under the right-aligned question bubble', Boolean(where && where.leftOfBubble && where.insideAnswer), JSON.stringify(where));
+check('...and says what is happening', Boolean(where) && where.words.length > 3 && !where.words.startsWith('Ready'), where && where.words);
+check('...while the status strip at the top is not showing it any more', Boolean(where && where.stripHidden && where.stripTop), JSON.stringify(where));
+check('...and screen readers still hear the status through the strip, not twice', Boolean(where && where.ariaHidden === 'true') && (await text('#status-text')).length > 3);
+await shot('thinking-under-question');
 await ev(`(() => { const i = ${$('input')}; i.value = 'second question typed too early'; i.dispatchEvent(new Event('input')); ${$('composer')}.requestSubmit(); })()`);
 await sleep(200);
 check('a second question while busy is NOT sent', await count('.msg.user') === 1);
 check('...and what was typed is kept in the box', await ev(`${$('input')}.value === 'second question typed too early'`));
 await idleAfterAnswer(1);
+check('when the answer is finished the working line is gone and the strip at the top is back', await count('.working') === 0 && await ev(`getComputedStyle(${$('status')}).opacity === '1'`));
 await ev(`(() => { const i = ${$('input')}; i.value = ''; i.dispatchEvent(new Event('input')); })()`);
 await ev(`${$('input')}.focus()`);
 await cdp('Input.insertText', { text: 'first line' });

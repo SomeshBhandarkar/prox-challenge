@@ -53,6 +53,16 @@ def test_every_status_the_server_can_send_is_plain_text_the_page_just_displays()
     assert "STATUS" in dir(S) and "statusText.textContent" in JS  # never innerHTML for status or error text
 
 
+def test_the_working_line_sits_under_the_question_and_the_top_strip_goes_quiet_while_busy():
+    start = JS[JS.index("function startExchange"):JS.index("function addNote")]
+    assert "el('div', 'working')" in start and "state.body.append(state.prose, state.visuals, state.working)" in start  # the answer fills in above it
+    assert "aria-hidden" in start  # the status strip stays the one live region, so screen readers do not hear it twice
+    assert "state.working.lastChild.textContent = line" in JS and ".remove()" in JS[JS.index("working.remove()"):][:20]
+    assert "statusStrip.classList.toggle('quiet', on)" in JS
+    assert re.search(r"\.status-strip\.quiet \{ opacity: 0;", CSS)  # hidden, not removed: no layout jump and still announced
+    assert ".working-dot { animation: none; }" in CSS  # reduced motion: no endless flicker
+
+
 def test_frames_are_sandboxed_without_same_origin_and_the_message_sources_match_what_frames_send():
     assert "setAttribute('sandbox', 'allow-scripts')" in JS and "allow-same-origin" not in JS
     from app.artifacts import REPORTER_JS
