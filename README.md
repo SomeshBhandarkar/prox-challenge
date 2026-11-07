@@ -1,8 +1,12 @@
 # OmniPro 220 assistant
 
-This is a support assistant for the Vulcan OmniPro 220 multiprocess welder. You ask it a question the way you'd ask a friend who has read the whole owner's manual, and it answers from the manual. When a picture, a diagram or a small tool explains something better than words, it shows that instead of describing it.
+**Live app: [prox-challenge-qffk.onrender.com](https://prox-challenge-qffk.onrender.com)**
 
-**Video walkthrough:** <VIDEO_LINK>
+**Video walkthrough: [Watch it on Google Drive](https://drive.google.com/file/d/1ErcIz_Mzwu1O-2E2n3BCZRyTS8VgtUxM/view?usp=sharing)**
+
+The live app runs on my own limited API credits. If it ever says it has run out of credits, run it yourself with your own key; it takes about two minutes (see below).
+
+This is a support assistant for the Vulcan OmniPro 220 multiprocess welder. You ask it a question the way you'd ask a friend who has read the whole owner's manual, and it answers from the manual. When a picture, a diagram or a small tool explains something better than words, it shows that instead of describing it.
 
 <p align="center">
   <img src="docs/screens/welcome-dark.png" width="49%" alt="The welcome screen in dark mode">
@@ -12,7 +16,7 @@ This is a support assistant for the Vulcan OmniPro 220 multiprocess welder. You 
 ## Running it
 
 ```bash
-git clone https://github.com/SomeshBhandarkar/prox-challenge
+git clone https://github.com/SomeshBhandarkar/prox-challenge. prox-challenge
 cd prox-challenge
 cp .env.example .env      # open .env and paste your ANTHROPIC_API_KEY
 python3 run.py
@@ -20,7 +24,7 @@ python3 run.py
 
 You need Python 3.10 or newer (`python run.py` on Windows). The first run creates a private `.venv` inside the project folder, installs the pinned requirements and opens http://localhost:8000. That's about 100 MB, mostly the Agent SDK, which carries its own engine, so on slow Wi-Fi give it a minute. After that it starts straight away. The key in `.env` is the only thing you have to supply. There's no npm step and nothing gets installed outside the folder.
 
-I built this on my own API credits and they're nearly gone (about $<CREDITS_REMAINING> left as of <DATE>), so please run it with your own key.
+I built this on my own API credits and they're nearly gone (about $4.91 left as of 7 November 2026), so please run it with your own key.
 
 | If you want to | Do this |
 |---|---|
@@ -66,7 +70,7 @@ flowchart TD
 
 Say you ask *"What's the duty cycle for MIG at 200A on 240V?"*
 
-1. The page sends the question to the server. Each conversation has its own background worker that owns the connection to the agent, and the status line under the header tells you what's going on ("Reading a page of the manual...").
+1. The page sends the question to the server. Each conversation has its own background worker that owns the connection to the agent, and while it works, a line under your question tells you what it's doing ("Thinking...", then things like "Reading a page of the manual...").
 2. The agent already has the whole manual in its prompt, plus the list of pictures and its rules. It doesn't answer the number from memory. It calls `duty_cycle(process="mig", voltage=240, amps=200)`.
 3. The lookup answers from the specifications I checked by hand: 25%, which is 2.5 minutes of welding and 7.5 of rest in every 10, page 7. If you ask about 150A it says the manual gives no duty cycle at that current and shows the two nearest ratings, because the manual doesn't say.
 4. The agent asks to show the calculator and the manual's own duty cycle page. The server sees those tool calls, builds the calculator itself and keeps it under a random token. The agent only gets back one short sentence saying it's on screen.
