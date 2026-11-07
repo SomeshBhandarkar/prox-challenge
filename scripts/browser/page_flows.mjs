@@ -12,23 +12,65 @@ const newChat = () => ev(`${$('new-chat')}.click()`);
 const reset = async () => { await newChat(); await waitFor(`document.querySelectorAll('.conversation').length === 0`, 'the chat to clear'); };
 
 // ---------------------------------------------------------------- startup screen
+// raw key / mouse events, so the checks can send a real typed letter, a lone Shift and Ctrl+A
+const key = async (k, { code = k, mods = 0, text, vk = 0 } = {}) => {
+  await cdp('Input.dispatchKeyEvent', { type: text ? 'keyDown' : 'rawKeyDown', key: k, code, modifiers: mods, windowsVirtualKeyCode: vk, nativeVirtualKeyCode: vk, ...(text ? { text } : {}) });
+  await cdp('Input.dispatchKeyEvent', { type: 'keyUp', key: k, code, modifiers: mods, windowsVirtualKeyCode: vk, nativeVirtualKeyCode: vk });
+};
+const click = async (x, y) => {
+  await cdp('Input.dispatchMouseEvent', { type: 'mousePressed', x, y, button: 'left', clickCount: 1 });
+  await cdp('Input.dispatchMouseEvent', { type: 'mouseReleased', x, y, button: 'left', clickCount: 1 });
+};
+const inApp = `!${$('app-shell')}.hidden && ${$('startup')}.hidden`;
+const atGate = `${$('app-shell')}.hidden && !${$('startup')}.hidden`;
+
 await viewport(1100, 800);
 await load('', { seen: false });
-check('startup screen shows first, the app is hidden behind it', await ev(`!${$('startup')}.hidden && ${$('app-shell')}.hidden`));
+check('startup screen shows first, the app is hidden behind it', await ev(atGate));
 const t0 = Date.now();
-await waitFor(`!${$('app-shell')}.hidden`, 'the startup screen to finish on its own', 8000);
-const took = Date.now() - t0;
-check('the whole startup screen takes no more than 3.5 seconds', took <= 3500, `${took} ms`);
-check('the startup screen is gone and remembered for this tab', await ev(`${$('startup')}.hidden && sessionStorage.getItem('omnipro-seen') === '1'`));
+await waitFor(`${$('startup-prompt')}.classList.contains('visible')`, 'the "press any key" line', 5000);
+check('the "press any key" line appears within 3 seconds', Date.now() - t0 <= 3000, `${Date.now() - t0} ms`);
+check('the line tells the person to press a key or click', /any key/i.test(await text('#startup-prompt')) && /click/i.test(await text('#startup-prompt')));
+await shot('startup-gate');
+await sleep(5000);   // far longer than the old automatic exit (about 3 s)
+check('the app does NOT open by itself: it waits for the person', await ev(atGate) && await ev(`sessionStorage.getItem('omnipro-seen') === null`));
+await key('Shift', { code: 'ShiftLeft', mods: 8, vk: 16 });
+await key('a', { code: 'KeyA', mods: 2, vk: 65 });   // Ctrl+A
+await key('F5', { code: 'F5', vk: 116 });
+await sleep(300);
+check('a lone Shift, Ctrl+A and F5 do not open the app', await ev(atGate));
+await key('h', { code: 'KeyH', text: 'h', vk: 72 });   // a real typed letter
+await expect('a letter opens the app', inApp, 2500);
+check('the letter that opened the app is NOT typed into the question box', await ev(`${$('input')}.value === ''`), await ev(`JSON.stringify(${$('input')}.value)`));
+check('the question box has the cursor, ready for typing', await ev(`document.activeElement === ${$('input')}`));
+check('the visit is remembered for this tab', await ev(`sessionStorage.getItem('omnipro-seen') === '1'`));
 await load('', { seen: null });   // a second visit in the same tab: leave the tab's storage alone this time
 const t1 = Date.now();
 await waitFor(`!${$('app-shell')}.hidden`, 'the app on the second visit', 3000);
 check('a second visit in the same tab skips the startup screen', Date.now() - t1 < 1500 && await ev(`${$('startup')}.hidden`), `${Date.now() - t1} ms`);
 
 await load('', { seen: false });
-await sleep(400);
+await waitFor(`${$('startup-prompt')}.classList.contains('visible')`, 'the "press any key" line', 5000);
+await click(550, 400);
+await expect('a click opens the app', inApp, 2500);
+
+await load('', { seen: false });
+await sleep(400);   // in the middle of the words
 await press('Escape');
-await expect('any key skips the startup screen', `!${$('app-shell')}.hidden`, 2500);
+await expect('any key opens the app at once, even while the words are still appearing', inApp, 2500);
+await sleep(1500);   // the rest of the animation must not touch the page after the person came in
+check('nothing from the unfinished animation comes back after the app is open', await ev(`${$('startup')}.hidden && !${$('app-shell')}.hidden && ${$('startup-prompt')}.getAttribute('aria-hidden') === 'true'`));
+
+// a phone: "Tap to enter", and the question box is NOT focused (that would open the keyboard over the starter questions)
+await viewport(390, 844, { mobile: true });
+await load(`const mm = window.matchMedia.bind(window); window.matchMedia = (q) => /pointer:\\s*coarse/.test(q) ? { matches: true, media: q, addEventListener() {}, removeEventListener() {} } : mm(q);`, { seen: false });
+await waitFor(`${$('startup-prompt')}.classList.contains('visible')`, 'the "tap" line on a phone', 5000);
+check('on a phone the line says "Tap to enter"', (await text('#startup-prompt')) === 'Tap to enter', await text('#startup-prompt'));
+check('the phone startup screen has no sideways scroll', await ev(`document.documentElement.scrollWidth <= innerWidth`));
+await click(195, 420);
+await expect('a tap opens the app on a phone', inApp, 2500);
+check('on a phone the question box is not focused (no keyboard pops up)', await ev(`document.activeElement !== ${$('input')}`));
+await viewport(1100, 800);
 
 await viewport(1100, 800, { reduced: true });
 await load('', { seen: false });

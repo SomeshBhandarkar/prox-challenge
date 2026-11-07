@@ -4,7 +4,7 @@
   'use strict';
 
   const $ = (id) => document.getElementById(id);
-  const startup = $('startup'), shell = $('app-shell'), phrase = $('intro-phrase'), loading = $('startup-loading');
+  const startup = $('startup'), shell = $('app-shell'), phrase = $('intro-phrase'), enterLine = $('startup-prompt');
   const log = $('log'), thread = $('thread'), welcome = $('welcome'), input = $('input'), sendBtn = $('send'), form = $('composer');
   const statusText = $('status-text'), statusDot = $('status-dot'), counter = $('count'), micBtn = $('mic');
   const MAX = 2000;
@@ -47,28 +47,39 @@
   // pictures and frames change height after they appear: whenever the thread grows, stay at the bottom unless the person scrolled up
   new ResizeObserver(keepBottom).observe(thread);
 
-  // ---------- startup screen: a few words, then the app (shown once per visit, skippable) ----------
+  // ---------- startup screen: a few words, then "press any key or click to enter" (shown once per visit; it waits for the person) ----------
   function showApp() {
     startup.hidden = true;
     shell.hidden = false;
     try { sessionStorage.setItem('omnipro-seen', '1'); } catch (e) { /* storage can be blocked */ }
-    input.focus();
+    // not on a phone: focusing the box inside a tap would open the keyboard over the starter questions
+    if (!matchMedia('(pointer: coarse)').matches) input.focus();
   }
+  const NOT_ENTER = new Set(['Shift', 'Control', 'Alt', 'AltGraph', 'Meta', 'OS', 'CapsLock', 'Fn']);   // a lone modifier key is not "any key"
   async function runStartup() {
     let seen = false;
     try { seen = sessionStorage.getItem('omnipro-seen') === '1'; } catch (e) { /* storage can be blocked */ }
     if (seen || matchMedia('(prefers-reduced-motion: reduce)').matches) { showApp(); return; }
-    let skipped = false;
-    const skip = () => { skipped = true; };
-    startup.addEventListener('click', skip);
-    addEventListener('keydown', skip, { once: true });
+    if (matchMedia('(pointer: coarse)').matches) enterLine.textContent = 'Tap to enter';
+    const enter = () => { removeEventListener('keydown', onKey); showApp(); };
+    const onKey = (e) => {
+      // Cmd/Ctrl/Alt shortcuts (reload, switch app), a lone modifier and F-keys (F5, F12) are the browser's, not a way in
+      if (e.ctrlKey || e.metaKey || e.altKey || NOT_ENTER.has(e.key) || /^F\d+$/.test(e.key)) return;
+      e.preventDefault();   // the key that opens the app must not also type into the question box
+      enter();
+    };
+    startup.addEventListener('click', enter, { once: true });
+    addEventListener('keydown', onKey);
     for (const word of INTRO) {
-      if (skipped) break;
       await wait(230);
+      if (startup.hidden) return;   // the person already came in
       phrase.append(el('span', 'intro-word', word));
     }
-    if (!skipped) { await wait(350); loading.classList.add('visible'); loading.setAttribute('aria-hidden', 'false'); await wait(800); }
-    showApp();
+    await wait(350);
+    if (startup.hidden) return;
+    enterLine.classList.add('visible');
+    enterLine.setAttribute('aria-hidden', 'false');
+    // and now it waits: only a key or a click closes this screen
   }
 
   // ---------- text: a small, safe markdown ----------

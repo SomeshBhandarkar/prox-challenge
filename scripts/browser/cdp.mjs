@@ -67,6 +67,9 @@ export async function openBrowser({ site, out }) {
     .map(describe).filter((m) => !(ignore && ignore.test(m)));
 
   await cdp('Page.enable'); await cdp('Runtime.enable'); await cdp('Log.enable'); await cdp('Network.enable');
+  // a headless tab can report itself "hidden", and Chrome then slows the page's timers to about one a second (the startup words crawled);
+  // pretend a person is looking at the page, as they are in real life
+  await cdp('Emulation.setFocusEmulationEnabled', { enabled: true });
 
   let injected = null;
   const $ = (id) => `document.getElementById('${id}')`;

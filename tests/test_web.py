@@ -161,14 +161,23 @@ def test_the_page_really_talks_to_the_server_and_contains_no_mock_up_leftovers()
     assert "Start: 18V" not in JS and "C25 mix" not in JS  # the mock's invented settings must never come back
 
 
-def test_the_startup_screen_is_short_skippable_and_shown_once_per_visit():
+def test_the_startup_screen_waits_for_a_key_or_a_click_and_is_shown_once_per_visit():
+    body = re.search(r"async function runStartup\(\) \{(.*?)\n  \}\n", JS, re.S).group(1)
     words = re.search(r"const INTRO = \[(.*?)\];", JS, re.S).group(1).count("'") // 2
-    waits = [int(n) for n in re.findall(r"await wait\((\d+)\)", JS)]
-    total = waits[0] * words + sum(waits[1:])  # one wait per word, then the pause before and after the "getting ready" line
-    assert 0 < total <= 3500, f"the startup screen would take {total} ms: reviewers should not wait for it"
+    waits = [int(n) for n in re.findall(r"await wait\((\d+)\)", body)]
+    animation = waits[0] * words + sum(waits[1:])  # one wait per word, then the pause before the "press any key" line
+    assert 0 < animation <= 3000, f"the words would take {animation} ms before the 'press any key' line: reviewers should not wait for it"
     assert "sessionStorage" in JS and "omnipro-seen" in JS and "prefers-reduced-motion" in JS  # once per visit, and none for people who ask for less motion
-    assert "addEventListener('keydown', skip" in JS and "startup.addEventListener('click', skip)" in JS  # any key or a tap skips it
-    assert 'id="startup"' in HTML and 'id="app-shell" hidden' in HTML  # the app is hidden until the startup screen is done (or skipped)
+    assert "startup.addEventListener('click', enter" in body and "addEventListener('keydown', onKey)" in body  # a click, a tap or a key opens the app
+    # nothing closes the screen by itself: the app is shown from the early shortcut and from `enter` (a key or a click), never after a timer
+    assert body.count("showApp()") == 2 and "setTimeout" not in body and "setInterval" not in body
+    assert body.rindex("enterLine.classList.add('visible')") > body.rindex("await wait(")  # the last thing it does is show the line and wait
+    # the key that opens the app must not type into the box; browser shortcuts and a lone Shift are not a way in
+    assert "e.preventDefault()" in body and "e.ctrlKey || e.metaKey || e.altKey" in body and "NOT_ENTER" in body and r"/^F\d+$/" in body
+    assert "pointer: coarse" in JS  # a phone says "Tap to enter" and the box is not focused (it would open the keyboard over the starter questions)
+    assert 'id="startup-prompt"' in HTML and "any key" in HTML and "startup-hint" not in HTML and "Getting your manual ready" not in HTML
+    assert 'id="startup"' in HTML and 'id="app-shell" hidden' in HTML  # the app is hidden until the person comes in
+    assert ".startup-prompt.visible { animation: none; }" in CSS  # reduced motion: an endless animation squeezed to 0.01 ms would flicker
 
 
 def test_the_answer_text_is_placed_before_its_pictures_and_the_view_goes_to_the_start_of_the_answer():
